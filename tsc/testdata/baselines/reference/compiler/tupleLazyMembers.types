@@ -1,0 +1,174 @@
+//// [tests/cases/compiler/tupleLazyMembers.ts] ////
+
+=== tupleLazyMembers.ts ===
+// Member lookups and shape queries on tuple references, whose Array base type
+// gets the tuple as its this type.
+
+declare const pair: [string, number];
+>pair : [string, number]
+
+const pair0 = pair[0];
+>pair0 : string
+>pair[0] : string
+>pair : [string, number]
+>0 : 0
+
+const pair1 = pair[1];
+>pair1 : number
+>pair[1] : number
+>pair : [string, number]
+>1 : 1
+
+const pairLength = pair.length;
+>pairLength : 2
+>pair.length : 2
+>pair : [string, number]
+>length : 2
+
+const pairMapped = pair.map(x => typeof x);
+>pairMapped : ("bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined")[]
+>pair.map(x => typeof x) : ("bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined")[]
+>pair.map : <U>(callbackfn: (value: string | number, index: number, array: (string | number)[]) => U, thisArg?: any) => U[]
+>pair : [string, number]
+>map : <U>(callbackfn: (value: string | number, index: number, array: (string | number)[]) => U, thisArg?: any) => U[]
+>x => typeof x : (x: string | number) => "bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined"
+>x : string | number
+>typeof x : "bigint" | "boolean" | "function" | "number" | "object" | "string" | "symbol" | "undefined"
+>x : string | number
+
+pair[2];
+>pair[2] : undefined
+>pair : [string, number]
+>2 : 2
+
+pair.missing;
+>pair.missing : any
+>pair : [string, number]
+>missing : any
+
+declare const optional: [string, number?];
+>optional : [string, (number | undefined)?]
+
+const optionalLength = optional.length;
+>optionalLength : 1 | 2
+>optional.length : 1 | 2
+>optional : [string, (number | undefined)?]
+>length : 1 | 2
+
+const optional1 = optional[1];
+>optional1 : number | undefined
+>optional[1] : number | undefined
+>optional : [string, (number | undefined)?]
+>1 : 1
+
+declare const rest: [boolean, ...string[]];
+>rest : [boolean, ...string[]]
+
+const rest5 = rest[5];
+>rest5 : string
+>rest[5] : string
+>rest : [boolean, ...string[]]
+>5 : 5
+
+const restLength = rest.length;
+>restLength : number
+>rest.length : number
+>rest : [boolean, ...string[]]
+>length : number
+
+declare const named: readonly [first: string, second: number];
+>named : readonly [first: string, second: number]
+
+named.push;
+>named.push : any
+>named : readonly [first: string, second: number]
+>push : any
+
+const namedConcat = named.concat([1]);
+>namedConcat : (string | number)[]
+>named.concat([1]) : (string | number)[]
+>named.concat : { (...items: ConcatArray<string | number>[]): (string | number)[]; (...items: (string | number | ConcatArray<string | number>)[]): (string | number)[]; }
+>named : readonly [first: string, second: number]
+>concat : { (...items: ConcatArray<string | number>[]): (string | number)[]; (...items: (string | number | ConcatArray<string | number>)[]): (string | number)[]; }
+>[1] : number[]
+>1 : 1
+
+function variadic<T extends unknown[]>(t: [number, ...T]) {
+>variadic : <T extends unknown[]>(t: [number, ...T]) => number
+>t : [number, ...T]
+
+    const head = t[0];
+>head : number
+>t[0] : number
+>t : [number, ...T]
+>0 : 0
+
+    const tail = t.slice(1);
+>tail : (number | T[number])[]
+>t.slice(1) : (number | T[number])[]
+>t.slice : (start?: number, end?: number) => (number | T[number])[]
+>t : [number, ...T]
+>slice : (start?: number, end?: number) => (number | T[number])[]
+>1 : 1
+
+    return t.length;
+>t.length : number
+>t : [number, ...T]
+>length : number
+}
+
+const weak: { length?: number; other?: string } = pair;
+>weak : { length?: number; other?: string; }
+>length : number | undefined
+>other : string | undefined
+>pair : [string, number]
+
+const notWeak: { other?: number } = pair;
+>notWeak : { other?: number; }
+>other : number | undefined
+>pair : [string, number]
+
+const arrayLike: ArrayLike<string | number> = pair;
+>arrayLike : ArrayLike<string | number>
+>pair : [string, number]
+
+const iterable: Iterable<string | number> = pair;
+>iterable : Iterable<string | number>
+>pair : [string, number]
+
+const tooShort: [string, number, boolean] = pair;
+>tooShort : [string, number, boolean]
+>pair : [string, number]
+
+const swapped: [number, string] = pair;
+>swapped : [number, string]
+>pair : [string, number]
+
+const missing: { 0: string; 1: number; 2: boolean } = pair;
+>missing : { 0: string; 1: number; 2: boolean; }
+>0 : string
+>1 : number
+>2 : boolean
+>pair : [string, number]
+
+const empty: {} = pair;
+>empty : {}
+>pair : [string, number]
+
+const mixed = [pair, "x"];
+>mixed : (string | [string, number])[]
+>[pair, "x"] : (string | [string, number])[]
+>pair : [string, number]
+>"x" : "x"
+
+interface Pair<T> extends Array<T> {
+    0: T;
+>0 : T
+
+    1: T;
+>1 : T
+}
+const pairLike: Pair<string | number> = pair;
+>pairLike : Pair<string | number>
+>pair : [string, number]
+

@@ -1,0 +1,76 @@
+tupleLazyMembers.ts(9,6): error TS2493: Tuple type '[string, number]' of length '2' has no element at index '2'.
+tupleLazyMembers.ts(10,6): error TS2339: Property 'missing' does not exist on type '[string, number]'.
+tupleLazyMembers.ts(21,7): error TS2339: Property 'push' does not exist on type 'readonly [first: string, second: number]'.
+tupleLazyMembers.ts(31,7): error TS2559: Type '[string, number]' has no properties in common with type '{ other?: number | undefined; }'.
+tupleLazyMembers.ts(34,7): error TS2322: Type '[string, number]' is not assignable to type '[string, number, boolean]'.
+  Source has 2 element(s) but target requires 3.
+tupleLazyMembers.ts(35,7): error TS2322: Type '[string, number]' is not assignable to type '[number, string]'.
+  Type at position 0 in source is not compatible with type at position 0 in target.
+    Type 'string' is not assignable to type 'number'.
+tupleLazyMembers.ts(36,7): error TS2741: Property '2' is missing in type '[string, number]' but required in type '{ 0: string; 1: number; 2: boolean; }'.
+
+
+==== tupleLazyMembers.ts (7 errors) ====
+    // Member lookups and shape queries on tuple references, whose Array base type
+    // gets the tuple as its this type.
+    
+    declare const pair: [string, number];
+    const pair0 = pair[0];
+    const pair1 = pair[1];
+    const pairLength = pair.length;
+    const pairMapped = pair.map(x => typeof x);
+    pair[2];
+         ~
+!!! error TS2493: Tuple type '[string, number]' of length '2' has no element at index '2'.
+    pair.missing;
+         ~~~~~~~
+!!! error TS2339: Property 'missing' does not exist on type '[string, number]'.
+    
+    declare const optional: [string, number?];
+    const optionalLength = optional.length;
+    const optional1 = optional[1];
+    
+    declare const rest: [boolean, ...string[]];
+    const rest5 = rest[5];
+    const restLength = rest.length;
+    
+    declare const named: readonly [first: string, second: number];
+    named.push;
+          ~~~~
+!!! error TS2339: Property 'push' does not exist on type 'readonly [first: string, second: number]'.
+    const namedConcat = named.concat([1]);
+    
+    function variadic<T extends unknown[]>(t: [number, ...T]) {
+        const head = t[0];
+        const tail = t.slice(1);
+        return t.length;
+    }
+    
+    const weak: { length?: number; other?: string } = pair;
+    const notWeak: { other?: number } = pair;
+          ~~~~~~~
+!!! error TS2559: Type '[string, number]' has no properties in common with type '{ other?: number | undefined; }'.
+    const arrayLike: ArrayLike<string | number> = pair;
+    const iterable: Iterable<string | number> = pair;
+    const tooShort: [string, number, boolean] = pair;
+          ~~~~~~~~
+!!! error TS2322: Type '[string, number]' is not assignable to type '[string, number, boolean]'.
+!!! error TS2322:   Source has 2 element(s) but target requires 3.
+    const swapped: [number, string] = pair;
+          ~~~~~~~
+!!! error TS2322: Type '[string, number]' is not assignable to type '[number, string]'.
+!!! error TS2322:   Type at position 0 in source is not compatible with type at position 0 in target.
+!!! error TS2322:     Type 'string' is not assignable to type 'number'.
+    const missing: { 0: string; 1: number; 2: boolean } = pair;
+          ~~~~~~~
+!!! error TS2741: Property '2' is missing in type '[string, number]' but required in type '{ 0: string; 1: number; 2: boolean; }'.
+!!! related TS2728 tupleLazyMembers.ts:36:40: '2' is declared here.
+    const empty: {} = pair;
+    const mixed = [pair, "x"];
+    
+    interface Pair<T> extends Array<T> {
+        0: T;
+        1: T;
+    }
+    const pairLike: Pair<string | number> = pair;
+    

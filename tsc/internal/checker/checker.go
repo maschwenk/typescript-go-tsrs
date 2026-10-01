@@ -19528,7 +19528,7 @@ func (c *Checker) appendInheritedSignaturesAndIndexInfos(callSignatures []*Signa
 	return callSignatures, constructSignatures, indexInfos
 }
 
-// Instantiated class and interface references get a lazy member table in place of
+// Instantiated class, interface and tuple references get a lazy member table in place of
 // resolved members. It has the signatures and index infos, but only instantiates the
 // members that are looked up, and reuses them if the members are later resolved in full.
 
@@ -19567,8 +19567,8 @@ func (c *Checker) getReadyLazyMemberTable(t *Type) *lazyMemberTable {
 
 func (c *Checker) getReadyLazyMemberTableWorker(t *Type) *lazyMemberTable {
 	source := t.Target()
-	if t.flags&TypeFlagsObject == 0 || source == nil || source == t || source.objectFlags&ObjectFlagsClassOrInterface == 0 ||
-		source.objectFlags&ObjectFlagsTuple != 0 || t.symbol != nil && t.symbol.Flags&ast.SymbolFlagsValueModule != 0 {
+	if t.flags&TypeFlagsObject == 0 || source == nil || source == t || source.objectFlags&(ObjectFlagsClassOrInterface|ObjectFlagsTuple) == 0 ||
+		t.symbol != nil && t.symbol.Flags&ast.SymbolFlagsValueModule != 0 {
 		return nil
 	}
 	lm := c.lazyMemberTables[t]
