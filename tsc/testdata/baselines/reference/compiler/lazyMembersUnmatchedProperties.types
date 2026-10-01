@@ -1,0 +1,209 @@
+//// [tests/cases/compiler/lazyMembersUnmatchedProperties.ts] ////
+
+=== lazyMembersUnmatchedProperties.ts ===
+// Missing property errors and discriminant checks against instantiated class
+// and interface references, including inherited members and the order in which
+// missing properties are reported.
+
+interface Base<T> {
+    b1: T;
+>b1 : T
+
+    b2: string;
+>b2 : string
+
+    shared: number;
+>shared : number
+}
+interface Derived<T> extends Base<T[]> {
+    d1: T;
+>d1 : T
+
+    shared: number;
+>shared : number
+
+    d2?: T;
+>d2 : T | undefined
+}
+const derived1: Derived<number> = {};
+>derived1 : Derived<number>
+>{} : {}
+
+const derived2: Derived<number> = { d1: 1 };
+>derived2 : Derived<number>
+>{ d1: 1 } : { d1: number; }
+>d1 : number
+>1 : 1
+
+const derived3: Derived<number> = { d1: 1, b1: [1], b2: "", shared: 1 };
+>derived3 : Derived<number>
+>{ d1: 1, b1: [1], b2: "", shared: 1 } : { d1: number; b1: number[]; b2: string; shared: number; }
+>d1 : number
+>1 : 1
+>b1 : number[]
+>[1] : number[]
+>1 : 1
+>b2 : string
+>"" : ""
+>shared : number
+>1 : 1
+
+class Impl<T> implements Derived<T> {
+>Impl : Impl<T>
+
+    d1!: T;
+>d1 : T
+}
+
+interface Many<T> extends Base<T> {
+    m1: T;
+>m1 : T
+
+    m2: T;
+>m2 : T
+
+    m3: T;
+>m3 : T
+
+    m4: T;
+>m4 : T
+
+    m5?: T;
+>m5 : T | undefined
+}
+const many1: Many<string> = { m1: "" };
+>many1 : Many<string>
+>{ m1: "" } : { m1: string; }
+>m1 : string
+>"" : ""
+
+const many2: Many<string> = { b1: "", b2: "", shared: 0, m1: "", m2: "", m3: "", m4: "", extra: 1 };
+>many2 : Many<string>
+>{ b1: "", b2: "", shared: 0, m1: "", m2: "", m3: "", m4: "", extra: 1 } : { b1: string; b2: string; shared: number; m1: string; m2: string; m3: string; m4: string; extra: number; }
+>b1 : string
+>"" : ""
+>b2 : string
+>"" : ""
+>shared : number
+>0 : 0
+>m1 : string
+>"" : ""
+>m2 : string
+>"" : ""
+>m3 : string
+>"" : ""
+>m4 : string
+>"" : ""
+>extra : number
+>1 : 1
+
+class Box<T> {
+>Box : Box<T>
+
+    private secret!: T;
+>secret : T
+
+    contents!: T;
+>contents : T
+
+    method(): T {
+>method : () => T
+
+        return this.contents;
+>this.contents : T
+>this : this
+>contents : T
+    }
+}
+const box1: Box<string> = { contents: "" };
+>box1 : Box<string>
+>{ contents: "" } : { contents: string; }
+>contents : string
+>"" : ""
+
+declare const notBox: { contents: string; method(): string };
+>notBox : { contents: string; method(): string; }
+>contents : string
+>method : () => string
+
+const box2: Box<string> = notBox;
+>box2 : Box<string>
+>notBox : { contents: string; method(): string; }
+
+interface Circle<T> {
+    kind: "circle";
+>kind : "circle"
+
+    radius: T;
+>radius : T
+}
+interface Square<T> {
+    kind: "square";
+>kind : "square"
+
+    size: T;
+>size : T
+}
+type Shape<T> = Circle<T> | Square<T>;
+>Shape : Shape<T>
+
+const shape1: Shape<number> = { kind: "circle" };
+>shape1 : Shape<number>
+>{ kind: "circle" } : { kind: "circle"; }
+>kind : "circle"
+>"circle" : "circle"
+
+const shape2: Shape<number> = { kind: "square", radius: 1 };
+>shape2 : Shape<number>
+>{ kind: "square", radius: 1 } : { kind: "square"; radius: number; }
+>kind : "square"
+>"square" : "square"
+>radius : number
+>1 : 1
+
+declare function area<T>(shape: Shape<T>): T;
+>area : <T>(shape: Shape<T>) => T
+>shape : Shape<T>
+
+const area1 = area({ kind: "circle", radius: 1 });
+>area1 : number
+>area({ kind: "circle", radius: 1 }) : number
+>area : <T>(shape: Shape<T>) => T
+>{ kind: "circle", radius: 1 } : { kind: "circle"; radius: number; }
+>kind : "circle"
+>"circle" : "circle"
+>radius : number
+>1 : 1
+
+const area2 = area({ kind: "square", size: "x" });
+>area2 : string
+>area({ kind: "square", size: "x" }) : string
+>area : <T>(shape: Shape<T>) => T
+>{ kind: "square", size: "x" } : { kind: "square"; size: string; }
+>kind : "square"
+>"square" : "square"
+>size : string
+>"x" : "x"
+
+declare function pick<T>(a: Circle<T> | T[]): T;
+>pick : <T>(a: Circle<T> | T[]) => T
+>a : T[] | Circle<T>
+
+const picked = pick({ kind: "circle", radius: 1 });
+>picked : number
+>pick({ kind: "circle", radius: 1 }) : number
+>pick : <T>(a: Circle<T> | T[]) => T
+>{ kind: "circle", radius: 1 } : { kind: "circle"; radius: number; }
+>kind : "circle"
+>"circle" : "circle"
+>radius : number
+>1 : 1
+
+interface Tree<T> extends Array<Tree<T>> {
+    value: T;
+>value : T
+}
+const tree: Tree<string> = [];
+>tree : Tree<string>
+>[] : never[]
+

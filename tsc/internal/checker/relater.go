@@ -975,14 +975,30 @@ func (c *Checker) getUnmatchedProperties(source *Type, target *Type, requireOpti
 }
 
 func (c *Checker) getUnmatchedPropertiesWorker(source *Type, target *Type, requireOptionalProperties bool, matchDiscriminantProperties bool, propsOut *[]*ast.Symbol) *ast.Symbol {
-	properties := c.getPropertiesOfType(target)
+	// With a lazy member table (lazyType is the reduced apparent type of target that has it), declared
+	// members stand in for target properties until a property is returned or its type is needed.
+	properties, lazyType := c.getPropertiesOfTypeLazily(target)
+	lazy := lazyType != nil
 	for _, targetProp := range properties {
 		// TODO: remove this when we support static private identifier fields and find other solutions to get privateNamesAndStaticFields test to pass
 		if isStaticPrivateIdentifierProperty(targetProp) {
 			continue
 		}
 		if requireOptionalProperties || targetProp.Flags&ast.SymbolFlagsOptional == 0 && targetProp.CheckFlags&ast.CheckFlagsPartial == 0 {
+			if lazy && !matchDiscriminantProperties {
+				if !c.hasPropertyOfType(source, targetProp.Name) {
+					targetProp = c.getPropertyOfType(lazyType, targetProp.Name)
+					if propsOut == nil {
+						return targetProp
+					}
+					*propsOut = append(*propsOut, targetProp)
+				}
+				continue
+			}
 			sourceProp := c.getPropertyOfType(source, targetProp.Name)
+			if lazy {
+				targetProp = c.getPropertyOfType(lazyType, targetProp.Name)
+			}
 			if sourceProp == nil {
 				if propsOut == nil {
 					return targetProp
