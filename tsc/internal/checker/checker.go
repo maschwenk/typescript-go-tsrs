@@ -588,6 +588,7 @@ type Checker struct {
 	compilerOptions                             *core.CompilerOptions
 	files                                       []*ast.SourceFile
 	fileIndexMap                                map[*ast.SourceFile]int
+	sourceFilesComplete                         bool
 	compareSymbols                              func(*ast.Symbol, *ast.Symbol) int
 	compareSymbolChains                         func([]*ast.Symbol, []*ast.Symbol) int
 	TypeCount                                   uint32
@@ -920,6 +921,9 @@ func NewChecker(program Program, tracer *Tracer) (*Checker, *sync.Mutex) {
 	c.compilerOptions = program.Options()
 	c.files = program.SourceFiles()
 	c.fileIndexMap = createFileIndexMap(c.files)
+	if complete, ok := program.(interface{ SourceFilesComplete() bool }); ok {
+		c.sourceFilesComplete = complete.SourceFilesComplete()
+	}
 	c.compareSymbols = c.compareSymbolsWorker           // Closure optimization
 	c.compareSymbolChains = c.compareSymbolChainsWorker // Closure optimization
 	c.languageVersion = c.compilerOptions.GetEmitScriptTarget()
@@ -26667,7 +26671,18 @@ func (c *Checker) UnionTypes() iter.Seq[*Type] {
 }
 
 func (c *Checker) addTypesToUnion(sourceTypes []*Type) ([]*Type, TypeFlags) {
-	types := make([]*Type, 0, len(sourceTypes))
+	capacity := len(sourceTypes)
+	if len(sourceTypes) == 2 {
+		capacity = 0
+		for _, t := range sourceTypes {
+			if t.flags&TypeFlagsUnion != 0 {
+				capacity += len(t.Types())
+			} else {
+				capacity++
+			}
+		}
+	}
+	types := make([]*Type, 0, capacity)
 	var includes TypeFlags
 	addType := func(t *Type) {
 		flags := t.flags
@@ -26696,9 +26711,11 @@ func (c *Checker) addTypesToUnion(sourceTypes []*Type) ([]*Type, TypeFlags) {
 		}
 		types = append(types, t)
 	}
+	var runStarts []int
 	var lastType *Type
 	for _, t := range sourceTypes {
 		if t != lastType {
+			start := len(types)
 			if t.flags&TypeFlagsUnion != 0 {
 				u := t.AsUnionType()
 				if t.alias != nil || u.origin != nil {
@@ -26710,12 +26727,19 @@ func (c *Checker) addTypesToUnion(sourceTypes []*Type) ([]*Type, TypeFlags) {
 			} else {
 				addType(t)
 			}
+			if c.sourceFilesComplete && start > 0 && len(types) > start && CompareTypes(types[start-1], types[start]) > 0 {
+				runStarts = append(runStarts, start)
+			}
 			lastType = t
 		}
 	}
 	if len(types) >= 2 {
 		// Sort and deduplicate types
-		slices.SortStableFunc(types, CompareTypes)
+		if !c.sourceFilesComplete {
+			slices.SortStableFunc(types, CompareTypes)
+		} else if len(runStarts) > 0 {
+			types = mergeAscendingTypeRuns(types, runStarts)
+		}
 		unique := 1
 		for _, t := range types[1:] {
 			if t != types[unique-1] {
