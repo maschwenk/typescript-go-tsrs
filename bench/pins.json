@@ -1,0 +1,11 @@
+{
+  "upstream": {
+    "repo": "https://github.com/microsoft/TypeScript.git",
+    "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+  },
+  "tsrs": {
+    "repo": "https://github.com/maschwenk/tsrs.git",
+    "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+    "build": "cargo build --locked --release -p tsrs_cli"
+  }
+}
