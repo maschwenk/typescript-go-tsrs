@@ -897,7 +897,7 @@ type Checker struct {
 	ctx                                         context.Context
 	packagesMap                                 map[string]bool
 	activeMappers                               []*TypeMapper
-	activeTypeMappersCaches                     []map[CacheHashKey]*Type
+	activeTypeMappersCaches                     []activeMapperCache
 	ambientModulesOnce                          sync.Once
 	ambientModules                              []*ast.Symbol
 	withinUnreachableCode                       bool
@@ -22896,6 +22896,17 @@ func (c *Checker) symbolIsValueEx(symbol *ast.Symbol, includeTypeOnlyMembers boo
 		c.getSymbolFlagsEx(symbol, !includeTypeOnlyMembers, false /*excludeLocalMeanings*/)&ast.SymbolFlagsValue != 0
 }
 
+// Alias-free mapper results use the exact type ID; aliases retain their full key.
+type activeMapperCache struct {
+	types   map[TypeId]*Type
+	aliases map[CacheHashKey]*Type
+}
+
+func (cache *activeMapperCache) clear() {
+	clear(cache.types)
+	clear(cache.aliases)
+}
+
 func (c *Checker) instantiateType(t *Type, m *TypeMapper) *Type {
 	return c.instantiateTypeWithAlias(t, m, nil /*alias*/)
 }
@@ -22926,16 +22937,21 @@ func (c *Checker) instantiateTypeWithAlias(t *Type, m *TypeMapper, alias *TypeAl
 		return c.errorType
 	}
 	index := c.findActiveMapper(m)
+	var key CacheHashKey
 	if index == -1 {
 		c.pushActiveMapper(m)
-	}
-	var b keyBuilder
-	b.writeType(t)
-	b.writeAlias(alias)
-	key := b.hash()
-	cache := c.activeTypeMappersCaches[core.IfElse(index != -1, index, len(c.activeTypeMappersCaches)-1)]
-	if cachedType, ok := cache[key]; ok {
-		return cachedType
+	} else if alias == nil {
+		if cached, ok := c.activeTypeMappersCaches[index].types[t.id]; ok {
+			return cached
+		}
+	} else {
+		var b keyBuilder
+		b.writeType(t)
+		b.writeAlias(alias)
+		key = b.hash()
+		if cached, ok := c.activeTypeMappersCaches[index].aliases[key]; ok {
+			return cached
+		}
 	}
 	c.TotalInstantiationCount++
 	c.instantiationCount++
@@ -22944,7 +22960,19 @@ func (c *Checker) instantiateTypeWithAlias(t *Type, m *TypeMapper, alias *TypeAl
 	if index == -1 {
 		c.popActiveMapper()
 	} else {
-		cache[key] = result
+		// Recursion can grow the slice or allocate this frame's cache.
+		cache := &c.activeTypeMappersCaches[index]
+		if alias == nil {
+			if cache.types == nil {
+				cache.types = make(map[TypeId]*Type, 1)
+			}
+			cache.types[t.id] = result
+		} else {
+			if cache.aliases == nil {
+				cache.aliases = make(map[CacheHashKey]*Type, 1)
+			}
+			cache.aliases[key] = result
+		}
 	}
 	c.instantiationStack[len(c.instantiationStack)-1] = nil
 	c.instantiationStack = c.instantiationStack[:len(c.instantiationStack)-1]
@@ -22973,26 +23001,19 @@ func (c *Checker) getCircularTypeNames() []string {
 
 func (c *Checker) pushActiveMapper(mapper *TypeMapper) {
 	c.activeMappers = append(c.activeMappers, mapper)
-
 	lastIndex := len(c.activeTypeMappersCaches)
 	if cap(c.activeTypeMappersCaches) > lastIndex {
-		// The cap may contain an empty map from popActiveMapper; reuse it.
 		c.activeTypeMappersCaches = c.activeTypeMappersCaches[:lastIndex+1]
-		if c.activeTypeMappersCaches[lastIndex] == nil {
-			c.activeTypeMappersCaches[lastIndex] = make(map[CacheHashKey]*Type, 1)
-		}
 	} else {
-		c.activeTypeMappersCaches = append(c.activeTypeMappersCaches, make(map[CacheHashKey]*Type, 1))
+		c.activeTypeMappersCaches = append(c.activeTypeMappersCaches, activeMapperCache{})
 	}
 }
 
 func (c *Checker) popActiveMapper() {
 	c.activeMappers[len(c.activeMappers)-1] = nil
 	c.activeMappers = c.activeMappers[:len(c.activeMappers)-1]
-
-	// Clear the map, but leave it in the list for later reuse.
 	lastIndex := len(c.activeTypeMappersCaches) - 1
-	clear(c.activeTypeMappersCaches[lastIndex])
+	c.activeTypeMappersCaches[lastIndex].clear()
 	c.activeTypeMappersCaches = c.activeTypeMappersCaches[:lastIndex]
 }
 
@@ -23001,8 +23022,8 @@ func (c *Checker) findActiveMapper(mapper *TypeMapper) int {
 }
 
 func (c *Checker) clearActiveMapperCaches() {
-	for _, cache := range c.activeTypeMappersCaches {
-		clear(cache)
+	for i := range c.activeTypeMappersCaches {
+		c.activeTypeMappersCaches[i].clear()
 	}
 }
 
