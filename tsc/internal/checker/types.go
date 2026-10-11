@@ -180,12 +180,16 @@ type SymbolReferenceLinks struct {
 // Links for value symbols
 
 type ValueSymbolLinks struct {
-	resolvedType                 *Type // Type of value symbol
+	resolvedType *Type
+	target       *ast.Symbol
+	mapper       *TypeMapper
+	rare         *valueSymbolLinksRare
+}
+
+type valueSymbolLinksRare struct {
 	writeType                    *Type
-	target                       *ast.Symbol
-	mapper                       *TypeMapper
 	nameType                     *Type
-	containingType               *Type // Mapped type for mapped type property, containing union or intersection type for synthetic property
+	containingType               *Type
 	functionOrConstructorChecked bool
 }
 
