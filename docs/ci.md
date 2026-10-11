@@ -1,0 +1,11 @@
+# GitHub Actions validation
+
+CI runs the complete upstream packages and compiler baselines with both test-program concurrency settings, checker/compiler race tests, vet, a plain Go build and the benchmark harness tests. Supported cache shadow modes run during the full suite. Benchmark builds the pinned stock Go compiler, the optional previous step, the fork and native tsrs, then checks complete diagnostics, exit status and file counts for every repetition. Binaries, source pins, repetitions and runner architecture are recorded in the artifact.
+
+Hosted jobs default to Ubuntu 24.04. An account payment/spending block prevented hosted jobs from starting during the initial port. The manual workflows also accept the repository runner label `tsgo-backport-local`; the temporary Linux ARM64 runner uses an isolated Docker container with no source, credentials or Docker socket mounted from the host. Its repository registration and container are removed after the validation campaign. This runner is a temporary recovery path; normal hosted jobs still require the account block to be resolved.
+
+For a stacked PR, dispatch the reviewed workflow definition with `source_sha` set to the exact 40-character source commit, and optionally set `parent_sha` in Benchmark. Checkout, tests and compiler builds use that source commit. The final job step records its real conclusion as a check on that commit, with a link to the GitHub Actions execution. Workflow and tested-source commits may differ: the run logs and recorded source SHA identify what was tested. Never mark a failed or unexecuted job successful, and never merge using an older source commit's checks.
+
+Native tsrs compilation can exceed 20 minutes on small hosted runners. The benchmark budget is 75 minutes and the native binary is saved immediately after a successful build, so a later timeout does not discard that expensive work. PR comparisons use three interleaved repetitions; scheduled/manual runs can request more. Architecture is included in the cache key and report label.
+
+Dependabot updates are disabled in this experiment so the compiler, dependencies and benchmark controls stay pinned while the optimization series is evaluated.
