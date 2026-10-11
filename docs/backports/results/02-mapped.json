@@ -1,0 +1,3336 @@
+{
+  "schema": 1,
+  "date": "2026-10-11T21:34:14.743510+00:00",
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "head": "9365ce758260a3a41bb1bf935ad0b5c65e0a7c9e",
+  "machine": {
+    "label": "local",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18
+  },
+  "reps": 3,
+  "build": "plain release, Go -pgo=off unless binary metadata says otherwise",
+  "tools": {
+    "stock": {
+      "sha256": "e60336446f5e77116f0ebb77bf7966088b68d6a97a62d00df2b010d58c7ac36e",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/stock: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=b85298b6a81f772d080b0455de0ca9d744cd6fd6\n\tbuild\tvcs.time=2026-09-29T23:01:40Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "parent": {
+      "sha256": "7cd77b5cc8ce658a858d8385fd853d9aa955e010231b98098665c6dffd058f97",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/parent: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=954e9e74818fb0a9d9f8588fae84ee80074942b3\n\tbuild\tvcs.time=2026-10-11T21:30:10Z\n\tbuild\tvcs.modified=true\n"
+    },
+    "fork": {
+      "sha256": "4d2d48dd8c51b27d665c69dfe3f7fc4bf191bfc4341e8785633305a6c8ee0a74",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/fork: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=9365ce758260a3a41bb1bf935ad0b5c65e0a7c9e\n\tbuild\tvcs.time=2026-10-11T21:33:14Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "tsrs": {
+      "sha256": "49678ca059609cbcadf75a199e7d2d043008e4242a014ec70d8d075dbf1bcad9",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    }
+  },
+  "rows": [
+    {
+      "project": "references",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.35174474999999994,
+          "peak_rss_bytes": 213286912,
+          "cpu_s": 0.346604,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.0752974580000001,
+          "peak_rss_bytes": 52953088,
+          "cpu_s": 0.072531,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.07605449999999991,
+          "peak_rss_bytes": 52690944,
+          "cpu_s": 0.073779,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.0177435840000002,
+          "peak_rss_bytes": 23347200,
+          "cpu_s": 0.015842000000000002,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.35174474999999994,
+            "peak_rss_bytes": 213336064,
+            "cpu_s": 0.346604,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789178,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 54934
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.35661979200000027,
+            "peak_rss_bytes": 213172224,
+            "cpu_s": 0.351157,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789178,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 54941
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.3480627500000004,
+            "peak_rss_bytes": 213286912,
+            "cpu_s": 0.34249599999999997,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789178,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 54935
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.07487729199999982,
+            "peak_rss_bytes": 52953088,
+            "cpu_s": 0.07236,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44398
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.0752974580000001,
+            "peak_rss_bytes": 52527104,
+            "cpu_s": 0.072531,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44401
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.07661566599999992,
+            "peak_rss_bytes": 52985856,
+            "cpu_s": 0.07404899999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44399
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.07605449999999991,
+            "peak_rss_bytes": 52690944,
+            "cpu_s": 0.073779,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44403
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.0773887499999999,
+            "peak_rss_bytes": 52756480,
+            "cpu_s": 0.075858,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44403
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.07584370799999984,
+            "peak_rss_bytes": 52215808,
+            "cpu_s": 0.073349,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 39478,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 44398
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.01786995800000013,
+            "peak_rss_bytes": 23347200,
+            "cpu_s": 0.016044,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19116,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.017563458000000143,
+            "peak_rss_bytes": 23347200,
+            "cpu_s": 0.015757999999999998,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19116,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.0177435840000002,
+            "peak_rss_bytes": 23347200,
+            "cpu_s": 0.015842000000000002,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19116,
+              "Types": 1288,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "references",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.154512875,
+          "peak_rss_bytes": 218316800,
+          "cpu_s": 0.380522,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.04199595800000022,
+          "peak_rss_bytes": 58556416,
+          "cpu_s": 0.09906799999999999,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.041676666999999945,
+          "peak_rss_bytes": 58195968,
+          "cpu_s": 0.09426799999999999,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.02083812500000004,
+          "peak_rss_bytes": 37191680,
+          "cpu_s": 0.066124,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.15466695799999997,
+            "peak_rss_bytes": 218316800,
+            "cpu_s": 0.40278899999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789874,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 59497
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.15251216700000025,
+            "peak_rss_bytes": 218644480,
+            "cpu_s": 0.380522,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789874,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 59405
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.154512875,
+            "peak_rss_bytes": 217939968,
+            "cpu_s": 0.37289399999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 789874,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 59446
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.04199595800000022,
+            "peak_rss_bytes": 58556416,
+            "cpu_s": 0.09906799999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48905
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.042227582999999846,
+            "peak_rss_bytes": 57786368,
+            "cpu_s": 0.09329299999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48880
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.04174566600000018,
+            "peak_rss_bytes": 58671104,
+            "cpu_s": 0.101653,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48891
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.041676666999999945,
+            "peak_rss_bytes": 58458112,
+            "cpu_s": 0.094759,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48955
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.04050049999999983,
+            "peak_rss_bytes": 57556992,
+            "cpu_s": 0.08651099999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48901
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.04169191700000008,
+            "peak_rss_bytes": 58195968,
+            "cpu_s": 0.09426799999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 40174,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 48901
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.020440416000000017,
+            "peak_rss_bytes": 37191680,
+            "cpu_s": 0.06470000000000001,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19781,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.02096279100000009,
+            "peak_rss_bytes": 37339136,
+            "cpu_s": 0.06874799999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19781,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.02083812500000004,
+            "peak_rss_bytes": 37191680,
+            "cpu_s": 0.066124,
+            "counters": {
+              "Files": 98,
+              "Lines": 62458,
+              "Identifiers": 58323,
+              "Symbols": 19781,
+              "Types": 1543,
+              "Instantiations": 300,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/references-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "members",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.8226049169999996,
+          "peak_rss_bytes": 449986560,
+          "cpu_s": 0.813448,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.8266230839999995,
+          "peak_rss_bytes": 450887680,
+          "cpu_s": 0.816607,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.38674033299999877,
+          "peak_rss_bytes": 233897984,
+          "cpu_s": 0.38116399999999995,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.06603654199999909,
+          "peak_rss_bytes": 81739776,
+          "cpu_s": 0.06326,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.8222222919999993,
+            "peak_rss_bytes": 450756608,
+            "cpu_s": 0.8123529999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94384
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.8417522909999988,
+            "peak_rss_bytes": 449986560,
+            "cpu_s": 0.8317469999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94389
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.8226049169999996,
+            "peak_rss_bytes": 449576960,
+            "cpu_s": 0.813448,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94375
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.831900042,
+            "peak_rss_bytes": 447201280,
+            "cpu_s": 0.8220629999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94385
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.8266230839999995,
+            "peak_rss_bytes": 450887680,
+            "cpu_s": 0.816607,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94370
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.8094116669999991,
+            "peak_rss_bytes": 451297280,
+            "cpu_s": 0.7988149999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539185,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 94383
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.4207242090000003,
+            "peak_rss_bytes": 235978752,
+            "cpu_s": 0.41497399999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 789485,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 70968
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.3810568750000005,
+            "peak_rss_bytes": 233701376,
+            "cpu_s": 0.375615,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 789485,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 70975
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.38674033299999877,
+            "peak_rss_bytes": 233897984,
+            "cpu_s": 0.38116399999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 789485,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 70975
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.06603654199999909,
+            "peak_rss_bytes": 81739776,
+            "cpu_s": 0.06326,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769398,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.06495858300000101,
+            "peak_rss_bytes": 81739776,
+            "cpu_s": 0.062445,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769398,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.06731254199999981,
+            "peak_rss_bytes": 81739776,
+            "cpu_s": 0.06468499999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769398,
+              "Types": 4998,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "members",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.4391158750000006,
+          "peak_rss_bytes": 439189504,
+          "cpu_s": 0.974443,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.43581829100000036,
+          "peak_rss_bytes": 434372608,
+          "cpu_s": 0.9325289999999999,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.20137237500000005,
+          "peak_rss_bytes": 235782144,
+          "cpu_s": 0.479523,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.06977691700000044,
+          "peak_rss_bytes": 95535104,
+          "cpu_s": 0.117215,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.4391158750000006,
+            "peak_rss_bytes": 432750592,
+            "cpu_s": 0.974443,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98876
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4444113749999996,
+            "peak_rss_bytes": 446103552,
+            "cpu_s": 0.993673,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98905
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.43070116700000227,
+            "peak_rss_bytes": 439189504,
+            "cpu_s": 0.9042319999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98893
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.43581829100000036,
+            "peak_rss_bytes": 444514304,
+            "cpu_s": 0.8887729999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98855
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4477208749999999,
+            "peak_rss_bytes": 434372608,
+            "cpu_s": 0.9325289999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98881
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4354058750000007,
+            "peak_rss_bytes": 431996928,
+            "cpu_s": 0.9349669999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 1539881,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 98938
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.20137237500000005,
+            "peak_rss_bytes": 237273088,
+            "cpu_s": 0.48408299999999993,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 790181,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 75487
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.2000636250000003,
+            "peak_rss_bytes": 235782144,
+            "cpu_s": 0.479523,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 790181,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 75490
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.2038080409999985,
+            "peak_rss_bytes": 233701376,
+            "cpu_s": 0.46493999999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 790181,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 75494
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.07131254199999937,
+            "peak_rss_bytes": 95617024,
+            "cpu_s": 0.122749,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769788,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.06977691700000044,
+            "peak_rss_bytes": 95518720,
+            "cpu_s": 0.11433399999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769788,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.06972354199999842,
+            "peak_rss_bytes": 95535104,
+            "cpu_s": 0.117215,
+            "counters": {
+              "Files": 98,
+              "Lines": 62459,
+              "Identifiers": 58629,
+              "Symbols": 769788,
+              "Types": 5253,
+              "Instantiations": 3600,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/members-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "unions",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.36481658299999964,
+          "peak_rss_bytes": 134250496,
+          "cpu_s": 0.360208,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.373505999999999,
+          "peak_rss_bytes": 120848384,
+          "cpu_s": 0.368749,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.36864891599999794,
+          "peak_rss_bytes": 136019968,
+          "cpu_s": 0.363789,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.09459737500000287,
+          "peak_rss_bytes": 60784640,
+          "cpu_s": 0.092083,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.39404754199999914,
+            "peak_rss_bytes": 121307136,
+            "cpu_s": 0.388189,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292033
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.36481658299999964,
+            "peak_rss_bytes": 134250496,
+            "cpu_s": 0.360208,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292037
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.34657362500000133,
+            "peak_rss_bytes": 134414336,
+            "cpu_s": 0.342376,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292031
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.3776462500000015,
+            "peak_rss_bytes": 119914496,
+            "cpu_s": 0.37473799999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292034
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.3543321670000026,
+            "peak_rss_bytes": 135577600,
+            "cpu_s": 0.349893,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292035
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.373505999999999,
+            "peak_rss_bytes": 120848384,
+            "cpu_s": 0.368749,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292043
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.37522370800000004,
+            "peak_rss_bytes": 136462336,
+            "cpu_s": 0.37090599999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292034
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.36680270900000167,
+            "peak_rss_bytes": 121028608,
+            "cpu_s": 0.36248499999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292034
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.36864891599999794,
+            "peak_rss_bytes": 136019968,
+            "cpu_s": 0.363789,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 45563,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 1292041
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.09526825000000017,
+            "peak_rss_bytes": 60784640,
+            "cpu_s": 0.092673,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25170,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.09447600000000023,
+            "peak_rss_bytes": 60784640,
+            "cpu_s": 0.09185499999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25170,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.09459737500000287,
+            "peak_rss_bytes": 60784640,
+            "cpu_s": 0.092083,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25170,
+              "Types": 8936,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "unions",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.3689238330000002,
+          "peak_rss_bytes": 126599168,
+          "cpu_s": 0.48413199999999995,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.34899575000000027,
+          "peak_rss_bytes": 131039232,
+          "cpu_s": 0.461171,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.3302005829999999,
+          "peak_rss_bytes": 123158528,
+          "cpu_s": 0.451883,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.10450341600000002,
+          "peak_rss_bytes": 73744384,
+          "cpu_s": 0.151065,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.3727532499999988,
+            "peak_rss_bytes": 128712704,
+            "cpu_s": 0.48413199999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296536
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.31059812500000206,
+            "peak_rss_bytes": 124649472,
+            "cpu_s": 0.4276,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296535
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.3689238330000002,
+            "peak_rss_bytes": 126599168,
+            "cpu_s": 0.48930199999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296529
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.34890658300000155,
+            "peak_rss_bytes": 133038080,
+            "cpu_s": 0.461171,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296532
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.35698516700000127,
+            "peak_rss_bytes": 122863616,
+            "cpu_s": 0.47388499999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296565
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.34899575000000027,
+            "peak_rss_bytes": 131039232,
+            "cpu_s": 0.458461,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296524
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.3302005829999999,
+            "peak_rss_bytes": 122224640,
+            "cpu_s": 0.451883,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296542
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.3240604169999983,
+            "peak_rss_bytes": 123158528,
+            "cpu_s": 0.44409999999999994,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296579
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.350435166999997,
+            "peak_rss_bytes": 123928576,
+            "cpu_s": 0.471277,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 46259,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 1296544
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.10303633300000214,
+            "peak_rss_bytes": 73760768,
+            "cpu_s": 0.14790899999999998,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25866,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.10450341600000002,
+            "peak_rss_bytes": 73678848,
+            "cpu_s": 0.151065,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25866,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.11668283299999871,
+            "peak_rss_bytes": 73744384,
+            "cpu_s": 0.161937,
+            "counters": {
+              "Files": 98,
+              "Lines": 59798,
+              "Identifiers": 59809,
+              "Symbols": 25866,
+              "Types": 9191,
+              "Instantiations": 1641965,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/unions-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "flow",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.08172562499999714,
+          "peak_rss_bytes": 62341120,
+          "cpu_s": 0.079055,
+          "errors": 1200
+        },
+        "parent": {
+          "wall_s": 0.08283395799999838,
+          "peak_rss_bytes": 62619648,
+          "cpu_s": 0.08004099999999999,
+          "errors": 1200
+        },
+        "fork": {
+          "wall_s": 0.08293787499999894,
+          "peak_rss_bytes": 62308352,
+          "cpu_s": 0.080347,
+          "errors": 1200
+        },
+        "tsrs": {
+          "wall_s": 0.01998479200000247,
+          "peak_rss_bytes": 26345472,
+          "cpu_s": 0.018104,
+          "errors": 1200
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.08527541700000185,
+            "peak_rss_bytes": 62537728,
+            "cpu_s": 0.082491,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148252
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08160516599999923,
+            "peak_rss_bytes": 62193664,
+            "cpu_s": 0.07883699999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148250
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08172562499999714,
+            "peak_rss_bytes": 62341120,
+            "cpu_s": 0.079055,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148248
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.08678366599999876,
+            "peak_rss_bytes": 62619648,
+            "cpu_s": 0.08362699999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148247
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.07990770900000044,
+            "peak_rss_bytes": 62373888,
+            "cpu_s": 0.077161,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148241
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08283395799999838,
+            "peak_rss_bytes": 62767104,
+            "cpu_s": 0.08004099999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148248
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.0858725420000006,
+            "peak_rss_bytes": 62472192,
+            "cpu_s": 0.082883,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148250
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08293787499999894,
+            "peak_rss_bytes": 62308352,
+            "cpu_s": 0.080347,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148253
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08246699999999763,
+            "peak_rss_bytes": 62308352,
+            "cpu_s": 0.079957,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33037,
+              "Types": 252,
+              "Instantiations": 0,
+              "Memory allocs": 148252
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.020363917000000953,
+            "peak_rss_bytes": 26345472,
+            "cpu_s": 0.018404999999999998,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 12644,
+              "Types": 251,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.019929749999999302,
+            "peak_rss_bytes": 26345472,
+            "cpu_s": 0.018074,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 12644,
+              "Types": 251,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.01998479200000247,
+            "peak_rss_bytes": 26345472,
+            "cpu_s": 0.018104,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 12644,
+              "Types": 251,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "flow",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.049611083999998584,
+          "peak_rss_bytes": 66387968,
+          "cpu_s": 0.117674,
+          "errors": 1200
+        },
+        "parent": {
+          "wall_s": 0.0555753339999967,
+          "peak_rss_bytes": 67190784,
+          "cpu_s": 0.114828,
+          "errors": 1200
+        },
+        "fork": {
+          "wall_s": 0.049377792000001364,
+          "peak_rss_bytes": 67026944,
+          "cpu_s": 0.117244,
+          "errors": 1200
+        },
+        "tsrs": {
+          "wall_s": 0.02409962499999807,
+          "peak_rss_bytes": 40288256,
+          "cpu_s": 0.069041,
+          "errors": 1200
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.050222957999999096,
+            "peak_rss_bytes": 66191360,
+            "cpu_s": 0.117674,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152770
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.049611083999998584,
+            "peak_rss_bytes": 66387968,
+            "cpu_s": 0.119269,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152783
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04803345800000258,
+            "peak_rss_bytes": 67272704,
+            "cpu_s": 0.10585599999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152725
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.055644250000000284,
+            "peak_rss_bytes": 67190784,
+            "cpu_s": 0.11570199999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152788
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.0555753339999967,
+            "peak_rss_bytes": 67796992,
+            "cpu_s": 0.114828,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152720
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04750299999999896,
+            "peak_rss_bytes": 66813952,
+            "cpu_s": 0.109908,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152774
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.05337904099999946,
+            "peak_rss_bytes": 67403776,
+            "cpu_s": 0.120601,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152803
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.049377792000001364,
+            "peak_rss_bytes": 67026944,
+            "cpu_s": 0.10460499999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152690
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04838233299999928,
+            "peak_rss_bytes": 66699264,
+            "cpu_s": 0.117244,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 33733,
+              "Types": 507,
+              "Instantiations": 0,
+              "Memory allocs": 152763
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.02432304200000246,
+            "peak_rss_bytes": 40288256,
+            "cpu_s": 0.069041,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 13340,
+              "Types": 506,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02409962499999807,
+            "peak_rss_bytes": 40337408,
+            "cpu_s": 0.074239,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 13340,
+              "Types": 506,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02337749999999872,
+            "peak_rss_bytes": 40255488,
+            "cpu_s": 0.064414,
+            "counters": {
+              "Files": 98,
+              "Lines": 62116,
+              "Identifiers": 65711,
+              "Symbols": 13340,
+              "Types": 506,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "56ac350483ab516ead60e9c921325039a6a79f07d80ef3c995e7226214790fe7",
+            "errors": 1200,
+            "log": ".bench/results/02-mapped-logs/flow-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "modules",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.057733040999998764,
+          "peak_rss_bytes": 53821440,
+          "cpu_s": 0.055417,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.05758920899999964,
+          "peak_rss_bytes": 53985280,
+          "cpu_s": 0.054997,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.05764758300000139,
+          "peak_rss_bytes": 53870592,
+          "cpu_s": 0.055305999999999994,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.017750832999997357,
+          "peak_rss_bytes": 24100864,
+          "cpu_s": 0.015921,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.057733040999998764,
+            "peak_rss_bytes": 53477376,
+            "cpu_s": 0.055417,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74376
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.05915949999999981,
+            "peak_rss_bytes": 53821440,
+            "cpu_s": 0.056767,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74392
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.05597129200000239,
+            "peak_rss_bytes": 53968896,
+            "cpu_s": 0.053418,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74377
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.0592509579999998,
+            "peak_rss_bytes": 53837824,
+            "cpu_s": 0.057249999999999995,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74397
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.057027874999999284,
+            "peak_rss_bytes": 53985280,
+            "cpu_s": 0.054324,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74378
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.05758920899999964,
+            "peak_rss_bytes": 54018048,
+            "cpu_s": 0.054997,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74390
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.05740604200000021,
+            "peak_rss_bytes": 54050816,
+            "cpu_s": 0.054928,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74380
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.05764758300000139,
+            "peak_rss_bytes": 53870592,
+            "cpu_s": 0.055305999999999994,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74379
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.05875512499999758,
+            "peak_rss_bytes": 53460992,
+            "cpu_s": 0.056126,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 36744,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 74384
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.017750832999997357,
+            "peak_rss_bytes": 24100864,
+            "cpu_s": 0.015921,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 16380,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.017818166999997942,
+            "peak_rss_bytes": 24100864,
+            "cpu_s": 0.01613,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 16380,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.017067999999998307,
+            "peak_rss_bytes": 24100864,
+            "cpu_s": 0.015385,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 16380,
+              "Types": 2236,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "modules",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.03168716700000118,
+          "peak_rss_bytes": 59834368,
+          "cpu_s": 0.10275899999999999,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.031944208000002305,
+          "peak_rss_bytes": 59916288,
+          "cpu_s": 0.108639,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.031347541999998896,
+          "peak_rss_bytes": 60194816,
+          "cpu_s": 0.103546,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.01863033300000083,
+          "peak_rss_bytes": 39911424,
+          "cpu_s": 0.09803300000000001,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.03168716700000118,
+            "peak_rss_bytes": 59834368,
+            "cpu_s": 0.10275899999999999,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82161
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.03139662499999929,
+            "peak_rss_bytes": 59211776,
+            "cpu_s": 0.101925,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82796
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.03171308299999964,
+            "peak_rss_bytes": 61620224,
+            "cpu_s": 0.10360299999999999,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82525
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.031944208000002305,
+            "peak_rss_bytes": 60702720,
+            "cpu_s": 0.11178199999999999,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82412
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.031121500000001134,
+            "peak_rss_bytes": 59916288,
+            "cpu_s": 0.103306,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82456
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.03213858300000183,
+            "peak_rss_bytes": 59916288,
+            "cpu_s": 0.108639,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82469
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.03132458299999996,
+            "peak_rss_bytes": 59621376,
+            "cpu_s": 0.100088,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82375
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.03156641699999696,
+            "peak_rss_bytes": 60735488,
+            "cpu_s": 0.110106,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82854
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.031347541999998896,
+            "peak_rss_bytes": 60194816,
+            "cpu_s": 0.103546,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 37440,
+              "Types": 2521,
+              "Instantiations": 358,
+              "Memory allocs": 82259
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.01863033300000083,
+            "peak_rss_bytes": 39682048,
+            "cpu_s": 0.08925599999999999,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 17047,
+              "Types": 2509,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.01855591599999684,
+            "peak_rss_bytes": 40665088,
+            "cpu_s": 0.09873699999999999,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 17047,
+              "Types": 2513,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.019000583000000404,
+            "peak_rss_bytes": 39911424,
+            "cpu_s": 0.09803300000000001,
+            "counters": {
+              "Files": 277,
+              "Lines": 60373,
+              "Identifiers": 53735,
+              "Symbols": 17047,
+              "Types": 2507,
+              "Instantiations": 358,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/02-mapped-logs/modules-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "errors",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.04221712500000052,
+          "peak_rss_bytes": 47906816,
+          "cpu_s": 0.039975,
+          "errors": 2
+        },
+        "parent": {
+          "wall_s": 0.0434769579999994,
+          "peak_rss_bytes": 48300032,
+          "cpu_s": 0.041101,
+          "errors": 2
+        },
+        "fork": {
+          "wall_s": 0.043478625000002324,
+          "peak_rss_bytes": 48234496,
+          "cpu_s": 0.041076999999999995,
+          "errors": 2
+        },
+        "tsrs": {
+          "wall_s": 0.01336579099999824,
+          "peak_rss_bytes": 22036480,
+          "cpu_s": 0.011385,
+          "errors": 2
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.042153458000001365,
+            "peak_rss_bytes": 48381952,
+            "cpu_s": 0.039975,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38826
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04712804200000065,
+            "peak_rss_bytes": 47906816,
+            "cpu_s": 0.04497299999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38825
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04221712500000052,
+            "peak_rss_bytes": 47906816,
+            "cpu_s": 0.03983299999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38824
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.0434769579999994,
+            "peak_rss_bytes": 48300032,
+            "cpu_s": 0.041101,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38825
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.046506082999997034,
+            "peak_rss_bytes": 48218112,
+            "cpu_s": 0.043998999999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38825
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.04308304200000279,
+            "peak_rss_bytes": 48316416,
+            "cpu_s": 0.040561999999999994,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38823
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.04190750000000065,
+            "peak_rss_bytes": 48332800,
+            "cpu_s": 0.039668999999999996,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38830
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.043478625000002324,
+            "peak_rss_bytes": 47841280,
+            "cpu_s": 0.041076999999999995,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38835
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.047467000000001036,
+            "peak_rss_bytes": 48234496,
+            "cpu_s": 0.045182999999999994,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 32979,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 38833
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.013512833000000057,
+            "peak_rss_bytes": 22036480,
+            "cpu_s": 0.011713999999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 12586,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.01336579099999824,
+            "peak_rss_bytes": 22036480,
+            "cpu_s": 0.011385,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 12586,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.012562707999997258,
+            "peak_rss_bytes": 22036480,
+            "cpu_s": 0.010935,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 12586,
+              "Types": 91,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "errors",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.02848900000000043,
+          "peak_rss_bytes": 54804480,
+          "cpu_s": 0.07521499999999999,
+          "errors": 2
+        },
+        "parent": {
+          "wall_s": 0.027004584000000165,
+          "peak_rss_bytes": 54018048,
+          "cpu_s": 0.071598,
+          "errors": 2
+        },
+        "fork": {
+          "wall_s": 0.02716370899999987,
+          "peak_rss_bytes": 54755328,
+          "cpu_s": 0.07642199999999999,
+          "errors": 2
+        },
+        "tsrs": {
+          "wall_s": 0.017207583000001136,
+          "peak_rss_bytes": 35815424,
+          "cpu_s": 0.062929,
+          "errors": 2
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.02848900000000043,
+            "peak_rss_bytes": 54411264,
+            "cpu_s": 0.07521499999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43287
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.028768749999997567,
+            "peak_rss_bytes": 54804480,
+            "cpu_s": 0.081371,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43362
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02727433399999768,
+            "peak_rss_bytes": 55263232,
+            "cpu_s": 0.07414799999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43339
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.02737541700000179,
+            "peak_rss_bytes": 54149120,
+            "cpu_s": 0.072856,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43284
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.027004584000000165,
+            "peak_rss_bytes": 54018048,
+            "cpu_s": 0.06797399999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43308
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02674862499999975,
+            "peak_rss_bytes": 53805056,
+            "cpu_s": 0.071598,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43312
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.02779841599999955,
+            "peak_rss_bytes": 54689792,
+            "cpu_s": 0.074649,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43288
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02716370899999987,
+            "peak_rss_bytes": 54968320,
+            "cpu_s": 0.07642199999999999,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43342
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.02710404200000127,
+            "peak_rss_bytes": 54755328,
+            "cpu_s": 0.07664,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 33675,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 43247
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.01817454200000057,
+            "peak_rss_bytes": 35815424,
+            "cpu_s": 0.052915,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 13282,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.017207583000001136,
+            "peak_rss_bytes": 35799040,
+            "cpu_s": 0.067717,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 13282,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.016880167000000057,
+            "peak_rss_bytes": 35897344,
+            "cpu_s": 0.062929,
+            "counters": {
+              "Files": 98,
+              "Lines": 59658,
+              "Identifiers": 51223,
+              "Symbols": 13282,
+              "Types": 346,
+              "Instantiations": 0,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "4f235afa7da7af4832e8797d2e9537dff6a818966ab1e66f8a0fb98fd409aab6",
+            "errors": 2,
+            "log": ".bench/results/02-mapped-logs/errors-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    }
+  ],
+  "instructions": "not collected; Go counts vary with GC; use bench/count.py on Linux separately",
+  "go_gate_passed": true
+}
