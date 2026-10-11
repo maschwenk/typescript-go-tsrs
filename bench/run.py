@@ -110,7 +110,16 @@ def main():
                 continue
             if name not in available:
                 ap.error(f'unknown project {name}')
-            upstream.setup_project(cfg, available[name], args.work_dir)
+            if args.work_dir.is_relative_to(ROOT / '.bench'):
+                upstream.setup_project(cfg, available[name], args.work_dir)
+            else:
+                # An external corpus is read-only; verify its source without reinstalling it.
+                project_config = available[name]
+                checkout = args.work_dir / 'suite' if 'suite_dir' in project_config else args.work_dir / 'solutions' / name
+                expected = cfg['suite']['commit'] if 'suite_dir' in project_config else project_config['commit']
+                actual = subprocess.check_output(['git','-C',str(checkout),'rev-parse','HEAD'],text=True).strip()
+                if actual != expected:
+                    ap.error(f'{name}: prepared corpus revision {actual} != {expected}')
             _, project = upstream.project_path(cfg, available[name], args.work_dir)
             projects.append((name, project))
     args.out.parent.mkdir(parents=True, exist_ok=True)
@@ -133,8 +142,8 @@ def main():
     failed = False
     report = ['# Compiler comparison', '', f"{result['date']} · {args.label} · {platform.platform()} · {os.cpu_count()} logical CPUs", '',
               'Native binaries; warm filesystem caches; medians of interleaved runs. Single mode caps both compiler and runtime pools. Default mode uses each compiler’s settings.', '',
-              '| project | mode | stock s / MiB | fork s / MiB | tsrs s / MiB | stock/fork | Go equality | tsrs equality |',
-              '| --- | --- | ---: | ---: | ---: | ---: | --- | --- |']
+              '| project | mode | stock s / MiB | parent s / MiB | fork s / MiB | tsrs s / MiB | stock/fork | parent/fork | Go equality | tsrs equality |',
+              '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |']
     for project_name, project in projects:
         for mode in args.modes.split(','):
             runs = {name:[] for name in tools}
@@ -162,7 +171,7 @@ def main():
             def cell(name):
                 r=summary[name]
                 return f"{r['wall_s']:.3f} / {r['peak_rss_bytes']/2**20:.1f}"
-            report.append(f"| {project_name} | {mode} | {cell('stock')} | {cell('fork')} | {cell('tsrs')} | {summary['stock']['wall_s']/summary['fork']['wall_s']:.2f}x | {'yes' if go_equal else 'MISMATCH'} | {'yes' if equality['tsrs'] else 'MISMATCH'} |")
+            report.append(f"| {project_name} | {mode} | {cell('stock')} | {cell('parent' if 'parent' in tools else 'stock')} | {cell('fork')} | {cell('tsrs')} | {summary['stock']['wall_s']/summary['fork']['wall_s']:.2f}x | {summary['parent' if 'parent' in tools else 'stock']['wall_s']/summary['fork']['wall_s']:.2f}x | {'yes' if go_equal else 'MISMATCH'} | {'yes' if equality['tsrs'] else 'MISMATCH'} |")
             print(report[-1],flush=True)
     result['go_gate_passed'] = not failed
     args.out.write_text(json.dumps(result,indent=2)+'\n')
