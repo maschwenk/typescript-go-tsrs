@@ -26617,9 +26617,29 @@ func (c *Checker) getUnionTypeWorker(types []*Type, unionReduction UnionReductio
 	}
 	if origin == nil && includes&TypeFlagsUnion != 0 {
 		namedUnions := c.addNamedUnions(nil, types)
+		namedCount := 0
+		for _, u := range namedUnions {
+			namedCount += len(u.Types())
+		}
+		var namedMembers map[*Type]struct{}
+		// Tiny unions are cheaper to search directly; large named unions share one set.
+		if c.sourceFilesComplete && len(namedUnions) > 1 && namedCount >= 64 && len(typeSet) >= 64 {
+			namedMembers = make(map[*Type]struct{}, namedCount)
+			for _, u := range namedUnions {
+				for _, t := range u.Types() {
+					namedMembers[t] = struct{}{}
+				}
+			}
+		}
 		var reducedTypes []*Type
 		for _, t := range typeSet {
-			if !core.Some(namedUnions, func(u *Type) bool { return containsType(u.Types(), t) }) {
+			var contained bool
+			if namedMembers != nil {
+				_, contained = namedMembers[t]
+			} else {
+				contained = core.Some(namedUnions, func(u *Type) bool { return containsType(u.Types(), t) })
+			}
+			if !contained {
 				reducedTypes = append(reducedTypes, t)
 			}
 		}
