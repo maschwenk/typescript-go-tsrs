@@ -1,0 +1,2240 @@
+{
+  "schema": 1,
+  "date": "2026-10-11T21:36:39.631255+00:00",
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "head": "05e8a43808693f52666cf6b4589e51ed31c5da30",
+  "machine": {
+    "label": "local",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18
+  },
+  "reps": 3,
+  "build": "plain release, Go -pgo=off unless binary metadata says otherwise",
+  "tools": {
+    "stock": {
+      "sha256": "e60336446f5e77116f0ebb77bf7966088b68d6a97a62d00df2b010d58c7ac36e",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/stock: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=b85298b6a81f772d080b0455de0ca9d744cd6fd6\n\tbuild\tvcs.time=2026-09-29T23:01:40Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "parent": {
+      "sha256": "4d2d48dd8c51b27d665c69dfe3f7fc4bf191bfc4341e8785633305a6c8ee0a74",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/parent: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=9365ce758260a3a41bb1bf935ad0b5c65e0a7c9e\n\tbuild\tvcs.time=2026-10-11T21:33:14Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "fork": {
+      "sha256": "fd005b4f861b1f820993f01d766b28ef4c05f6cceec5ccbe812425eadeb88d6a",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/fork: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=05e8a43808693f52666cf6b4589e51ed31c5da30\n\tbuild\tvcs.time=2026-10-11T21:35:49Z\n\tbuild\tvcs.modified=true\n"
+    },
+    "tsrs": {
+      "sha256": "49678ca059609cbcadf75a199e7d2d043008e4242a014ec70d8d075dbf1bcad9",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    }
+  },
+  "rows": [
+    {
+      "project": "Compiler",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.3180248339999998,
+          "peak_rss_bytes": 157122560,
+          "cpu_s": 0.31353200000000003,
+          "errors": 43
+        },
+        "parent": {
+          "wall_s": 0.32032799999999995,
+          "peak_rss_bytes": 152715264,
+          "cpu_s": 0.316023,
+          "errors": 43
+        },
+        "fork": {
+          "wall_s": 0.3212316669999993,
+          "peak_rss_bytes": 150487040,
+          "cpu_s": 0.316895,
+          "errors": 43
+        },
+        "tsrs": {
+          "wall_s": 0.11902466600000006,
+          "peak_rss_bytes": 59654144,
+          "cpu_s": 0.115946,
+          "errors": 43
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.3180248339999998,
+            "peak_rss_bytes": 157122560,
+            "cpu_s": 0.31353200000000003,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 81579,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 452477
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.3164755829999999,
+            "peak_rss_bytes": 157859840,
+            "cpu_s": 0.312074,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 81579,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 452479
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.32192629199999967,
+            "peak_rss_bytes": 153108480,
+            "cpu_s": 0.317188,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 81579,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 452477
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.32032799999999995,
+            "peak_rss_bytes": 152715264,
+            "cpu_s": 0.316023,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 70844,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 459076
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.31802116699999994,
+            "peak_rss_bytes": 151175168,
+            "cpu_s": 0.31319400000000003,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 70844,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 459073
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.3209966660000001,
+            "peak_rss_bytes": 155271168,
+            "cpu_s": 0.316245,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 70844,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 459076
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.3346409159999997,
+            "peak_rss_bytes": 141115392,
+            "cpu_s": 0.33077999999999996,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 68407,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 458787
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.31775312499999986,
+            "peak_rss_bytes": 152797184,
+            "cpu_s": 0.313456,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 68407,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 458781
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.3212316669999993,
+            "peak_rss_bytes": 150487040,
+            "cpu_s": 0.316895,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 68407,
+              "Types": 38480,
+              "Instantiations": 39529,
+              "Memory allocs": 458782
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.12010091700000025,
+            "peak_rss_bytes": 59654144,
+            "cpu_s": 0.11745799999999999,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 65685,
+              "Types": 38306,
+              "Instantiations": 39528,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11902466600000006,
+            "peak_rss_bytes": 59654144,
+            "cpu_s": 0.115946,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 65685,
+              "Types": 38306,
+              "Instantiations": 39528,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11753404199999995,
+            "peak_rss_bytes": 59654144,
+            "cpu_s": 0.114676,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 65685,
+              "Types": 38306,
+              "Instantiations": 39528,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "Compiler",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.11667441699999959,
+          "peak_rss_bytes": 188383232,
+          "cpu_s": 0.557803,
+          "errors": 43
+        },
+        "parent": {
+          "wall_s": 0.11562874999999995,
+          "peak_rss_bytes": 186089472,
+          "cpu_s": 0.54819,
+          "errors": 43
+        },
+        "fork": {
+          "wall_s": 0.1163173749999995,
+          "peak_rss_bytes": 184827904,
+          "cpu_s": 0.547966,
+          "errors": 43
+        },
+        "tsrs": {
+          "wall_s": 0.05455416700000004,
+          "peak_rss_bytes": 83492864,
+          "cpu_s": 0.17754599999999998,
+          "errors": 43
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.11705154200000045,
+            "peak_rss_bytes": 187383808,
+            "cpu_s": 0.5559259999999999,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 117025,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 622158
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11649283300000057,
+            "peak_rss_bytes": 188383232,
+            "cpu_s": 0.557803,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 117025,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 622230
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11667441699999959,
+            "peak_rss_bytes": 188989440,
+            "cpu_s": 0.559434,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 117025,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 622156
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.1162180829999997,
+            "peak_rss_bytes": 171966464,
+            "cpu_s": 0.533085,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 96505,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 632073
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11562874999999995,
+            "peak_rss_bytes": 186089472,
+            "cpu_s": 0.553507,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 96505,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 631413
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11557275000000011,
+            "peak_rss_bytes": 186433536,
+            "cpu_s": 0.54819,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 96505,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 631274
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.1163173749999995,
+            "peak_rss_bytes": 178388992,
+            "cpu_s": 0.510498,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 92660,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 630777
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11770237499999947,
+            "peak_rss_bytes": 184827904,
+            "cpu_s": 0.552203,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 92660,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 630998
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.11557933300000034,
+            "peak_rss_bytes": 184909824,
+            "cpu_s": 0.547966,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 92660,
+              "Types": 78961,
+              "Instantiations": 71576,
+              "Memory allocs": 631010
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.05510258300000004,
+            "peak_rss_bytes": 83460096,
+            "cpu_s": 0.17806799999999998,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 89559,
+              "Types": 78913,
+              "Instantiations": 71957,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.05438641699999991,
+            "peak_rss_bytes": 83492864,
+            "cpu_s": 0.17754599999999998,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 89527,
+              "Types": 78896,
+              "Instantiations": 71943,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.05455416700000004,
+            "peak_rss_bytes": 84066304,
+            "cpu_s": 0.17404699999999998,
+            "counters": {
+              "Files": 53,
+              "Lines": 103495,
+              "Identifiers": 187332,
+              "Symbols": 89534,
+              "Types": 78913,
+              "Instantiations": 71957,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "fa4612854deaf0cc4b27c371f1f3a756622fe8dc3c17168168b910743f96ae6b",
+            "errors": 43,
+            "log": ".bench/results/03-tuple-logs/Compiler-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "Compiler-Unions",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.5543632919999997,
+          "peak_rss_bytes": 170295296,
+          "cpu_s": 0.548487,
+          "errors": 41
+        },
+        "parent": {
+          "wall_s": 0.5757049999999992,
+          "peak_rss_bytes": 179896320,
+          "cpu_s": 0.5697679999999999,
+          "errors": 41
+        },
+        "fork": {
+          "wall_s": 0.5754212919999997,
+          "peak_rss_bytes": 176537600,
+          "cpu_s": 0.569695,
+          "errors": 41
+        },
+        "tsrs": {
+          "wall_s": 0.17802116599999884,
+          "peak_rss_bytes": 62472192,
+          "cpu_s": 0.174892,
+          "errors": 41
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.5543632919999997,
+            "peak_rss_bytes": 170295296,
+            "cpu_s": 0.548487,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 78029,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 476110
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5545845409999988,
+            "peak_rss_bytes": 169787392,
+            "cpu_s": 0.549206,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 78029,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 476103
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5538162079999989,
+            "peak_rss_bytes": 171458560,
+            "cpu_s": 0.548295,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 78029,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 476134
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.5757049999999992,
+            "peak_rss_bytes": 179896320,
+            "cpu_s": 0.5697679999999999,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 67264,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483964
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5809633749999996,
+            "peak_rss_bytes": 181420032,
+            "cpu_s": 0.5747260000000001,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 67264,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483959
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5665587500000004,
+            "peak_rss_bytes": 167100416,
+            "cpu_s": 0.5608449999999999,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 67264,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483964
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.5754212919999997,
+            "peak_rss_bytes": 176537600,
+            "cpu_s": 0.569695,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 64823,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483703
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5773825830000003,
+            "peak_rss_bytes": 181469184,
+            "cpu_s": 0.571502,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 64823,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483710
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.5616054580000007,
+            "peak_rss_bytes": 172064768,
+            "cpu_s": 0.55602,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 64823,
+              "Types": 39048,
+              "Instantiations": 39803,
+              "Memory allocs": 483722
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.17809216699999908,
+            "peak_rss_bytes": 62472192,
+            "cpu_s": 0.174933,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 62048,
+              "Types": 38969,
+              "Instantiations": 39802,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.17691570799999923,
+            "peak_rss_bytes": 62472192,
+            "cpu_s": 0.173873,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 62048,
+              "Types": 38969,
+              "Instantiations": 39802,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.17802116599999884,
+            "peak_rss_bytes": 62455808,
+            "cpu_s": 0.174892,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 62048,
+              "Types": 38969,
+              "Instantiations": 39802,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "Compiler-Unions",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.21726637500000123,
+          "peak_rss_bytes": 210731008,
+          "cpu_s": 0.807418,
+          "errors": 41
+        },
+        "parent": {
+          "wall_s": 0.22017841699999963,
+          "peak_rss_bytes": 206405632,
+          "cpu_s": 0.807882,
+          "errors": 41
+        },
+        "fork": {
+          "wall_s": 0.21718100000000007,
+          "peak_rss_bytes": 205537280,
+          "cpu_s": 0.795781,
+          "errors": 41
+        },
+        "tsrs": {
+          "wall_s": 0.08277533299999718,
+          "peak_rss_bytes": 88915968,
+          "cpu_s": 0.25085799999999997,
+          "errors": 41
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 0.2231311660000017,
+            "peak_rss_bytes": 211238912,
+            "cpu_s": 0.8159029999999999,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 115276,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 657274
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.21631983299999824,
+            "peak_rss_bytes": 210731008,
+            "cpu_s": 0.800325,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 115276,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 657359
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.21726637500000123,
+            "peak_rss_bytes": 210010112,
+            "cpu_s": 0.807418,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 115276,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 657204
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 0.21866308399999923,
+            "peak_rss_bytes": 206405632,
+            "cpu_s": 0.798176,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 94904,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 670641
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.22017841699999963,
+            "peak_rss_bytes": 196460544,
+            "cpu_s": 0.817693,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 94904,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 670556
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.2208412089999996,
+            "peak_rss_bytes": 206946304,
+            "cpu_s": 0.807882,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 94904,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 670332
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 0.2189385829999999,
+            "peak_rss_bytes": 205094912,
+            "cpu_s": 0.795781,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 90799,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 669936
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.21682083299999988,
+            "peak_rss_bytes": 205537280,
+            "cpu_s": 0.7950799999999999,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 90799,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 669537
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.21718100000000007,
+            "peak_rss_bytes": 207749120,
+            "cpu_s": 0.834951,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 90799,
+              "Types": 79014,
+              "Instantiations": 74161,
+              "Memory allocs": 670480
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.08512012499999955,
+            "peak_rss_bytes": 88915968,
+            "cpu_s": 0.25665899999999997,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 89731,
+              "Types": 79909,
+              "Instantiations": 78436,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08254808299999894,
+            "peak_rss_bytes": 89243648,
+            "cpu_s": 0.25085799999999997,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 89756,
+              "Types": 79909,
+              "Instantiations": 78436,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.08277533299999718,
+            "peak_rss_bytes": 88342528,
+            "cpu_s": 0.248344,
+            "counters": {
+              "Files": 48,
+              "Lines": 96571,
+              "Identifiers": 172174,
+              "Symbols": 89731,
+              "Types": 79909,
+              "Instantiations": 78436,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "eb9c892282801fa977a30b45b9f85153f54b14787df962e9e5e63e7226673868",
+            "errors": 41,
+            "log": ".bench/results/03-tuple-logs/Compiler-Unions-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "xstate-main",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 1.7425749160000024,
+          "peak_rss_bytes": 698499072,
+          "cpu_s": 1.728103,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 1.707962333000001,
+          "peak_rss_bytes": 652181504,
+          "cpu_s": 1.683925,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 1.657404457999995,
+          "peak_rss_bytes": 641548288,
+          "cpu_s": 1.6436950000000001,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.44068150000000017,
+          "peak_rss_bytes": 201408512,
+          "cpu_s": 0.435259,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 1.612238583,
+            "peak_rss_bytes": 698499072,
+            "cpu_s": 1.597064,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363210
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.7878482079999998,
+            "peak_rss_bytes": 710737920,
+            "cpu_s": 1.7781509999999998,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363234
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.7425749160000024,
+            "peak_rss_bytes": 683753472,
+            "cpu_s": 1.728103,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363314
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 1.707962333000001,
+            "peak_rss_bytes": 640630784,
+            "cpu_s": 1.683925,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 697168,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4458635
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.716831125000006,
+            "peak_rss_bytes": 670990336,
+            "cpu_s": 1.7027889999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 697168,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4458795
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.555888166999999,
+            "peak_rss_bytes": 652181504,
+            "cpu_s": 1.549002,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 697168,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4458787
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 1.7030298750000021,
+            "peak_rss_bytes": 645234688,
+            "cpu_s": 1.687687,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 582976,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4610668
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.5202732499999954,
+            "peak_rss_bytes": 613122048,
+            "cpu_s": 1.50704,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 582976,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4610559
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.657404457999995,
+            "peak_rss_bytes": 641548288,
+            "cpu_s": 1.6436950000000001,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 582976,
+              "Types": 313435,
+              "Instantiations": 1600601,
+              "Memory allocs": 4610622
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.4350929579999985,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.43200799999999995,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.44068150000000017,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.435259,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.44862745799999715,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.442779,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "xstate-main",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 0.4882706249999984,
+          "peak_rss_bytes": 870367232,
+          "cpu_s": 3.072344,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 0.465971500000002,
+          "peak_rss_bytes": 756023296,
+          "cpu_s": 2.950416,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 0.44953716600000604,
+          "peak_rss_bytes": 725647360,
+          "cpu_s": 2.800801,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.14410654199999584,
+          "peak_rss_bytes": 267534336,
+          "cpu_s": 0.8244499999999999,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 0.4882706249999984,
+            "peak_rss_bytes": 852328448,
+            "cpu_s": 3.1262,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 1237952,
+              "Types": 473981,
+              "Instantiations": 2197002,
+              "Memory allocs": 5638308
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.5102510420000002,
+            "peak_rss_bytes": 870367232,
+            "cpu_s": 3.072344,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 1237952,
+              "Types": 473981,
+              "Instantiations": 2197002,
+              "Memory allocs": 5640968
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4770777089999996,
+            "peak_rss_bytes": 872611840,
+            "cpu_s": 2.987682,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 1237952,
+              "Types": 473981,
+              "Instantiations": 2197002,
+              "Memory allocs": 5639967
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 0.465971500000002,
+            "peak_rss_bytes": 754925568,
+            "cpu_s": 2.969576,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 889650,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5806677
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.46529258400000373,
+            "peak_rss_bytes": 773292032,
+            "cpu_s": 2.835435,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 889650,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5815763
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.46716566599999965,
+            "peak_rss_bytes": 756023296,
+            "cpu_s": 2.950416,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 889650,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5814478
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 0.44953716600000604,
+            "peak_rss_bytes": 725647360,
+            "cpu_s": 2.800801,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 734928,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5967770
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.45532154099999644,
+            "peak_rss_bytes": 720977920,
+            "cpu_s": 2.8749990000000003,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 734928,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5970551
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.44788237499999894,
+            "peak_rss_bytes": 733970432,
+            "cpu_s": 2.787528,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 734928,
+              "Types": 473466,
+              "Instantiations": 2194693,
+              "Memory allocs": 5972745
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.14410654199999584,
+            "peak_rss_bytes": 267452416,
+            "cpu_s": 0.824471,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 611455,
+              "Types": 440301,
+              "Instantiations": 1995115,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.14368837499999643,
+            "peak_rss_bytes": 267534336,
+            "cpu_s": 0.802894,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 611429,
+              "Types": 440388,
+              "Instantiations": 1995768,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.15061420799999325,
+            "peak_rss_bytes": 270319616,
+            "cpu_s": 0.8244499999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 623033,
+              "Types": 450096,
+              "Instantiations": 2046772,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/03-tuple-logs/xstate-main-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "webpack",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 3.5683239580000077,
+          "peak_rss_bytes": 1297842176,
+          "cpu_s": 3.551195,
+          "errors": 863
+        },
+        "parent": {
+          "wall_s": 3.466518832999995,
+          "peak_rss_bytes": 1253638144,
+          "cpu_s": 3.451539,
+          "errors": 863
+        },
+        "fork": {
+          "wall_s": 3.441685542000002,
+          "peak_rss_bytes": 1235484672,
+          "cpu_s": 3.428639,
+          "errors": 863
+        },
+        "tsrs": {
+          "wall_s": 0.8753624579999979,
+          "peak_rss_bytes": 460816384,
+          "cpu_s": 0.865154,
+          "errors": 863
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 3.641965749999997,
+            "peak_rss_bytes": 1298563072,
+            "cpu_s": 3.613508,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207228
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.556339374999993,
+            "peak_rss_bytes": 1297711104,
+            "cpu_s": 3.540497,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207276
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.5683239580000077,
+            "peak_rss_bytes": 1297842176,
+            "cpu_s": 3.551195,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207264
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 3.521363957999995,
+            "peak_rss_bytes": 1253638144,
+            "cpu_s": 3.502995,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 820234,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8330138
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.466518832999995,
+            "peak_rss_bytes": 1263878144,
+            "cpu_s": 3.451539,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 820234,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8330060
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.4145316250000093,
+            "peak_rss_bytes": 1239646208,
+            "cpu_s": 3.397985,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 820234,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8330192
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 3.470628082999994,
+            "peak_rss_bytes": 1235484672,
+            "cpu_s": 3.453528,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 743886,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8352510
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.4394247910000075,
+            "peak_rss_bytes": 1219084288,
+            "cpu_s": 3.4217169999999997,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 743886,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8352590
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.441685542000002,
+            "peak_rss_bytes": 1235697664,
+            "cpu_s": 3.428639,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 743886,
+              "Types": 420016,
+              "Instantiations": 653790,
+              "Memory allocs": 8352509
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.8753624579999979,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.865154,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.8838140419999974,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.873456,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.8710841659999886,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.8601759999999999,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-single-tsrs-2.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "webpack",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 1.1929328749999968,
+          "peak_rss_bytes": 1430601728,
+          "cpu_s": 5.213667,
+          "errors": 863
+        },
+        "parent": {
+          "wall_s": 1.2992727080000037,
+          "peak_rss_bytes": 1282293760,
+          "cpu_s": 5.0963769999999995,
+          "errors": 863
+        },
+        "fork": {
+          "wall_s": 1.2275457920000008,
+          "peak_rss_bytes": 1329840128,
+          "cpu_s": 5.016393,
+          "errors": 863
+        },
+        "tsrs": {
+          "wall_s": 0.2649289999999951,
+          "peak_rss_bytes": 547815424,
+          "cpu_s": 1.2499680000000002,
+          "errors": 863
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 1.1929328749999968,
+            "peak_rss_bytes": 1430601728,
+            "cpu_s": 5.213667,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1403796,
+              "Types": 608335,
+              "Instantiations": 1064340,
+              "Memory allocs": 9604968
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.1830585000000013,
+            "peak_rss_bytes": 1464467456,
+            "cpu_s": 5.068865,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1403796,
+              "Types": 608335,
+              "Instantiations": 1064340,
+              "Memory allocs": 9635115
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.3220172919999982,
+            "peak_rss_bytes": 1415020544,
+            "cpu_s": 5.5150879999999995,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1403796,
+              "Types": 608335,
+              "Instantiations": 1064340,
+              "Memory allocs": 9596545
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-stock-2.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 1.175343084000005,
+            "peak_rss_bytes": 1282293760,
+            "cpu_s": 5.0963769999999995,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1086638,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9749350
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.3494107920000005,
+            "peak_rss_bytes": 1384185856,
+            "cpu_s": 5.004695,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1086638,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9745715
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.2992727080000037,
+            "peak_rss_bytes": 1276887040,
+            "cpu_s": 5.4260850000000005,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1086638,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9752152
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-parent-2.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 1.1489477920000013,
+            "peak_rss_bytes": 1231978496,
+            "cpu_s": 5.016393,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 937356,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9785557
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.2275457920000008,
+            "peak_rss_bytes": 1330495488,
+            "cpu_s": 4.845038000000001,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 937356,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9786284
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.7609555829999977,
+            "peak_rss_bytes": 1329840128,
+            "cpu_s": 5.592077000000001,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 937356,
+              "Types": 607904,
+              "Instantiations": 1059145,
+              "Memory allocs": 9769549
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-fork-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.2649289999999951,
+            "peak_rss_bytes": 547815424,
+            "cpu_s": 1.2499680000000002,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 902269,
+              "Types": 577713,
+              "Instantiations": 1011890,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.26265962499999773,
+            "peak_rss_bytes": 546799616,
+            "cpu_s": 1.2461170000000001,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 902233,
+              "Types": 577696,
+              "Instantiations": 1011810,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.2924745830000006,
+            "peak_rss_bytes": 549158912,
+            "cpu_s": 1.3400960000000002,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 902278,
+              "Types": 577768,
+              "Instantiations": 1011849,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/03-tuple-logs/webpack-checkers4-tsrs-2.log"
+          }
+        ]
+      }
+    }
+  ],
+  "instructions": "not collected; Go counts vary with GC; use bench/count.py on Linux separately",
+  "go_gate_passed": true
+}

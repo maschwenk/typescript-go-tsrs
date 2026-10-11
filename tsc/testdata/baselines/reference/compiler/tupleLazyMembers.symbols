@@ -1,0 +1,164 @@
+//// [tests/cases/compiler/tupleLazyMembers.ts] ////
+
+=== tupleLazyMembers.ts ===
+// Member lookups and shape queries on tuple references, whose Array base type
+// gets the tuple as its this type.
+
+declare const pair: [string, number];
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const pair0 = pair[0];
+>pair0 : Symbol(pair0, Decl(tupleLazyMembers.ts, 4, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+>0 : Symbol(0)
+
+const pair1 = pair[1];
+>pair1 : Symbol(pair1, Decl(tupleLazyMembers.ts, 5, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+>1 : Symbol(1)
+
+const pairLength = pair.length;
+>pairLength : Symbol(pairLength, Decl(tupleLazyMembers.ts, 6, 5))
+>pair.length : Symbol(length)
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+>length : Symbol(length)
+
+const pairMapped = pair.map(x => typeof x);
+>pairMapped : Symbol(pairMapped, Decl(tupleLazyMembers.ts, 7, 5))
+>pair.map : Symbol(Array.map, Decl(lib.es5.d.ts, --, --))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+>map : Symbol(Array.map, Decl(lib.es5.d.ts, --, --))
+>x : Symbol(x, Decl(tupleLazyMembers.ts, 7, 28))
+>x : Symbol(x, Decl(tupleLazyMembers.ts, 7, 28))
+
+pair[2];
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+pair.missing;
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+declare const optional: [string, number?];
+>optional : Symbol(optional, Decl(tupleLazyMembers.ts, 11, 13))
+
+const optionalLength = optional.length;
+>optionalLength : Symbol(optionalLength, Decl(tupleLazyMembers.ts, 12, 5))
+>optional.length : Symbol(length)
+>optional : Symbol(optional, Decl(tupleLazyMembers.ts, 11, 13))
+>length : Symbol(length)
+
+const optional1 = optional[1];
+>optional1 : Symbol(optional1, Decl(tupleLazyMembers.ts, 13, 5))
+>optional : Symbol(optional, Decl(tupleLazyMembers.ts, 11, 13))
+>1 : Symbol(1)
+
+declare const rest: [boolean, ...string[]];
+>rest : Symbol(rest, Decl(tupleLazyMembers.ts, 15, 13))
+
+const rest5 = rest[5];
+>rest5 : Symbol(rest5, Decl(tupleLazyMembers.ts, 16, 5))
+>rest : Symbol(rest, Decl(tupleLazyMembers.ts, 15, 13))
+
+const restLength = rest.length;
+>restLength : Symbol(restLength, Decl(tupleLazyMembers.ts, 17, 5))
+>rest.length : Symbol(length)
+>rest : Symbol(rest, Decl(tupleLazyMembers.ts, 15, 13))
+>length : Symbol(length)
+
+declare const named: readonly [first: string, second: number];
+>named : Symbol(named, Decl(tupleLazyMembers.ts, 19, 13))
+
+named.push;
+>named : Symbol(named, Decl(tupleLazyMembers.ts, 19, 13))
+
+const namedConcat = named.concat([1]);
+>namedConcat : Symbol(namedConcat, Decl(tupleLazyMembers.ts, 21, 5))
+>named.concat : Symbol(ReadonlyArray.concat, Decl(lib.es5.d.ts, --, --), Decl(lib.es5.d.ts, --, --))
+>named : Symbol(named, Decl(tupleLazyMembers.ts, 19, 13))
+>concat : Symbol(ReadonlyArray.concat, Decl(lib.es5.d.ts, --, --), Decl(lib.es5.d.ts, --, --))
+
+function variadic<T extends unknown[]>(t: [number, ...T]) {
+>variadic : Symbol(variadic, Decl(tupleLazyMembers.ts, 21, 38))
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 23, 18))
+>t : Symbol(t, Decl(tupleLazyMembers.ts, 23, 39))
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 23, 18))
+
+    const head = t[0];
+>head : Symbol(head, Decl(tupleLazyMembers.ts, 24, 9))
+>t : Symbol(t, Decl(tupleLazyMembers.ts, 23, 39))
+>0 : Symbol(0)
+
+    const tail = t.slice(1);
+>tail : Symbol(tail, Decl(tupleLazyMembers.ts, 25, 9))
+>t.slice : Symbol(Array.slice, Decl(lib.es5.d.ts, --, --))
+>t : Symbol(t, Decl(tupleLazyMembers.ts, 23, 39))
+>slice : Symbol(Array.slice, Decl(lib.es5.d.ts, --, --))
+
+    return t.length;
+>t.length : Symbol(length)
+>t : Symbol(t, Decl(tupleLazyMembers.ts, 23, 39))
+>length : Symbol(length)
+}
+
+const weak: { length?: number; other?: string } = pair;
+>weak : Symbol(weak, Decl(tupleLazyMembers.ts, 29, 5))
+>length : Symbol(length, Decl(tupleLazyMembers.ts, 29, 13))
+>other : Symbol(other, Decl(tupleLazyMembers.ts, 29, 30))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const notWeak: { other?: number } = pair;
+>notWeak : Symbol(notWeak, Decl(tupleLazyMembers.ts, 30, 5))
+>other : Symbol(other, Decl(tupleLazyMembers.ts, 30, 16))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const arrayLike: ArrayLike<string | number> = pair;
+>arrayLike : Symbol(arrayLike, Decl(tupleLazyMembers.ts, 31, 5))
+>ArrayLike : Symbol(ArrayLike, Decl(lib.es5.d.ts, --, --))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const iterable: Iterable<string | number> = pair;
+>iterable : Symbol(iterable, Decl(tupleLazyMembers.ts, 32, 5))
+>Iterable : Symbol(Iterable, Decl(lib.es2015.iterable.d.ts, --, --))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const tooShort: [string, number, boolean] = pair;
+>tooShort : Symbol(tooShort, Decl(tupleLazyMembers.ts, 33, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const swapped: [number, string] = pair;
+>swapped : Symbol(swapped, Decl(tupleLazyMembers.ts, 34, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const missing: { 0: string; 1: number; 2: boolean } = pair;
+>missing : Symbol(missing, Decl(tupleLazyMembers.ts, 35, 5))
+>0 : Symbol(0, Decl(tupleLazyMembers.ts, 35, 16))
+>1 : Symbol(1, Decl(tupleLazyMembers.ts, 35, 27))
+>2 : Symbol(2, Decl(tupleLazyMembers.ts, 35, 38))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const empty: {} = pair;
+>empty : Symbol(empty, Decl(tupleLazyMembers.ts, 36, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+const mixed = [pair, "x"];
+>mixed : Symbol(mixed, Decl(tupleLazyMembers.ts, 37, 5))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
+interface Pair<T> extends Array<T> {
+>Pair : Symbol(Pair, Decl(tupleLazyMembers.ts, 37, 26))
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 39, 15))
+>Array : Symbol(Array, Decl(lib.es5.d.ts, --, --), Decl(lib.es5.d.ts, --, --), Decl(lib.es2015.core.d.ts, --, --), Decl(lib.es2015.iterable.d.ts, --, --), Decl(lib.es2015.symbol.wellknown.d.ts, --, --) ... and 4 more)
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 39, 15))
+
+    0: T;
+>0 : Symbol(Pair[0], Decl(tupleLazyMembers.ts, 39, 36))
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 39, 15))
+
+    1: T;
+>1 : Symbol(Pair[1], Decl(tupleLazyMembers.ts, 40, 9))
+>T : Symbol(T, Decl(tupleLazyMembers.ts, 39, 15))
+}
+const pairLike: Pair<string | number> = pair;
+>pairLike : Symbol(pairLike, Decl(tupleLazyMembers.ts, 43, 5))
+>Pair : Symbol(Pair, Decl(tupleLazyMembers.ts, 37, 26))
+>pair : Symbol(pair, Decl(tupleLazyMembers.ts, 3, 13))
+
