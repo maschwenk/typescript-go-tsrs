@@ -6,13 +6,16 @@ from pathlib import Path
 
 def generate(root):
     configs = []
-    for name in ("members", "unions", "flow", "modules", "errors"):
+    for name in ("references", "members", "unions", "flow", "modules", "errors"):
         d = root / name
         d.mkdir(parents=True, exist_ok=True)
         config = {"compilerOptions": {"strict": True, "noEmit": True, "skipLibCheck": True,
                   "target": "esnext", "module": "nodenext"}, "include": ["*.ts"]}
         (d / "tsconfig.json").write_text(json.dumps(config) + "\n")
         configs.append((name, d / "tsconfig.json"))
+    (root / "references/main.ts").write_text(
+        "interface Wide<T> {\n" + "".join(f"p{i}: T;\n" for i in range(2500)) + "}\n" +
+        "".join(f"declare const v{i}: Wide<{{ n: {i} }}>; const r{i}: {i} = v{i}.p{i}.n;\n" for i in range(300)))
     (root / "members/main.ts").write_text(
         "interface Wide<T> {\n" + "".join(f"p{i}: T;\n" for i in range(2500)) + "}\n" +
         "type Copy<T> = { [K in keyof T]: T[K] };\n" +
