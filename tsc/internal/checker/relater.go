@@ -678,10 +678,20 @@ func (c *Checker) elaborateArrowFunction(node *ast.Node, source *Type, target *T
 // and no required properties, call/construct signatures or index signatures
 func (c *Checker) isWeakType(t *Type) bool {
 	if t.flags&TypeFlagsObject != 0 {
-		return len(c.getSignaturesOfStructuredType(t, SignatureKindCall)) == 0 && len(c.getSignaturesOfStructuredType(t, SignatureKindConstruct)) == 0 &&
+		if t.objectFlags&ObjectFlagsIsWeakTypeComputed != 0 {
+			return t.objectFlags&ObjectFlagsIsWeakType != 0
+		}
+		result := len(c.getSignaturesOfStructuredType(t, SignatureKindCall)) == 0 && len(c.getSignaturesOfStructuredType(t, SignatureKindConstruct)) == 0 &&
 			len(c.getIndexInfosOfStructuredType(t)) == 0 && c.hasPropertiesOfStructuredType(t) && c.everyPropertyOfStructuredType(t, func(p *ast.Symbol) bool {
 			return p.Flags&ast.SymbolFlagsOptional != 0
 		})
+		if t.objectFlags&ObjectFlagsMembersResolved != 0 {
+			t.objectFlags |= ObjectFlagsIsWeakTypeComputed
+			if result {
+				t.objectFlags |= ObjectFlagsIsWeakType
+			}
+		}
+		return result
 	}
 	if t.flags&TypeFlagsSubstitution != 0 {
 		return c.isWeakType(t.AsSubstitutionType().baseType)
