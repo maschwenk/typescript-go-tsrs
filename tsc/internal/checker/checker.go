@@ -29040,6 +29040,18 @@ func (c *Checker) getNormalizedUnionOrIntersectionType(t *Type, writing bool) *T
 }
 
 func (c *Checker) shouldNormalizeIntersection(t *Type) bool {
+	if t.objectFlags&ObjectFlagsShouldNormalizeComputed != 0 {
+		return t.objectFlags&ObjectFlagsShouldNormalize != 0
+	}
+	result := c.shouldNormalizeIntersectionWorker(t)
+	t.objectFlags |= ObjectFlagsShouldNormalizeComputed
+	if result {
+		t.objectFlags |= ObjectFlagsShouldNormalize
+	}
+	return result
+}
+
+func (c *Checker) shouldNormalizeIntersectionWorker(t *Type) bool {
 	hasInstantiable := false
 	hasNullableOrEmpty := false
 	for _, t := range t.Types() {
