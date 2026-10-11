@@ -22526,6 +22526,13 @@ func (c *Checker) isMappedTypeGenericIndexedAccess(t *Type) bool {
  * type itself.
  */
 func (c *Checker) getApparentType(t *Type) *Type {
+	if t.flags&TypeFlagsObject != 0 && t.objectFlags&ObjectFlagsMapped == 0 {
+		return t
+	}
+	return c.getApparentTypeWorker(t)
+}
+
+func (c *Checker) getApparentTypeWorker(t *Type) *Type {
 	originalType := t
 	if t.flags&TypeFlagsInstantiable != 0 {
 		t = c.getBaseConstraintOfType(t)
@@ -22706,6 +22713,10 @@ func (c *Checker) isNeverReducedProperty(prop *ast.Symbol) bool {
 }
 
 func (c *Checker) getReducedApparentType(t *Type) *Type {
+	if t.flags&TypeFlagsObject != 0 && t.objectFlags&ObjectFlagsMapped == 0 {
+		return t
+	}
+
 	// Since getApparentType may return a non-reduced union or intersection type, we need to perform
 	// type reduction both before and after obtaining the apparent type. For example, given a type parameter
 	// 'T extends A | B', the type 'T & X' becomes 'A & X | B & X' after obtaining the apparent type, and
@@ -28877,6 +28888,13 @@ func (c *Checker) typeHasCallOrConstructSignatures(t *Type) bool {
 }
 
 func (c *Checker) getNormalizedType(t *Type, writing bool) *Type {
+	if t.flags&(TypeFlagsFreshable|TypeFlagsUnionOrIntersection|TypeFlagsSubstitution|TypeFlagsSimplifiable) == 0 && t.objectFlags&ObjectFlagsReference == 0 {
+		return t
+	}
+	return c.getNormalizedTypeWorker(t, writing)
+}
+
+func (c *Checker) getNormalizedTypeWorker(t *Type, writing bool) *Type {
 	for {
 		var n *Type
 		switch {
