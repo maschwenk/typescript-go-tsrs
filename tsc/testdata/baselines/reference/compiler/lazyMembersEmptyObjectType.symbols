@@ -1,0 +1,170 @@
+//// [tests/cases/compiler/lazyMembersEmptyObjectType.ts] ////
+
+=== lazyMembersEmptyObjectType.ts ===
+// Empty object type checks, including subtype reduction against empty object
+// types, on instantiated class and interface references.
+
+interface Empty<T> {}
+>Empty : Symbol(Empty, Decl(lazyMembersEmptyObjectType.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 3, 16))
+
+interface NotEmpty<T> {
+>NotEmpty : Symbol(NotEmpty, Decl(lazyMembersEmptyObjectType.ts, 3, 21))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 4, 19))
+
+    value: T;
+>value : Symbol(NotEmpty.value, Decl(lazyMembersEmptyObjectType.ts, 4, 23))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 4, 19))
+}
+interface Inherits<T> extends NotEmpty<T> {}
+>Inherits : Symbol(Inherits, Decl(lazyMembersEmptyObjectType.ts, 6, 1))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 7, 19))
+>NotEmpty : Symbol(NotEmpty, Decl(lazyMembersEmptyObjectType.ts, 3, 21))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 7, 19))
+
+interface InheritsEmpty<T> extends Empty<T> {}
+>InheritsEmpty : Symbol(InheritsEmpty, Decl(lazyMembersEmptyObjectType.ts, 7, 44))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 8, 24))
+>Empty : Symbol(Empty, Decl(lazyMembersEmptyObjectType.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 8, 24))
+
+interface Callable<T> {
+>Callable : Symbol(Callable, Decl(lazyMembersEmptyObjectType.ts, 8, 46))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 9, 19))
+
+    (): T;
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 9, 19))
+}
+interface Indexed<T> {
+>Indexed : Symbol(Indexed, Decl(lazyMembersEmptyObjectType.ts, 11, 1))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 12, 18))
+
+    [key: string]: T;
+>key : Symbol(key, Decl(lazyMembersEmptyObjectType.ts, 13, 5))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 12, 18))
+}
+class EmptyClass<T> {}
+>EmptyClass : Symbol(EmptyClass, Decl(lazyMembersEmptyObjectType.ts, 14, 1))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 15, 17))
+
+declare const empty: Empty<string>;
+>empty : Symbol(empty, Decl(lazyMembersEmptyObjectType.ts, 17, 13))
+>Empty : Symbol(Empty, Decl(lazyMembersEmptyObjectType.ts, 0, 0))
+
+declare const notEmpty: NotEmpty<string>;
+>notEmpty : Symbol(notEmpty, Decl(lazyMembersEmptyObjectType.ts, 18, 13))
+>NotEmpty : Symbol(NotEmpty, Decl(lazyMembersEmptyObjectType.ts, 3, 21))
+
+declare const inherits: Inherits<string>;
+>inherits : Symbol(inherits, Decl(lazyMembersEmptyObjectType.ts, 19, 13))
+>Inherits : Symbol(Inherits, Decl(lazyMembersEmptyObjectType.ts, 6, 1))
+
+declare const inheritsEmpty: InheritsEmpty<string>;
+>inheritsEmpty : Symbol(inheritsEmpty, Decl(lazyMembersEmptyObjectType.ts, 20, 13))
+>InheritsEmpty : Symbol(InheritsEmpty, Decl(lazyMembersEmptyObjectType.ts, 7, 44))
+
+declare const callable: Callable<string>;
+>callable : Symbol(callable, Decl(lazyMembersEmptyObjectType.ts, 21, 13))
+>Callable : Symbol(Callable, Decl(lazyMembersEmptyObjectType.ts, 8, 46))
+
+declare const indexed: Indexed<string>;
+>indexed : Symbol(indexed, Decl(lazyMembersEmptyObjectType.ts, 22, 13))
+>Indexed : Symbol(Indexed, Decl(lazyMembersEmptyObjectType.ts, 11, 1))
+
+declare const emptyClass: EmptyClass<string>;
+>emptyClass : Symbol(emptyClass, Decl(lazyMembersEmptyObjectType.ts, 23, 13))
+>EmptyClass : Symbol(EmptyClass, Decl(lazyMembersEmptyObjectType.ts, 14, 1))
+
+const mixed1 = [empty, "x", 1];
+>mixed1 : Symbol(mixed1, Decl(lazyMembersEmptyObjectType.ts, 25, 5))
+>empty : Symbol(empty, Decl(lazyMembersEmptyObjectType.ts, 17, 13))
+
+const mixed2 = [notEmpty, "x"];
+>mixed2 : Symbol(mixed2, Decl(lazyMembersEmptyObjectType.ts, 26, 5))
+>notEmpty : Symbol(notEmpty, Decl(lazyMembersEmptyObjectType.ts, 18, 13))
+
+const mixed3 = [inherits, inheritsEmpty, 1];
+>mixed3 : Symbol(mixed3, Decl(lazyMembersEmptyObjectType.ts, 27, 5))
+>inherits : Symbol(inherits, Decl(lazyMembersEmptyObjectType.ts, 19, 13))
+>inheritsEmpty : Symbol(inheritsEmpty, Decl(lazyMembersEmptyObjectType.ts, 20, 13))
+
+const mixed4 = [callable, indexed, true];
+>mixed4 : Symbol(mixed4, Decl(lazyMembersEmptyObjectType.ts, 28, 5))
+>callable : Symbol(callable, Decl(lazyMembersEmptyObjectType.ts, 21, 13))
+>indexed : Symbol(indexed, Decl(lazyMembersEmptyObjectType.ts, 22, 13))
+
+const mixed5 = [emptyClass, notEmpty, 0n];
+>mixed5 : Symbol(mixed5, Decl(lazyMembersEmptyObjectType.ts, 29, 5))
+>emptyClass : Symbol(emptyClass, Decl(lazyMembersEmptyObjectType.ts, 23, 13))
+>notEmpty : Symbol(notEmpty, Decl(lazyMembersEmptyObjectType.ts, 18, 13))
+
+let a1: Empty<number> = 1;
+>a1 : Symbol(a1, Decl(lazyMembersEmptyObjectType.ts, 31, 3))
+>Empty : Symbol(Empty, Decl(lazyMembersEmptyObjectType.ts, 0, 0))
+
+let a2: NotEmpty<number> = 1;
+>a2 : Symbol(a2, Decl(lazyMembersEmptyObjectType.ts, 32, 3))
+>NotEmpty : Symbol(NotEmpty, Decl(lazyMembersEmptyObjectType.ts, 3, 21))
+
+let a3: InheritsEmpty<number> = "x";
+>a3 : Symbol(a3, Decl(lazyMembersEmptyObjectType.ts, 33, 3))
+>InheritsEmpty : Symbol(InheritsEmpty, Decl(lazyMembersEmptyObjectType.ts, 7, 44))
+
+let a4: Inherits<number> = { value: 1 };
+>a4 : Symbol(a4, Decl(lazyMembersEmptyObjectType.ts, 34, 3))
+>Inherits : Symbol(Inherits, Decl(lazyMembersEmptyObjectType.ts, 6, 1))
+>value : Symbol(value, Decl(lazyMembersEmptyObjectType.ts, 34, 28))
+
+let a5: Callable<number> = {};
+>a5 : Symbol(a5, Decl(lazyMembersEmptyObjectType.ts, 35, 3))
+>Callable : Symbol(Callable, Decl(lazyMembersEmptyObjectType.ts, 8, 46))
+
+let a6: Indexed<number> = {};
+>a6 : Symbol(a6, Decl(lazyMembersEmptyObjectType.ts, 36, 3))
+>Indexed : Symbol(Indexed, Decl(lazyMembersEmptyObjectType.ts, 11, 1))
+
+let a7: EmptyClass<number> = null;
+>a7 : Symbol(a7, Decl(lazyMembersEmptyObjectType.ts, 37, 3))
+>EmptyClass : Symbol(EmptyClass, Decl(lazyMembersEmptyObjectType.ts, 14, 1))
+
+function f<T>(x: T, e: Empty<T>, n: NotEmpty<T>) {
+>f : Symbol(f, Decl(lazyMembersEmptyObjectType.ts, 37, 34))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 39, 11))
+>x : Symbol(x, Decl(lazyMembersEmptyObjectType.ts, 39, 14))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 39, 11))
+>e : Symbol(e, Decl(lazyMembersEmptyObjectType.ts, 39, 19))
+>Empty : Symbol(Empty, Decl(lazyMembersEmptyObjectType.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 39, 11))
+>n : Symbol(n, Decl(lazyMembersEmptyObjectType.ts, 39, 32))
+>NotEmpty : Symbol(NotEmpty, Decl(lazyMembersEmptyObjectType.ts, 3, 21))
+>T : Symbol(T, Decl(lazyMembersEmptyObjectType.ts, 39, 11))
+
+    const u1 = Math.random() ? x : e;
+>u1 : Symbol(u1, Decl(lazyMembersEmptyObjectType.ts, 40, 9))
+>Math.random : Symbol(Math.random, Decl(lib.es5.d.ts, --, --))
+>Math : Symbol(Math, Decl(lib.es5.d.ts, --, --), Decl(lib.es5.d.ts, --, --), Decl(lib.es2015.core.d.ts, --, --), Decl(lib.es2015.symbol.wellknown.d.ts, --, --), Decl(lib.es2025.float16.d.ts, --, --) ... and 1 more)
+>random : Symbol(Math.random, Decl(lib.es5.d.ts, --, --))
+>x : Symbol(x, Decl(lazyMembersEmptyObjectType.ts, 39, 14))
+>e : Symbol(e, Decl(lazyMembersEmptyObjectType.ts, 39, 19))
+
+    const u2 = [x, n];
+>u2 : Symbol(u2, Decl(lazyMembersEmptyObjectType.ts, 41, 9))
+>x : Symbol(x, Decl(lazyMembersEmptyObjectType.ts, 39, 14))
+>n : Symbol(n, Decl(lazyMembersEmptyObjectType.ts, 39, 32))
+
+    const s1 = { ...e };
+>s1 : Symbol(s1, Decl(lazyMembersEmptyObjectType.ts, 42, 9))
+>e : Symbol(e, Decl(lazyMembersEmptyObjectType.ts, 39, 19))
+
+    const s2 = { ...n };
+>s2 : Symbol(s2, Decl(lazyMembersEmptyObjectType.ts, 43, 9))
+>n : Symbol(n, Decl(lazyMembersEmptyObjectType.ts, 39, 32))
+
+    if (typeof e === "object") {
+>e : Symbol(e, Decl(lazyMembersEmptyObjectType.ts, 39, 19))
+
+        e;
+>e : Symbol(e, Decl(lazyMembersEmptyObjectType.ts, 39, 19))
+    }
+}
+

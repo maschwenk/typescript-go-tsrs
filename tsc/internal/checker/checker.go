@@ -26771,7 +26771,7 @@ func (c *Checker) removeSubtypes(types []*Type, hasObjectTypes bool) []*Type {
 	// are no any and unknown types in the array. Thus, the only possible supertypes for primitive types are empty
 	// object types, and if none of those are present we can exclude primitive types from the subtype check.
 	hasEmptyObject := hasObjectTypes && core.Some(types, func(t *Type) bool {
-		return t.flags&TypeFlagsObject != 0 && !c.isGenericMappedType(t) && c.isEmptyResolvedType(c.resolveStructuredTypeMembers(t))
+		return t.flags&TypeFlagsObject != 0 && !c.isGenericMappedType(t) && c.isEmptyStructuredType(t)
 	})
 	length := len(types)
 	i := length
@@ -27309,10 +27309,18 @@ func (c *Checker) isEmptyResolvedType(t *StructuredType) bool {
 	return t.AsType() != c.anyFunctionType && len(t.properties) == 0 && len(t.signatures) == 0 && len(t.indexInfos) == 0
 }
 
+// Same as isEmptyResolvedType(resolveStructuredTypeMembers(t)), but answers from a lazy member table.
+func (c *Checker) isEmptyStructuredType(t *Type) bool {
+	if lm := c.getReadyLazyMemberTable(t); lm != nil {
+		return len(lm.callSignatures) == 0 && len(lm.constructSignatures) == 0 && len(lm.indexInfos) == 0 && !c.hasPropertiesOfStructuredType(t)
+	}
+	return c.isEmptyResolvedType(c.resolveStructuredTypeMembers(t))
+}
+
 func (c *Checker) isEmptyObjectType(t *Type) bool {
 	switch {
 	case t.flags&TypeFlagsObject != 0:
-		return !c.isGenericMappedType(t) && c.isEmptyResolvedType(c.resolveStructuredTypeMembers(t))
+		return !c.isGenericMappedType(t) && c.isEmptyStructuredType(t)
 	case t.flags&TypeFlagsNonPrimitive != 0:
 		return true
 	case t.flags&TypeFlagsUnion != 0:
