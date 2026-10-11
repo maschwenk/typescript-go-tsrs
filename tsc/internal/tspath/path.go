@@ -2,6 +2,8 @@ package tspath
 
 import (
 	"cmp"
+	"encoding/binary"
+	"math/bits"
 	"slices"
 	"strings"
 	"unicode"
@@ -530,71 +532,40 @@ func simpleNormalizePath(path string) (string, bool) {
 
 // hasRelativePathSegment reports whether p contains ".", "..", "./", "../", "/.", "/..", "//", "/./", or "/../".
 func hasRelativePathSegment(p string) bool {
-	n := len(p)
-	if n == 0 {
-		return false
-	}
-
-	if p == "." || p == ".." {
+	const ones uint64 = 0x0101010101010101
+	const highs uint64 = 0x8080808080808080
+	zeroBytes := func(x uint64) uint64 { return (x - ones) &^ x & highs }
+	if len(p) > 0 && p[0] == '.' && dotPathSegmentAt(p, 0) {
 		return true
 	}
-
-	// Leading "./" OR "../"
-	if p[0] == '.' {
-		if n >= 2 && p[1] == '/' {
-			return true
-		}
-		// Leading "../"
-		if n >= 3 && p[1] == '.' && p[2] == '/' {
-			return true
-		}
-	}
-	// Trailing "/." OR "/.."
-	if p[n-1] == '.' {
-		if n >= 2 && p[n-2] == '/' {
-			return true
-		}
-		if n >= 3 && p[n-2] == '.' && p[n-3] == '/' {
-			return true
-		}
-	}
-
-	// Now look for any `//` or `/./` or `/../`
-
-	prevSlash := false
-	segLen := 0   // length of current segment since last slash
-	dotCount := 0 // consecutive dots at start of the current segment; -1 => not only dots
-
-	for i := range n {
-		c := p[i]
-		if c == '/' {
-			// "//"
-			if prevSlash {
+	i := 0
+	for i+8 <= len(p) {
+		word := binary.LittleEndian.Uint64([]byte(p[i : i+8]))
+		slashes := zeroBytes(word ^ 0x2f2f2f2f2f2f2f2f)
+		dots := zeroBytes(word ^ 0x2e2e2e2e2e2e2e2e)
+		pairs := slashes & ((slashes | dots) >> 8)
+		for pairs != 0 {
+			if relativePathSegmentAfter(p, i+bits.TrailingZeros64(pairs)/8) {
 				return true
 			}
-			// "/./" or "/../"
-			if (segLen == 1 && dotCount == 1) || (segLen == 2 && dotCount == 2) {
-				return true
-			}
-			prevSlash = true
-			segLen = 0
-			dotCount = 0
-			continue
+			pairs &= pairs - 1
 		}
-
-		if c == '.' {
-			if dotCount >= 0 {
-				dotCount++
-			}
-		} else {
-			dotCount = -1
-		}
-		segLen++
-		prevSlash = false
+		i += 7
 	}
+	for ; i+1 < len(p); i++ {
+		if relativePathSegmentAfter(p, i) {
+			return true
+		}
+	}
+	return false
+}
 
-	// Trailing "/." or "/.."
-	return (segLen == 1 && dotCount == 1) || (segLen == 2 && dotCount == 2)
+func relativePathSegmentAfter(p string, slash int) bool {
+	return p[slash] == '/' && (p[slash+1] == '/' || p[slash+1] == '.' && dotPathSegmentAt(p, slash+1))
+}
+
+func dotPathSegmentAt(p string, start int) bool {
+	return start+1 == len(p) || p[start+1] == '/' || p[start+1] == '.' && (start+2 == len(p) || p[start+2] == '/')
 }
 
 func NormalizePath(path string) string {
