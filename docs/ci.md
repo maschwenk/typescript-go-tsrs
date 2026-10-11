@@ -9,3 +9,5 @@ For a stacked PR, dispatch the reviewed workflow definition with `source_sha` se
 Native tsrs compilation can exceed 20 minutes on small hosted runners. The benchmark budget is 75 minutes and the native binary is saved immediately after a successful build, so a later timeout does not discard that expensive work. PR comparisons use three interleaved repetitions; scheduled/manual runs can request more. Architecture is included in the cache key and report label.
 
 Dependabot updates are disabled in this experiment so the compiler, dependencies and benchmark controls stay pinned while the optimization series is evaluated.
+
+On a reused runner, checkout removes the previous job's ignored benchmark directories. Prune missing worktree registrations before building the next stock/parent pair; existing checkouts are retained. This prevents stale Git administration entries from breaking later comparisons.

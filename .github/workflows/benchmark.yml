@@ -83,6 +83,7 @@ jobs:
         env:
           PARENT: ${{ inputs.parent_sha || github.event.pull_request.base.sha }}
         run: |
+          git worktree prune --expire now
           if [ -n "$PARENT" ]; then
             git fetch --depth=1 origin "$PARENT"
             python3 bench/build.py --reference "$PARENT"
