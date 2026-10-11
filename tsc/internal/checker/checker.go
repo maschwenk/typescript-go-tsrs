@@ -19527,16 +19527,19 @@ func (c *Checker) resolveObjectTypeMembers(t *Type, source *Type, typeParameters
 	}
 	baseTypes := c.getBaseTypes(source)
 	if len(baseTypes) != 0 {
-		if !instantiated {
-			members = maps.Clone(members)
-		}
 		thisArgument := core.LastOrNil(typeArguments)
 		for _, baseType := range baseTypes {
 			instantiatedBaseType := baseType
 			if thisArgument != nil {
 				instantiatedBaseType = c.getTypeWithThisArgument(c.instantiateType(baseType, mapper), thisArgument, false /*needsApparentType*/)
 			}
-			members = c.addInheritedMembers(members, c.getPropertiesOfType(instantiatedBaseType))
+			baseProperties := c.getPropertiesOfType(instantiatedBaseType)
+			if !instantiated {
+				members = c.cloneAndAddInheritedMembers(members, baseProperties)
+				instantiated = true
+			} else {
+				members = c.addInheritedMembers(members, baseProperties)
+			}
 			callSignatures, constructSignatures, indexInfos = c.appendInheritedSignaturesAndIndexInfos(callSignatures, constructSignatures, indexInfos, instantiatedBaseType)
 		}
 	}
@@ -20235,6 +20238,23 @@ func (c *Checker) getTypeWithThisArgument(t *Type, thisArgument *Type, needAppar
 		return c.getApparentType(t)
 	}
 	return t
+}
+
+func (c *Checker) cloneAndAddInheritedMembers(symbols ast.SymbolTable, baseSymbols []*ast.Symbol) ast.SymbolTable {
+	size := len(symbols)
+	for _, base := range baseSymbols {
+		if !isStaticPrivateIdentifierProperty(base) {
+			if _, ok := symbols[base.Name]; !ok {
+				size++
+			}
+		}
+	}
+	if size == 0 && symbols == nil {
+		return nil
+	}
+	result := make(ast.SymbolTable, size)
+	maps.Copy(result, symbols)
+	return c.addInheritedMembers(result, baseSymbols)
 }
 
 func (c *Checker) addInheritedMembers(symbols ast.SymbolTable, baseSymbols []*ast.Symbol) ast.SymbolTable {
@@ -21328,8 +21348,7 @@ func (c *Checker) resolveAnonymousTypeMembers(t *Type) {
 		classType := c.getDeclaredTypeOfClassOrInterface(symbol)
 		baseConstructorType := c.getBaseConstructorTypeOfClass(classType)
 		if baseConstructorType.flags&(TypeFlagsObject|TypeFlagsIntersection|TypeFlagsTypeVariable) != 0 {
-			members = maps.Clone(members)
-			c.addInheritedMembers(members, c.getPropertiesOfType(baseConstructorType))
+			members = c.cloneAndAddInheritedMembers(members, c.getPropertiesOfType(baseConstructorType))
 			c.setStructuredTypeMembers(t, members, nil, nil, nil)
 		} else if baseConstructorType == c.anyType {
 			baseConstructorIndexInfo = c.anyBaseTypeIndexInfo
