@@ -20,3 +20,5 @@ Fresh local macOS arm64 / Go 1.27, plain-release binaries, three interleaved rep
 The full upstream checker and compiler baseline suite passed at this step. No existing baseline was changed. Every measured Go run matched stock diagnostics, exit status and file count. tsrs agreement is shown independently in the raw results; stress-test and shared-machine timings do not establish a universal speedup.
 
 [Raw repetitions](results/27-long-union-front-cache.json).
+
+For an already interned 128-input literal union, the real uncached worker takes median 1,402 ns and 2,432 bytes/4 allocations; the long-key hit takes 72.51 ns and zero allocations (19.3x in this microbenchmark). [Raw measurements](results/27-long-union-micro.txt).
