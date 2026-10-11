@@ -1,0 +1,86 @@
+name: Benchmark
+on:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      projects:
+        description: 'Comma-separated tsrs projects (synthetic is always available)'
+        default: 'synthetic,Compiler,Compiler-Unions,xstate-main,webpack'
+      repetitions:
+        description: 'Interleaved repetitions'
+        default: '7'
+  schedule:
+    - cron: '0 6 * * 1'
+permissions:
+  contents: read
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version-file: tsc/go.mod
+          cache-dependency-path: '**/go.sum'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - run: npm install -g pnpm@11.20.0
+      - name: Read pinned tsrs source
+        id: pins
+        run: |
+          echo "tsrs=$(python3 -c 'import json; print(json.load(open("bench/pins.json"))["tsrs"]["commit"])')" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: maschwenk/tsrs
+          ref: ${{ steps.pins.outputs.tsrs }}
+          path: .bench/tsrs
+      - name: Restore tsrs native binary
+        id: cache
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/tsrs/target/release/tsrs
+          key: tsrs-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99
+      - name: Build pinned tsrs
+        if: steps.cache.outputs.cache-hit != 'true'
+        working-directory: .bench/tsrs
+        run: |
+          rustup toolchain install 1.99.0 --profile minimal
+          cargo +1.99.0 build --locked --release -p tsrs_cli
+      - name: Build stock, PR parent and fork
+        env:
+          PARENT: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if [ -n "$PARENT" ]; then
+            git fetch --depth=1 origin "$PARENT"
+            python3 bench/build.py --reference "$PARENT"
+          else
+            python3 bench/build.py
+          fi
+      - name: Compare compilers
+        env:
+          PROJECTS: ${{ inputs.projects || 'synthetic,Compiler,Compiler-Unions' }}
+          REPS: ${{ inputs.repetitions || '3' }}
+          PARENT: ${{ github.event.pull_request.base.sha }}
+        run: |
+          extra=()
+          if [ -n "$PARENT" ]; then extra+=(--parent .bench/bin/parent); fi
+          python3 bench/run.py --stock .bench/bin/stock --fork .bench/bin/fork \
+            --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
+            --projects "$PROJECTS" --reps "$REPS" --label ubuntu-24.04 \
+            --out .bench/results/compare.json "${extra[@]}"
+      - name: Publish comparison summary
+        if: always()
+        run: cat .bench/results/compare.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: compiler-comparison
+          path: .bench/results/
+          retention-days: 30
