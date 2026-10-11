@@ -19386,10 +19386,14 @@ func (c *Checker) getApplicableIndexInfo(t *Type, keyType *Type) *IndexInfo {
 }
 
 func (c *Checker) getApplicableIndexInfoForName(t *Type, name string) *IndexInfo {
-	if isLateBoundName(name) {
-		return c.getApplicableIndexInfo(t, c.esSymbolType)
+	infos := c.getIndexInfosOfType(t)
+	if len(infos) == 0 {
+		return nil
 	}
-	return c.getApplicableIndexInfo(t, c.getStringLiteralType(name))
+	if isLateBoundName(name) {
+		return c.findApplicableIndexInfo(infos, c.esSymbolType)
+	}
+	return c.findApplicableIndexInfo(infos, c.getStringLiteralType(name))
 }
 
 func (c *Checker) findApplicableIndexInfo(indexInfos []*IndexInfo, keyType *Type) *IndexInfo {
