@@ -583,6 +583,7 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	lazyUnaffected                              map[lazyUnaffectedKey]*lazyUnaffectedMemo
 	typeReferenceArena                          core.Arena[TypeReference]
 	literalTypeArena                            core.Arena[LiteralType]
 	id                                          uint32
@@ -19645,13 +19646,7 @@ func (c *Checker) getReadyLazyMemberTableWorker(t *Type) *lazyMemberTable {
 func (c *Checker) prepareLazyMembers(t *Type, lm *lazyMemberTable) {
 	source := t.Target()
 	resolved := c.resolveDeclaredMembers(source)
-	// Whether instantiateSymbol returns a member itself depends on what is resolved now.
-	for id, symbol := range resolved.declaredMembers {
-		if c.isNamedMember(symbol, id) && c.isSymbolUnaffectedByInstantiation(symbol, lm.mapper) {
-			lm.unaffected = append(lm.unaffected, id)
-		}
-	}
-	slices.Sort(lm.unaffected)
+	lm.unaffected = c.getLazyUnaffectedMembers(source, resolved.declaredMembers, lm.mapper)
 	callSignatures := c.instantiateSignatures(resolved.declaredCallSignatures, lm.mapper)
 	constructSignatures := c.instantiateSignatures(resolved.declaredConstructSignatures, lm.mapper)
 	indexInfos := c.instantiateIndexInfos(resolved.declaredIndexInfos, lm.mapper)
