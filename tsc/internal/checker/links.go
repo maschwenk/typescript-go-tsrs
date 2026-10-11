@@ -23,28 +23,19 @@ func (s *nodeLinkStore[V]) TryGet(node *ast.Node) *V {
 	return s.store.TryGet(uint64(ast.GetNodeId(node)))
 }
 
-// symbolArenaLinkStore is a links store keyed by symbol references. Values are stored
-// indirectly in an arena which is suitable for values where sizeof(V) is larger.
+// symbolArenaLinkStore retains existing symbol ID assignment and stable values.
 type symbolArenaLinkStore[V any] struct {
-	store core.PagedLinkStore[*V]
-	arena core.Arena[V]
+	store core.PagedArenaLinkStore[V]
 }
 
 func (s *symbolArenaLinkStore[V]) Get(symbol *ast.Symbol) *V {
-	link := s.store.Get(uint64(ast.GetSymbolId(symbol)))
-	if *link == nil {
-		*link = s.arena.New()
-	}
-	return *link
+	return s.store.Get(uint64(ast.GetSymbolId(symbol)))
 }
 
 func (s *symbolArenaLinkStore[V]) Has(symbol *ast.Symbol) bool {
-	return s.TryGet(symbol) != nil
+	return s.store.Has(uint64(ast.GetSymbolId(symbol)))
 }
 
 func (s *symbolArenaLinkStore[V]) TryGet(symbol *ast.Symbol) *V {
-	if link := s.store.TryGet(uint64(ast.GetSymbolId(symbol))); link != nil {
-		return *link
-	}
-	return nil
+	return s.store.TryGet(uint64(ast.GetSymbolId(symbol)))
 }
