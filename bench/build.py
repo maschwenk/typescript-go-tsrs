@@ -20,6 +20,8 @@ pins=json.loads((ROOT/'bench/pins.json').read_text())
 for name, ref in [('stock',pins['upstream']['commit']),('parent',args.reference)]:
     if not ref:
         continue
+    if subprocess.run(['git','cat-file','-e',ref+'^{commit}'],cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode:
+        sh(['git','fetch','--depth=1',pins['upstream']['repo'],ref])
     directory=ROOT/'.bench'/f'{name}-source'
     if not directory.exists():
         sh(['git','worktree','add','--detach',str(directory),ref])
