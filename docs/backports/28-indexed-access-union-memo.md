@@ -20,3 +20,5 @@ Fresh local macOS arm64 / Go 1.27, plain-release binaries, three interleaved rep
 The full upstream checker and compiler baseline suite passed at this step. No existing baseline was changed. Every measured Go run matched stock diagnostics, exit status and file count. tsrs agreement is shown independently in the raw results; stress-test and shared-machine timings do not establish a universal speedup.
 
 [Raw repetitions](results/28-indexed-access-union-memo.json).
+
+A repeated 32-key indexed access takes median 703.5 ns and 448 bytes/3 allocations in the real original walk, versus 6.412 ns and zero allocations for a memo hit. Applications in the paired comparison are roughly neutral; the microbenchmark isolates the avoided work. [Raw measurements](results/28-indexed-access-micro.txt).
