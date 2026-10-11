@@ -1,0 +1,1204 @@
+{
+  "schema": 1,
+  "date": "2026-10-11T23:26:44.862095+00:00",
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "head": "b91e37b8d8bf19a15346dfd90cb3003e95cfccba",
+  "machine": {
+    "label": "local",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18
+  },
+  "reps": 7,
+  "build": "plain release, Go -pgo=off unless binary metadata says otherwise",
+  "tools": {
+    "stock": {
+      "sha256": "e60336446f5e77116f0ebb77bf7966088b68d6a97a62d00df2b010d58c7ac36e",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/stock: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=b85298b6a81f772d080b0455de0ca9d744cd6fd6\n\tbuild\tvcs.time=2026-09-29T23:01:40Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "parent": {
+      "sha256": "e2b37e873255adb603660c512cc8a5cccfb752bd7b39710a2d1fc153198907bb",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/step25: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=fbe6f91e42610e1f9fd1bf189789db11de2fcfdc\n\tbuild\tvcs.time=2026-10-11T23:15:47Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "fork": {
+      "sha256": "52af823821408eb7b75fd2f964cb70157150c1cba707914a4d547d71e5a2c0c0",
+      "version": "Version 7.1.0-dev",
+      "go_build": "/Users/maxschwenk/Developer/typescript-go-tsrs/.backport-bin/step26: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=40124fdc15334879519acb6740dc7f0aade54610\n\tbuild\tvcs.time=2026-10-11T23:21:26Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "tsrs": {
+      "sha256": "49678ca059609cbcadf75a199e7d2d043008e4242a014ec70d8d075dbf1bcad9",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    }
+  },
+  "rows": [
+    {
+      "project": "xstate-main",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 1.7816622500000001,
+          "peak_rss_bytes": 677494784,
+          "cpu_s": 1.76892,
+          "errors": 0
+        },
+        "parent": {
+          "wall_s": 1.6791496249999973,
+          "peak_rss_bytes": 627589120,
+          "cpu_s": 1.666149,
+          "errors": 0
+        },
+        "fork": {
+          "wall_s": 1.617227583,
+          "peak_rss_bytes": 605601792,
+          "cpu_s": 1.6036299999999999,
+          "errors": 0
+        },
+        "tsrs": {
+          "wall_s": 0.4645342499999998,
+          "peak_rss_bytes": 201408512,
+          "cpu_s": 0.459053,
+          "errors": 0
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 0,
+            "wall_s": 1.7816622500000001,
+            "peak_rss_bytes": 676560896,
+            "cpu_s": 1.76892,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363291
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.9379817089999989,
+            "peak_rss_bytes": 728432640,
+            "cpu_s": 1.928903,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363243
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.7783564579999975,
+            "peak_rss_bytes": 674316288,
+            "cpu_s": 1.76354,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363252
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-2.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.7630497500000004,
+            "peak_rss_bytes": 677494784,
+            "cpu_s": 1.7494349999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363308
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-3.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.8871220420000014,
+            "peak_rss_bytes": 725385216,
+            "cpu_s": 1.873211,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363305
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-4.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.8487878749999993,
+            "peak_rss_bytes": 684015616,
+            "cpu_s": 1.8351169999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363249
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-5.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.7605179580000012,
+            "peak_rss_bytes": 676413440,
+            "cpu_s": 1.746586,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 910205,
+              "Types": 313877,
+              "Instantiations": 1602627,
+              "Memory allocs": 4363355
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-stock-6.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 0,
+            "wall_s": 1.6997691660000012,
+            "peak_rss_bytes": 627589120,
+            "cpu_s": 1.68706,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379206
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6128654579999981,
+            "peak_rss_bytes": 594100224,
+            "cpu_s": 1.599688,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379225
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6829102500000026,
+            "peak_rss_bytes": 628277248,
+            "cpu_s": 1.675147,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379253
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-2.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6795074579999998,
+            "peak_rss_bytes": 649363456,
+            "cpu_s": 1.6666919999999998,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379213
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-3.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6791496249999973,
+            "peak_rss_bytes": 649494528,
+            "cpu_s": 1.666149,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379264
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-4.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.625897916999996,
+            "peak_rss_bytes": 602521600,
+            "cpu_s": 1.617505,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379260
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-5.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6029857919999984,
+            "peak_rss_bytes": 595820544,
+            "cpu_s": 1.589801,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4379229
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-parent-6.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 0,
+            "wall_s": 1.617227583,
+            "peak_rss_bytes": 594706432,
+            "cpu_s": 1.6036299999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4329986
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.5702715420000004,
+            "peak_rss_bytes": 596279296,
+            "cpu_s": 1.557325,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4329899
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6034155420000005,
+            "peak_rss_bytes": 605601792,
+            "cpu_s": 1.590956,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4329907
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-2.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.5871143749999987,
+            "peak_rss_bytes": 593346560,
+            "cpu_s": 1.581675,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4329981
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-3.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.657675417,
+            "peak_rss_bytes": 644792320,
+            "cpu_s": 1.645135,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4329952
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-4.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.663325125,
+            "peak_rss_bytes": 644956160,
+            "cpu_s": 1.650504,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4330022
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-5.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 1.6412966250000025,
+            "peak_rss_bytes": 633159680,
+            "cpu_s": 1.6320569999999999,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 569112,
+              "Types": 313346,
+              "Instantiations": 1600601,
+              "Memory allocs": 4330001
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-fork-6.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 0,
+            "wall_s": 0.47742891699999923,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.470248,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-0.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4640243339999994,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.459053,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-1.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4645342499999998,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.458875,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-2.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.45969808299999926,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.454244,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-3.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.457984291999999,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.45271599999999995,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-4.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.46518287500000355,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.461289,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-5.log"
+          },
+          {
+            "exit": 0,
+            "wall_s": 0.4667014999999992,
+            "peak_rss_bytes": 201408512,
+            "cpu_s": 0.461103,
+            "counters": {
+              "Files": 1594,
+              "Lines": 414939,
+              "Identifiers": 419808,
+              "Symbols": 495804,
+              "Types": 310310,
+              "Instantiations": 1511741,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "errors": 0,
+            "log": ".bench/results/26-lazy-repeat-logs/xstate-main-single-tsrs-6.log"
+          }
+        ]
+      }
+    },
+    {
+      "project": "webpack",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "parent": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 3.897796833000001,
+          "peak_rss_bytes": 1265876992,
+          "cpu_s": 3.874112,
+          "errors": 863
+        },
+        "parent": {
+          "wall_s": 3.7063418330000104,
+          "peak_rss_bytes": 1184530432,
+          "cpu_s": 3.688669,
+          "errors": 863
+        },
+        "fork": {
+          "wall_s": 3.767818874999989,
+          "peak_rss_bytes": 1190002688,
+          "cpu_s": 3.737046,
+          "errors": 863
+        },
+        "tsrs": {
+          "wall_s": 1.0123128749999921,
+          "peak_rss_bytes": 460816384,
+          "cpu_s": 1.001782,
+          "errors": 863
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "wall_s": 3.459407833,
+            "peak_rss_bytes": 1265876992,
+            "cpu_s": 3.4444090000000003,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207217
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 4.006872416999997,
+            "peak_rss_bytes": 1272627200,
+            "cpu_s": 3.986847,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207312
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.710494291999993,
+            "peak_rss_bytes": 1261600768,
+            "cpu_s": 3.689042,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207209
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-2.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.6366732089999942,
+            "peak_rss_bytes": 1273085952,
+            "cpu_s": 3.618872,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207255
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-3.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.897796833000001,
+            "peak_rss_bytes": 1258520576,
+            "cpu_s": 3.874112,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207218
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-4.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.9819104169999946,
+            "peak_rss_bytes": 1275740160,
+            "cpu_s": 3.943306,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207239
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-5.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 4.192247209000016,
+            "peak_rss_bytes": 1258946560,
+            "cpu_s": 4.1618379999999995,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 1028091,
+              "Types": 420417,
+              "Instantiations": 658811,
+              "Memory allocs": 8207254
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-stock-6.log"
+          }
+        ],
+        "parent": [
+          {
+            "exit": 2,
+            "wall_s": 3.2210491250000004,
+            "peak_rss_bytes": 1188429824,
+            "cpu_s": 3.205488,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096108
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.8021264160000072,
+            "peak_rss_bytes": 1183629312,
+            "cpu_s": 3.7786679999999997,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096190
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.7354978329999966,
+            "peak_rss_bytes": 1184956416,
+            "cpu_s": 3.717748,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096198
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-2.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.7063418330000104,
+            "peak_rss_bytes": 1184169984,
+            "cpu_s": 3.688669,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096090
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-3.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.642767500000005,
+            "peak_rss_bytes": 1180401664,
+            "cpu_s": 3.625094,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096127
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-4.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.437743458,
+            "peak_rss_bytes": 1188675584,
+            "cpu_s": 3.4209069999999997,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096152
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-5.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.8245236660000046,
+            "peak_rss_bytes": 1184530432,
+            "cpu_s": 3.802893,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8096146
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-parent-6.log"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "wall_s": 3.732564250000003,
+            "peak_rss_bytes": 1190166528,
+            "cpu_s": 3.7119869999999997,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072094
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 4.129253207999994,
+            "peak_rss_bytes": 1199292416,
+            "cpu_s": 4.050209,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072101
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.6402466669999995,
+            "peak_rss_bytes": 1186611200,
+            "cpu_s": 3.610357,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072057
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-2.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.935066667000001,
+            "peak_rss_bytes": 1188200448,
+            "cpu_s": 3.908392,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072067
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-3.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.9969240409999998,
+            "peak_rss_bytes": 1179893760,
+            "cpu_s": 3.913262,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072121
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-4.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.767818874999989,
+            "peak_rss_bytes": 1190002688,
+            "cpu_s": 3.737046,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072087
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-5.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 3.6582363750000013,
+            "peak_rss_bytes": 1193377792,
+            "cpu_s": 3.6341849999999996,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 733733,
+              "Types": 419367,
+              "Instantiations": 653790,
+              "Memory allocs": 8072095
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-fork-6.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "wall_s": 0.942779250000001,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.93224,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.089932791999999,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 1.0538759999999998,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.9217249160000023,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.9135489999999999,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-2.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 0.9479013329999901,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 0.938824,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-3.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.1244866669999993,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 1.104749,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-4.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.0306543340000047,
+            "peak_rss_bytes": 460865536,
+            "cpu_s": 1.02415,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-5.log"
+          },
+          {
+            "exit": 2,
+            "wall_s": 1.0123128749999921,
+            "peak_rss_bytes": 460816384,
+            "cpu_s": 1.001782,
+            "counters": {
+              "Files": 1608,
+              "Lines": 690530,
+              "Identifiers": 752367,
+              "Symbols": 734474,
+              "Types": 412670,
+              "Instantiations": 651377,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "5a3d009ff3ff64a329f84715049c23ff0ee86ef1d9e99bb2bf422999dd0eb11d",
+            "errors": 863,
+            "log": ".bench/results/26-lazy-repeat-logs/webpack-single-tsrs-6.log"
+          }
+        ]
+      }
+    }
+  ],
+  "instructions": "not collected; Go counts vary with GC; use bench/count.py on Linux separately",
+  "go_gate_passed": true
+}

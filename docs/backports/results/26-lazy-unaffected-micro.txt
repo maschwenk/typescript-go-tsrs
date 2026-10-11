@@ -1,0 +1,12 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/microsoft/TypeScript/tsc/internal/checker
+cpu: Apple M5 Max
+BenchmarkLazyUnaffectedMembers/scan-18         	   18690	     30164 ns/op	   18800 B/op	      10 allocs/op
+BenchmarkLazyUnaffectedMembers/scan-18         	   19754	     30297 ns/op	   18800 B/op	      10 allocs/op
+BenchmarkLazyUnaffectedMembers/scan-18         	   20014	     30359 ns/op	   18800 B/op	      10 allocs/op
+BenchmarkLazyUnaffectedMembers/memo-18         	78102961	         7.680 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLazyUnaffectedMembers/memo-18         	77605026	         7.993 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLazyUnaffectedMembers/memo-18         	74623384	         8.027 ns/op	       0 B/op	       0 allocs/op
+PASS
+ok  	github.com/microsoft/TypeScript/tsc/internal/checker	4.989s

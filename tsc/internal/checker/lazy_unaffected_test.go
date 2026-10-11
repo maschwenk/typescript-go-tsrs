@@ -44,3 +44,37 @@ func TestLazyUnaffectedPendingSetterAndSnapshots(t *testing.T) {
 		t.Fatal("table growth changed an earlier snapshot")
 	}
 }
+
+func BenchmarkLazyUnaffectedMembers(b *testing.B) {
+	for _, cached := range []bool{false, true} {
+		name := "scan"
+		if cached {
+			name = "memo"
+		}
+		b.Run(name, func(b *testing.B) {
+			c := &Checker{sourceFilesComplete: true}
+			c.couldContainTypeVariables = c.couldContainTypeVariablesWorker
+			source := c.newObjectType(ObjectFlagsClass, nil)
+			parameter := c.newTypeParameter(nil)
+			number := c.newIntrinsicType(TypeFlagsNumber, "number")
+			mapper := newSimpleTypeMapper(parameter, number)
+			members := make(ast.SymbolTable)
+			for i := 0; i < 512; i++ {
+				name := string(rune(0x100 + i))
+				symbol := &ast.Symbol{Name: name, Flags: ast.SymbolFlagsProperty}
+				members[name] = symbol
+				c.valueSymbolLinks.Get(symbol).resolvedType = number
+			}
+			c.getLazyUnaffectedMembers(source, members, mapper)
+			b.ReportAllocs()
+			b.ResetTimer()
+			for range b.N {
+				if cached {
+					c.getLazyUnaffectedMembers(source, members, mapper)
+				} else {
+					c.computeLazyUnaffectedMembers(members, mapper)
+				}
+			}
+		})
+	}
+}

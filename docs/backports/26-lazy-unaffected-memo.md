@@ -20,3 +20,7 @@ Fresh local macOS arm64 / Go 1.27, plain-release binaries, three interleaved rep
 The full upstream checker and compiler baseline suite passed at this step. No existing baseline was changed. Every measured Go run matched stock diagnostics, exit status and file count. tsrs agreement is shown independently in the raw results; stress-test and shared-machine timings do not establish a universal speedup.
 
 [Raw repetitions](results/26-lazy-unaffected-memo.json).
+
+A 512-member settled-target microbenchmark compares the real original scan with the memo: median 30,297 ns and 18,800 bytes/10 allocations per scan versus 7.993 ns and zero allocations for a memo hit. This isolates the repeated work removed; it does not predict application-wide speedup. [Raw microbenchmark](results/26-lazy-unaffected-micro.txt).
+
+A seven-repetition single-checker follow-up, interleaved while the Linux runner shared this machine, found xstate parent/fork 1.038x and webpack 0.984x. The broader application effect is small and mixed; this port does not establish a universal wall-time gain. [Raw follow-up](results/26-lazy-repeat.json).
