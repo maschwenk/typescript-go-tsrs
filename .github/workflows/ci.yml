@@ -31,6 +31,7 @@ jobs:
         working-directory: tsc
         env:
           TS_TEST_PROGRAM_SINGLE_THREADED: ${{ matrix.concurrent }}
+          TSGO_UNION_CACHE: shadow
         run: go test -count=1 ./...
       - name: Race tests for compiler and checker
         working-directory: tsc

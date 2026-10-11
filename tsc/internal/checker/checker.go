@@ -591,6 +591,8 @@ type Checker struct {
 	files                                       []*ast.SourceFile
 	fileIndexMap                                map[*ast.SourceFile]int
 	sourceFilesComplete                         bool
+	unionFrontCache                             *unionFrontCache
+	unionCacheImpure                            uint64
 	resolvedModuleFiles                         map[string]*ast.SourceFile
 	compareSymbols                              func(*ast.Symbol, *ast.Symbol) int
 	compareSymbolChains                         func([]*ast.Symbol, []*ast.Symbol) int
@@ -26562,6 +26564,13 @@ func (c *Checker) getUnionType(types []*Type) *Type {
 // circularly reference themselves and therefore cannot be subtype reduced during their declaration.
 // For example, "type Item = string | (() => Item" is a named type that circularly references itself.
 func (c *Checker) getUnionTypeEx(types []*Type, unionReduction UnionReduction, alias *TypeAlias, origin *Type) *Type {
+	if len(types) > 1 && len(types) <= 8 && alias == nil && origin == nil && c.sourceFilesComplete && len(c.instantiationStack) == 0 && unionFrontMode != "off" && unionFrontMode != "0" {
+		return c.getUnionTypeFrontCached(types, unionReduction)
+	}
+	return c.getUnionTypeUncached(types, unionReduction, alias, origin)
+}
+
+func (c *Checker) getUnionTypeUncached(types []*Type, unionReduction UnionReduction, alias *TypeAlias, origin *Type) *Type {
 	if len(types) == 0 {
 		return c.neverType
 	}
@@ -26831,6 +26840,7 @@ func (c *Checker) removeRedundantLiteralTypes(types []*Type, includes TypeFlags,
 }
 
 func (c *Checker) removeStringLiteralsMatchedByTemplateLiterals(types []*Type) []*Type {
+	c.unionCacheImpure++
 	templates := core.Filter(types, c.isPatternLiteralType)
 	if len(templates) != 0 {
 		i := len(types)
@@ -26855,6 +26865,7 @@ func (c *Checker) isTypeMatchedByTemplateLiteralOrStringMapping(t *Type, templat
 }
 
 func (c *Checker) removeConstrainedTypeVariables(types []*Type) []*Type {
+	c.unionCacheImpure++
 	var typeVariables []*Type
 	// First collect a list of the type variables occurring in constraining intersections.
 	for _, t := range types {
