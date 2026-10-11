@@ -1,0 +1,104 @@
+lazyMembersUnmatchedProperties.ts(15,7): error TS2739: Type '{}' is missing the following properties from type 'Derived<number>': d1, shared, b1, b2
+lazyMembersUnmatchedProperties.ts(16,7): error TS2739: Type '{ d1: number; }' is missing the following properties from type 'Derived<number>': shared, b1, b2
+lazyMembersUnmatchedProperties.ts(18,7): error TS2420: Class 'Impl<T>' incorrectly implements interface 'Derived<T>'.
+  Type 'Impl<T>' is missing the following properties from type 'Derived<T>': shared, b1, b2
+lazyMembersUnmatchedProperties.ts(29,7): error TS2740: Type '{ m1: string; }' is missing the following properties from type 'Many<string>': m2, m3, m4, b1, and 2 more.
+lazyMembersUnmatchedProperties.ts(30,90): error TS2353: Object literal may only specify known properties, and 'extra' does not exist in type 'Many<string>'.
+lazyMembersUnmatchedProperties.ts(39,7): error TS2739: Type '{ contents: string; }' is missing the following properties from type 'Box<string>': secret, method
+lazyMembersUnmatchedProperties.ts(41,7): error TS2741: Property 'secret' is missing in type '{ contents: string; method(): string; }' but required in type 'Box<string>'.
+lazyMembersUnmatchedProperties.ts(52,7): error TS2322: Type '{ kind: "circle"; }' is not assignable to type 'Shape<number>'.
+  Property 'radius' is missing in type '{ kind: "circle"; }' but required in type 'Circle<number>'.
+lazyMembersUnmatchedProperties.ts(53,49): error TS2353: Object literal may only specify known properties, and 'radius' does not exist in type 'Square<number>'.
+lazyMembersUnmatchedProperties.ts(63,7): error TS2741: Property 'value' is missing in type 'never[]' but required in type 'Tree<string>'.
+
+
+==== lazyMembersUnmatchedProperties.ts (10 errors) ====
+    // Missing property errors and discriminant checks against instantiated class
+    // and interface references, including inherited members and the order in which
+    // missing properties are reported.
+    
+    interface Base<T> {
+        b1: T;
+        b2: string;
+        shared: number;
+    }
+    interface Derived<T> extends Base<T[]> {
+        d1: T;
+        shared: number;
+        d2?: T;
+    }
+    const derived1: Derived<number> = {};
+          ~~~~~~~~
+!!! error TS2739: Type '{}' is missing the following properties from type 'Derived<number>': d1, shared, b1, b2
+    const derived2: Derived<number> = { d1: 1 };
+          ~~~~~~~~
+!!! error TS2739: Type '{ d1: number; }' is missing the following properties from type 'Derived<number>': shared, b1, b2
+    const derived3: Derived<number> = { d1: 1, b1: [1], b2: "", shared: 1 };
+    class Impl<T> implements Derived<T> {
+          ~~~~
+!!! error TS2420: Class 'Impl<T>' incorrectly implements interface 'Derived<T>'.
+!!! error TS2420:   Type 'Impl<T>' is missing the following properties from type 'Derived<T>': shared, b1, b2
+        d1!: T;
+    }
+    
+    interface Many<T> extends Base<T> {
+        m1: T;
+        m2: T;
+        m3: T;
+        m4: T;
+        m5?: T;
+    }
+    const many1: Many<string> = { m1: "" };
+          ~~~~~
+!!! error TS2740: Type '{ m1: string; }' is missing the following properties from type 'Many<string>': m2, m3, m4, b1, and 2 more.
+    const many2: Many<string> = { b1: "", b2: "", shared: 0, m1: "", m2: "", m3: "", m4: "", extra: 1 };
+                                                                                             ~~~~~
+!!! error TS2353: Object literal may only specify known properties, and 'extra' does not exist in type 'Many<string>'.
+    
+    class Box<T> {
+        private secret!: T;
+        contents!: T;
+        method(): T {
+            return this.contents;
+        }
+    }
+    const box1: Box<string> = { contents: "" };
+          ~~~~
+!!! error TS2739: Type '{ contents: string; }' is missing the following properties from type 'Box<string>': secret, method
+    declare const notBox: { contents: string; method(): string };
+    const box2: Box<string> = notBox;
+          ~~~~
+!!! error TS2741: Property 'secret' is missing in type '{ contents: string; method(): string; }' but required in type 'Box<string>'.
+!!! related TS2728 lazyMembersUnmatchedProperties.ts:33:13: 'secret' is declared here.
+    
+    interface Circle<T> {
+        kind: "circle";
+        radius: T;
+    }
+    interface Square<T> {
+        kind: "square";
+        size: T;
+    }
+    type Shape<T> = Circle<T> | Square<T>;
+    const shape1: Shape<number> = { kind: "circle" };
+          ~~~~~~
+!!! error TS2322: Type '{ kind: "circle"; }' is not assignable to type 'Shape<number>'.
+!!! error TS2322:   Property 'radius' is missing in type '{ kind: "circle"; }' but required in type 'Circle<number>'.
+!!! related TS2728 lazyMembersUnmatchedProperties.ts:45:5: 'radius' is declared here.
+    const shape2: Shape<number> = { kind: "square", radius: 1 };
+                                                    ~~~~~~
+!!! error TS2353: Object literal may only specify known properties, and 'radius' does not exist in type 'Square<number>'.
+    declare function area<T>(shape: Shape<T>): T;
+    const area1 = area({ kind: "circle", radius: 1 });
+    const area2 = area({ kind: "square", size: "x" });
+    declare function pick<T>(a: Circle<T> | T[]): T;
+    const picked = pick({ kind: "circle", radius: 1 });
+    
+    interface Tree<T> extends Array<Tree<T>> {
+        value: T;
+    }
+    const tree: Tree<string> = [];
+          ~~~~
+!!! error TS2741: Property 'value' is missing in type 'never[]' but required in type 'Tree<string>'.
+!!! related TS2728 lazyMembersUnmatchedProperties.ts:61:5: 'value' is declared here.
+    

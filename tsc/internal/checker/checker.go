@@ -19245,10 +19245,19 @@ func (c *Checker) getPropertyOfType(t *Type, name string) *ast.Symbol {
  * @param name a name of property to look up in a given type
  */
 func (c *Checker) getPropertyOfTypeEx(t *Type, name string, skipObjectFunctionPropertyAugment bool, includeTypeOnlyMembers bool) *ast.Symbol {
+	return c.getPropertyOfTypeWorker(t, name, skipObjectFunctionPropertyAugment, includeTypeOnlyMembers, true /*instantiate*/)
+}
+
+// Whether getPropertyOfType(t, name) returns a property, without instantiating members of lazy member tables.
+func (c *Checker) hasPropertyOfType(t *Type, name string) bool {
+	return c.getPropertyOfTypeWorker(t, name, false /*skipObjectFunctionPropertyAugment*/, false /*includeTypeOnlyMembers*/, false /*instantiate*/) != nil
+}
+
+func (c *Checker) getPropertyOfTypeWorker(t *Type, name string, skipObjectFunctionPropertyAugment bool, includeTypeOnlyMembers bool, instantiate bool) *ast.Symbol {
 	t = c.getReducedApparentType(t)
 	switch {
 	case t.flags&TypeFlagsObject != 0:
-		symbol := c.getMemberOfStructuredType(t, name)
+		symbol := c.getMemberOfStructuredType(t, name, instantiate)
 		if symbol != nil {
 			if !includeTypeOnlyMembers && t.symbol != nil && t.symbol.Flags&ast.SymbolFlagsValueModule != 0 && c.moduleSymbolLinks.Get(t.symbol).typeOnlyExportStarMap[name] != nil {
 				// If this is the type of a module, `resolved.members.get(name)` might have effectively skipped over
@@ -19542,6 +19551,7 @@ type lazyMemberTable struct {
 	indexInfos          []*IndexInfo
 	baseTypes           []*Type
 	declared            map[string]*ast.Symbol
+	properties          []*ast.Symbol // see getPropertiesOfTypeLazily
 }
 
 func mayHaveLazyMembers(t *Type) bool {
@@ -19655,14 +19665,16 @@ func (c *Checker) getLazyDeclaredMember(lm *lazyMemberTable, symbol *ast.Symbol,
 	return result
 }
 
-func (c *Checker) getMemberOfStructuredType(t *Type, name string) *ast.Symbol {
+// Without instantiate, a declared member of a lazy member table that has not been instantiated yet
+// is returned as is (it has the same name and flags as its instantiation).
+func (c *Checker) getMemberOfStructuredType(t *Type, name string, instantiate bool) *ast.Symbol {
 	if t.objectFlags&ObjectFlagsMembersResolved != 0 {
 		return t.AsStructuredType().members[name]
 	}
-	return c.getMemberOfUnresolvedStructuredType(t, name)
+	return c.getMemberOfUnresolvedStructuredType(t, name, instantiate)
 }
 
-func (c *Checker) getMemberOfUnresolvedStructuredType(t *Type, name string) *ast.Symbol {
+func (c *Checker) getMemberOfUnresolvedStructuredType(t *Type, name string, instantiate bool) *ast.Symbol {
 	if t.objectFlags&ObjectFlagsMapped != 0 && !isReservedMemberName(name) {
 		if lazy := c.getLazyMappedTable(t); lazy != nil {
 			if member, ok := c.getLazyMappedTypeMember(t, lazy, name); ok {
@@ -19677,13 +19689,17 @@ func (c *Checker) getMemberOfUnresolvedStructuredType(t *Type, name string) *ast
 	// The declared member, else the first base type's property (see addInheritedMembers).
 	var result *ast.Symbol
 	if decl := c.resolveDeclaredMembers(t.Target()).declaredMembers[name]; decl != nil && c.isNamedMember(decl, name) {
-		result = c.getLazyDeclaredMember(lm, decl, name)
+		if instantiate {
+			result = c.getLazyDeclaredMember(lm, decl, name)
+		} else {
+			result = core.OrElse(lm.declared[name], decl)
+		}
 	}
 	for _, baseType := range lm.baseTypes {
 		if result != nil && result.Flags&ast.SymbolFlagsValue != 0 {
 			break
 		}
-		if prop := c.getPropertyOfTypeEx(baseType, name, true /*skipObjectFunctionPropertyAugment*/, false /*includeTypeOnlyMembers*/); prop != nil && !isStaticPrivateIdentifierProperty(prop) {
+		if prop := c.getPropertyOfTypeWorker(baseType, name, true /*skipObjectFunctionPropertyAugment*/, false /*includeTypeOnlyMembers*/, instantiate); prop != nil && !isStaticPrivateIdentifierProperty(prop) {
 			result = prop
 		}
 	}
@@ -19725,6 +19741,38 @@ func (c *Checker) everyLazyProperty(t *Type, lm *lazyMemberTable, seen *collecti
 		}
 	}
 	return true
+}
+
+// Same as getPropertiesOfType, except that for a type with a lazy member table, declared members stand
+// in for instantiations the table hasn't created yet. They have the same names, flags and declarations,
+// so the order is the same. Also returns the type with the table (the reduced apparent type of t), or
+// nil if there is none. Mirrors resolveLazyMembers.
+func (c *Checker) getPropertiesOfTypeLazily(t *Type) (properties []*ast.Symbol, lazyType *Type) {
+	t = c.getReducedApparentType(t)
+	if t.flags&TypeFlagsUnionOrIntersection != 0 {
+		return c.getPropertiesOfUnionOrIntersectionType(t), nil
+	}
+	lm := c.getReadyLazyMemberTable(t)
+	if lm == nil {
+		return c.getPropertiesOfObjectType(t), nil
+	}
+	if lm.properties == nil {
+		var members ast.SymbolTable
+		if declaredMembers := c.resolveDeclaredMembers(t.Target()).declaredMembers; len(declaredMembers) != 0 {
+			members = make(ast.SymbolTable, len(declaredMembers))
+			for id, symbol := range declaredMembers {
+				if c.isNamedMember(symbol, id) {
+					members[id] = core.OrElse(lm.declared[id], symbol)
+				}
+			}
+		}
+		for _, baseType := range lm.baseTypes {
+			baseProperties, _ := c.getPropertiesOfTypeLazily(baseType)
+			members = c.addInheritedMembers(members, baseProperties)
+		}
+		lm.properties = c.getNamedMembers(members, t.symbol)
+	}
+	return lm.properties, t
 }
 
 func (c *Checker) getBaseTypes(t *Type) []*Type {
@@ -21628,7 +21676,7 @@ func (c *Checker) getLazyMappedTypeMember(t *Type, lazy *lazyMappedTable, name s
 	}
 	// Recursive lookups see no member, as they would while resolveMappedTypeMembers runs.
 	lazy.members[name] = nil
-	modifiersProp := c.getMemberOfStructuredType(lazy.modifiersType, name)
+	modifiersProp := c.getMemberOfStructuredType(lazy.modifiersType, name, true /*instantiate*/)
 	if t.objectFlags&ObjectFlagsMembersResolved != 0 {
 		return t.AsStructuredType().members[name], true
 	}
@@ -31998,7 +32046,7 @@ func (c *Checker) isFunctionObjectType(t *Type) bool {
 	// We do a quick check for a "bind" property before performing the more expensive subtype
 	// check. This gives us a quicker out in the common case where an object type is not a function.
 	return len(c.getSignaturesOfStructuredType(t, SignatureKindCall)) != 0 || len(c.getSignaturesOfStructuredType(t, SignatureKindConstruct)) != 0 ||
-		c.getMemberOfStructuredType(t, "bind") != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
+		c.getMemberOfStructuredType(t, "bind", true /*instantiate*/) != nil && c.isTypeSubtypeOf(t, c.globalFunctionType)
 }
 
 func (c *Checker) getTypeWithFacts(t *Type, include TypeFacts) *Type {

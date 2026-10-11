@@ -1,0 +1,237 @@
+//// [tests/cases/compiler/lazyMembersUnmatchedProperties.ts] ////
+
+=== lazyMembersUnmatchedProperties.ts ===
+// Missing property errors and discriminant checks against instantiated class
+// and interface references, including inherited members and the order in which
+// missing properties are reported.
+
+interface Base<T> {
+>Base : Symbol(Base, Decl(lazyMembersUnmatchedProperties.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 4, 15))
+
+    b1: T;
+>b1 : Symbol(Base.b1, Decl(lazyMembersUnmatchedProperties.ts, 4, 19))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 4, 15))
+
+    b2: string;
+>b2 : Symbol(Base.b2, Decl(lazyMembersUnmatchedProperties.ts, 5, 10))
+
+    shared: number;
+>shared : Symbol(Base.shared, Decl(lazyMembersUnmatchedProperties.ts, 6, 15))
+}
+interface Derived<T> extends Base<T[]> {
+>Derived : Symbol(Derived, Decl(lazyMembersUnmatchedProperties.ts, 8, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 9, 18))
+>Base : Symbol(Base, Decl(lazyMembersUnmatchedProperties.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 9, 18))
+
+    d1: T;
+>d1 : Symbol(Derived.d1, Decl(lazyMembersUnmatchedProperties.ts, 9, 40))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 9, 18))
+
+    shared: number;
+>shared : Symbol(Derived.shared, Decl(lazyMembersUnmatchedProperties.ts, 10, 10))
+
+    d2?: T;
+>d2 : Symbol(Derived.d2, Decl(lazyMembersUnmatchedProperties.ts, 11, 19))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 9, 18))
+}
+const derived1: Derived<number> = {};
+>derived1 : Symbol(derived1, Decl(lazyMembersUnmatchedProperties.ts, 14, 5))
+>Derived : Symbol(Derived, Decl(lazyMembersUnmatchedProperties.ts, 8, 1))
+
+const derived2: Derived<number> = { d1: 1 };
+>derived2 : Symbol(derived2, Decl(lazyMembersUnmatchedProperties.ts, 15, 5))
+>Derived : Symbol(Derived, Decl(lazyMembersUnmatchedProperties.ts, 8, 1))
+>d1 : Symbol(d1, Decl(lazyMembersUnmatchedProperties.ts, 15, 35))
+
+const derived3: Derived<number> = { d1: 1, b1: [1], b2: "", shared: 1 };
+>derived3 : Symbol(derived3, Decl(lazyMembersUnmatchedProperties.ts, 16, 5))
+>Derived : Symbol(Derived, Decl(lazyMembersUnmatchedProperties.ts, 8, 1))
+>d1 : Symbol(d1, Decl(lazyMembersUnmatchedProperties.ts, 16, 35))
+>b1 : Symbol(b1, Decl(lazyMembersUnmatchedProperties.ts, 16, 42))
+>b2 : Symbol(b2, Decl(lazyMembersUnmatchedProperties.ts, 16, 51))
+>shared : Symbol(shared, Decl(lazyMembersUnmatchedProperties.ts, 16, 59))
+
+class Impl<T> implements Derived<T> {
+>Impl : Symbol(Impl, Decl(lazyMembersUnmatchedProperties.ts, 16, 72))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 17, 11))
+>Derived : Symbol(Derived, Decl(lazyMembersUnmatchedProperties.ts, 8, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 17, 11))
+
+    d1!: T;
+>d1 : Symbol(Impl.d1, Decl(lazyMembersUnmatchedProperties.ts, 17, 37))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 17, 11))
+}
+
+interface Many<T> extends Base<T> {
+>Many : Symbol(Many, Decl(lazyMembersUnmatchedProperties.ts, 19, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+>Base : Symbol(Base, Decl(lazyMembersUnmatchedProperties.ts, 0, 0))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+
+    m1: T;
+>m1 : Symbol(Many.m1, Decl(lazyMembersUnmatchedProperties.ts, 21, 35))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+
+    m2: T;
+>m2 : Symbol(Many.m2, Decl(lazyMembersUnmatchedProperties.ts, 22, 10))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+
+    m3: T;
+>m3 : Symbol(Many.m3, Decl(lazyMembersUnmatchedProperties.ts, 23, 10))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+
+    m4: T;
+>m4 : Symbol(Many.m4, Decl(lazyMembersUnmatchedProperties.ts, 24, 10))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+
+    m5?: T;
+>m5 : Symbol(Many.m5, Decl(lazyMembersUnmatchedProperties.ts, 25, 10))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 21, 15))
+}
+const many1: Many<string> = { m1: "" };
+>many1 : Symbol(many1, Decl(lazyMembersUnmatchedProperties.ts, 28, 5))
+>Many : Symbol(Many, Decl(lazyMembersUnmatchedProperties.ts, 19, 1))
+>m1 : Symbol(m1, Decl(lazyMembersUnmatchedProperties.ts, 28, 29))
+
+const many2: Many<string> = { b1: "", b2: "", shared: 0, m1: "", m2: "", m3: "", m4: "", extra: 1 };
+>many2 : Symbol(many2, Decl(lazyMembersUnmatchedProperties.ts, 29, 5))
+>Many : Symbol(Many, Decl(lazyMembersUnmatchedProperties.ts, 19, 1))
+>b1 : Symbol(b1, Decl(lazyMembersUnmatchedProperties.ts, 29, 29))
+>b2 : Symbol(b2, Decl(lazyMembersUnmatchedProperties.ts, 29, 37))
+>shared : Symbol(shared, Decl(lazyMembersUnmatchedProperties.ts, 29, 45))
+>m1 : Symbol(m1, Decl(lazyMembersUnmatchedProperties.ts, 29, 56))
+>m2 : Symbol(m2, Decl(lazyMembersUnmatchedProperties.ts, 29, 64))
+>m3 : Symbol(m3, Decl(lazyMembersUnmatchedProperties.ts, 29, 72))
+>m4 : Symbol(m4, Decl(lazyMembersUnmatchedProperties.ts, 29, 80))
+>extra : Symbol(extra, Decl(lazyMembersUnmatchedProperties.ts, 29, 88))
+
+class Box<T> {
+>Box : Symbol(Box, Decl(lazyMembersUnmatchedProperties.ts, 29, 100))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 31, 10))
+
+    private secret!: T;
+>secret : Symbol(Box.secret, Decl(lazyMembersUnmatchedProperties.ts, 31, 14))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 31, 10))
+
+    contents!: T;
+>contents : Symbol(Box.contents, Decl(lazyMembersUnmatchedProperties.ts, 32, 23))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 31, 10))
+
+    method(): T {
+>method : Symbol(Box.method, Decl(lazyMembersUnmatchedProperties.ts, 33, 17))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 31, 10))
+
+        return this.contents;
+>this.contents : Symbol(Box.contents, Decl(lazyMembersUnmatchedProperties.ts, 32, 23))
+>this : Symbol(Box, Decl(lazyMembersUnmatchedProperties.ts, 29, 100))
+>contents : Symbol(Box.contents, Decl(lazyMembersUnmatchedProperties.ts, 32, 23))
+    }
+}
+const box1: Box<string> = { contents: "" };
+>box1 : Symbol(box1, Decl(lazyMembersUnmatchedProperties.ts, 38, 5))
+>Box : Symbol(Box, Decl(lazyMembersUnmatchedProperties.ts, 29, 100))
+>contents : Symbol(contents, Decl(lazyMembersUnmatchedProperties.ts, 38, 27))
+
+declare const notBox: { contents: string; method(): string };
+>notBox : Symbol(notBox, Decl(lazyMembersUnmatchedProperties.ts, 39, 13))
+>contents : Symbol(contents, Decl(lazyMembersUnmatchedProperties.ts, 39, 23))
+>method : Symbol(method, Decl(lazyMembersUnmatchedProperties.ts, 39, 41))
+
+const box2: Box<string> = notBox;
+>box2 : Symbol(box2, Decl(lazyMembersUnmatchedProperties.ts, 40, 5))
+>Box : Symbol(Box, Decl(lazyMembersUnmatchedProperties.ts, 29, 100))
+>notBox : Symbol(notBox, Decl(lazyMembersUnmatchedProperties.ts, 39, 13))
+
+interface Circle<T> {
+>Circle : Symbol(Circle, Decl(lazyMembersUnmatchedProperties.ts, 40, 33))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 42, 17))
+
+    kind: "circle";
+>kind : Symbol(Circle.kind, Decl(lazyMembersUnmatchedProperties.ts, 42, 21))
+
+    radius: T;
+>radius : Symbol(Circle.radius, Decl(lazyMembersUnmatchedProperties.ts, 43, 19))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 42, 17))
+}
+interface Square<T> {
+>Square : Symbol(Square, Decl(lazyMembersUnmatchedProperties.ts, 45, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 46, 17))
+
+    kind: "square";
+>kind : Symbol(Square.kind, Decl(lazyMembersUnmatchedProperties.ts, 46, 21))
+
+    size: T;
+>size : Symbol(Square.size, Decl(lazyMembersUnmatchedProperties.ts, 47, 19))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 46, 17))
+}
+type Shape<T> = Circle<T> | Square<T>;
+>Shape : Symbol(Shape, Decl(lazyMembersUnmatchedProperties.ts, 49, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 50, 11))
+>Circle : Symbol(Circle, Decl(lazyMembersUnmatchedProperties.ts, 40, 33))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 50, 11))
+>Square : Symbol(Square, Decl(lazyMembersUnmatchedProperties.ts, 45, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 50, 11))
+
+const shape1: Shape<number> = { kind: "circle" };
+>shape1 : Symbol(shape1, Decl(lazyMembersUnmatchedProperties.ts, 51, 5))
+>Shape : Symbol(Shape, Decl(lazyMembersUnmatchedProperties.ts, 49, 1))
+>kind : Symbol(kind, Decl(lazyMembersUnmatchedProperties.ts, 51, 31))
+
+const shape2: Shape<number> = { kind: "square", radius: 1 };
+>shape2 : Symbol(shape2, Decl(lazyMembersUnmatchedProperties.ts, 52, 5))
+>Shape : Symbol(Shape, Decl(lazyMembersUnmatchedProperties.ts, 49, 1))
+>kind : Symbol(kind, Decl(lazyMembersUnmatchedProperties.ts, 52, 31))
+>radius : Symbol(radius, Decl(lazyMembersUnmatchedProperties.ts, 52, 47))
+
+declare function area<T>(shape: Shape<T>): T;
+>area : Symbol(area, Decl(lazyMembersUnmatchedProperties.ts, 52, 60))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 53, 22))
+>shape : Symbol(shape, Decl(lazyMembersUnmatchedProperties.ts, 53, 25))
+>Shape : Symbol(Shape, Decl(lazyMembersUnmatchedProperties.ts, 49, 1))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 53, 22))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 53, 22))
+
+const area1 = area({ kind: "circle", radius: 1 });
+>area1 : Symbol(area1, Decl(lazyMembersUnmatchedProperties.ts, 54, 5))
+>area : Symbol(area, Decl(lazyMembersUnmatchedProperties.ts, 52, 60))
+>kind : Symbol(kind, Decl(lazyMembersUnmatchedProperties.ts, 54, 20))
+>radius : Symbol(radius, Decl(lazyMembersUnmatchedProperties.ts, 54, 36))
+
+const area2 = area({ kind: "square", size: "x" });
+>area2 : Symbol(area2, Decl(lazyMembersUnmatchedProperties.ts, 55, 5))
+>area : Symbol(area, Decl(lazyMembersUnmatchedProperties.ts, 52, 60))
+>kind : Symbol(kind, Decl(lazyMembersUnmatchedProperties.ts, 55, 20))
+>size : Symbol(size, Decl(lazyMembersUnmatchedProperties.ts, 55, 36))
+
+declare function pick<T>(a: Circle<T> | T[]): T;
+>pick : Symbol(pick, Decl(lazyMembersUnmatchedProperties.ts, 55, 50))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 56, 22))
+>a : Symbol(a, Decl(lazyMembersUnmatchedProperties.ts, 56, 25))
+>Circle : Symbol(Circle, Decl(lazyMembersUnmatchedProperties.ts, 40, 33))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 56, 22))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 56, 22))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 56, 22))
+
+const picked = pick({ kind: "circle", radius: 1 });
+>picked : Symbol(picked, Decl(lazyMembersUnmatchedProperties.ts, 57, 5))
+>pick : Symbol(pick, Decl(lazyMembersUnmatchedProperties.ts, 55, 50))
+>kind : Symbol(kind, Decl(lazyMembersUnmatchedProperties.ts, 57, 21))
+>radius : Symbol(radius, Decl(lazyMembersUnmatchedProperties.ts, 57, 37))
+
+interface Tree<T> extends Array<Tree<T>> {
+>Tree : Symbol(Tree, Decl(lazyMembersUnmatchedProperties.ts, 57, 51))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 59, 15))
+>Array : Symbol(Array, Decl(lib.es5.d.ts, --, --), Decl(lib.es5.d.ts, --, --), Decl(lib.es2015.core.d.ts, --, --), Decl(lib.es2015.iterable.d.ts, --, --), Decl(lib.es2015.symbol.wellknown.d.ts, --, --) ... and 4 more)
+>Tree : Symbol(Tree, Decl(lazyMembersUnmatchedProperties.ts, 57, 51))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 59, 15))
+
+    value: T;
+>value : Symbol(Tree.value, Decl(lazyMembersUnmatchedProperties.ts, 59, 42))
+>T : Symbol(T, Decl(lazyMembersUnmatchedProperties.ts, 59, 15))
+}
+const tree: Tree<string> = [];
+>tree : Symbol(tree, Decl(lazyMembersUnmatchedProperties.ts, 62, 5))
+>Tree : Symbol(Tree, Decl(lazyMembersUnmatchedProperties.ts, 57, 51))
+
