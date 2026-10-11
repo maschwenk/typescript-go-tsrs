@@ -583,6 +583,8 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	indexedAccessUnionMemo                      map[indexedAccessUnionKey]*Type
+	memoDiagnosticAttempts                      uint64
 	lazyUnaffected                              map[lazyUnaffectedKey]*lazyUnaffectedMemo
 	typeReferenceArena                          core.Arena[TypeReference]
 	literalTypeArena                            core.Arena[LiteralType]
@@ -14233,6 +14235,7 @@ func (c *Checker) produceDeferredDiagnostics() {
 }
 
 func (c *Checker) addDiagnostic(diagnostic *ast.Diagnostic) *ast.Diagnostic {
+	c.memoDiagnosticAttempts++
 	// Discard diagnostics created while at the maximum number of recursive TypeToString invocations.
 	if c.serializationLevel < maxSerializationLevel {
 		return c.diagnostics.Add(diagnostic)
@@ -14241,6 +14244,7 @@ func (c *Checker) addDiagnostic(diagnostic *ast.Diagnostic) *ast.Diagnostic {
 }
 
 func (c *Checker) addSuggestionDiagnostic(diagnostic *ast.Diagnostic) *ast.Diagnostic {
+	c.memoDiagnosticAttempts++
 	// Discard diagnostics created while at the maximum number of recursive TypeToString invocations.
 	if c.serializationLevel < maxSerializationLevel {
 		return c.suggestionDiagnostics.Add(diagnostic)
@@ -27960,6 +27964,13 @@ func (c *Checker) getIndexedAccessTypeEx(objectType *Type, indexType *Type, acce
 }
 
 func (c *Checker) getIndexedAccessTypeOrUndefined(objectType *Type, indexType *Type, accessFlags AccessFlags, accessNode *ast.Node, alias *TypeAlias) *Type {
+	if c.sourceFilesComplete && accessNode == nil && alias == nil && indexType.flags&TypeFlagsUnion != 0 && indexType.flags&TypeFlagsBoolean == 0 && accessFlags&(AccessFlagsContextual|AccessFlagsExpressionPosition) == 0 && len(c.instantiationStack) == 0 && len(c.typeResolutions) == 0 && indexedAccessMemoMode != "off" && indexedAccessMemoMode != "0" {
+		return c.getIndexedAccessUnionMemoized(objectType, indexType, accessFlags)
+	}
+	return c.getIndexedAccessTypeUncached(objectType, indexType, accessFlags, accessNode, alias)
+}
+
+func (c *Checker) getIndexedAccessTypeUncached(objectType *Type, indexType *Type, accessFlags AccessFlags, accessNode *ast.Node, alias *TypeAlias) *Type {
 	if objectType == c.wildcardType || indexType == c.wildcardType {
 		return c.wildcardType
 	}
