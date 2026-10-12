@@ -1,12 +1,6 @@
 name: Native Go PGO
 on:
   workflow_dispatch:
-    inputs:
-      runner:
-        description: Linux runner label
-        type: choice
-        default: ubuntu-24.04
-        options: [ubuntu-24.04, tsgo-backport-local]
 permissions:
   contents: read
 concurrency:
@@ -14,12 +8,13 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pgo:
-    runs-on: ${{ inputs.runner || 'ubuntu-24.04' }}
+    runs-on: ubuntu-24.04
     timeout-minutes: 75
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 1
+          persist-credentials: false
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
           go-version-file: tsc/go.mod
@@ -36,6 +31,7 @@ jobs:
           repository: maschwenk/tsrs
           ref: ${{ steps.pins.outputs.tsrs }}
           path: .bench/tsrs
+          persist-credentials: false
       - name: Restore tsrs native binary
         id: cache
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
@@ -80,4 +76,4 @@ jobs:
           path: |
             .bench/pgo/
             .bench/results/
-          retention-days: 30
+          retention-days: 7
