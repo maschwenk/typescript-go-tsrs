@@ -2,7 +2,7 @@
 
 An experimental Go TypeScript compiler that brings transferable strategies from [tsrs](https://github.com/maschwenk/tsrs) back to [Microsoft TypeScript](https://github.com/microsoft/TypeScript). It preserves upstream history and the Apache-2.0 license. This fork is maintained independently of Microsoft.
 
-The implementation series has 52 individually documented steps. Changes merge one PR at a time after correctness checks; [the strategy audit](https://github.com/maschwenk/typescript-go-tsrs/blob/infra/public-readiness/docs/backports/README.md) links each PR and explains the Go translation and strategies that require more architectural work. The published benchmark identifies the exact compiler commit, which may be ahead of `main` while the series finishes merging.
+All 52 individually documented implementation steps are merged. The [strategy audit](docs/backports/README.md) links each PR and explains the Go translation and strategies that require more architectural work. Every published benchmark identifies the exact compiler commit it measured.
 
 - [VS Code comparison and raw results](docs/backports/results/native-vscode/README.md)
 - [Build and benchmark instructions](bench/README.md)
