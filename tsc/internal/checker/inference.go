@@ -14,6 +14,7 @@ type InferenceKey struct {
 }
 
 type InferenceState struct {
+	memoCleared       bool
 	inferences        []*InferenceInfo
 	originalSource    *Type
 	originalTarget    *Type
@@ -40,6 +41,7 @@ func (c *Checker) getInferenceState() *InferenceState {
 
 func (c *Checker) putInferenceState(n *InferenceState) {
 	clear(n.visited)
+	n.memoCleared = false
 	n.inferences = n.inferences[:0]
 	n.originalSource = nil
 	n.originalTarget = nil
@@ -55,7 +57,7 @@ func (c *Checker) putInferenceState(n *InferenceState) {
 	c.freeinferenceState = n
 }
 
-func (c *Checker) inferTypes(inferences []*InferenceInfo, originalSource *Type, originalTarget *Type, priority InferencePriority, contravariant bool) {
+func (c *Checker) inferTypesUncached(inferences []*InferenceInfo, originalSource *Type, originalTarget *Type, priority InferencePriority, contravariant bool) bool {
 	n := c.getInferenceState()
 	n.inferences = inferences
 	n.originalSource = originalSource
@@ -64,10 +66,15 @@ func (c *Checker) inferTypes(inferences []*InferenceInfo, originalSource *Type, 
 	n.inferencePriority = InferencePriorityMaxValue
 	n.contravariant = contravariant
 	c.inferFromTypes(n, originalSource, originalTarget)
+	cleared := n.memoCleared
 	c.putInferenceState(n)
+	return cleared
 }
 
 func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) {
+	if inferMemoMode != "off" && inferMemoMode != "0" {
+		c.inferMemoSteps++
+	}
 	if !c.couldContainTypeVariables(target) || c.isNoInferType(target) {
 		return
 	}
@@ -202,15 +209,18 @@ func (c *Checker) inferFromTypes(n *InferenceState, source *Type, target *Type) 
 					if n.contravariant && !n.bivariant {
 						if !slices.Contains(inference.contraCandidates, candidate) {
 							inference.contraCandidates = append(inference.contraCandidates, candidate)
+							n.memoCleared = true
 							clearCachedInferences(n.inferences)
 						}
 					} else if !slices.Contains(inference.candidates, candidate) {
 						inference.candidates = append(inference.candidates, candidate)
+						n.memoCleared = true
 						clearCachedInferences(n.inferences)
 					}
 				}
 				if n.priority&InferencePriorityReturnType == 0 && target.flags&TypeFlagsTypeParameter != 0 && inference.topLevel && !c.isTypeParameterAtTopLevel(n.originalTarget, target, 0) {
 					inference.topLevel = false
+					n.memoCleared = true
 					clearCachedInferences(n.inferences)
 				}
 			}

@@ -583,6 +583,17 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	memoTransient         uint64
+	memoExpressionChecks  uint64
+	memberResolutionEpoch uint64
+	inferMemoSteps        uint64
+	inferMemoHits         uint64
+	inferMemoSkipped      uint64
+	inferMemoLongTargets  map[TypeId]bool
+	inferMemoEntries      map[string]*inferMemoEntry
+	inferMemoScratch      []byte
+	inferMemoBytes        int
+
 	indexedAccessUnionMemo                      map[indexedAccessUnionKey]*Type
 	memoDiagnosticAttempts                      uint64
 	lazyUnaffected                              map[lazyUnaffectedKey]*lazyUnaffectedMemo
@@ -2300,6 +2311,7 @@ func (c *Checker) checkSourceElement(node *ast.Node) bool {
 		saveCurrentNode := c.currentNode
 		saveWithinUnreachableCode := c.withinUnreachableCode
 		c.currentNode = node
+		c.memoExpressionChecks++
 		c.instantiationCount = 0
 		c.checkSourceElementWorker(node)
 		c.currentNode = saveCurrentNode
@@ -2563,6 +2575,7 @@ func (c *Checker) checkDeferredNode(node *ast.Node) {
 	}
 	saveCurrentNode := c.currentNode
 	c.currentNode = node
+	c.memoExpressionChecks++
 	c.instantiationCount = 0
 	switch node.Kind {
 	case ast.KindCallExpression, ast.KindNewExpression, ast.KindTaggedTemplateExpression, ast.KindDecorator, ast.KindJsxOpeningElement:
@@ -7530,6 +7543,7 @@ func (c *Checker) getTypeOfExpression(node *ast.Node) *Type {
 	}
 	// If a type has been cached for the node, return it.
 	if cachedType := c.flowTypeCache[node]; cachedType != nil {
+		c.memoTransient++
 		return cachedType
 	}
 	startInvocationCount := c.flowInvocationCount
@@ -7748,6 +7762,7 @@ func (c *Checker) checkExpressionEx(node *ast.Node, checkMode CheckMode) *Type {
 	}
 	saveCurrentNode := c.currentNode
 	c.currentNode = node
+	c.memoExpressionChecks++
 	c.instantiationCount = 0
 	uninstantiatedType := c.checkExpressionWorker(node, checkMode)
 	t := c.instantiateTypeWithSingleGenericCallSignature(node, uninstantiatedType, checkMode)
@@ -8601,6 +8616,9 @@ func (c *Checker) getResolvedSignature(node *ast.Node, candidatesOutArray *[]*Si
 	// or that a different candidatesOutArray was passed in. Therefore, we need to redo the work
 	// to correctly fill the candidatesOutArray.
 	cached := links.resolvedSignature
+	if cached == c.resolvingSignature {
+		c.memoTransient++
+	}
 	if cached != nil && cached != c.resolvingSignature && candidatesOutArray == nil {
 		return cached
 	}
@@ -19179,6 +19197,7 @@ func (c *Checker) findResolutionCycleStartIndex(target TypeSystemEntity, propert
 			return -1
 		}
 		if resolution.target == target && resolution.propertyName == propertyName {
+			c.memoTransient++
 			return i
 		}
 	}
@@ -19853,6 +19872,7 @@ func (c *Checker) getBaseTypes(t *Type) []*Type {
 		// for resolution of type parameter defaults to cause circularity errors, possibly leaving
 		// members partially resolved. Here we ensure any such partial resolution is reset.
 		// See https://github.com/microsoft/TypeScript/issues/16861 for an example.
+		c.memberResolutionEpoch++
 		t.objectFlags &^= ObjectFlagsMembersResolved | ObjectFlagsWeakTypeMemo
 		data.baseTypesResolved = true
 	}
@@ -26123,6 +26143,7 @@ func (c *Checker) cloneTypeReference(source *Type) *Type {
 }
 
 func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, callSignatures []*Signature, constructSignatures []*Signature, indexInfos []*IndexInfo) {
+	c.memberResolutionEpoch++
 	t.objectFlags = t.objectFlags&^ObjectFlagsWeakTypeMemo | ObjectFlagsMembersResolved
 	data := t.AsStructuredType()
 	data.members = members
@@ -30866,6 +30887,7 @@ func (c *Checker) getContextualTypeForArgumentAtIndex(callTarget *ast.Node, argI
 	// that could cause infinite recursion. Instead, return anySignature.
 	var signature *Signature
 	if c.signatureLinks.Get(callTarget).resolvedSignature == c.resolvingSignature {
+		c.memoTransient++
 		signature = c.resolvingSignature
 	} else {
 		signature = c.getResolvedSignature(callTarget, nil, CheckModeNormal)
