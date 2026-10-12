@@ -100,6 +100,9 @@ func (mapper *projectReferenceFileMapper) getRedirectParsedCommandLineForResolut
 }
 
 func (mapper *projectReferenceFileMapper) getRedirectForResolution(file ast.HasFileName) (*tsoptions.ParsedCommandLine, string) {
+	if mapper.config != nil && len(mapper.config.ProjectReferences()) == 0 {
+		return nil, file.FileName()
+	}
 	path := file.Path()
 	// Check if outputdts of source file from project reference
 	output := mapper.getProjectReferenceFromSource(path)
