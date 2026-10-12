@@ -14125,6 +14125,14 @@ func (c *Checker) isReadonlyAssignmentDeclaration(node *ast.Node) bool {
 }
 
 func (c *Checker) isReadonlySymbol(symbol *ast.Symbol) bool {
+	var modifiers ast.ModifierFlags
+	if symbol.CheckFlags&ast.CheckFlagsReadonly == 0 && symbol.Flags&ast.SymbolFlagsProperty != 0 {
+		modifiers = getDeclarationModifierFlagsFromSymbol(symbol)
+	}
+	return c.isReadonlySymbolWithModifiers(symbol, modifiers)
+}
+
+func (c *Checker) isReadonlySymbolWithModifiers(symbol *ast.Symbol, modifiers ast.ModifierFlags) bool {
 	// The following symbols are considered read-only:
 	// Properties with a 'readonly' modifier
 	// Variables declared with 'const'
@@ -14133,7 +14141,7 @@ func (c *Checker) isReadonlySymbol(symbol *ast.Symbol) bool {
 	// Object.defineProperty assignments with writable false or no setter
 	// Unions and intersections of the above (unions and intersections eagerly set isReadonly on creation)
 	return symbol.CheckFlags&ast.CheckFlagsReadonly != 0 ||
-		symbol.Flags&ast.SymbolFlagsProperty != 0 && getDeclarationModifierFlagsFromSymbol(symbol)&ast.ModifierFlagsReadonly != 0 ||
+		symbol.Flags&ast.SymbolFlagsProperty != 0 && modifiers&ast.ModifierFlagsReadonly != 0 ||
 		symbol.Flags&ast.SymbolFlagsVariable != 0 && c.getDeclarationNodeFlagsFromSymbol(symbol)&ast.NodeFlagsConstant != 0 ||
 		symbol.Flags&ast.SymbolFlagsAccessor != 0 && symbol.Flags&ast.SymbolFlagsSetAccessor == 0 ||
 		symbol.Flags&ast.SymbolFlagsEnumMember != 0 ||
@@ -22294,7 +22302,10 @@ func (c *Checker) createUnionOrIntersectionProperty(containingType *Type, name s
 			var modifiers ast.ModifierFlags
 			if prop != nil {
 				modifiers = getDeclarationModifierFlagsFromSymbol(prop)
-				writeModifiers := getDeclarationModifierFlagsFromSymbolEx(prop, true /*isWrite*/)
+				writeModifiers := modifiers
+				if prop.CheckFlags&ast.CheckFlagsSynthetic != 0 || prop.Flags&ast.SymbolFlagsSetAccessor != 0 {
+					writeModifiers = getDeclarationModifierFlagsFromSymbolEx(prop, true /*isWrite*/)
+				}
 				if prop.Flags&ast.SymbolFlagsClassMember != 0 {
 					if isUnion {
 						optionalFlag |= prop.Flags & ast.SymbolFlagsOptional
@@ -22329,9 +22340,9 @@ func (c *Checker) createUnionOrIntersectionProperty(containingType *Type, name s
 						propFlags = (propFlags &^ ast.SymbolFlagsAccessor) | ast.SymbolFlagsProperty
 					}
 				}
-				if isUnion && c.isReadonlySymbol(prop) {
+				if isUnion && c.isReadonlySymbolWithModifiers(prop, modifiers) {
 					checkFlags |= ast.CheckFlagsReadonly
-				} else if !isUnion && !c.isReadonlySymbol(prop) {
+				} else if !isUnion && !c.isReadonlySymbolWithModifiers(prop, modifiers) {
 					checkFlags &^= ast.CheckFlagsReadonly
 				}
 				if modifiers&ast.ModifierFlagsProtected != 0 && modifiers&ast.ModifierFlagsPublic == 0 {
