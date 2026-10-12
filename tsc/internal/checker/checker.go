@@ -27020,6 +27020,9 @@ func (c *Checker) removeSubtypes(types []*Type, hasObjectTypes bool) []*Type {
 	length := len(types)
 	i := length
 	count := 0
+	var keyName string
+	var keyEpoch uint64
+	var keyProperties map[TypeId]settledProperty
 	for i > 0 {
 		i--
 		source := types[i]
@@ -27070,7 +27073,35 @@ func (c *Checker) removeSubtypes(types []*Type, hasObjectTypes bool) []*Type {
 					}
 					count++
 					if keyProperty != nil && target.flags&(TypeFlagsObject|TypeFlagsIntersection|TypeFlagsInstantiableNonPrimitive) != 0 {
-						t := c.getTypeOfPropertyOfType(target, keyProperty.Name)
+						name := keyProperty.Name
+						if keyName != name || keyEpoch != c.memberResolutionEpoch {
+							clear(keyProperties)
+							keyName, keyEpoch = name, c.memberResolutionEpoch
+						}
+						known := keyProperties[target.id]
+						if !known.known && subtypePropertyMode != "off" && subtypePropertyMode != "0" && c.sourceFilesComplete && len(c.instantiationStack) == 0 && len(c.typeResolutions) == 0 {
+							known = c.settledPropertyOfType(target, name)
+							if known.known && len(keyProperties) < 4096 {
+								if keyProperties == nil {
+									keyProperties = make(map[TypeId]settledProperty)
+								}
+								keyProperties[target.id] = known
+							}
+						}
+						var t *Type
+						if known.known {
+							if subtypePropertyMode == "shadow" {
+								before := c.inferenceEffects()
+								if fresh := c.getPropertyOfType(target, name); fresh != known.symbol || before != c.inferenceEffects() {
+									panic("subtype property reuse changed symbol or checker effects")
+								}
+							}
+							if known.symbol != nil {
+								t = c.getTypeOfSymbol(known.symbol)
+							}
+						} else {
+							t = c.getTypeOfPropertyOfType(target, name)
+						}
 						if t != nil && isUnitType(t) && c.getRegularTypeOfLiteralType(t) != keyPropertyType {
 							continue
 						}
