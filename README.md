@@ -20,10 +20,10 @@ CI runs upstream compiler baselines, both test-program concurrency settings, cac
 <!-- vscode-benchmarks:start -->
 ## VS Code benchmarks
 
-<!-- measured-commit: 66408e4f36e5f8860def4b9cc231204ca2afa329 -->
-Measured [66408e4f36e5](https://github.com/maschwenk/typescript-go-tsrs/commit/66408e4f36e5f8860def4b9cc231204ca2afa329) on 2026-10-12T04:02:58.338944+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38201918528) · [raw measurements](bench/results/66408e4f36e5f8860def4b9cc231204ca2afa329.json)
+<!-- measured-commit: 932f755c8cecdb3dd8e3359c57da2f3415e483f3 -->
+Measured [932f755c8cec](https://github.com/maschwenk/typescript-go-tsrs/commit/932f755c8cecdb3dd8e3359c57da2f3415e483f3) on 2026-10-12T04:04:23.184994+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38201998471) · [raw measurements](bench/results/932f755c8cecdb3dd8e3359c57da2f3415e483f3.json)
 
-Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · AMD EPYC 9V74 80-Core Processor · MemTotal:       16373452 kB
+Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · Intel(R) Xeon(R) 6973P-C · MemTotal:       16372428 kB
 
 VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repetitions per compiler and mode. Tables show medians. Hosted runner hardware can vary between commits.
 
@@ -31,19 +31,19 @@ VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repeti
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 19.842 | 22.979 | 7.370 |
-| single thread | 48.481 | 54.907 | 18.731 |
-| 4 checkers | 20.594 | 22.449 | 7.429 |
-| 8 checkers | 21.651 | 23.464 | 8.031 |
+| default settings | 21.917 | 25.555 | 6.724 |
+| single thread | 42.419 | 45.821 | 13.985 |
+| 4 checkers | 21.521 | 24.256 | 6.219 |
+| 8 checkers | 21.094 | 25.293 | 6.809 |
 
 ### Peak memory (MiB)
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 6040.7 | 6722.0 | 1974.4 |
-| single thread | 5627.3 | 6130.2 | 1658.2 |
-| 4 checkers | 6157.2 | 6901.9 | 1982.0 |
-| 8 checkers | 6767.4 | 7413.6 | 2200.9 |
+| default settings | 6126.4 | 6853.7 | 1968.6 |
+| single thread | 5299.3 | 6276.3 | 1656.3 |
+| 4 checkers | 6153.1 | 6936.3 | 1969.6 |
+| 8 checkers | 6633.7 | 7449.9 | 2200.7 |
 
 ### Compiler versions and diagnostics
 
