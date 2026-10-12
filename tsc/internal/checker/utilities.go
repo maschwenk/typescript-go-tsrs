@@ -402,6 +402,9 @@ func (c *Checker) compareNodes(n1, n2 *ast.Node) int {
 	if n2 == nil {
 		return -1
 	}
+	if n1.Parent != nil && n1.Parent == n2.Parent && n1.Kind != ast.KindSourceFile && n2.Kind != ast.KindSourceFile {
+		return n1.Pos() - n2.Pos()
+	}
 	s1 := ast.GetSourceFileOfNode(n1)
 	s2 := ast.GetSourceFileOfNode(n2)
 	if s1 != s2 {
