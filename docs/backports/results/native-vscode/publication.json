@@ -1,0 +1,17 @@
+{
+  "redactions": "Local checkout prefixes replaced with <repo> and <tsrs> in metadata and logs. Log links updated to adjacent compressed files. Measurements, binary hashes and source pins retained. Original diagnostic hashes are retained as original_diagnostics_sha256; diagnostics_sha256 verifies the normalized public logs.",
+  "reports": [
+    {
+      "report": "matrix/compare.json",
+      "source": "e0c7ad31fbc289dd9c62b848dd13222696402169",
+      "original_report_sha256": "0626494cd451a3574e2a2f092120a8c2ca4db2dbdfd78b6c8c1821301b90c971",
+      "public_report_sha256": "e2672a8daf22647ad42c7661147f1171dc689cce085817c5503db1ac5898b97e"
+    },
+    {
+      "report": "adaptive/compare.json",
+      "source": "e290a44cb1d2b04cde6a6f7e92c738813dbcc0ad",
+      "original_report_sha256": "39b782f164ded5038ba690e819f363907814bb9372d59984cd9467bb061ac342",
+      "public_report_sha256": "6ab527fd63982f3d7fd0423cc433f229dc640f6bb51211d6df449270fe65151f"
+    }
+  ]
+}
