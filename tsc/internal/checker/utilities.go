@@ -359,6 +359,9 @@ func createSymbolTable(symbols []*ast.Symbol) ast.SymbolTable {
 }
 
 func (c *Checker) sortSymbols(symbols []*ast.Symbol) {
+	if c.sourceFilesComplete && c.tracer == nil && len(symbols) > 2 && c.sortSymbolsByKey(symbols) {
+		return
+	}
 	slices.SortFunc(symbols, c.compareSymbols)
 }
 
