@@ -1,9 +1,18 @@
 import tempfile
 import unittest
 from pathlib import Path
-from run import run, signature
+from run import run, signature, parse_output, equal_outputs
 
 class HarnessTest(unittest.TestCase):
+    def test_warmup_mismatch_is_part_of_equality(self):
+        reference=parse_output(['Files: 2', 'Check time: 0.01s'], 0)
+        warmup=parse_output(['file.ts(1,1): error TS2322: wrong', 'Files: 2', 'Check time: 0.01s'], 2)
+        self.assertFalse(equal_outputs(reference, [warmup, reference]))
+
+    def test_panic_after_metrics_and_missing_file_count_are_incomplete(self):
+        self.assertFalse(parse_output(['Files: 2', 'Check time: 0.01s', 'panic: late failure'], 2)['completed'])
+        self.assertFalse(parse_output(['Check time: 0.01s'], 0)['completed'])
+
     def test_errors_and_continuations_are_part_of_equality(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp)
