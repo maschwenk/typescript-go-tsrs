@@ -49,6 +49,8 @@ type ProgramConfig struct {
 	// SkipModuleResolution avoids all module and type reference resolution while
 	// still collecting import metadata needed for emit.
 	SkipModuleResolution bool
+	// AutoCheckers sizes the default pool for a batch CLI compile.
+	AutoCheckers bool
 }
 
 type ProgramHosts struct {
