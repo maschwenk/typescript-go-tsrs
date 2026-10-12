@@ -583,6 +583,7 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	nodeFileCache            map[*ast.Node]nodeFileInfo
 	contextualUnionPositions map[contextualUnionKey]contextualUnionEntry
 	contextualUnionBytes     int
 	symbolSortScratch        []symbolSortKey
