@@ -1,0 +1,17 @@
+name: Optimization proposal
+description: A tsrs strategy or Go-specific improvement to investigate
+body:
+  - type: textarea
+    id: strategy
+    attributes:
+      label: Strategy and source
+      description: Link the exact implementation and explain which work or allocation can be avoided.
+    validations:
+      required: true
+  - type: textarea
+    id: correctness
+    attributes:
+      label: Correctness and tradeoffs
+      description: Describe ordering, side effects, cache lifetime, memory or concurrency constraints.
+    validations:
+      required: true
