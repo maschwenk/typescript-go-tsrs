@@ -434,6 +434,20 @@ func CompareTypes(t1, t2 *Type) int {
 	if c := getSortOrderFlags(t1) - getSortOrderFlags(t2); c != 0 {
 		return c
 	}
+	if t1.flags == TypeFlagsStringLiteral && t1.alias == nil && t2.alias == nil {
+		return comparePlainStringLiteralTypes(t1, t2)
+	}
+	return compareTypesSameFlags(t1, t2)
+}
+
+func comparePlainStringLiteralTypes(t1, t2 *Type) int {
+	if c := strings.Compare(getStringLiteralValue(t1), getStringLiteralValue(t2)); c != 0 {
+		return c
+	}
+	return int(t1.id) - int(t2.id)
+}
+
+func compareTypesSameFlags(t1, t2 *Type) int {
 	// Order named types by name and, in the case of aliased types, by alias type arguments.
 	if c := compareTypeNames(t1, t2); c != 0 {
 		return c
