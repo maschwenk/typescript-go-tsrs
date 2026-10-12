@@ -20,10 +20,10 @@ CI runs upstream compiler baselines, both test-program concurrency settings, cac
 <!-- vscode-benchmarks:start -->
 ## VS Code benchmarks
 
-<!-- measured-commit: 2eb0a6f5c5c83cdc2fa46bd7592baf57dc786a3f -->
-Measured [2eb0a6f5c5c8](https://github.com/maschwenk/typescript-go-tsrs/commit/2eb0a6f5c5c83cdc2fa46bd7592baf57dc786a3f) on 2026-10-12T04:28:41.174185+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38203675767) · [raw measurements](bench/results/2eb0a6f5c5c83cdc2fa46bd7592baf57dc786a3f.json)
+<!-- measured-commit: 965d47afc2438d1fbc1f6e57ebe22e17a29c0a6a -->
+Measured [965d47afc243](https://github.com/maschwenk/typescript-go-tsrs/commit/965d47afc2438d1fbc1f6e57ebe22e17a29c0a6a) on 2026-10-12T05:24:43.661895+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38207557616) · [raw measurements](bench/results/965d47afc2438d1fbc1f6e57ebe22e17a29c0a6a.json)
 
-Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · INTEL(R) XEON(R) PLATINUM 8573C · MemTotal:       16372440 kB
+Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · INTEL(R) XEON(R) PLATINUM 8573C · MemTotal:       16372432 kB
 
 VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repetitions per compiler and mode. Tables show medians. Hosted runner hardware can vary between commits.
 
@@ -31,19 +31,21 @@ VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repeti
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 20.836 | 23.250 | 6.716 |
-| single thread | 41.707 | 45.128 | 15.563 |
-| 4 checkers | 19.235 | 21.892 | 6.614 |
-| 8 checkers | 21.733 | 23.630 | 7.080 |
+| default settings | 16.350 | 17.526 | 6.711 |
+| single thread | 34.645 | 37.180 | 16.035 |
+| 4 checkers | 17.407 | 17.972 | 6.838 |
+| 8 checkers | 17.075 | 19.026 | 7.310 |
+
+Timed runs omit `--extendedDiagnostics`: Go otherwise performs two full garbage collections after compilation. File counts come from each compiler’s separate instrumented validation pass; every timed run must match its complete diagnostic text and exit status. These timings use a different method from earlier archived tables.
 
 ### Peak memory (MiB)
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 6351.7 | 6768.1 | 1972.9 |
-| single thread | 5474.8 | 6150.9 | 1659.4 |
-| 4 checkers | 6183.5 | 6742.1 | 1971.2 |
-| 8 checkers | 6675.6 | 7102.8 | 2189.1 |
+| default settings | 6315.5 | 6842.4 | 1975.8 |
+| single thread | 5444.1 | 6114.0 | 1657.6 |
+| 4 checkers | 6275.0 | 6828.6 | 1973.0 |
+| 8 checkers | 6301.8 | 7076.8 | 2191.3 |
 
 ### Compiler versions and diagnostics
 
