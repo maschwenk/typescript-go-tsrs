@@ -405,11 +405,11 @@ func (c *Checker) compareNodes(n1, n2 *ast.Node) int {
 	if n1.Parent != nil && n1.Parent == n2.Parent && n1.Kind != ast.KindSourceFile && n2.Kind != ast.KindSourceFile {
 		return n1.Pos() - n2.Pos()
 	}
-	s1 := ast.GetSourceFileOfNode(n1)
-	s2 := ast.GetSourceFileOfNode(n2)
-	if s1 != s2 {
-		f1 := c.fileIndexMap[s1]
-		f2 := c.fileIndexMap[s2]
+	i1 := c.sourceFileAndIndexOfNode(n1)
+	i2 := c.sourceFileAndIndexOfNode(n2)
+	if i1.file != i2.file {
+		f1 := i1.index
+		f2 := i2.index
 		// Order by index of file in the containing program
 		return f1 - f2
 	}
