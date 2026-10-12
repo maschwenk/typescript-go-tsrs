@@ -1009,11 +1009,22 @@ func (c *Checker) getUnmatchedProperties(source *Type, target *Type, requireOpti
 }
 
 func (c *Checker) getUnmatchedPropertiesWorker(source *Type, target *Type, requireOptionalProperties bool, matchDiscriminantProperties bool, propsOut *[]*ast.Symbol) *ast.Symbol {
+	return c.getUnmatchedPropertiesWorkerEx(source, target, requireOptionalProperties, matchDiscriminantProperties, propsOut, nil)
+}
+
+func (c *Checker) getUnmatchedPropertiesWorkerEx(source *Type, target *Type, requireOptionalProperties bool, matchDiscriminantProperties bool, propsOut *[]*ast.Symbol, found *[]sourcePropertyLookup) *ast.Symbol {
 	// With a lazy member table (lazyType is the reduced apparent type of target that has it), declared
 	// members stand in for target properties until a property is returned or its type is needed.
 	properties, lazyType := c.getPropertiesOfTypeLazily(target)
 	lazy := lazyType != nil
-	for _, targetProp := range properties {
+	record := found != nil && !lazy && len(properties) >= 8 && c.sourceFilesComplete &&
+		len(c.instantiationStack) == 0 && len(c.typeResolutions) == 0 &&
+		source.flags == TypeFlagsObject && source.objectFlags&(ObjectFlagsMembersResolved|ObjectFlagsMapped) == ObjectFlagsMembersResolved &&
+		!isTupleType(source) && (source.symbol == nil || source.symbol.Flags&ast.SymbolFlagsValueModule == 0) && propertyLookupsMode != "off" && propertyLookupsMode != "0"
+	if record {
+		*found = append((*found)[:0], make([]sourcePropertyLookup, len(properties))...)
+	}
+	for i, targetProp := range properties {
 		// TODO: remove this when we support static private identifier fields and find other solutions to get privateNamesAndStaticFields test to pass
 		if isStaticPrivateIdentifierProperty(targetProp) {
 			continue
@@ -1030,6 +1041,12 @@ func (c *Checker) getUnmatchedPropertiesWorker(source *Type, target *Type, requi
 				continue
 			}
 			sourceProp := c.getPropertyOfType(source, targetProp.Name)
+			if record {
+				known := c.settledPropertyOfType(source, targetProp.Name)
+				if known.known && known.symbol == sourceProp {
+					(*found)[i] = sourcePropertyLookup{targetProp, sourceProp, c.memberResolutionEpoch}
+				}
+			}
 			if lazy {
 				targetProp = c.getPropertyOfType(lazyType, targetProp.Name)
 			}
@@ -4336,7 +4353,13 @@ func (r *Relater) propertiesRelatedTo(source *Type, target *Type, reportErrors b
 		}
 	}
 	requireOptionalProperties := (r.relation == r.c.subtypeRelation || r.relation == r.c.strictSubtypeRelation) && !isObjectLiteralType(source) && !r.c.isEmptyArrayLiteralType(source) && !isTupleType(source)
-	unmatchedProperty := r.c.getUnmatchedProperty(source, target, requireOptionalProperties, false /*matchDiscriminantProperties*/)
+	found := r.c.propertyLookupScratch[:0]
+	r.c.propertyLookupScratch = nil
+	defer func() {
+		clear(found)
+		r.c.propertyLookupScratch = found[:0]
+	}()
+	unmatchedProperty := r.c.getUnmatchedPropertiesWorkerEx(source, target, requireOptionalProperties, false, nil, &found)
 	if unmatchedProperty != nil {
 		if reportErrors && r.c.shouldReportUnmatchedPropertyError(source, target) {
 			r.reportUnmatchedProperty(source, target, unmatchedProperty, requireOptionalProperties)
@@ -4357,10 +4380,21 @@ func (r *Relater) propertiesRelatedTo(source *Type, target *Type, reportErrors b
 	// from the target union, across all members
 	properties := r.c.getPropertiesOfType(target)
 	numericNamesOnly := isTupleType(source) && isTupleType(target)
-	for _, targetProp := range excludeProperties(properties, excludedProperties) {
+	for i, targetProp := range excludeProperties(properties, excludedProperties) {
 		name := targetProp.Name
 		if targetProp.Flags&ast.SymbolFlagsPrototype == 0 && (!numericNamesOnly || isNumericLiteralName(name) || name == "length") && (!optionalsOnly || targetProp.Flags&ast.SymbolFlagsOptional != 0) {
-			sourceProp := r.c.getPropertyOfType(source, name)
+			var sourceProp *ast.Symbol
+			if i < len(found) && found[i].target == targetProp && found[i].epoch == r.c.memberResolutionEpoch {
+				sourceProp = found[i].source
+				if propertyLookupsMode == "shadow" {
+					before := r.c.inferenceEffects()
+					if fresh := r.c.getPropertyOfType(source, name); fresh != sourceProp || before != r.c.inferenceEffects() {
+						panic("property lookup reuse changed symbol or checker effects")
+					}
+				}
+			} else {
+				sourceProp = r.c.getPropertyOfType(source, name)
+			}
 			if sourceProp != nil && sourceProp != targetProp {
 				related := r.propertyRelatedTo(source, target, sourceProp, targetProp, r.c.getNonMissingTypeOfSymbol, reportErrors, intersectionState, r.relation == r.c.comparableRelation)
 				if related == TernaryFalse {
