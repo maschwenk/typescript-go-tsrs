@@ -1,0 +1,49 @@
+File: fork
+Build ID: a014c984b4b6235b12295d6e6c18c4f952d3f10d
+Type: cpu
+Time: 2026-10-12 05:42:17 UTC
+Duration: 17.35s, Total samples = 64.83s (373.69%)
+Showing nodes accounting for 20.52s, 31.65% of 64.83s total
+Dropped 2309 nodes (cum <= 0.32s)
+Showing top 40 nodes out of 556
+      flat  flat%   sum%        cum   cum%
+     3.25s  5.01%  5.01%      3.25s  5.01%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+     1.76s  2.71%  7.73%      5.27s  8.13%  runtime.mapaccess2_fast64
+     1.05s  1.62%  9.35%      1.05s  1.62%  internal/runtime/maps.memHashAES
+     1.03s  1.59% 10.94%      1.59s  2.45%  runtime.tryDeferToSpanScan
+        1s  1.54% 12.48%      3.13s  4.83%  runtime.mapaccess2_faststr
+     0.79s  1.22% 13.70%      1.05s  1.62%  runtime.findObject
+     0.63s  0.97% 14.67%      0.63s  0.97%  internal/runtime/maps.h1 (inline)
+     0.57s  0.88% 15.55%      2.21s  3.41%  runtime.scanObject
+     0.55s  0.85% 16.40%      0.55s  0.85%  internal/runtime/maps.memHash64AES
+     0.47s  0.72% 17.12%      3.59s  5.54%  github.com/microsoft/TypeScript/tsc/internal/binder.(*NameResolver).Resolve
+     0.44s  0.68% 17.80%      0.44s  0.68%  memeqbody
+     0.42s  0.65% 18.45%      0.74s  1.14%  internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+     0.42s  0.65% 19.10%      0.53s  0.82%  runtime.typePointers.next
+     0.39s   0.6% 19.70%      0.51s  0.79%  github.com/microsoft/TypeScript/tsc/internal/ast.(*Node).Text
+     0.38s  0.59% 20.28%      7.30s 11.26%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNode
+     0.38s  0.59% 20.87%      0.38s  0.59%  runtime.heapSetTypeSmallHeader (inline)
+     0.38s  0.59% 21.46%      0.53s  0.82%  runtime.step
+     0.38s  0.59% 22.04%      1.90s  2.93%  runtime.wbBufFlush1
+     0.37s  0.57% 22.61%     12.83s 19.79%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkIdentifier
+     0.37s  0.57% 23.18%      1.35s  2.08%  runtime.mapaccess2
+     0.36s  0.56% 23.74%      6.63s 10.23%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNodeUncached
+     0.36s  0.56% 24.29%      0.36s  0.56%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedLinkStore[go.shape.uint32]).Get
+     0.35s  0.54% 24.83%      0.77s  1.19%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedArenaLinkStore[go.shape.c8834662d792dc235b825e1d0a383ca0e88d37a7942c2ee1678aaae508164d3e]).Get
+     0.34s  0.52% 25.36%      5.36s  8.27%  github.com/microsoft/TypeScript/tsc/internal/ast.(*Node).ForEachChild
+     0.34s  0.52% 25.88%      0.34s  0.52%  github.com/microsoft/TypeScript/tsc/internal/ast.GetSourceFileOfNode (inline)
+     0.31s  0.48% 26.36%      1.12s  1.73%  github.com/microsoft/TypeScript/tsc/internal/scanner.(*Scanner).Scan
+     0.30s  0.46% 26.82%      3.20s  4.94%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).bind
+     0.30s  0.46% 27.29%      0.36s  0.56%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).isSimpleTypeRelatedTo
+     0.29s  0.45% 27.73%      9.56s 14.75%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Relater).isRelatedToEx
+     0.29s  0.45% 28.18%      1.04s  1.60%  runtime.pcvalue
+     0.28s  0.43% 28.61%      3.50s  5.40%  runtime.mallocgc
+     0.25s  0.39% 29.00%      8.04s 12.40%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Relater).recursiveTypeRelatedTo
+     0.25s  0.39% 29.38%      7.45s 11.49%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Relater).structuredTypeRelatedToWorker
+     0.23s  0.35% 29.74%      0.53s  0.82%  internal/runtime/maps.(*Iter).Next
+     0.23s  0.35% 30.09%      0.75s  1.16%  runtime.scanObjectsSmall
+     0.22s  0.34% 30.43%      0.75s  1.16%  internal/runtime/maps.(*table).uncheckedPutSlot
+     0.21s  0.32% 30.76%      4.50s  6.94%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).inferFromTypes
+     0.20s  0.31% 31.07%      4.05s  6.25%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getPropertyOfTypeWorker
+     0.19s  0.29% 31.36%      1.75s  2.70%  gcWriteBarrier
+     0.19s  0.29% 31.65%        41s 63.24%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionWorker

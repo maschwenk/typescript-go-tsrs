@@ -57,6 +57,27 @@ A second version generates direct accessors and passes concrete header pointers 
 
 Neither prototype is included in compiler source. Saving 7-9% RSS at a runtime cost does not satisfy the request for major speed wins. The remaining representation work needs to remove substantially more allocated bytes or GC-visible state, rather than simply replacing one interface field with generated dispatch.
 
+## Completed public Linux profile
+
+[Run 38208040052](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38208040052) succeeds with both compilers' raw CPU profiles, full diagnostic parity and 10,465 checked files. This is a four-CPU public Ubuntu runner. The recorded platform is `Linux-6.17.0-1022-azure-x86_64`; its CPU model was not captured. These absolute times must not be compared with the original run on another runner. One ordinary timed execution per variant is used here for diagnosis, not a repeated performance claim.
+
+| mode | fork wall / CPU | tsrs wall / CPU | finite GC probe wall / CPU | fork / tsrs peak RSS |
+| --- | ---: | ---: | ---: | ---: |
+| one thread | 45.399s / 45.554s | 20.091s / 20.088s | 38.154s / 38.281s | 5694.6 / 1658.3 MiB |
+| four runtime threads and checkers | 20.542s / 80.748s | 8.744s / 34.283s | 16.792s / 62.696s | 6356.5 / 1970.3 MiB |
+
+[Raw results and binary provenance](results/profile-vscode-20261012/linux-result.json). The ordinary wall ratio is 2.26x at one thread and 2.35x at four. The finite four-thread probe reduces wall time 18.3% and CPU 22.4%, with peak RSS growing 4.7%. Its candidate gap is 1.92x. A repeated A/B comparison is required before adopting it.
+
+The earlier Linux sample, recovered from the stalled exporter, classifies CPU samples without double counting: 23.9% map operations (including map allocation), 19.0% GC/write barriers, 4.0% other allocation/zeroing, 53.1% other work. Each sample belongs to the first matching category in that order with GC preceding map allocation; this is sampled cost attribution, not an arithmetic sum of overlapping inclusive frames. [CPU classification](results/profile-vscode-20261012/linux-incomplete-tsgo-cpu-categories.json). Darwin's page-accounting hotspot is absent. Reducing GC helps, but GC alone cannot explain or eliminate a 3x gap.
+
+The Rust Linux sampling reports zero lost samples and exposes symbol-table lookup and flow analysis among the hot symbols, without one dominant individual algorithm. [Four-thread flat report](results/profile-vscode-20261012/linux-checkers4-tsrs-perf-report.txt). Raw mangled Rust v0 symbols are preserved; no unsupported demangling or source-frame percentages are inferred.
+
+## Other rejected or separate probes
+
+A compact pointer-identity link table was tested across 25 checker stores. It preserves actual Go pointer keys, stable value addresses and exact presence, and does not change observable symbol-ID assignment. Core identity-map differential tests, checker/compiler package tests and VS Code diagnostic parity pass. Three interleaved native four-thread runs save only 2.7% wall / 1.6% CPU while increasing median RSS 6.1%, so the prototype is not shipped. [Raw repetitions](results/profile-vscode-20261012/rejected-compact-links-probe.json).
+
+A Go PGO build trained from the recovered Linux VS Code profile saves 7.4% native wall / 10.5% CPU and 3.4% RSS against the plain fork in three interleaved four-thread runs. This is the existing optional PGO build strategy, not a new checker backport or a generalization benchmark: VS Code is both training and evaluation workload. The README comparison continues to use PGO off. [Raw repetitions](results/profile-vscode-20261012/pgo-linux-profile-native-probe.json).
+
 ## Reproduce the investigation
 
 `bench/profile_vscode.py` measures ordinary CLI runs at one and four threads, validates complete diagnostics, and records Go CPU/allocation profiles and GC traces separately. Rust sampling uses native `samply` on macOS or `perf` on Linux. The manual `Benchmark` workflow's `profile=true` input records both CPU profiles and repeats the finite GC probe on a standard public GitHub runner. The Linux profile is required before selecting a default memory policy from the Darwin data.

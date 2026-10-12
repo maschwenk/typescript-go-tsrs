@@ -1,0 +1,33 @@
+File: fork
+Build ID: aac89b0be445217060f29588f63239af029c9498
+Type: cpu
+Time: 2026-10-12 01:17:24 EDT
+Duration: 45.26s, Total samples = 45.28s (  100%)
+Showing nodes accounting for 16.10s, 35.56% of 45.28s total
+Dropped 2006 nodes (cum <= 0.23s)
+Showing top 24 nodes out of 551
+      flat  flat%   sum%        cum   cum%
+     2.77s  6.12%  6.12%      2.77s  6.12%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+     1.98s  4.37% 10.49%      2.35s  5.19%  runtime.findObject
+     1.78s  3.93% 14.42%      2.59s  5.72%  runtime.tryDeferToSpanScan
+     1.19s  2.63% 17.05%      4.34s  9.58%  runtime.mapaccess2_fast64
+     0.78s  1.72% 18.77%      0.78s  1.72%  internal/runtime/maps.memHashAES
+     0.73s  1.61% 20.38%      3.73s  8.24%  runtime.scanObject
+     0.70s  1.55% 21.93%      0.70s  1.55%  internal/runtime/maps.h1 (inline)
+     0.63s  1.39% 23.32%      2.02s  4.46%  runtime.mapaccess2_faststr
+     0.46s  1.02% 24.34%      1.22s  2.69%  runtime.scanObjectsSmall
+     0.44s  0.97% 25.31%      0.44s  0.97%  runtime.spanClass.sizeclass (inline)
+     0.40s  0.88% 26.19%      0.58s  1.28%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedArenaLinkStore[go.shape.c8834662d792dc235b825e1d0a383ca0e88d37a7942c2ee1678aaae508164d3e]).Get
+     0.39s  0.86% 27.05%      2.38s  5.26%  gcWriteBarrier
+     0.39s  0.86% 27.92%      2.89s  6.38%  runtime.wbBufFlush1
+     0.38s  0.84% 28.75%      2.78s  6.14%  github.com/microsoft/TypeScript/tsc/internal/binder.(*NameResolver).Resolve
+     0.37s  0.82% 29.57%      0.37s  0.82%  internal/runtime/maps.memHash64AES
+     0.37s  0.82% 30.39%      0.39s  0.86%  runtime.(*mspan).markBitsForIndex (inline)
+     0.36s   0.8% 31.18%      0.36s   0.8%  runtime.typePointers.nextFast (inline)
+     0.33s  0.73% 31.91%      0.33s  0.73%  memeqbody
+     0.33s  0.73% 32.64%      1.27s  2.80%  runtime.mapaccess2
+     0.29s  0.64% 33.28%      0.29s  0.64%  internal/runtime/maps.(*groupReference).key (inline)
+     0.29s  0.64% 33.92%      0.47s  1.04%  runtime.greyobject
+     0.28s  0.62% 34.54%      0.28s  0.62%  github.com/microsoft/TypeScript/tsc/internal/ast.GetSourceFileOfNode (inline)
+     0.23s  0.51% 35.05%      0.91s  2.01%  github.com/microsoft/TypeScript/tsc/internal/scanner.(*Scanner).Scan
+     0.23s  0.51% 35.56%      0.29s  0.64%  runtime.spanOf (inline)

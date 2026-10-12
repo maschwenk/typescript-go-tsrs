@@ -1,0 +1,157 @@
+{
+  "mode": "checkers4",
+  "measurement": "ordinary-cli-v1",
+  "reps": 3,
+  "tools": {
+    "before": "bbfa3f7f4f656e5c4a42eec3fb984a8aacacc9cce6acaac60c03c8e55dbef55c",
+    "compact": "ecafc8a24a9467e271609c1cc2da5370801eb028a8980aac2f4440ff1f0d2237"
+  },
+  "validations": {
+    "before": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33721700
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 11.41967925,
+      "peak_rss_bytes": 6507380736,
+      "cpu_s": 32.032734000000005,
+      "log": "<repo>/.bench/profiling-gap/compact-links-probe/before-validation.log"
+    },
+    "compact": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33661095
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 11.392790416999999,
+      "peak_rss_bytes": 6664486912,
+      "cpu_s": 33.446998,
+      "log": "<repo>/.bench/profiling-gap/compact-links-probe/compact-validation.log"
+    }
+  },
+  "runs": {
+    "before": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.328296957999999,
+        "peak_rss_bytes": 6498271232,
+        "cpu_s": 19.594407,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/before-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.360657416999999,
+        "peak_rss_bytes": 6231916544,
+        "cpu_s": 19.868366,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/before-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.687724750000001,
+        "peak_rss_bytes": 6281396224,
+        "cpu_s": 20.460178,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/before-2.log"
+      }
+    ],
+    "compact": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.2134044159999995,
+        "peak_rss_bytes": 6701252608,
+        "cpu_s": 19.992556,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/compact-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.264077417000003,
+        "peak_rss_bytes": 6573342720,
+        "cpu_s": 19.552818000000002,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/compact-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.977566084000003,
+        "peak_rss_bytes": 6663651328,
+        "cpu_s": 19.152126000000003,
+        "log": "<repo>/.bench/profiling-gap/compact-links-probe/compact-2.log"
+      }
+    ]
+  },
+  "summary": {
+    "before": {
+      "wall_s": 5.360657416999999,
+      "cpu_s": 19.868366,
+      "peak_rss_bytes": 6281396224
+    },
+    "compact": {
+      "wall_s": 5.2134044159999995,
+      "cpu_s": 19.552818000000002,
+      "peak_rss_bytes": 6663651328
+    }
+  }
+}

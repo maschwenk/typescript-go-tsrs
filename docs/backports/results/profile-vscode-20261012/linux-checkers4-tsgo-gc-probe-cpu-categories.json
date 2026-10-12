@@ -1,0 +1,114 @@
+{
+  "total_cpu_s": 64.8199999999964,
+  "classification": "first matching category per CPU sample; disjoint; map allocation belongs to map category after GC exclusion",
+  "categories": {
+    "other work": {
+      "cpu_s": 41.38,
+      "pct": 63.84
+    },
+    "map operations including allocation": {
+      "cpu_s": 14.56,
+      "pct": 22.46
+    },
+    "GC and write barriers": {
+      "cpu_s": 5.34,
+      "pct": 8.24
+    },
+    "other allocation/zeroing": {
+      "cpu_s": 3.54,
+      "pct": 5.46
+    }
+  },
+  "map_callers": [
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getMergedSymbol",
+      "cpu_s": 1.24,
+      "pct": 1.91
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/core.(*LinkStore[go.shape.*github.com/microsoft/TypeScript/tsc/internal/ast.Node,go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.resolvedSignature *github.com/microsoft/TypeScript/tsc/internal/checker.Signature; github.com/microsoft/TypeScript/tsc/internal/checker.effectsSignature *github.com/microsoft/TypeScript/tsc/internal/checker.Signature; github.com/microsoft/TypeScript/tsc/internal/checker.decoratorSignature *github.com/microsoft/TypeScript/tsc/internal/checker.Signature }]).Get",
+      "cpu_s": 1.04,
+      "pct": 1.6
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getMemberOfStructuredType",
+      "cpu_s": 0.9,
+      "pct": 1.39
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/core.(*LinkStore[go.shape.*github.com/microsoft/TypeScript/tsc/internal/ast.Node,go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.resolvedType *github.com/microsoft/TypeScript/tsc/internal/checker.Type; github.com/microsoft/TypeScript/tsc/internal/checker.outerTypeParameters []*github.com/microsoft/TypeScript/tsc/internal/checker.Type }]).Get",
+      "cpu_s": 0.61,
+      "pct": 0.94
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNode",
+      "cpu_s": 0.6,
+      "pct": 0.93
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Relation).get",
+      "cpu_s": 0.5,
+      "pct": 0.77
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/core.(*LinkStore[go.shape.*github.com/microsoft/TypeScript/tsc/internal/ast.Symbol,go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.referenceKinds github.com/microsoft/TypeScript/tsc/internal/ast.SymbolFlags }]).Get",
+      "cpu_s": 0.5,
+      "pct": 0.77
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getSymbol",
+      "cpu_s": 0.49,
+      "pct": 0.76
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/scanner.GetIdentifierToken",
+      "cpu_s": 0.37,
+      "pct": 0.57
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/core.(*LinkStore[go.shape.*github.com/microsoft/TypeScript/tsc/internal/ast.Symbol,go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.immediateTarget *github.com/microsoft/TypeScript/tsc/internal/ast.Symbol; github.com/microsoft/TypeScript/tsc/internal/checker.aliasTarget *github.com/microsoft/TypeScript/tsc/internal/ast.Symbol; github.com/microsoft/TypeScript/tsc/internal/checker.referenced bool; github.com/microsoft/TypeScript/tsc/internal/checker.typeOnlyDeclaration *github.com/microsoft/TypeScript/tsc/internal/ast.Node }]).Get",
+      "cpu_s": 0.37,
+      "pct": 0.57
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).addInheritedMembers",
+      "cpu_s": 0.35,
+      "pct": 0.54
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getStringLiteralType",
+      "cpu_s": 0.34,
+      "pct": 0.52
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getReadyLazyMemberTableWorker",
+      "cpu_s": 0.31,
+      "pct": 0.48
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).declareSymbolEx",
+      "cpu_s": 0.29,
+      "pct": 0.45
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).invokeOnce",
+      "cpu_s": 0.29,
+      "pct": 0.45
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getObjectTypeInstantiation",
+      "cpu_s": 0.27,
+      "pct": 0.42
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*activeMapperCache).clear",
+      "cpu_s": 0.24,
+      "pct": 0.37
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Relation).set",
+      "cpu_s": 0.24,
+      "pct": 0.37
+    }
+  ]
+}
