@@ -1,13 +1,20 @@
 # TypeScript Go with tsrs strategies
 
-Private experiment applying the transferable optimizations from [tsrs](https://github.com/maschwenk/tsrs) to Microsoft's Go TypeScript compiler. Upstream source, history and license are preserved; the common compiler revision is pinned for fair comparison.
+An experimental Go TypeScript compiler that brings transferable strategies from [tsrs](https://github.com/maschwenk/tsrs) back to [Microsoft TypeScript](https://github.com/microsoft/TypeScript). It preserves upstream history and the Apache-2.0 license. This fork is maintained independently of Microsoft.
 
-- [Strategy audit and per-backport explanations](docs/backports/README.md)
-- [Reproducible three-way benchmark](bench/README.md)
-- [Upstream TypeScript contributor guide](CONTRIBUTING.md)
+The implementation series has 52 individually documented steps. Changes merge one PR at a time after correctness checks; [the strategy audit](https://github.com/maschwenk/typescript-go-tsrs/blob/infra/public-readiness/docs/backports/README.md) links each PR and explains the Go translation and strategies that require more architectural work. The published benchmark identifies the exact compiler commit, which may be ahead of `main` while the series finishes merging.
 
-GitHub Actions runs the upstream Go tests and compiler baselines, concurrent programs, race checks and a comparison of stock Go, PR parent, this fork and pinned tsrs. Benchmark JSON, logs and Markdown are downloadable from the Actions run; use the manual Benchmark workflow for the real-project matrix. No packages are published automatically.
+- [VS Code comparison and raw results](docs/backports/results/native-vscode/README.md)
+- [Build and benchmark instructions](bench/README.md)
+- [GitHub Actions](docs/ci.md)
+- [Contributing](CONTRIBUTING.md)
 
-Build: `cd tsc && go build -pgo=off -o ../.bench/bin/fork ./cmd/tsc`.
+```sh
+# Go automatically selects the version required by tsc/go.mod.
+GOTOOLCHAIN=auto go -C tsc build -pgo=off -o ../.bench/bin/tsgo ./cmd/tsc
+.bench/bin/tsgo --version
+```
 
-This branch is an experiment. Measured runtime gains and memory costs are stated per workload; tsrs's published Rust gains are not attributed to Go without measurement.
+CI runs upstream compiler baselines, both test-program concurrency settings, cache shadow checks and checker/compiler race tests on standard GitHub-hosted Ubuntu runners. VS Code benchmarks run manually; they do not run for every PR. The native Mac comparison uses plain Go and Rust release builds with matching complete diagnostics. Runtime and memory results describe that workload and machine. No packages are published automatically.
+
+[LICENSE.txt](LICENSE.txt) and [NOTICE.txt](NOTICE.txt) retain upstream licensing and third-party notices. [NOTICE.tsrs.txt](NOTICE.tsrs.txt) credits the tsrs source of the translated strategies.

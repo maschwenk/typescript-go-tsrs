@@ -1,0 +1,79 @@
+name: Native Go PGO
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pgo-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  pgo:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version-file: tsc/go.mod
+          cache-dependency-path: '**/go.sum'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Read pinned tsrs source
+        id: pins
+        run: |
+          echo "tsrs=$(python3 -c 'import json; print(json.load(open("bench/pins.json"))["tsrs"]["commit"])')" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: maschwenk/tsrs
+          ref: ${{ steps.pins.outputs.tsrs }}
+          path: .bench/tsrs
+          persist-credentials: false
+      - name: Restore tsrs native binary
+        id: cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/tsrs/target/release/tsrs
+          key: tsrs-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99
+      - name: Build pinned tsrs
+        if: steps.cache.outputs.cache-hit != 'true'
+        working-directory: .bench/tsrs
+        run: |
+          rustup toolchain install 1.99.0 --profile minimal
+          cargo +1.99.0 build --locked --release -p tsrs_cli
+      - name: Save the completed native tsrs build immediately
+        if: steps.cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/tsrs/target/release/tsrs
+          key: tsrs-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99
+      - name: Build plain stock and fork
+        run: python3 bench/build.py
+      - name: Train native Go PGO on pinned VS Code
+        run: python3 bench/profile.py --compiler .bench/bin/fork --tsrs-source .bench/tsrs --projects vscode --reps 10
+      - name: Validate the PGO build against compiler baselines
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          go -C tsc test -pgo="$GITHUB_WORKSPACE/.bench/pgo/compiler.pprof" -count=1 ./internal/checker/... ./internal/testrunner/...
+      - name: Compare the same source with and without PGO
+        run: |
+          python3 bench/run.py --stock .bench/bin/stock --parent .bench/bin/fork --fork .bench/pgo/tsgo-pgo \
+            --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
+            --projects vscode --reps 5 --modes single,checkers4 \
+            --label ubuntu-24.04-native-pgo --out .bench/results/pgo.json
+      - name: Publish the VS Code PGO comparison
+        if: always()
+        run: |
+          echo 'Training and evaluation both use the same pinned VS Code workload; this measures workload specialization.' >> "$GITHUB_STEP_SUMMARY"
+          cat .bench/results/pgo.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: native-go-pgo
+          path: |
+            .bench/pgo/
+            .bench/results/
+          retention-days: 7

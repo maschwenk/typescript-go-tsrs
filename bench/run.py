@@ -35,6 +35,8 @@ def digest(path):
 def run(exe, project, mode, log, timeout):
     argv = [str(exe), '-p', str(project), '--noEmit', '--incremental', 'false', '--pretty', 'false', '--extendedDiagnostics', *MODES[mode]]
     env = dict(os.environ)
+    env.pop('GOMAXPROCS', None)
+    env.pop('RAYON_NUM_THREADS', None)
     if mode == 'single':
         env['GOMAXPROCS'] = '1'
         env['RAYON_NUM_THREADS'] = '1'
@@ -49,7 +51,12 @@ def run(exe, project, mode, log, timeout):
             timer.cancel()
         p.returncode = os.waitstatus_to_exitcode(status)
         wall = time.perf_counter() - t
-    lines = log.read_text(errors='replace').splitlines()
+    parsed = parse_output(log.read_text(errors='replace').splitlines(), p.returncode)
+    return {**parsed, 'wall_s':wall, 'peak_rss_bytes':ru.ru_maxrss * (1 if sys.platform=='darwin' else 1024),
+            'cpu_s':ru.ru_utime+ru.ru_stime, 'log':str(log)}
+
+
+def parse_output(lines, exit_code):
     counters = {m[1]: int(m[2]) for line in lines if (m := COUNTER.match(line))}
     # Preserve the entire diagnostic including continuation lines. Strip only explicit metrics.
     diagnostic_lines = []
@@ -65,15 +72,19 @@ def run(exe, project, mode, log, timeout):
         else:
             in_diagnostic = False
     diagnostics = '\n'.join(diagnostic_lines).strip()
-    completed = any(line.startswith('Check time:') for line in lines) and p.returncode in (0, 1, 2)
-    return {'exit': p.returncode, 'wall_s': wall, 'peak_rss_bytes': ru.ru_maxrss * (1 if sys.platform == 'darwin' else 1024),
-            'cpu_s': ru.ru_utime + ru.ru_stime, 'counters': counters, 'completed': completed,
+    crashed = any(re.match(r'^(panic:|fatal error:|runtime:|thread .*panicked)', line) for line in lines)
+    completed = not crashed and any(line.startswith('Check time:') for line in lines) and exit_code in (0, 1, 2) and 'Files' in counters
+    return {'exit': exit_code, 'counters': counters, 'completed': completed,
             'diagnostics_sha256': hashlib.sha256(diagnostics.encode()).hexdigest(),
-            'errors': sum(bool(re.search(r'error TS\d+:', line)) for line in lines), 'log': str(log)}
+            'errors': sum(bool(re.search(r'error TS\d+:', line)) for line in lines)}
 
 
 def signature(r):
     return r['exit'], r['diagnostics_sha256'], r['counters'].get('Files')
+
+
+def equal_outputs(reference, outputs):
+    return all(r['completed'] and signature(r)==signature(reference) for r in outputs)
 
 
 def main():
@@ -83,7 +94,7 @@ def main():
     ap.add_argument('--tsrs-source', type=Path, required=True)
     ap.add_argument('--work-dir', type=Path, default=ROOT / '.bench/work')
     ap.add_argument('--out', type=Path, default=ROOT / '.bench/results/latest.json')
-    ap.add_argument('--projects', default='synthetic', help='synthetic and/or names from tsrs bench/projects.json')
+    ap.add_argument('--projects', default='vscode', help='pinned VS Code workload by default; other corpora are optional manual diagnostics')
     ap.add_argument('--modes', default='single,checkers4,default')
     ap.add_argument('--reps', type=int, default=5)
     ap.add_argument('--timeout', type=int, default=600)
@@ -129,9 +140,23 @@ def main():
     actual_tsrs = subprocess.check_output(['git','-C',str(args.tsrs_source),'rev-parse','HEAD'],text=True).strip()
     if actual_tsrs != pins['tsrs']['commit']:
         ap.error('tsrs source does not match bench/pins.json')
+    allowed_env = ('GOGC','GOMEMLIMIT','GOEXPERIMENT','GOFLAGS','RUSTFLAGS','CARGO_ENCODED_RUSTFLAGS',
+                   'TSGO_UNION_CACHE','TSGO_LAZY_UNAFFECTED','TSGO_IA_MEMO','TSGO_CONTEXTUAL_REUSE',
+                   'TSGO_DEEP_NESTED','TSGO_INFER_MEMO','TSGO_FLOW_MEMO','TSGO_CONTEXTUAL_POSITIONS','TSGO_NODE_FILE_CACHE','TSGO_DISCRIMINANT_PROPERTIES','TSGO_PROPERTY_LOOKUPS','TSGO_SUBTYPE_PROPERTIES','TSGO_CONSTITUENT_FLAGS')
+    machine = {'label':args.label,'platform':platform.platform(),'cpus':os.cpu_count(),
+               'environment':{name:os.environ[name] for name in allowed_env if name in os.environ},
+               'runtime_thread_policy':'GOMAXPROCS and RAYON_NUM_THREADS cleared; both set to 1 in single mode'}
+    if sys.platform=='darwin':
+        for key in ('hw.model','hw.memsize','machdep.cpu.brand_string'):
+            machine[key]=subprocess.check_output(['sysctl','-n',key],text=True).strip()
+    if hasattr(os, 'sched_getaffinity'):
+        machine['cpu_affinity'] = sorted(os.sched_getaffinity(0))
+    for name in ('cpu.max','cpuset.cpus.effective','memory.max'):
+        path = Path('/sys/fs/cgroup') / name
+        if path.is_file(): machine[name] = path.read_text().strip()
     result = {'schema': 1, 'date': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'pins': pins,
               'head': subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
-              'machine': {'label':args.label,'platform':platform.platform(),'cpus':os.cpu_count()},
+              'machine': machine,
               'reps':args.reps, 'build':'plain release, Go -pgo=off unless binary metadata says otherwise',
               'tools': {}, 'rows': [], 'instructions': 'not collected; Go counts vary with GC; use bench/count.py on Linux separately'}
     for name,exe in tools.items():
@@ -142,13 +167,15 @@ def main():
     failed = False
     report = ['# Compiler comparison', '', f"{result['date']} · {args.label} · {platform.platform()} · {os.cpu_count()} logical CPUs", '',
               'Native binaries; warm filesystem caches; medians of interleaved runs. Single mode caps both compiler and runtime pools. Default mode uses each compiler’s settings.', '',
-              '| project | mode | stock s / MiB | parent s / MiB | fork s / MiB | tsrs s / MiB | stock/fork | parent/fork | Go equality | tsrs equality |',
-              '| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- | --- |']
+              '| project | mode | stock s / MiB | ' + ('parent s / MiB | ' if 'parent' in tools else '') + 'fork s / MiB | tsrs s / MiB | stock/fork | ' + ('parent/fork | ' if 'parent' in tools else '') + 'fork/tsrs | Go equality | tsrs equality |',
+              '| --- | --- | ---: | ' + ('---: | ' if 'parent' in tools else '') + '---: | ---: | ---: | ' + ('---: | ' if 'parent' in tools else '') + '---: | --- | --- |']
     for project_name, project in projects:
         for mode in args.modes.split(','):
             runs = {name:[] for name in tools}
+            warmups = {}
             for name, exe in tools.items():
                 warm = run(exe, project, mode, logs / f'{project_name}-{mode}-{name}-warm.log', args.timeout)
+                warmups[name] = warm
                 if not warm['completed']:
                     failed = True
             order = list(tools)
@@ -161,19 +188,28 @@ def main():
                     runs[name].append(r)
                     if not r['completed']:
                         failed = True
-            reference = signature(runs['stock'][0])
-            equality = {name: all(r['completed'] and signature(r) == reference for r in rs) for name,rs in runs.items()}
+            equality = {name: equal_outputs(runs['stock'][0], [warmups[name], *rs]) for name,rs in runs.items()}
             go_equal = all(equality[n] for n in tools if n != 'tsrs')
             failed |= not go_equal or (args.gate_tsrs and not equality['tsrs'])
             summary = {name:{key:statistics.median(r[key] for r in rs) for key in ('wall_s','peak_rss_bytes','cpu_s','errors')} for name,rs in runs.items()}
-            row = {'project':project_name,'mode':mode,'equality':equality,'summary':summary,'runs':runs}
+            row = {'project':project_name,'mode':mode,'equality':equality,'summary':summary,'runs':runs,'warmups':warmups}
             result['rows'].append(row)
             def cell(name):
                 r=summary[name]
                 return f"{r['wall_s']:.3f} / {r['peak_rss_bytes']/2**20:.1f}"
-            report.append(f"| {project_name} | {mode} | {cell('stock')} | {cell('parent' if 'parent' in tools else 'stock')} | {cell('fork')} | {cell('tsrs')} | {summary['stock']['wall_s']/summary['fork']['wall_s']:.2f}x | {summary['parent' if 'parent' in tools else 'stock']['wall_s']/summary['fork']['wall_s']:.2f}x | {'yes' if go_equal else 'MISMATCH'} | {'yes' if equality['tsrs'] else 'MISMATCH'} |")
+            stock_ratio = f"{summary['stock']['wall_s']/summary['fork']['wall_s']:.2f}x" if go_equal else 'invalid'
+            parent_ratio = f"{summary['parent' if 'parent' in tools else 'stock']['wall_s']/summary['fork']['wall_s']:.2f}x" if go_equal else 'invalid'
+            tsrs_ratio = f"{summary['fork']['wall_s']/summary['tsrs']['wall_s']:.2f}x" if go_equal and equality['tsrs'] else 'invalid'
+            cells = [project_name, mode, cell('stock')]
+            if 'parent' in tools: cells.append(cell('parent'))
+            cells += [cell('fork'),cell('tsrs'),stock_ratio]
+            if 'parent' in tools: cells.append(parent_ratio)
+            cells += [tsrs_ratio,'yes' if go_equal else 'MISMATCH','yes' if equality['tsrs'] else 'MISMATCH']
+            report.append('| ' + ' | '.join(cells) + ' |')
             print(report[-1],flush=True)
-    result['go_gate_passed'] = not failed
+    result['go_gate_passed'] = all(all(row['equality'][n] for n in tools if n!='tsrs') for row in result['rows'])
+    result['tsrs_gate_passed'] = all(row['equality']['tsrs'] for row in result['rows'])
+    result['requested_gates_passed'] = not failed
     args.out.write_text(json.dumps(result,indent=2)+'\n')
     args.out.with_suffix('.md').write_text('\n'.join(report)+'\n')
     sys.exit(1 if failed else 0)
