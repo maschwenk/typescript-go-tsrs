@@ -1,6 +1,6 @@
 # Public repository preparation
 
-Prepared 2026-10-12 for `maschwenk/typescript-go-tsrs`. The owner authorized publication and the repository is now public. Compiler ports continue to merge individually after exact-source validation; publication does not mark pending CI successful.
+Prepared 2026-10-12 for `maschwenk/typescript-go-tsrs`. The owner authorized publication and the repository is now public. All 52 implementation steps merged individually after correctness validation; publication did not mark pending CI successful.
 
 ## Completed preparation
 
@@ -22,6 +22,6 @@ The repository has no Actions secrets, Actions variables or environments. Older 
 
 The repository is public. Workflow approval is required for all outside contributors. Private vulnerability reporting, GitHub secret scanning and push protection are enabled. No self-hosted runners are registered.
 
-The hosted infrastructure PR passed both test configurations and merged. Pending compiler PRs are replayed against the reviewed hosted CI workflow with exact source SHAs and merge in source order. Failed checks caused by the former private allowance are retained as history; no artificial green checks are created.
+The hosted infrastructure PR passed both test configurations and merged. Compiler PRs were replayed against the reviewed hosted CI workflow with exact source SHAs and merged in source order. History-only conflict resolutions preserved the validated compiler, tests and dependency inputs and recorded both revisions in the PR. Failed checks caused by the former private allowance are retained as history; no artificial green checks were created.
 
 GitHub documents [free standard hosted runner use](https://docs.github.com/en/actions/reference/runners/github-hosted-runners#standard-github-hosted-runners-for-public-repositories) and that [Actions history and logs become visible](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility#making-a-repository-public) when a repository is made public.

@@ -2,7 +2,7 @@
 
 An experimental Go TypeScript compiler that brings transferable strategies from [tsrs](https://github.com/maschwenk/tsrs) back to [Microsoft TypeScript](https://github.com/microsoft/TypeScript). It preserves upstream history and the Apache-2.0 license. This fork is maintained independently of Microsoft.
 
-The implementation series has 52 individually documented steps. Changes merge one PR at a time after correctness checks; [the strategy audit](docs/backports/README.md) links each PR and explains the Go translation and strategies that require more architectural work. The published benchmark identifies the exact compiler commit, which may be ahead of `main` while the series finishes merging.
+All 52 individually documented implementation steps are merged. The [strategy audit](docs/backports/README.md) links each PR and explains the Go translation and strategies that require more architectural work. Every published benchmark identifies the exact compiler commit it measured.
 
 - [VS Code comparison and raw results](docs/backports/results/native-vscode/README.md)
 - [Build and benchmark instructions](bench/README.md)
@@ -20,7 +20,46 @@ CI runs upstream compiler baselines, both test-program concurrency settings, cac
 <!-- vscode-benchmarks:start -->
 ## VS Code benchmarks
 
-The first automatic run will populate wall-time and peak-memory tables for `tsgo` (this fork), `tsgo nightly` (Microsoft's `typescript@next`) and `tsrs`. [Method and reproduction](bench/README.md#automatic-readme-benchmarks)
+<!-- measured-commit: 92560ebfc0652ffdd59c7eb78e10b42903cb683d -->
+Measured [92560ebfc065](https://github.com/maschwenk/typescript-go-tsrs/commit/92560ebfc0652ffdd59c7eb78e10b42903cb683d) on 2026-10-12T04:00:10.253505+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38201789376) · [raw measurements](bench/results/92560ebfc0652ffdd59c7eb78e10b42903cb683d.json)
+
+Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · AMD EPYC 9V45 96-Core Processor · MemTotal:       16373452 kB
+
+VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repetitions per compiler and mode. Tables show medians. Hosted runner hardware can vary between commits.
+
+### Wall time (seconds)
+
+| mode | tsgo | tsgo nightly | tsrs |
+| --- | ---: | ---: | ---: |
+| default settings | 13.937 | 15.660 | 4.353 |
+| single thread | 32.718 | 34.196 | 11.424 |
+| 4 checkers | 13.689 | 14.866 | 4.315 |
+| 8 checkers | 14.852 | 15.737 | 4.694 |
+
+### Peak memory (MiB)
+
+| mode | tsgo | tsgo nightly | tsrs |
+| --- | ---: | ---: | ---: |
+| default settings | 6277.9 | 6959.0 | 1975.7 |
+| single thread | 5687.8 | 6290.3 | 1660.9 |
+| 4 checkers | 6237.6 | 6764.1 | 1962.7 |
+| 8 checkers | 6809.8 | 7208.2 | 2176.6 |
+
+### Compiler versions and diagnostics
+
+| compiler | version | files | errors | matches tsgo diagnostics, exit and files |
+| --- | --- | ---: | ---: | --- |
+| tsgo | Version 7.1.0-dev | 10427 | 371 | yes |
+| tsgo nightly | Version 7.1.0-dev.20261011.1 | 10427 | 371 | yes |
+| tsrs | Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f) | 10427 | 371 | yes |
+
+`tsgo` is this fork. `tsgo nightly` is `@typescript/typescript-linux-x64@7.1.0-dev.20261011.1`, resolved once from `typescript@next`. `tsrs` is pinned to `e4c7d83a5907`.
+
+fork: Go -pgo=off; tsrs: plain Rust release; nightly: official npm binary. Default settings use each compiler’s own thread policy; the other rows compare equal checker counts. Single thread also limits runtime pools to one.
+
+All warmups and repetitions completed and produced stable full diagnostics within each compiler. Different compiler versions can produce different diagnostics; those rows are descriptive timings, with no speedup ratio or correctness claim. Compiler correctness is gated separately by CI.
+
+[Method and reproduction](bench/README.md#automatic-readme-benchmarks) · [Native Mac comparison](docs/backports/results/native-vscode/README.md)
 <!-- vscode-benchmarks:end -->
 
 [LICENSE.txt](LICENSE.txt) and [NOTICE.txt](NOTICE.txt) retain upstream licensing and third-party notices. [NOTICE.tsrs.txt](NOTICE.tsrs.txt) credits the tsrs source of the translated strategies.

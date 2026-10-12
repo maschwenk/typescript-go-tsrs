@@ -2,7 +2,7 @@
 
 The workload is VS Code `src`, pinned to `9cf0128b9822dcd8a533f08ef7312956a4390301` in the pinned tsrs project definitions. Compiler controls are in `pins.json`. Implementation PRs run correctness checks; the README comparison updates on every main push.
 
-Published results identify the exact fork source commit. Check out that commit before building to reproduce a published row; `main` can be an earlier step while the source series merges.
+Published results identify the exact fork source commit. Check out that commit before building to reproduce a published row; newer commits on `main` may contain further changes.
 
 ## Automatic README benchmarks
 
