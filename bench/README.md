@@ -1,8 +1,31 @@
 # Comparing stock Go, this fork and tsrs
 
-The default workload is VS Code `src`, pinned to `9cf0128b9822dcd8a533f08ef7312956a4390301` in the pinned tsrs project definitions. Compiler revisions are in `pins.json`. Implementation PRs run correctness checks; performance is measured once after the series.
+The workload is VS Code `src`, pinned to `9cf0128b9822dcd8a533f08ef7312956a4390301` in the pinned tsrs project definitions. Compiler controls are in `pins.json`. Implementation PRs run correctness checks; the README comparison updates on every main push.
 
 Published results identify the exact fork source commit. Check out that commit before building to reproduce a published row; `main` can be an earlier step while the source series merges.
+
+## Automatic README benchmarks
+
+`readme-benchmarks.yml` measures VS Code on a standard GitHub-hosted `ubuntu-24.04` runner after every push to `main`. It compares `tsgo` (this fork, plain Go with `-pgo=off`), `tsgo nightly` (the official native platform binary at the version resolved from `typescript@next`) and `tsrs` (the pinned plain Rust release build). This follows tsrs's main-push measurement and publication pattern; its own published chart uses a different machine and optimized distribution build.
+
+Each run resolves the nightly once, installs that exact version and records its npm integrity, source commit when available, binary hash and Go build settings. It runs one warmup and five interleaved repetitions for all three compilers in default, single-threaded, four-checker and eight-checker modes. The README shows separate time and memory tables, versions, full-diagnostic parity and the machine. All repetitions must finish and produce stable diagnostics, exit status and file counts within each compiler and across thread counts. Nightly versions can disagree with the pinned compiler semantics; disagreement is shown and no speedup ratio is calculated. The original same-source stock/fork correctness gate below stays separate.
+
+Every measured main commit gets `bench/results/<full-commit>.json`. Raw logs remain in the seven-day Actions artifact. Different commits do not share a concurrency group, so rapid merges cannot cancel or replace queued measurements. A separate publisher writes on top of the latest main, retries a racing push, preserves prose outside the README markers and keeps a newer source's table when an older run finishes later. Its bot commits carry `[skip ci]` and use `GITHUB_TOKEN` to prevent a results loop. Branch dispatches collect artifacts without writing main.
+
+Hosted CPU models can vary, so inspect machine metadata before comparing commits. These tables are separate from the existing native Mac results. Optional PGO and CodSpeed workflows stay manual.
+
+To reproduce after building this fork and the pinned tsrs:
+
+```sh
+python3 bench/nightly.py --out .bench/nightly
+nightly=$(python3 -c 'import json; print(json.load(open(".bench/nightly/provenance.json"))["package"])')
+python3 bench/main_benchmark.py --fork .bench/bin/fork \
+  --nightly ".bench/nightly/node_modules/$nightly/lib/tsc" \
+  --nightly-provenance .bench/nightly/provenance.json \
+  --tsrs-source /path/to/tsrs --tsrs /path/to/tsrs/target/release/tsrs
+```
+
+Use the exact recorded npm version instead of `@next` to reproduce an older nightly. `publish_readme.py` can regenerate the tables from recorded JSON without rerunning the compilers.
 
 ## Native Mac comparison
 
