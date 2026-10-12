@@ -59,7 +59,7 @@ Neither prototype is included in compiler source. Saving 7-9% RSS at a runtime c
 
 ## Completed public Linux profile
 
-[Run 38208040052](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38208040052) succeeds with both compilers' raw CPU profiles, full diagnostic parity and 10,465 checked files. This is a four-CPU public Ubuntu runner. The recorded platform is `Linux-6.17.0-1022-azure-x86_64`; its CPU model was not captured. These absolute times must not be compared with the original run on another runner. One ordinary timed execution per variant is used here for diagnosis, not a repeated performance claim.
+[Run 38208040052](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38208040052) succeeds with both compilers' raw CPU profiles, full diagnostic parity and 10,427 checked files. This is a four-CPU public Ubuntu runner. The recorded platform is `Linux-6.17.0-1022-azure-x86_64`; its CPU model was not captured. These absolute times must not be compared with the original run on another runner. One ordinary timed execution per variant is used here for diagnosis, not a repeated performance claim.
 
 | mode | fork wall / CPU | tsrs wall / CPU | finite GC probe wall / CPU | fork / tsrs peak RSS |
 | --- | ---: | ---: | ---: | ---: |
@@ -82,4 +82,4 @@ A Go PGO build trained from the recovered Linux VS Code profile saves 7.4% nativ
 
 `bench/profile_vscode.py` measures ordinary CLI runs at one and four threads, validates complete diagnostics, and records Go CPU/allocation profiles and GC traces separately. Rust sampling uses native `samply` on macOS or `perf` on Linux. The manual `Benchmark` workflow's `profile=true` input records both CPU profiles and repeats the finite GC probe on a standard public GitHub runner. The Linux profile is required before selecting a default memory policy from the Darwin data.
 
-The next compiler change should target measured allocation volume, pointer-rich live state, or actual checker imbalance. A larger shared-checker design is not presumed to be a win: tsrs's own `notes/perf-shared-checker.md` rejected it, and VS Code's shared duplication was comparatively small. Scheduler changes also require the history/order-independence fixes, not merely a copied work queue.
+The measured finite GC policy is documented in [the follow-up](54-batch-gc-budget.md). Further compiler changes should target measured allocation volume, pointer-rich live state, or actual checker imbalance. A larger shared-checker design is not presumed to be a win: tsrs's own `notes/perf-shared-checker.md` rejected it, and VS Code's shared duplication was comparatively small. Scheduler changes also require the history/order-independence fixes, not merely a copied work queue.

@@ -17,6 +17,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--fork', type=Path, required=True)
     parser.add_argument('--tsrs', type=Path, required=True)
+    parser.add_argument('--reference', type=Path, help='plain Go parent binary for a same-run A/B comparison')
+    parser.add_argument('--modes', default='single,checkers4', help='single, checkers4, or both')
     parser.add_argument('--tsrs-source', type=Path, required=True)
     parser.add_argument('--tsrs-profile', type=Path, help='same pinned release source built with debug symbols')
     parser.add_argument('--perf', type=Path, help='Linux perf binary, with perf_event access configured')
@@ -26,6 +28,9 @@ def main():
     parser.add_argument('--reps', type=int, default=3)
     parser.add_argument('--gc-probe', action='store_true', help='also measure finite GOGC=400, GOMEMLIMIT=8GiB; not a default change')
     args = parser.parse_args()
+    modes = args.modes.split(',')
+    if not modes or len(set(modes)) != len(modes) or not set(modes) <= {'single', 'checkers4'}:
+        parser.error('use single, checkers4, or both once')
     if not 1 <= args.reps <= 10 or (args.perf and args.samply):
         parser.error('use 1-10 repetitions and at most one native sampling tool')
     if any(os.environ.get(k) for k in ('GOGC', 'GOMEMLIMIT', 'GODEBUG')):
@@ -48,6 +53,8 @@ def main():
         parser.error('VS Code source differs from the pin')
     _, config = upstream.project_path(cfg, project, work)
     executables = {'tsgo': args.fork.resolve(), 'tsrs': args.tsrs.resolve()}
+    if args.reference:
+        executables['tsgo-reference'] = args.reference.resolve()
     args.out = args.out.resolve()
     if (args.out / 'result.json').exists():
         parser.error('choose a new output directory for each profiling experiment')
@@ -59,8 +66,10 @@ def main():
               'project': project, 'pins': pins, 'reps': args.reps, 'tools': {}, 'rows': []}
     for name, binary in executables.items():
         result['tools'][name] = {'sha256': digest(binary), 'version': subprocess.check_output([str(binary), '--version'], text=True).strip()}
-    result['tools']['tsgo']['go_build'] = subprocess.check_output(['go', 'version', '-m', str(args.fork.resolve())], text=True)
-    for mode in ('single', 'checkers4'):
+    for name, binary in executables.items():
+        if name != 'tsrs':
+            result['tools'][name]['go_build'] = subprocess.check_output(['go', 'version', '-m', str(binary)], text=True)
+    for mode in modes:
         pools = {'GOMAXPROCS': '1', 'RAYON_NUM_THREADS': '1'} if mode == 'single' else {'GOMAXPROCS': '4', 'RAYON_NUM_THREADS': '4'}
         validations = {name: run(binary, config, mode, args.out / f'{name}-{mode}-validation.log', 600, extra_env=pools)
                        for name, binary in executables.items()}

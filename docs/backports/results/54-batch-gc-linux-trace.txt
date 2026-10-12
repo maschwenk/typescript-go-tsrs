@@ -1,0 +1,9 @@
+Separate profiled compilation; excluded from timing medians.
+Run 38210420494, source 5b1aa042574578e241e3f33260da0f8e31710009.
+The goals are approximately five times the previous live heap, confirming the automatic GOGC=400 policy.
+
+gc 1 @0.053s 0%: 0.039+0.94+0.050 ms clock, 0.15+0.29/0.57/0.76+0.20 ms cpu, 15->15->4 MB, 16 MB goal, 0 MB stacks, 0 MB globals, 4 P
+gc 2 @0.105s 1%: 0.091+4.5+0.022 ms clock, 0.36+0.92/4.2/0+0.091 ms cpu, 20->24->11 MB, 21 MB goal, 0 MB stacks, 0 MB globals, 4 P
+gc 3 @0.138s 7%: 0.10+44+0.053 ms clock, 0.40+2.5/43/0+0.21 ms cpu, 56->86->79 MB, 60 MB goal, 0 MB stacks, 0 MB globals, 4 P
+gc 4 @0.385s 13%: 0.097+316+0.047 ms clock, 0.39+4.9/315/0+0.18 ms cpu, 367->565->530 MB, 400 MB goal, 1 MB stacks, 0 MB globals, 4 P
+gc 5 @2.119s 14%: 0.39+2038+0.050 ms clock, 1.5+6.6/2036/220+0.20 ms cpu, 2424->3111->2810 MB, 2657 MB goal, 0 MB stacks, 0 MB globals, 4 P
