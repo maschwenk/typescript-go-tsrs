@@ -20,8 +20,8 @@ CI runs upstream compiler baselines, both test-program concurrency settings, cac
 <!-- vscode-benchmarks:start -->
 ## VS Code benchmarks
 
-<!-- measured-commit: 3da5a52f798b61d01f3148afa024e2c4d7711c9e -->
-Measured [3da5a52f798b](https://github.com/maschwenk/typescript-go-tsrs/commit/3da5a52f798b61d01f3148afa024e2c4d7711c9e) on 2026-10-12T03:59:17.144715+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38201663204) · [raw measurements](bench/results/3da5a52f798b61d01f3148afa024e2c4d7711c9e.json)
+<!-- measured-commit: 92560ebfc0652ffdd59c7eb78e10b42903cb683d -->
+Measured [92560ebfc065](https://github.com/maschwenk/typescript-go-tsrs/commit/92560ebfc0652ffdd59c7eb78e10b42903cb683d) on 2026-10-12T04:00:10.253505+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38201789376) · [raw measurements](bench/results/92560ebfc0652ffdd59c7eb78e10b42903cb683d.json)
 
 Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · AMD EPYC 9V45 96-Core Processor · MemTotal:       16373452 kB
 
@@ -31,19 +31,19 @@ VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repeti
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 14.447 | 16.358 | 4.764 |
-| single thread | 35.995 | 40.258 | 12.792 |
-| 4 checkers | 14.678 | 16.534 | 4.846 |
-| 8 checkers | 15.261 | 17.023 | 5.060 |
+| default settings | 13.937 | 15.660 | 4.353 |
+| single thread | 32.718 | 34.196 | 11.424 |
+| 4 checkers | 13.689 | 14.866 | 4.315 |
+| 8 checkers | 14.852 | 15.737 | 4.694 |
 
 ### Peak memory (MiB)
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 6078.5 | 6883.2 | 1973.1 |
-| single thread | 5553.0 | 6167.6 | 1658.2 |
-| 4 checkers | 6233.1 | 6722.9 | 1976.1 |
-| 8 checkers | 6647.3 | 7107.4 | 2181.6 |
+| default settings | 6277.9 | 6959.0 | 1975.7 |
+| single thread | 5687.8 | 6290.3 | 1660.9 |
+| 4 checkers | 6237.6 | 6764.1 | 1962.7 |
+| 8 checkers | 6809.8 | 7208.2 | 2176.6 |
 
 ### Compiler versions and diagnostics
 
