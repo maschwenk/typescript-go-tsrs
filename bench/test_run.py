@@ -4,6 +4,18 @@ from pathlib import Path
 from run import run, signature, parse_output, equal_outputs
 
 class HarnessTest(unittest.TestCase):
+    def test_ordinary_cli_requires_successful_coverage_and_exact_diagnostics(self):
+        validation = parse_output(['a.ts(1,1): error TS2322: wrong', '  detail', 'Files: 10465', 'Check time: 1s'], 2)
+        lines = ['a.ts(1,1): error TS2322: wrong', '  detail']
+        ordinary = parse_output(lines, 2, validation=validation)
+        self.assertTrue(ordinary['completed'])
+        self.assertEqual(signature(ordinary), signature(validation))
+        self.assertEqual(ordinary['counters_source'], 'validation')
+        self.assertFalse(parse_output(lines, -9, validation=validation)['completed'])
+        self.assertFalse(parse_output(lines + ['panic: crash'], 2, validation=validation)['completed'])
+        self.assertFalse(parse_output(lines[:1], 2, validation=validation)['completed'])
+        self.assertFalse(parse_output(lines, 2, validation=parse_output([], 2))['completed'])
+
     def test_warmup_mismatch_is_part_of_equality(self):
         reference=parse_output(['Files: 2', 'Check time: 0.01s'], 0)
         warmup=parse_output(['file.ts(1,1): error TS2322: wrong', 'Files: 2', 'Check time: 0.01s'], 2)

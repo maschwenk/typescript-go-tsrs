@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-12T04:39:41.362067+00:00",
+  "source": "9cccedaa8cda548dc1f51a48dd15e7be0d95b62e",
+  "machine": "macOS-26.6.2-arm64-arm-64bit",
+  "cpus": 18,
+  "rows": [
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 4833856,
+        "Types": 2659408,
+        "Instantiations": 3502722,
+        "Memory allocs": 29190447
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "tsgo",
+      "mode": "single",
+      "label": "profile-single",
+      "wall_s": 26.8078025,
+      "cpu_s": 24.936515,
+      "rss_bytes": 6022316032,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--singleThreaded",
+        "--pprofDir",
+        "<repo>/.bench/profiling-gap/pprof-single"
+      ],
+      "metrics": {
+        "Memory used": "4458650K",
+        "Memory allocs": "29190447",
+        "Config time": "0.169s",
+        "Parse time": "4.300s",
+        "Bind time": "1.241s",
+        "Check time": "15.590s",
+        "Total time": "21.321s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33718458
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "tsgo",
+      "mode": "checkers4",
+      "label": "profile-checkers4",
+      "wall_s": 8.524911666999998,
+      "cpu_s": 29.808322999999998,
+      "rss_bytes": 6638469120,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4",
+        "--pprofDir",
+        "<repo>/.bench/profiling-gap/pprof-checkers4"
+      ],
+      "metrics": {
+        "Memory used": "5045968K",
+        "Memory allocs": "33718458",
+        "Config time": "0.074s",
+        "Parse time": "1.002s",
+        "Bind time": "0.199s",
+        "Check time": "4.910s",
+        "Total time": "6.244s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5687736,
+        "Types": 3755227,
+        "Instantiations": 5660159,
+        "Memory allocs": 36835118
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "tsgo",
+      "mode": "default",
+      "label": "profile-default",
+      "wall_s": 4.445666833000004,
+      "cpu_s": 37.191062,
+      "rss_bytes": 6584598528,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--pprofDir",
+        "<repo>/.bench/profiling-gap/pprof-default"
+      ],
+      "metrics": {
+        "Memory used": "5548140K",
+        "Memory allocs": "36835118",
+        "Config time": "0.073s",
+        "Parse time": "0.457s",
+        "Bind time": "0.067s",
+        "Check time": "2.715s",
+        "Total time": "3.367s"
+      }
+    }
+  ],
+  "diagnostics_equal": true
+}

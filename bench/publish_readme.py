@@ -21,6 +21,8 @@ VSCODE = '9cf0128b9822dcd8a533f08ef7312956a4390301'
 def validate(result):
     if result.get('schema') != 'readme-v1' or result.get('completed') is not True:
         raise ValueError('a complete README benchmark is required')
+    if result.get('measurement', 'extended-diagnostics-v1') not in ('extended-diagnostics-v1', 'ordinary-cli-v1'):
+        raise ValueError('unknown measurement method')
     if not re.fullmatch('[0-9a-f]{40}', result['head']):
         raise ValueError('a full source commit is required')
     if not isinstance(result['reps'], int) or not 1 <= result['reps'] <= 20:
@@ -48,6 +50,9 @@ def validate(result):
             warmup = row['warmups'][name]
             if len(runs) != result['reps'] or not stable(warmup, runs):
                 raise ValueError('incomplete or unstable compiler output')
+            if result.get('measurement') == 'ordinary-cli-v1':
+                if any(s.get('statistics') != 'disabled' or s.get('counters_source') != 'validation' for s in runs):
+                    raise ValueError('ordinary CLI timings require a separate coverage validation')
             if signature(warmup) != signature(result['rows'][0]['warmups'][name]):
                 raise ValueError('compiler output changed with its thread count')
             for sample in [warmup, *runs]:
@@ -82,6 +87,10 @@ def table(result):
     labels = {'default': 'default settings', 'single': 'single thread', 'checkers4': '4 checkers', 'checkers8': '8 checkers'}
     for row in result['rows']:
         lines.append('| ' + labels[row['mode']] + ' | ' + ' | '.join(f"{row['summary'][name]['wall_s']:.3f}" for name in TOOLS) + ' |')
+    if result.get('measurement') == 'ordinary-cli-v1':
+        lines += ['', 'Timed runs omit `--extendedDiagnostics`: Go otherwise performs two full garbage collections after compilation. File counts come from each compiler’s separate instrumented validation pass; every timed run must match its complete diagnostic text and exit status. These timings use a different method from earlier archived tables.']
+    else:
+        lines += ['', 'Historical method: timed runs include `--extendedDiagnostics`, including Go’s two post-compilation garbage collections.']
     lines += ['', '### Peak memory (MiB)', '', '| mode | tsgo | tsgo nightly | tsrs |', '| --- | ---: | ---: | ---: |']
     for row in result['rows']:
         lines.append('| ' + labels[row['mode']] + ' | ' + ' | '.join(f"{row['summary'][name]['peak_rss_bytes'] / 2**20:.1f}" for name in TOOLS) + ' |')

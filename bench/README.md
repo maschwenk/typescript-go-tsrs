@@ -10,6 +10,8 @@ Published results identify the exact fork source commit. Check out that commit b
 
 Each run resolves the nightly once, installs that exact version and records its npm integrity, source commit when available, binary hash and Go build settings. It runs one warmup and five interleaved repetitions for all three compilers in default, single-threaded, four-checker and eight-checker modes. The README shows separate time and memory tables, versions, full-diagnostic parity and the machine. All repetitions must finish and produce stable diagnostics, exit status and file counts within each compiler and across thread counts. Nightly versions can disagree with the pinned compiler semantics; disagreement is shown and no speedup ratio is calculated. The original same-source stock/fork correctness gate below stays separate.
 
+Timed repetitions measure ordinary compilation without `--extendedDiagnostics`. The separate instrumented warmup establishes the file count and completed-check evidence; every timed run must match its complete diagnostic text and exit status. Go's statistics reporting forces two full GCs after compilation, so including it in wall time inflated Go's side of earlier comparisons. New JSON identifies this method as `ordinary-cli-v1`, and the publisher labels historical instrumented tables. The method change is not a compiler speedup.
+
 Every measured main commit gets `bench/results/<full-commit>.json`. Raw logs remain in the seven-day Actions artifact. Different commits do not share a concurrency group, so rapid merges cannot cancel or replace queued measurements. A separate publisher writes on top of the latest main, retries a racing push, preserves prose outside the README markers and keeps a newer source's table when an older run finishes later. Its bot commits carry `[skip ci]` and use `GITHUB_TOKEN` to prevent a results loop. Branch dispatches collect artifacts without writing main.
 
 Hosted CPU models can vary, so inspect machine metadata before comparing commits. These tables are separate from the existing native Mac results. Optional PGO and CodSpeed workflows stay manual.
@@ -63,6 +65,21 @@ python3 bench/differential.py --stock .bench/bin/stock --fork .bench/bin/fork \
 The seeded differential tool compiles generated TypeScript modules with generics, mapped types, unions, flow narrowing and deliberate errors. It compares full diagnostic bytes, exits and every emitted JS/declaration file in single and four-checker modes. Failure fixtures and logs are retained. This complements upstream conformance and race checks; it is bounded test coverage.
 
 CPU profiles and a separate native Go PGO build are described in `pgo.md`. No `default.pgo` changes ordinary builds.
+
+## Profiling the remaining gap
+
+`profile_vscode.py` uses the same source pins and full diagnostic gate. It compares ordinary CLI compilation at one and four runtime threads, then records profiles in separate runs. Profiling overhead never enters the timing summary. The optional GC probe uses finite `GOGC=400` with an `8GiB` soft memory limit; it is an experiment, not a changed compiler default.
+
+```sh
+python3 bench/profile_vscode.py --fork .bench/bin/fork \
+  --tsrs /path/to/tsrs/target/release/tsrs --tsrs-source /path/to/tsrs \
+  --tsrs-profile /path/to/tsrs/target/prof/release/tsrs \
+  --samply "$(command -v samply)" --gc-probe --out .bench/profile-native
+```
+
+Build the profiling Rust executable with `CARGO_TARGET_DIR=target/prof CARGO_PROFILE_RELEASE_STRIP=none CARGO_PROFILE_RELEASE_DEBUG=1 cargo +1.99.0 build --locked --release -p tsrs_cli`. These flags retain debug symbols with the same release optimization settings. Keep the ordinary release binary for timings. Omit `--samply` only if Rust sampling is unavailable; Go profiles are still recorded. Each invocation needs a new output directory.
+
+The manual `Benchmark` workflow's `profile=true` input records native Linux Go CPU/allocation profiles, Rust `perf` CPU stacks, GC traces, ordinary timing repetitions and the finite GC probe on a standard public GitHub runner. It saves the complete experiment as a `vscode-profiles-<sha>` artifact. The Linux run matters because Darwin's Go heap-page recommit cost does not transfer to Linux. Profile single-thread CPU work and parallel imbalance separately before choosing an architecture change.
 
 ## Optional CodSpeed
 

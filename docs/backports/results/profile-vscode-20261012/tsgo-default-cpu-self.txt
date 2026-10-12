@@ -1,0 +1,48 @@
+File: tsgo-before
+Type: cpu
+Time: 2026-10-12 00:39:36 EDT
+Duration: 4.33s, Total samples = 34.50s (797.03%)
+Showing nodes accounting for 27.57s, 79.91% of 34.50s total
+Dropped 1505 nodes (cum <= 0.17s)
+Showing top 40 nodes out of 346
+      flat  flat%   sum%        cum   cum%
+    12.21s 35.39% 35.39%     12.21s 35.39%  runtime.madvise
+     2.86s  8.29% 43.68%      3.50s 10.14%  runtime.tryDeferToSpanScan
+     2.32s  6.72% 50.41%      2.32s  6.72%  runtime.memclrNoHeapPointers
+     1.98s  5.74% 56.14%      2.01s  5.83%  runtime.(*mspan).typePointersOfUnchecked
+     1.56s  4.52% 60.67%      6.78s 19.65%  runtime.scanObject
+     0.98s  2.84% 63.51%      0.98s  2.84%  syscall.rawsyscalln
+     0.67s  1.94% 65.45%      0.85s  2.46%  runtime.mapaccess2_fast64
+     0.58s  1.68% 67.13%      2.34s  6.78%  runtime.scanObjectsSmall
+     0.43s  1.25% 68.38%      0.73s  2.12%  runtime.findObject
+     0.43s  1.25% 69.62%      0.66s  1.91%  runtime.greyobject
+     0.41s  1.19% 70.81%      0.49s  1.42%  runtime.mapaccess2
+     0.36s  1.04% 71.86%      0.36s  1.04%  runtime.usleep
+     0.26s  0.75% 72.61%      0.26s  0.75%  runtime.pthread_cond_signal
+     0.25s  0.72% 73.33%      0.60s  1.74%  runtime.mapaccess2_faststr
+     0.24s   0.7% 74.03%      0.24s   0.7%  runtime.alignDown (inline)
+     0.24s   0.7% 74.72%      0.31s   0.9%  runtime.typePointers.next
+     0.23s  0.67% 75.39%      0.23s  0.67%  runtime.pthread_cond_wait
+     0.21s  0.61% 76.00%      0.41s  1.19%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedLinkStore[go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.resolvedSymbol *github.com/microsoft/TypeScript/tsc/internal/ast.Symbol }]).Get
+     0.16s  0.46% 76.46%      0.24s   0.7%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedLinkStore[go.shape.uint32]).Get
+     0.15s  0.43% 76.90%      0.44s  1.28%  runtime.scanObjectSmall
+     0.10s  0.29% 77.19%      0.85s  2.46%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).inferFromTypes
+     0.07s   0.2% 77.39%      0.49s  1.42%  github.com/microsoft/TypeScript/tsc/internal/binder.(*NameResolver).Resolve
+     0.07s   0.2% 77.59%      0.22s  0.64%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).createTypeReferenceEx
+     0.07s   0.2% 77.80%      0.68s  1.97%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNodeUncached
+     0.07s   0.2% 78.00%      0.67s  1.94%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).invokeOnce
+     0.07s   0.2% 78.20%      9.92s 28.75%  runtime.gcDrain
+     0.06s  0.17% 78.38%      0.29s  0.84%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewIdentifier
+     0.06s  0.17% 78.55%      0.42s  1.22%  runtime.(*sweepLocked).sweep
+     0.05s  0.14% 78.70%      0.30s  0.87%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newInstantiatedSymbol
+     0.05s  0.14% 78.84%      0.32s  0.93%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSymbol
+     0.05s  0.14% 78.99%      2.88s  8.35%  runtime.scanSpan
+     0.04s  0.12% 79.10%      0.39s  1.13%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getObjectTypeInstantiation
+     0.04s  0.12% 79.22%      0.43s  1.25%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeOfParameter
+     0.04s  0.12% 79.33%      2.33s  6.75%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeOfSymbol
+     0.04s  0.12% 79.45%      0.56s  1.62%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getUnmatchedPropertiesWorkerEx
+     0.04s  0.12% 79.57%      1.49s  4.32%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*filesParser).start.func1
+     0.03s 0.087% 79.65%      0.25s  0.72%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).bind
+     0.03s 0.087% 79.74%      3.28s  9.51%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkDeferredNode
+     0.03s 0.087% 79.83%      0.73s  2.12%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getEffectsSignature
+     0.03s 0.087% 79.91%      0.26s  0.75%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getPropertyOfUnionOrIntersectionType

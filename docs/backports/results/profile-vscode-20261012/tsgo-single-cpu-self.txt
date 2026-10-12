@@ -1,0 +1,48 @@
+File: tsgo-before
+Type: cpu
+Time: 2026-10-12 00:39:02 EDT
+Duration: 26.26s, Total samples = 23.73s (90.38%)
+Showing nodes accounting for 19.89s, 83.82% of 23.73s total
+Dropped 1051 nodes (cum <= 0.12s)
+Showing top 40 nodes out of 365
+      flat  flat%   sum%        cum   cum%
+     9.76s 41.13% 41.13%      9.76s 41.13%  runtime.madvise
+     1.77s  7.46% 48.59%      2.19s  9.23%  runtime.tryDeferToSpanScan
+     1.46s  6.15% 54.74%      4.56s 19.22%  runtime.scanObject
+     0.79s  3.33% 58.07%      0.85s  3.58%  runtime.(*mspan).typePointersOfUnchecked
+     0.66s  2.78% 60.85%      0.66s  2.78%  syscall.rawsyscalln
+     0.56s  2.36% 63.21%      0.72s  3.03%  runtime.mapaccess2_fast64
+     0.52s  2.19% 65.40%      0.52s  2.19%  internal/runtime/maps.(*ctrlGroup).setEmpty (inline)
+     0.30s  1.26% 66.67%      0.60s  2.53%  runtime.greyobject
+     0.29s  1.22% 67.89%      0.29s  1.22%  runtime.(*gcBits).bytep (inline)
+     0.27s  1.14% 69.03%      1.41s  5.94%  runtime.scanObjectsSmall
+     0.23s  0.97% 70.00%      0.23s  0.97%  runtime.spanOf (inline)
+     0.22s  0.93% 70.92%      0.70s  2.95%  runtime.findObject
+     0.20s  0.84% 71.77%      0.27s  1.14%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newInstantiatedSymbol
+     0.20s  0.84% 72.61%      0.20s  0.84%  internal/runtime/atomic.(*Uint8).Load (inline)
+     0.20s  0.84% 73.45%      0.24s  1.01%  runtime.typePointers.next
+     0.17s  0.72% 74.17%      0.21s  0.88%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewIdentifier
+     0.17s  0.72% 74.88%      0.17s  0.72%  sync/atomic.(*Uint64).Load (inline)
+     0.15s  0.63% 75.52%      0.15s  0.63%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getLateBoundSymbol
+     0.15s  0.63% 76.15%      0.15s  0.63%  runtime.alignDown (inline)
+     0.15s  0.63% 76.78%      0.15s  0.63%  runtime.heapSetTypeSmallHeader (inline)
+     0.15s  0.63% 77.41%      0.23s  0.97%  runtime.mapaccess2
+     0.14s  0.59% 78.00%      0.15s  0.63%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSymbol
+     0.14s  0.59% 78.59%      0.20s  0.84%  runtime.(*mspan).moveInlineMarks
+     0.13s  0.55% 79.14%      0.34s  1.43%  runtime.mapaccess2_faststr
+     0.13s  0.55% 79.69%      0.13s  0.55%  runtime.mmap
+     0.12s  0.51% 80.19%      0.15s  0.63%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).createTypeReferenceEx
+     0.11s  0.46% 80.66%      0.34s  1.43%  runtime.scanObjectSmall
+     0.10s  0.42% 81.08%      0.35s  1.47%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).bind
+     0.10s  0.42% 81.50%      0.13s  0.55%  runtime.heapArenaOf (inline)
+     0.08s  0.34% 81.84%      0.29s  1.22%  runtime.(*mspan).markBitsForIndex (inline)
+     0.08s  0.34% 82.17%      0.21s  0.88%  runtime.mapassign_fast64
+     0.07s  0.29% 82.47%      0.25s  1.05%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeFromTypeReference
+     0.05s  0.21% 82.68%      6.40s 26.97%  runtime.gcDrain
+     0.04s  0.17% 82.85%      1.07s  4.51%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkObjectLiteral
+     0.04s  0.17% 83.02%      3.15s 13.27%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getResolvedSignature
+     0.04s  0.17% 83.19%      0.49s  2.06%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNodeUncached
+     0.04s  0.17% 83.35%      0.43s  1.81%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).inferFromTypes
+     0.04s  0.17% 83.52%      0.54s  2.28%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).isReachableFlowNodeWorker
+     0.04s  0.17% 83.69%      0.17s  0.72%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).tryGetTypeAtPosition
+     0.03s  0.13% 83.82%      0.12s  0.51%  gcWriteBarrier

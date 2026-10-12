@@ -90,6 +90,19 @@ class PublicationTest(unittest.TestCase):
         self.assertIn('| differs |', text)
         self.assertIn('no speedup ratio', text)
 
+    def test_ordinary_method_cannot_publish_instrumented_timings(self):
+        result = self.result(self.second)
+        result['measurement'] = 'ordinary-cli-v1'
+        with self.assertRaises(ValueError):
+            self.send(result)
+        for row in result['rows']:
+            for samples in row['runs'].values():
+                for sample in samples:
+                    sample['statistics'] = 'disabled'
+                    sample['counters_source'] = 'validation'
+        self.assertTrue(self.send(result))
+        self.assertIn('two full garbage collections', (self.repo / 'README.md').read_text())
+
     def test_thread_dependent_diagnostics_and_invalid_metrics_cannot_publish(self):
         for mutation in ('thread-output', 'nan'):
             result = self.result(self.second)
