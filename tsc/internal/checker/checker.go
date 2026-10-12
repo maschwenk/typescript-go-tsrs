@@ -583,6 +583,12 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	flowMemoEntries map[flowMemoKey]*flowMemoEntry
+	flowMemoBytes   int
+	flowMemoHits    uint64
+	flowMemoSteps   uint64
+	flowMemoSkipped uint64
+
 	memoTransient         uint64
 	memoExpressionChecks  uint64
 	memberResolutionEpoch uint64
@@ -32603,7 +32609,11 @@ func (c *Checker) getNarrowableTypeForReference(t *Type, reference *ast.Node, ch
 	// control flow analysis an opportunity to narrow it further. For example, for a reference of a type
 	// parameter type 'T extends string | undefined' with a contextual type 'string', we substitute
 	// 'string | undefined' to give control flow analysis the opportunity to narrow to type 'string'.
-	substituteConstraints := checkMode&CheckModeInferential == 0 && someType(t, c.isGenericTypeWithUnionConstraint) && (c.isConstraintPosition(t, reference) || c.hasContextualTypeWithNoGenericTypes(reference, checkMode))
+	substituteConstraints := false
+	if checkMode&CheckModeInferential == 0 && someType(t, c.isGenericTypeWithUnionConstraint) {
+		c.memoTransient++
+		substituteConstraints = c.isConstraintPosition(t, reference) || c.hasContextualTypeWithNoGenericTypes(reference, checkMode)
+	}
 	if substituteConstraints {
 		return c.mapType(t, c.getBaseConstraintOrType)
 	}
