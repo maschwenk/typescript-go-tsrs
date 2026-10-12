@@ -57,6 +57,14 @@ jobs:
           TSGO_CONSTITUENT_FLAGS: shadow
           TS_TEST_PROGRAM_SINGLE_THREADED: ${{ matrix.concurrent }}
         run: go test -count=1 ./...
+      - name: Preserve failed compiler and language-service baselines
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: failed-baselines-${{ matrix.concurrent }}
+          path: tsc/testdata/baselines/local/
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Race tests for compiler and checker
         working-directory: tsc
         run: go test -race ./internal/compiler/... ./internal/checker/...
