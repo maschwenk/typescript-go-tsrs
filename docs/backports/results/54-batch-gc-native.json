@@ -1,0 +1,157 @@
+{
+  "mode": "checkers4",
+  "measurement": "ordinary-cli-v1",
+  "reps": 3,
+  "tools": {
+    "before": "bbfa3f7f4f656e5c4a42eec3fb984a8aacacc9cce6acaac60c03c8e55dbef55c",
+    "compact": "2bf90e095aafd5d44871e42a2529eabc475425fdee14693240042bc5f5cbdae1"
+  },
+  "validations": {
+    "before": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33717567
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 7.0559970419999996,
+      "peak_rss_bytes": 6249381888,
+      "cpu_s": 24.295896,
+      "log": "<repo>/.bench/profiling-gap/batch-gc-probe/before-validation.log"
+    },
+    "compact": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33719807
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 7.1169709160000005,
+      "peak_rss_bytes": 6753206272,
+      "cpu_s": 23.047138999999998,
+      "log": "<repo>/.bench/profiling-gap/batch-gc-probe/compact-validation.log"
+    }
+  },
+  "runs": {
+    "before": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 6.676021875,
+        "peak_rss_bytes": 6652592128,
+        "cpu_s": 23.820892,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/before-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.4191905830000024,
+        "peak_rss_bytes": 6581403648,
+        "cpu_s": 19.591059,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/before-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.245274666999997,
+        "peak_rss_bytes": 6337609728,
+        "cpu_s": 19.284786999999998,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/before-2.log"
+      }
+    ],
+    "compact": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.8362138749999986,
+        "peak_rss_bytes": 6736723968,
+        "cpu_s": 17.439686,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/compact-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.586057208,
+        "peak_rss_bytes": 6873841664,
+        "cpu_s": 19.581054,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/compact-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.615989584000005,
+        "peak_rss_bytes": 6818430976,
+        "cpu_s": 16.550383999999998,
+        "log": "<repo>/.bench/profiling-gap/batch-gc-probe/compact-2.log"
+      }
+    ]
+  },
+  "summary": {
+    "before": {
+      "wall_s": 5.4191905830000024,
+      "cpu_s": 19.591059,
+      "peak_rss_bytes": 6581403648
+    },
+    "compact": {
+      "wall_s": 4.8362138749999986,
+      "cpu_s": 17.439686,
+      "peak_rss_bytes": 6818430976
+    }
+  }
+}

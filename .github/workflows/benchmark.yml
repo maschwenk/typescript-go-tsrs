@@ -168,10 +168,18 @@ jobs:
         with:
           path: .bench/work/solutions/vscode
           key: readme-vscode-${{ runner.os }}-${{ runner.arch }}-node24-${{ steps.pins.outputs.vscode }}-${{ steps.pins.outputs.tsrs }}
-      - name: Build the plain Go compiler
+      - name: Build plain Go and an optional exact reference
+        env:
+          REFERENCE: ${{ inputs.parent_sha }}
         run: |
           mkdir -p .bench/bin
           go -C tsc build -trimpath -pgo=off -o ../.bench/bin/fork ./cmd/tsc
+          if [ -n "$REFERENCE" ]; then
+            if [[ ! "$REFERENCE" =~ ^[0-9a-f]{40}$ ]]; then exit 1; fi
+            git fetch --depth=1 origin "$REFERENCE"
+            git worktree add --detach .bench/profile-reference "$REFERENCE"
+            go -C .bench/profile-reference/tsc build -trimpath -pgo=off -o "$GITHUB_WORKSPACE/.bench/bin/reference" ./cmd/tsc
+          fi
       - name: Enable process CPU sampling on this runner
         id: perf
         run: |
@@ -188,15 +196,23 @@ jobs:
         env:
           PERF: ${{ steps.perf.outputs.binary }}
           REPS: ${{ inputs.repetitions }}
+          REFERENCE: ${{ inputs.parent_sha }}
         run: |
+          extra=()
+          if [ -n "$REFERENCE" ]; then
+            extra+=(--reference .bench/bin/reference --modes checkers4)
+          else
+            extra+=(--gc-probe)
+          fi
           python3 bench/profile_vscode.py --fork .bench/bin/fork \
             --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
-            --tsrs-profile .bench/tsrs/target/prof/release/tsrs --perf "$PERF" --reps "$REPS" --gc-probe
+            --tsrs-profile .bench/tsrs/target/prof/release/tsrs --perf "$PERF" --reps "$REPS" "${extra[@]}"
       - name: Export Go CPU and allocation summaries
         run: |
           for mode in single checkers4; do
             for tool in tsgo tsgo-gc-probe; do
               directory="$GITHUB_WORKSPACE/.bench/profile/$mode/$tool"
+              if [ ! -d "$directory" ]; then continue; fi
               go -C tsc tool pprof -top -nodecount=40 "$directory"/*-cpuprofile.pb.gz > "$directory/cpu-top.txt"
               go -C tsc tool pprof -top -cum -nodecount=40 "$directory"/*-cpuprofile.pb.gz > "$directory/cpu-inclusive.txt"
               go -C tsc tool pprof -top -alloc_space -nodecount=40 "$directory"/*-memprofile.pb.gz > "$directory/allocations.txt"
