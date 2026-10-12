@@ -1,0 +1,19 @@
+{
+  "measurement": "instrumented cumulative allocation census; not a live-object census and not timed",
+  "source": "d9839fdac02711f0e0ad2565305df86437e758f8",
+  "structured_types_allocated": 2334317,
+  "member_records_allocated": 1219411,
+  "member_records_pct": 52.23844919091966,
+  "files": 10465,
+  "errors": 371,
+  "exit": 2,
+  "prototype_layout_bytes": {
+    "StructuredType": 80,
+    "ObjectType": 104,
+    "TypeReference": 136,
+    "UnionType": 192,
+    "structuredMembers": 88
+  },
+  "nominal_cumulative_payload_reduction_bytes": 79437192,
+  "limitations": "Nominal payload calculation excludes allocator size classes, arena spare capacity and object lifetime. Census counters and stderr hook were removed from the ordinary timed binary."
+}

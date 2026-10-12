@@ -1,0 +1,54 @@
+{
+  "go_base": "d9839fdac02711f0e0ad2565305df86437e758f8",
+  "reference_build_revision": "3e75fadc11f0a2aca1718486b97898e2da5ebb86",
+  "same_compiler_tree_and_harness_code": true,
+  "benchmark_result_files_differ": [
+    "bench/results/19210090b303355609f876018c8fffce1f1d54cd.json",
+    "bench/results/3e75fadc11f0a2aca1718486b97898e2da5ebb86.json"
+  ],
+  "tsrs_source": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+  "typescript_source": "b85298b6a81f772d080b0455de0ca9d744cd6fd6",
+  "vscode": "9cf0128b9822dcd8a533f08ef7312956a4390301",
+  "machine": {
+    "cpu": "Apple M5 Max",
+    "logical_cpus": 18,
+    "physical_memory_bytes": 137438953472,
+    "os": "macOS 26.6.2 arm64"
+  },
+  "build": {
+    "go": "1.27.0",
+    "pgo": "off",
+    "trimpath": true
+  },
+  "timing": {
+    "runtime_threads": 4,
+    "checkers": 4,
+    "repetitions": 3,
+    "order": [
+      "reference",
+      "candidate",
+      "candidate",
+      "reference",
+      "reference",
+      "candidate"
+    ],
+    "profiled": false,
+    "statistics": false,
+    "gc": "repository automatic finite CLI policy, GOGC=400 and 8 GiB soft Go memory limit on this eligible machine; no GOGC/GOMEMLIMIT environment override"
+  },
+  "profile": {
+    "sample_index": "inuse_space",
+    "statistics_enabled": true,
+    "separate_from_timing": true,
+    "default_heap_sampling": true,
+    "full_diagnostics_match_validation_after_prefix_normalization": true,
+    "normalization": "Remove .bench/work/solutions/vscode/src/ only at the beginning of diagnostic filenames; profile process ran at the repo root, timing harness at vscode/src. Continuation text unchanged.",
+    "exit": 2,
+    "files": 10465,
+    "errors": 371,
+    "sha256": "6bdc6544fd1177966ffc9361a916cc84b5d14a89bbc574c5747ea37690e921cd",
+    "original_sha256": "34b557e91256dc35a10b6d2dec6f8239cd7ad2b540e520718df465153e89fc12",
+    "sanitization": "Only local path prefixes in the protobuf string table were replaced. Sample values, stacks and string indexes are unchanged."
+  },
+  "compiler_prototypes": "Both rejected and reverted. Archived patches are not applied."
+}

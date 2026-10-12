@@ -1,0 +1,56 @@
+{
+  "source": "d9839fdac0",
+  "description": "Static Go layout, pointer-shaped fields including slices/strings/interfaces; counts include nil pointers and static interface metadata, not heap edges or GC work",
+  "rows": [
+    {
+      "bytes": 48,
+      "pointer_shaped_words": 3,
+      "type": "ast.Node"
+    },
+    {
+      "bytes": 72,
+      "pointer_shaped_words": 5,
+      "type": "ast.Identifier"
+    },
+    {
+      "bytes": 96,
+      "pointer_shaped_words": 7,
+      "type": "ast.Symbol"
+    },
+    {
+      "bytes": 32,
+      "pointer_shaped_words": 1,
+      "type": "ast.NodeList"
+    },
+    {
+      "bytes": 56,
+      "pointer_shaped_words": 5,
+      "type": "checker.Type"
+    },
+    {
+      "bytes": 160,
+      "pointer_shaped_words": 11,
+      "type": "checker.StructuredType"
+    },
+    {
+      "bytes": 184,
+      "pointer_shaped_words": 14,
+      "type": "checker.ObjectType"
+    },
+    {
+      "bytes": 216,
+      "pointer_shaped_words": 16,
+      "type": "checker.TypeReference"
+    },
+    {
+      "bytes": 272,
+      "pointer_shaped_words": 20,
+      "type": "checker.UnionType"
+    },
+    {
+      "bytes": 128,
+      "pointer_shaped_words": 10,
+      "type": "checker.Signature"
+    }
+  ]
+}

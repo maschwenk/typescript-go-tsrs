@@ -1,0 +1,172 @@
+{
+  "date": "2026-10-12T11:20:34.112527+00:00",
+  "measurement": "ordinary-cli-v1",
+  "mode": "checkers4",
+  "runtime_threads": 4,
+  "reps": 3,
+  "machine": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18
+  },
+  "source": "d9839fdac0",
+  "project_commit": "9cf0128b9822dcd8a533f08ef7312956a4390301",
+  "tools": {
+    "reference": {
+      "sha256": "6a69684c2682abe14450b48553b910fc0e06780c894b1e00ee52b67c82618904",
+      "go_build": "<repo>/.bench/profiling-gap/bin/ownership-reference: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=1\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=3e75fadc11f0a2aca1718486b97898e2da5ebb86\n\tbuild\tvcs.time=2026-10-12T06:20:12Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "candidate": {
+      "sha256": "bcf61c3bf4c149d071b56743b5b4dcb6ce5b917645fe7cbc34951ff7c0cdd953",
+      "go_build": "<repo>/.bench/profiling-gap/bin/ownership-tail: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=1\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=d9839fdac02711f0e0ad2565305df86437e758f8\n\tbuild\tvcs.time=2026-10-12T06:52:42Z\n\tbuild\tvcs.modified=true\n"
+    }
+  },
+  "validations": {
+    "reference": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33723960
+      },
+      "completed": true,
+      "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+      "errors": 371,
+      "wall_s": 6.682407875,
+      "peak_rss_bytes": 6889537536,
+      "cpu_s": 22.612238,
+      "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/reference-validation.log"
+    },
+    "candidate": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 34941572
+      },
+      "completed": true,
+      "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+      "errors": 371,
+      "wall_s": 6.441103459000001,
+      "peak_rss_bytes": 6704234496,
+      "cpu_s": 21.271,
+      "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/candidate-validation.log"
+    }
+  },
+  "runs": {
+    "reference": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.615681208,
+        "peak_rss_bytes": 6745505792,
+        "cpu_s": 16.602752000000002,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/reference-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.902574125000001,
+        "peak_rss_bytes": 6854574080,
+        "cpu_s": 17.025721,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/reference-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.567297291000003,
+        "peak_rss_bytes": 6879920128,
+        "cpu_s": 16.736089,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/reference-2.log"
+      }
+    ],
+    "candidate": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.668169291999998,
+        "peak_rss_bytes": 6668763136,
+        "cpu_s": 16.730096,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/candidate-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.613926625000001,
+        "peak_rss_bytes": 6765084672,
+        "cpu_s": 16.513314,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/candidate-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "ba4ce59620590546258afe376c96436116f4649416b015b4dd2e3c2682d765fd",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.638216749999998,
+        "peak_rss_bytes": 6691258368,
+        "cpu_s": 16.786907,
+        "log": "<repo>/.bench/profiling-gap/ownership-tail-probe/candidate-2.log"
+      }
+    ]
+  },
+  "summary": {
+    "reference": {
+      "wall_s": 4.615681208,
+      "cpu_s": 16.736089,
+      "peak_rss_bytes": 6854574080
+    },
+    "candidate": {
+      "wall_s": 4.638216749999998,
+      "cpu_s": 16.730096,
+      "peak_rss_bytes": 6691258368
+    }
+  },
+  "completed": true
+}

@@ -1,0 +1,87 @@
+diff --git a/tsc/internal/checker/checker.go b/tsc/internal/checker/checker.go
+index 3a0a63080a..8f09ab60f9 100644
+--- a/tsc/internal/checker/checker.go
++++ b/tsc/internal/checker/checker.go
+@@ -614,6 +614,14 @@ type Checker struct {
+ 	memoDiagnosticAttempts                      uint64
+ 	lazyUnaffected                              map[lazyUnaffectedKey]*lazyUnaffectedMemo
+ 	typeReferenceArena                          core.Arena[TypeReference]
++	objectTypeArena                             core.Arena[ObjectType]
++	unionTypeArena                              core.Arena[UnionType]
++	intersectionTypeArena                       core.Arena[IntersectionType]
++	typeParameterArena                          core.Arena[TypeParameter]
++	indexedAccessTypeArena                      core.Arena[IndexedAccessType]
++	conditionalTypeArena                        core.Arena[ConditionalType]
++	indexTypeArena                              core.Arena[IndexType]
++	mappedTypeArena                             core.Arena[MappedType]
+ 	literalTypeArena                            core.Arena[LiteralType]
+ 	id                                          uint32
+ 	program                                     Program
+@@ -26103,7 +26111,7 @@ func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Ty
+ 	case objectFlags&ObjectFlagsReference != 0:
+ 		data = c.typeReferenceArena.New()
+ 	case objectFlags&ObjectFlagsMapped != 0:
+-		data = &MappedType{}
++		data = c.mappedTypeArena.New()
+ 	case objectFlags&ObjectFlagsReverseMapped != 0:
+ 		data = &ReverseMappedType{}
+ 	case objectFlags&ObjectFlagsEvolvingArray != 0:
+@@ -26111,7 +26119,7 @@ func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Ty
+ 	case objectFlags&ObjectFlagsInstantiationExpressionType != 0:
+ 		data = &InstantiationExpressionType{}
+ 	case objectFlags&ObjectFlagsAnonymous != 0:
+-		data = &ObjectType{}
++		data = c.objectTypeArena.New()
+ 	default:
+ 		panic("Unhandled case in newObjectType")
+ 	}
+@@ -26200,7 +26208,7 @@ func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, cal
+ }
+ 
+ func (c *Checker) newTypeParameter(symbol *ast.Symbol) *Type {
+-	t := c.newType(TypeFlagsTypeParameter, ObjectFlagsNone, &TypeParameter{})
++	t := c.newType(TypeFlagsTypeParameter, ObjectFlagsNone, c.typeParameterArena.New())
+ 	t.symbol = symbol
+ 	return t
+ }
+@@ -26220,19 +26228,19 @@ func (c *Checker) getPropagatingFlagsOfTypes(types []*Type, excludeKinds TypeFla
+ }
+ 
+ func (c *Checker) newUnionType(objectFlags ObjectFlags, types []*Type) *Type {
+-	data := &UnionType{}
++	data := c.unionTypeArena.New()
+ 	data.types = types
+ 	return c.newType(TypeFlagsUnion, objectFlags, data)
+ }
+ 
+ func (c *Checker) newIntersectionType(objectFlags ObjectFlags, types []*Type) *Type {
+-	data := &IntersectionType{}
++	data := c.intersectionTypeArena.New()
+ 	data.types = types
+ 	return c.newType(TypeFlagsIntersection, objectFlags, data)
+ }
+ 
+ func (c *Checker) newIndexedAccessType(objectType *Type, indexType *Type, accessFlags AccessFlags) *Type {
+-	data := &IndexedAccessType{}
++	data := c.indexedAccessTypeArena.New()
+ 	data.objectType = objectType
+ 	data.indexType = indexType
+ 	data.accessFlags = accessFlags
+@@ -26240,7 +26248,7 @@ func (c *Checker) newIndexedAccessType(objectType *Type, indexType *Type, access
+ }
+ 
+ func (c *Checker) newIndexType(target *Type, indexFlags IndexFlags) *Type {
+-	data := &IndexType{}
++	data := c.indexTypeArena.New()
+ 	data.target = target
+ 	data.indexFlags = indexFlags
+ 	return c.newType(TypeFlagsIndex, ObjectFlagsNone, data)
+@@ -26262,7 +26270,7 @@ func (c *Checker) newStringMappingType(symbol *ast.Symbol, target *Type) *Type {
+ }
+ 
+ func (c *Checker) newConditionalType(root *ConditionalRoot, mapper *TypeMapper, combinedMapper *TypeMapper) *Type {
+-	data := &ConditionalType{}
++	data := c.conditionalTypeArena.New()
+ 	data.root = root
+ 	data.checkType = c.instantiateType(root.checkType, mapper)
+ 	data.extendsType = c.instantiateType(root.extendsType, mapper)
