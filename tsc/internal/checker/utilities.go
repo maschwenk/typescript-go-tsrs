@@ -774,6 +774,13 @@ func compareTypeMappers(m1, m2 *TypeMapper) int {
 	return 0
 }
 
+func getDeclarationNonPublicFlagsFromSymbol(s *ast.Symbol) ast.ModifierFlags {
+	if s.CheckFlags&ast.CheckFlagsSynthetic == 0 && (s.Parent == nil || s.Parent.Flags&ast.SymbolFlagsClass == 0) {
+		return ast.ModifierFlagsNone
+	}
+	return getDeclarationModifierFlagsFromSymbol(s) & ast.ModifierFlagsNonPublicAccessibilityModifier
+}
+
 func getDeclarationModifierFlagsFromSymbol(s *ast.Symbol) ast.ModifierFlags {
 	return getDeclarationModifierFlagsFromSymbolEx(s, false /*isWrite*/)
 }
