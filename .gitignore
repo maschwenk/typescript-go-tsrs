@@ -150,3 +150,6 @@ bench/__pycache__/
 .env.*
 !.env.example
 *.pprof
+
+# Sanitized public benchmark evidence
+!docs/backports/results/native-vscode/*/logs/
