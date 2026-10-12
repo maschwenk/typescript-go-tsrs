@@ -6,7 +6,7 @@ Prepared 2026-10-12 for `maschwenk/typescript-go-tsrs`. The owner authorized pub
 
 - Standard GitHub-hosted Ubuntu 24.04 runners for CI, Benchmark and optional Go PGO; standard Ubuntu 24.04 ARM64 for optional CodSpeed. Private runner labels and the temporary runner image definition were removed. Both old runner registrations were deleted; no local runner process remains.
 - Read-only test tokens, credentials not persisted by checkout, pinned action revisions and no `pull_request_target` trigger. Exact-source checks are reported by a separate job that never executes the tested source.
-- VS Code performance workflows are manual, with seven-day artifact retention. No recurring or per-PR performance matrix runs. Native Mac results retain source, build, hardware and diagnostic evidence.
+- Every main push compares this fork, the official nightly and tsrs on pinned VS Code and updates the README tables. Separate manual comparison, PGO and CodSpeed workflows remain available, with seven-day artifact retention. Implementation PRs run correctness checks. Native Mac results retain source, build, hardware and diagnostic evidence.
 - Public README, contributor instructions, fork-specific issue/PR templates and a fork security-reporting policy. Upstream guidance is retained separately. The Apache-2.0 license and upstream notices are unchanged; tsrs strategy attribution is explicit.
 - Local checkout prefixes were normalized in current published benchmark JSON and logs. Original diagnostic hashes remain available alongside hashes of the normalized public logs. All 90 native benchmark logs were parsed again and their full diagnostic equality, exits and file counts verified.
 
