@@ -363,9 +363,10 @@ func performCompilation(
 
 	parseStart := sys.Now()
 	program := compiler.NewProgram(compiler.ProgramOptions{
-		Config:  config,
-		Host:    host,
-		Tracing: tr,
+		Config:       config,
+		AutoCheckers: true,
+		Host:         host,
+		Tracing:      tr,
 	})
 	compileTimes.ParseTime = sys.Now().Sub(parseStart)
 	if contentMapperHost != nil {

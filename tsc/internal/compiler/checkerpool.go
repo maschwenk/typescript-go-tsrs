@@ -3,6 +3,7 @@ package compiler
 import (
 	"context"
 	"math"
+	"runtime"
 	"slices"
 	"sort"
 	"sync"
@@ -312,6 +313,14 @@ func newCheckerPoolWithTracing(program *Program, tr *tracing.Tracing) *checkerPo
 		checkerCount = 1
 	} else if c := program.Options().Checkers; c != nil {
 		checkerCount = *c
+	} else if program.opts.AutoCheckers && !program.Options().NoCheck.IsTrue() {
+		checked := 0
+		for _, file := range program.files {
+			if !(file.IsDeclarationFile || file.ScriptKind == core.ScriptKindJSON) || !program.SkipTypeChecking(file, false) {
+				checked++
+			}
+		}
+		checkerCount = defaultCheckersForWorkload(runtime.GOMAXPROCS(0), checked)
 	}
 
 	checkerCount = max(min(checkerCount, len(program.files), 256), 1)
