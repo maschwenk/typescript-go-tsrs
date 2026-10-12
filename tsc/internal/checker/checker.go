@@ -583,6 +583,7 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	constituentFlagMemo       map[TypeId]TypeFlags
 	lastEmitModuleFile        *ast.SourceFile
 	lastEmitModuleKind        core.ModuleKind
 	propertyLookupScratch     []sourcePropertyLookup
@@ -28734,12 +28735,23 @@ func (c *Checker) getNextBaseConstraint(t *Type, stack []RecursionId) *Type {
 // Return true if type might be of the given kind. A union or intersection type might be of a given
 // kind if at least one constituent type is of the given kind.
 func (c *Checker) maybeTypeOfKind(t *Type, kind TypeFlags) bool {
+	if constituentFlagsMode == "off" || constituentFlagsMode == "0" {
+		return c.maybeTypeOfKindUncached(t, kind)
+	}
+	result := c.maybeTypeOfKindFast(t, kind)
+	if constituentFlagsMode == "shadow" && result != c.maybeTypeOfKindUncached(t, kind) {
+		panic("constituent flags changed a kind query")
+	}
+	return result
+}
+
+func (c *Checker) maybeTypeOfKindUncached(t *Type, kind TypeFlags) bool {
 	if t.flags&kind != 0 {
 		return true
 	}
 	if t.flags&TypeFlagsUnionOrIntersection != 0 {
 		for _, t := range t.Types() {
-			if c.maybeTypeOfKind(t, kind) {
+			if c.maybeTypeOfKindUncached(t, kind) {
 				return true
 			}
 		}
