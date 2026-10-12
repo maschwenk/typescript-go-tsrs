@@ -4408,8 +4408,8 @@ func (r *Relater) propertiesRelatedTo(source *Type, target *Type, reportErrors b
 }
 
 func (r *Relater) propertyRelatedTo(source *Type, target *Type, sourceProp *ast.Symbol, targetProp *ast.Symbol, getTypeOfSourceProperty func(sym *ast.Symbol) *Type, reportErrors bool, intersectionState IntersectionState, skipOptional bool) Ternary {
-	sourcePropFlags := getDeclarationModifierFlagsFromSymbol(sourceProp)
-	targetPropFlags := getDeclarationModifierFlagsFromSymbol(targetProp)
+	sourcePropFlags := getDeclarationNonPublicFlagsFromSymbol(sourceProp)
+	targetPropFlags := getDeclarationNonPublicFlagsFromSymbol(targetProp)
 	switch {
 	case sourcePropFlags&ast.ModifierFlagsPrivate != 0 || targetPropFlags&ast.ModifierFlagsPrivate != 0:
 		if sourceProp.ValueDeclaration != targetProp.ValueDeclaration {
