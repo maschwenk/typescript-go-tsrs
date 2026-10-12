@@ -583,6 +583,7 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	propertyLookupScratch     []sourcePropertyLookup
 	discriminantPropertyCache map[contextualUnionKey]*discriminantPropertyEntry
 	discriminantPropertyBytes int
 	nodeFileCache             map[*ast.Node]nodeFileInfo
