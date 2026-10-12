@@ -4,10 +4,14 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      source_sha:
+        description: 'Optional exact commit to validate; leaves the workflow definition at the selected ref'
+        type: string
 permissions:
   contents: read
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.ref }}-${{ inputs.source_sha }}
   cancel-in-progress: true
 jobs:
   test:
@@ -18,7 +22,15 @@ jobs:
       matrix:
         concurrent: ['true', 'false']
     steps:
+      - name: Validate an optional source commit
+        env:
+          SOURCE_SHA: ${{ inputs.source_sha }}
+        run: |
+          if [ -n "$SOURCE_SHA" ] && [[ ! "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]; then exit 1; fi
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ inputs.source_sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
           go-version-file: tsc/go.mod
@@ -30,8 +42,20 @@ jobs:
       - name: Upstream package and compiler baseline tests
         working-directory: tsc
         env:
-          TS_TEST_PROGRAM_SINGLE_THREADED: ${{ matrix.concurrent }}
           TSGO_UNION_CACHE: shadow
+          TSGO_LAZY_UNAFFECTED: shadow
+          TSGO_IA_MEMO: shadow
+          TSGO_CONTEXTUAL_REUSE: shadow
+          TSGO_DEEP_NESTED: shadow
+          TSGO_INFER_MEMO: shadow
+          TSGO_FLOW_MEMO: shadow
+          TSGO_CONTEXTUAL_POSITIONS: shadow
+          TSGO_NODE_FILE_CACHE: shadow
+          TSGO_DISCRIMINANT_PROPERTIES: shadow
+          TSGO_PROPERTY_LOOKUPS: shadow
+          TSGO_SUBTYPE_PROPERTIES: shadow
+          TSGO_CONSTITUENT_FLAGS: shadow
+          TS_TEST_PROGRAM_SINGLE_THREADED: ${{ matrix.concurrent }}
         run: go test -count=1 ./...
       - name: Race tests for compiler and checker
         working-directory: tsc
@@ -43,3 +67,41 @@ jobs:
           go build -pgo=off ./cmd/tsc
       - name: Benchmark harness tests
         run: python3 -m unittest discover -s bench -p 'test_*.py'
+  record-source:
+    needs: test
+    if: always() && github.event_name == 'workflow_dispatch' && inputs.source_sha != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: read
+      checks: write
+    steps:
+      # This job never checks out or executes the source being tested.
+      - name: Record the actual matrix job conclusions on the tested commit
+        env:
+          CHECK_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ inputs.source_sha }}
+        run: |
+          python3 - <<'CHECK'
+          import datetime,json,os,re,urllib.request
+          sha=os.environ['SOURCE_SHA']
+          if not re.fullmatch('[0-9a-f]{40}',sha): raise SystemExit('A full source commit is required')
+          repo=os.environ['GITHUB_REPOSITORY']
+          url=f"https://github.com/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
+          headers={'Authorization':'Bearer '+os.environ['CHECK_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'}
+          jobs_url=f"https://api.github.com/repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/attempts/{os.environ['GITHUB_RUN_ATTEMPT']}/jobs?per_page=100"
+          with urllib.request.urlopen(urllib.request.Request(jobs_url,headers=headers)) as response: jobs=json.load(response)['jobs']
+          for name in ('test (true)','test (false)'):
+              matching=[job for job in jobs if job['name']==name]
+              if len(matching)!=1 or matching[0]['status']!='completed': raise SystemExit('Missing completed matrix job: '+name)
+              job=matching[0]
+              result=job['conclusion']
+              if result not in ('success','failure','cancelled','timed_out','skipped'): raise SystemExit('Unexpected matrix conclusion')
+              summary=f"Source: {sha}. Result: {result}. Runner: {job['runner_name']}. Workflow: {os.environ['GITHUB_SHA']}. Attempt: {os.environ['GITHUB_RUN_ATTEMPT']}. Full logs: {url}."
+              payload={'name':name,'head_sha':sha,'status':'completed','conclusion':result,
+                       'completed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                       'details_url':url,'output':{'title':'Linux validation of the exact source commit','summary':summary}}
+              request=urllib.request.Request(f'https://api.github.com/repos/{repo}/check-runs',data=json.dumps(payload).encode(),headers=headers,method='POST')
+              with urllib.request.urlopen(request) as response: recorded=json.load(response)
+              print(recorded['html_url'])
+          CHECK
