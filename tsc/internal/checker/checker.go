@@ -583,11 +583,12 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
-	flowMemoEntries map[flowMemoKey]*flowMemoEntry
-	flowMemoBytes   int
-	flowMemoHits    uint64
-	flowMemoSteps   uint64
-	flowMemoSkipped uint64
+	symbolSortScratch []symbolSortKey
+	flowMemoEntries   map[flowMemoKey]*flowMemoEntry
+	flowMemoBytes     int
+	flowMemoHits      uint64
+	flowMemoSteps     uint64
+	flowMemoSkipped   uint64
 
 	memoTransient         uint64
 	memoExpressionChecks  uint64
