@@ -3142,6 +3142,17 @@ func (r *Relater) eachTypeRelatedToSomeType(source *Type, target *Type) Ternary 
 // Third, check if both types are part of deeply nested chains of generic type instantiations and if so assume the types are
 // equal and infinitely expanding. Fourth, if we have reached a depth of 100 nested comparisons, assume we have runaway recursion
 // and issue an error. Otherwise, actually compare the structure of the two types.
+const inlineMaybeKeys = 8
+
+func (r *Relater) hasMaybeKey(key relationKey) bool {
+	for _, candidate := range r.maybeKeys[:min(len(r.maybeKeys), inlineMaybeKeys)] {
+		if candidate == key {
+			return true
+		}
+	}
+	return len(r.maybeKeys) > inlineMaybeKeys && r.maybeKeysSet.Has(key)
+}
+
 func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportErrors bool, intersectionState IntersectionState, recursionFlags RecursionFlags) Ternary {
 	if r.overflow {
 		// Note that stack depth overflows can cause _any_ relation involving structured types to become false, so it is
@@ -3169,7 +3180,7 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 		return TernaryFalse
 	}
 	// If source and target are already being compared, consider them related with assumptions
-	if r.maybeKeysSet.Has(id) {
+	if r.hasMaybeKey(id) {
 		return TernaryMaybe
 	}
 	// A constrained key indicates that we have type references that reference constrained
@@ -3177,7 +3188,7 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 	// were unconstrained.
 	if constrained {
 		broadestEquivalentId, _ := getRelationKey(source, target, intersectionState, r.relation == r.c.identityRelation, true /*ignoreConstraints*/)
-		if r.maybeKeysSet.Has(broadestEquivalentId) {
+		if r.hasMaybeKey(broadestEquivalentId) {
 			return TernaryMaybe
 		}
 	}
@@ -3189,7 +3200,9 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 	}
 	maybeStart := len(r.maybeKeys)
 	r.maybeKeys = append(r.maybeKeys, id)
-	r.maybeKeysSet.Add(id)
+	if maybeStart >= inlineMaybeKeys {
+		r.maybeKeysSet.Add(id)
+	}
 	saveExpandingFlags := r.expandingFlags
 	if recursionFlags&RecursionFlagsSource != 0 {
 		r.sourceStack = append(r.sourceStack, source)
@@ -3251,7 +3264,9 @@ func (r *Relater) recursiveTypeRelatedTo(source *Type, target *Type, reportError
 
 func (r *Relater) resetMaybeStack(maybeStart int, propagatingVarianceFlags RelationComparisonResult, markAllAsSucceeded bool) {
 	for i := maybeStart; i < len(r.maybeKeys); i++ {
-		r.maybeKeysSet.Delete(r.maybeKeys[i])
+		if i >= inlineMaybeKeys {
+			r.maybeKeysSet.Delete(r.maybeKeys[i])
+		}
 		if markAllAsSucceeded {
 			r.relation.set(r.maybeKeys[i], RelationComparisonResultSucceeded|propagatingVarianceFlags)
 			r.relationCount--
