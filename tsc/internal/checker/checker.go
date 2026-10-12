@@ -13847,12 +13847,8 @@ func (c *Checker) hasDefaultValue(node *ast.Node) bool {
 }
 
 func (c *Checker) isConstContext(node *ast.Node) bool {
-	parent := node.Parent
-	return ast.IsConstAssertion(parent) ||
-		c.isInlineImportAttributes(node) ||
-		c.isValidConstAssertionArgument(node) && c.isConstTypeVariable(c.getContextualType(node, ContextFlagsNone), 0) ||
-		(ast.IsParenthesizedExpression(parent) || ast.IsArrayLiteralExpression(parent) || ast.IsSpreadElement(parent)) && c.isConstContext(parent) ||
-		(ast.IsPropertyAssignment(parent) || ast.IsShorthandPropertyAssignment(parent) || ast.IsTemplateSpan(parent)) && c.isConstContext(parent.Parent)
+	result, _, _ := c.isConstContextWithType(node)
+	return result
 }
 
 func (c *Checker) isInlineImportAttributes(node *ast.Node) bool {
@@ -14128,13 +14124,23 @@ func (c *Checker) checkObjectLiteralMethod(node *ast.Node, checkMode CheckMode) 
 
 func (c *Checker) checkExpressionForMutableLocation(node *ast.Node, checkMode CheckMode) *Type {
 	t := c.checkExpressionEx(node, checkMode)
+	inConst, contextual, computed := c.isConstContextWithType(node)
 	switch {
-	case c.isConstContext(node):
+	case inConst:
 		return c.getRegularTypeOfLiteralType(t)
 	case isTypeAssertion(node):
 		return t
 	default:
-		return c.getWidenedLiteralLikeTypeForContextualType(t, c.instantiateContextualType(c.getContextualType(node, ContextFlagsNone), node, ContextFlagsNone))
+		if !computed || contextualReuseMode == "off" || contextualReuseMode == "0" {
+			contextual = c.getContextualType(node, ContextFlagsNone)
+		} else if contextualReuseMode == "shadow" {
+			before := c.getMemoCounts()
+			fresh := c.getContextualType(node, ContextFlagsNone)
+			if fresh != contextual || before != c.getMemoCounts() {
+				panic(fmt.Sprintf("reused const-context type changed identity or counters: same=%v before=%+v after=%+v", fresh == contextual, before, c.getMemoCounts()))
+			}
+		}
+		return c.getWidenedLiteralLikeTypeForContextualType(t, c.instantiateContextualType(contextual, node, ContextFlagsNone))
 	}
 }
 
