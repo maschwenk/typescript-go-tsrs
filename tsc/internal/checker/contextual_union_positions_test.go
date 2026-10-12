@@ -35,6 +35,16 @@ func TestContextualUnionPositionsEpochAndObjectAugmentation(t *testing.T) {
 	if c.getTypeOfPropertyOfContextualType(union, "toString") != c.stringType {
 		t.Fatal("filter skipped an inherited Object member")
 	}
+	functionProperty := &ast.Symbol{Name: "functionOnly", Flags: ast.SymbolFlagsProperty}
+	c.valueSymbolLinks.Get(functionProperty).resolvedType = c.numberType
+	c.globalFunctionType = c.newAnonymousType(nil, ast.SymbolTable{"functionOnly": functionProperty}, nil, nil, nil)
+	c.anyFunctionType = c.newAnonymousType(nil, nil, nil, nil, nil)
+	types = append(types, c.anyFunctionType)
+	functionUnion := c.getUnionType(types)
+	if c.getTypeOfPropertyOfContextualType(functionUnion, "functionOnly") != c.numberType {
+		t.Fatal("filter skipped Function augmentation of the intrinsic function type")
+	}
+
 	if c.getTypeOfPropertyOfContextualType(union, "missing") != nil {
 		t.Fatal("absent name acquired a contextual type")
 	}
