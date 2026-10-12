@@ -1,0 +1,1646 @@
+{
+  "schema": 1,
+  "date": "2026-10-12T01:38:40.357436+00:00",
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "head": "e0c7ad31fbc289dd9c62b848dd13222696402169",
+  "machine": {
+    "label": "native-mac-ci-paused",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18,
+    "environment": {},
+    "runtime_thread_policy": "GOMAXPROCS and RAYON_NUM_THREADS cleared; both set to 1 in single mode",
+    "hw.model": "Mac17,6",
+    "hw.memsize": "137438953472",
+    "machdep.cpu.brand_string": "Apple M5 Max"
+  },
+  "reps": 5,
+  "build": "plain release, Go -pgo=off unless binary metadata says otherwise",
+  "tools": {
+    "stock": {
+      "sha256": "e60336446f5e77116f0ebb77bf7966088b68d6a97a62d00df2b010d58c7ac36e",
+      "version": "Version 7.1.0-dev",
+      "go_build": "<repo>/.backport-bin/stock: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=b85298b6a81f772d080b0455de0ca9d744cd6fd6\n\tbuild\tvcs.time=2026-09-29T23:01:40Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "fork": {
+      "sha256": "5546e99e536b2cb3556f513b3b41f7c714a11e57b5195bc88904e236d1c58623",
+      "version": "Version 7.1.0-dev",
+      "go_build": "<repo>/.backport-bin/fork: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=e0c7ad31fbc289dd9c62b848dd13222696402169\n\tbuild\tvcs.time=2026-10-12T01:38:11Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "tsrs": {
+      "sha256": "49678ca059609cbcadf75a199e7d2d043008e4242a014ec70d8d075dbf1bcad9",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    }
+  },
+  "rows": [
+    {
+      "project": "vscode",
+      "mode": "single",
+      "equality": {
+        "stock": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 23.852133959000014,
+          "peak_rss_bytes": 7001178112,
+          "cpu_s": 23.729802999999997,
+          "errors": 371
+        },
+        "fork": {
+          "wall_s": 20.856687416,
+          "peak_rss_bytes": 5977505792,
+          "cpu_s": 20.594051,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 6.678503082999981,
+          "peak_rss_bytes": 1695268864,
+          "cpu_s": 6.56162,
+          "errors": 371
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 8553350,
+              "Types": 2668094,
+              "Instantiations": 3503743,
+              "Memory allocs": 31487935
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 23.408895708000003,
+            "peak_rss_bytes": 7001178112,
+            "cpu_s": 23.311256,
+            "log": "logs/vscode-single-stock-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 8553350,
+              "Types": 2668094,
+              "Instantiations": 3503743,
+              "Memory allocs": 31487809
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 23.294795125000007,
+            "peak_rss_bytes": 6965968896,
+            "cpu_s": 23.200445,
+            "log": "logs/vscode-single-stock-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 8553350,
+              "Types": 2668094,
+              "Instantiations": 3503743,
+              "Memory allocs": 31487961
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 23.980265333000006,
+            "peak_rss_bytes": 7034667008,
+            "cpu_s": 23.813401,
+            "log": "logs/vscode-single-stock-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 8553350,
+              "Types": 2668094,
+              "Instantiations": 3503743,
+              "Memory allocs": 31488027
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 24.366883332999976,
+            "peak_rss_bytes": 7037632512,
+            "cpu_s": 24.212198,
+            "log": "logs/vscode-single-stock-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 8553350,
+              "Types": 2668094,
+              "Instantiations": 3503743,
+              "Memory allocs": 31487958
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 23.852133959000014,
+            "peak_rss_bytes": 6889799680,
+            "cpu_s": 23.729802999999997,
+            "log": "logs/vscode-single-stock-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4833856,
+              "Types": 2659408,
+              "Instantiations": 3502722,
+              "Memory allocs": 29190315
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 20.856687416,
+            "peak_rss_bytes": 5977505792,
+            "cpu_s": 20.594051,
+            "log": "logs/vscode-single-fork-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4833856,
+              "Types": 2659408,
+              "Instantiations": 3502722,
+              "Memory allocs": 29190515
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 21.19715208399998,
+            "peak_rss_bytes": 6003294208,
+            "cpu_s": 21.010433,
+            "log": "logs/vscode-single-fork-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4833856,
+              "Types": 2659408,
+              "Instantiations": 3502722,
+              "Memory allocs": 29190503
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 22.138168500000006,
+            "peak_rss_bytes": 6016040960,
+            "cpu_s": 21.154406,
+            "log": "logs/vscode-single-fork-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4833856,
+              "Types": 2659408,
+              "Instantiations": 3502722,
+              "Memory allocs": 29190597
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 18.894865791,
+            "peak_rss_bytes": 5891014656,
+            "cpu_s": 18.804435,
+            "log": "logs/vscode-single-fork-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4833856,
+              "Types": 2659408,
+              "Instantiations": 3502722,
+              "Memory allocs": 29190478
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 20.26422945799999,
+            "peak_rss_bytes": 5898747904,
+            "cpu_s": 19.283613,
+            "log": "logs/vscode-single-fork-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4749939,
+              "Types": 2454919,
+              "Instantiations": 3422715,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 6.459671416999996,
+            "peak_rss_bytes": 1695268864,
+            "cpu_s": 6.382601999999999,
+            "log": "logs/vscode-single-tsrs-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4749939,
+              "Types": 2454919,
+              "Instantiations": 3422715,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 6.923090249999987,
+            "peak_rss_bytes": 1695268864,
+            "cpu_s": 6.438815,
+            "log": "logs/vscode-single-tsrs-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4749939,
+              "Types": 2454919,
+              "Instantiations": 3422715,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 7.496372458999986,
+            "peak_rss_bytes": 1695268864,
+            "cpu_s": 6.672105999999999,
+            "log": "logs/vscode-single-tsrs-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4749939,
+              "Types": 2454919,
+              "Instantiations": 3422715,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 6.678503082999981,
+            "peak_rss_bytes": 1695268864,
+            "cpu_s": 6.590235,
+            "log": "logs/vscode-single-tsrs-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 4749939,
+              "Types": 2454919,
+              "Instantiations": 3422715,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 6.63310687500001,
+            "peak_rss_bytes": 1695268864,
+            "cpu_s": 6.56162,
+            "log": "logs/vscode-single-tsrs-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ]
+      },
+      "warmups": {
+        "stock": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 8553350,
+            "Types": 2668094,
+            "Instantiations": 3503743,
+            "Memory allocs": 31487895
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 24.884801,
+          "peak_rss_bytes": 7037812736,
+          "cpu_s": 23.780403,
+          "log": "logs/vscode-single-stock-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "fork": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 4833856,
+            "Types": 2659408,
+            "Instantiations": 3502722,
+            "Memory allocs": 29190512
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 20.753143959,
+          "peak_rss_bytes": 5638193152,
+          "cpu_s": 19.768145,
+          "log": "logs/vscode-single-fork-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 4749939,
+            "Types": 2454919,
+            "Instantiations": 3422715,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 6.491332499999999,
+          "peak_rss_bytes": 1695268864,
+          "cpu_s": 6.409256,
+          "log": "logs/vscode-single-tsrs-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        }
+      }
+    },
+    {
+      "project": "vscode",
+      "mode": "checkers4",
+      "equality": {
+        "stock": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 5.405295708999972,
+          "peak_rss_bytes": 7615971328,
+          "cpu_s": 33.711987,
+          "errors": 371
+        },
+        "fork": {
+          "wall_s": 4.791505749999999,
+          "peak_rss_bytes": 6097944576,
+          "cpu_s": 28.813155000000002,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 1.7231276250000178,
+          "peak_rss_bytes": 1917911040,
+          "cpu_s": 9.012862,
+          "errors": 371
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36370861
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.320676790999983,
+            "peak_rss_bytes": 7615971328,
+            "cpu_s": 30.849888,
+            "log": "logs/vscode-checkers4-stock-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36364269
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.405295708999972,
+            "peak_rss_bytes": 7647330304,
+            "cpu_s": 31.137284,
+            "log": "logs/vscode-checkers4-stock-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36364994
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.56430554100001,
+            "peak_rss_bytes": 7596294144,
+            "cpu_s": 33.983695999999995,
+            "log": "logs/vscode-checkers4-stock-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36377617
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.496648499999992,
+            "peak_rss_bytes": 7602733056,
+            "cpu_s": 33.859370999999996,
+            "log": "logs/vscode-checkers4-stock-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36415856
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.376171292000038,
+            "peak_rss_bytes": 7628832768,
+            "cpu_s": 33.711987,
+            "log": "logs/vscode-checkers4-stock-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33867179
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.791505749999999,
+            "peak_rss_bytes": 5963235328,
+            "cpu_s": 28.919665000000002,
+            "log": "logs/vscode-checkers4-fork-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33957550
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.857896959000016,
+            "peak_rss_bytes": 6113411072,
+            "cpu_s": 29.556529,
+            "log": "logs/vscode-checkers4-fork-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33755153
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.757318708000014,
+            "peak_rss_bytes": 6097944576,
+            "cpu_s": 27.765803000000002,
+            "log": "logs/vscode-checkers4-fork-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33739891
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.098607916999981,
+            "peak_rss_bytes": 6157008896,
+            "cpu_s": 28.340190999999997,
+            "log": "logs/vscode-checkers4-fork-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33811660
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.730984750000005,
+            "peak_rss_bytes": 6012895232,
+            "cpu_s": 28.813155000000002,
+            "log": "logs/vscode-checkers4-fork-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5135591,
+              "Types": 2865997,
+              "Instantiations": 4292622,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.6905308340000147,
+            "peak_rss_bytes": 1910210560,
+            "cpu_s": 8.399309,
+            "log": "logs/vscode-checkers4-tsrs-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5135983,
+              "Types": 2866578,
+              "Instantiations": 4291962,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.6893812499999967,
+            "peak_rss_bytes": 1921220608,
+            "cpu_s": 8.427634999999999,
+            "log": "logs/vscode-checkers4-tsrs-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5136439,
+              "Types": 2866739,
+              "Instantiations": 4294848,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.447723791000044,
+            "peak_rss_bytes": 1917911040,
+            "cpu_s": 9.415877,
+            "log": "logs/vscode-checkers4-tsrs-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5135807,
+              "Types": 2866011,
+              "Instantiations": 4291227,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.792494916999999,
+            "peak_rss_bytes": 1934196736,
+            "cpu_s": 9.236237000000001,
+            "log": "logs/vscode-checkers4-tsrs-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5135611,
+              "Types": 2865717,
+              "Instantiations": 4291337,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.7231276250000178,
+            "peak_rss_bytes": 1909604352,
+            "cpu_s": 9.012862,
+            "log": "logs/vscode-checkers4-tsrs-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ]
+      },
+      "warmups": {
+        "stock": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 9893614,
+            "Types": 3335228,
+            "Instantiations": 4715035,
+            "Memory allocs": 36529741
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 5.493675250000024,
+          "peak_rss_bytes": 7379943424,
+          "cpu_s": 32.492853,
+          "log": "logs/vscode-checkers4-stock-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "fork": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5332342,
+            "Types": 3322039,
+            "Instantiations": 4713594,
+            "Memory allocs": 33877278
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 4.845510582999964,
+          "peak_rss_bytes": 6133907456,
+          "cpu_s": 29.403862,
+          "log": "logs/vscode-checkers4-fork-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5135784,
+            "Types": 2867148,
+            "Instantiations": 4292732,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 1.736807166999995,
+          "peak_rss_bytes": 1915469824,
+          "cpu_s": 8.818038,
+          "log": "logs/vscode-checkers4-tsrs-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        }
+      }
+    },
+    {
+      "project": "vscode",
+      "mode": "checkers8",
+      "equality": {
+        "stock": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 4.308049416000017,
+          "peak_rss_bytes": 8430698496,
+          "cpu_s": 37.737151,
+          "errors": 371
+        },
+        "fork": {
+          "wall_s": 3.676379875000009,
+          "peak_rss_bytes": 6840860672,
+          "cpu_s": 32.767425,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 1.179540750000001,
+          "peak_rss_bytes": 2070003712,
+          "cpu_s": 9.769808000000001,
+          "errors": 371
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 10676129,
+              "Types": 3772253,
+              "Instantiations": 5661831,
+              "Memory allocs": 39692220
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.374268292000011,
+            "peak_rss_bytes": 8407531520,
+            "cpu_s": 37.933766000000006,
+            "log": "logs/vscode-checkers8-stock-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 10676129,
+              "Types": 3772253,
+              "Instantiations": 5661831,
+              "Memory allocs": 39683971
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.477974709000023,
+            "peak_rss_bytes": 8601698304,
+            "cpu_s": 37.013568,
+            "log": "logs/vscode-checkers8-stock-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 10676129,
+              "Types": 3772253,
+              "Instantiations": 5661831,
+              "Memory allocs": 39678467
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.257046374999959,
+            "peak_rss_bytes": 8525332480,
+            "cpu_s": 36.785664999999995,
+            "log": "logs/vscode-checkers8-stock-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 10676129,
+              "Types": 3772253,
+              "Instantiations": 5661831,
+              "Memory allocs": 39680464
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.308049416000017,
+            "peak_rss_bytes": 8406466560,
+            "cpu_s": 37.833923999999996,
+            "log": "logs/vscode-checkers8-stock-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 10676129,
+              "Types": 3772253,
+              "Instantiations": 5661831,
+              "Memory allocs": 39702591
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.304107041999998,
+            "peak_rss_bytes": 8430698496,
+            "cpu_s": 37.737151,
+            "log": "logs/vscode-checkers8-stock-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5687736,
+              "Types": 3755227,
+              "Instantiations": 5660159,
+              "Memory allocs": 36779633
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.8017406249999794,
+            "peak_rss_bytes": 6580486144,
+            "cpu_s": 34.208689,
+            "log": "logs/vscode-checkers8-fork-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5687736,
+              "Types": 3755227,
+              "Instantiations": 5660159,
+              "Memory allocs": 36777613
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.6278646250000293,
+            "peak_rss_bytes": 6863142912,
+            "cpu_s": 31.517403,
+            "log": "logs/vscode-checkers8-fork-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5687736,
+              "Types": 3755227,
+              "Instantiations": 5660159,
+              "Memory allocs": 36795615
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.676379875000009,
+            "peak_rss_bytes": 6840860672,
+            "cpu_s": 32.075647000000004,
+            "log": "logs/vscode-checkers8-fork-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5687736,
+              "Types": 3755227,
+              "Instantiations": 5660159,
+              "Memory allocs": 36867160
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.7985987499999965,
+            "peak_rss_bytes": 6853672960,
+            "cpu_s": 32.767425,
+            "log": "logs/vscode-checkers8-fork-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5687736,
+              "Types": 3755227,
+              "Instantiations": 5660159,
+              "Memory allocs": 36831153
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 3.661219041000038,
+            "peak_rss_bytes": 6643580928,
+            "cpu_s": 33.086877,
+            "log": "logs/vscode-checkers8-fork-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5451329,
+              "Types": 3244224,
+              "Instantiations": 5109742,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.4854481659999692,
+            "peak_rss_bytes": 2074787840,
+            "cpu_s": 11.651548,
+            "log": "logs/vscode-checkers8-tsrs-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5447244,
+              "Types": 3241095,
+              "Instantiations": 5103904,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.179540750000001,
+            "peak_rss_bytes": 2076131328,
+            "cpu_s": 9.455452999999999,
+            "log": "logs/vscode-checkers8-tsrs-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5454071,
+              "Types": 3244042,
+              "Instantiations": 5111401,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.1322349170000052,
+            "peak_rss_bytes": 2070003712,
+            "cpu_s": 9.769808000000001,
+            "log": "logs/vscode-checkers8-tsrs-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5449853,
+              "Types": 3243420,
+              "Instantiations": 5107053,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.181745707999994,
+            "peak_rss_bytes": 2062581760,
+            "cpu_s": 10.31692,
+            "log": "logs/vscode-checkers8-tsrs-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5452963,
+              "Types": 3244188,
+              "Instantiations": 5113294,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 1.1277862919999961,
+            "peak_rss_bytes": 2068365312,
+            "cpu_s": 9.714925000000001,
+            "log": "logs/vscode-checkers8-tsrs-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ]
+      },
+      "warmups": {
+        "stock": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 10676129,
+            "Types": 3772253,
+            "Instantiations": 5661831,
+            "Memory allocs": 39692379
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 4.1731843330000515,
+          "peak_rss_bytes": 8516485120,
+          "cpu_s": 36.368698,
+          "log": "logs/vscode-checkers8-stock-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "fork": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5687736,
+            "Types": 3755227,
+            "Instantiations": 5660159,
+            "Memory allocs": 36865071
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 3.9290459169999963,
+          "peak_rss_bytes": 6844219392,
+          "cpu_s": 32.917636,
+          "log": "logs/vscode-checkers8-fork-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5450092,
+            "Types": 3243594,
+            "Instantiations": 5107756,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 1.2821062500000266,
+          "peak_rss_bytes": 2081390592,
+          "cpu_s": 10.379627000000001,
+          "log": "logs/vscode-checkers8-tsrs-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        }
+      }
+    },
+    {
+      "project": "vscode",
+      "mode": "default",
+      "equality": {
+        "stock": true,
+        "fork": true,
+        "tsrs": true
+      },
+      "summary": {
+        "stock": {
+          "wall_s": 5.886019207999993,
+          "peak_rss_bytes": 7543488512,
+          "cpu_s": 33.890169,
+          "errors": 371
+        },
+        "fork": {
+          "wall_s": 5.074884957999984,
+          "peak_rss_bytes": 6134874112,
+          "cpu_s": 30.100531,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 0.8138882080000371,
+          "peak_rss_bytes": 2254798848,
+          "cpu_s": 11.293816,
+          "errors": 371
+        }
+      },
+      "runs": {
+        "stock": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36369247
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.473706625000034,
+            "peak_rss_bytes": 7619280896,
+            "cpu_s": 33.914834,
+            "log": "logs/vscode-default-stock-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36357138
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 7.10491108299999,
+            "peak_rss_bytes": 7392559104,
+            "cpu_s": 33.182874,
+            "log": "logs/vscode-default-stock-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36460690
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 6.091637124999977,
+            "peak_rss_bytes": 7391952896,
+            "cpu_s": 33.890169,
+            "log": "logs/vscode-default-stock-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36363615
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.886019207999993,
+            "peak_rss_bytes": 7543488512,
+            "cpu_s": 32.821124999999995,
+            "log": "logs/vscode-default-stock-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 9893614,
+              "Types": 3335228,
+              "Instantiations": 4715035,
+              "Memory allocs": 36387861
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.673456833000046,
+            "peak_rss_bytes": 7598309376,
+            "cpu_s": 34.001708,
+            "log": "logs/vscode-default-stock-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "fork": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33770169
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.242033583000023,
+            "peak_rss_bytes": 6122061824,
+            "cpu_s": 30.491245000000003,
+            "log": "logs/vscode-default-fork-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33863787
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.074884957999984,
+            "peak_rss_bytes": 6134874112,
+            "cpu_s": 30.459274999999998,
+            "log": "logs/vscode-default-fork-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33906630
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 5.278987167000025,
+            "peak_rss_bytes": 5990236160,
+            "cpu_s": 30.100531,
+            "log": "logs/vscode-default-fork-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33769683
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.992653667000013,
+            "peak_rss_bytes": 6153928704,
+            "cpu_s": 28.102605,
+            "log": "logs/vscode-default-fork-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5332342,
+              "Types": 3322039,
+              "Instantiations": 4713594,
+              "Memory allocs": 33739930
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 4.850415499999997,
+            "peak_rss_bytes": 6163611648,
+            "cpu_s": 27.218384,
+            "log": "logs/vscode-default-fork-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5761243,
+              "Types": 3594245,
+              "Instantiations": 6182629,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 0.7982794580000245,
+            "peak_rss_bytes": 2254798848,
+            "cpu_s": 11.106544,
+            "log": "logs/vscode-default-tsrs-0.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5766843,
+              "Types": 3594141,
+              "Instantiations": 6177169,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 0.8822457499999814,
+            "peak_rss_bytes": 2265710592,
+            "cpu_s": 11.31814,
+            "log": "logs/vscode-default-tsrs-1.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5765579,
+              "Types": 3598763,
+              "Instantiations": 6181150,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 0.8138882080000371,
+            "peak_rss_bytes": 2267496448,
+            "cpu_s": 11.293816,
+            "log": "logs/vscode-default-tsrs-2.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5753887,
+              "Types": 3583549,
+              "Instantiations": 6157316,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 0.9156609169999683,
+            "peak_rss_bytes": 2252341248,
+            "cpu_s": 11.536833,
+            "log": "logs/vscode-default-tsrs-3.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465,
+              "Lines": 3534318,
+              "Identifiers": 6073383,
+              "Symbols": 5764562,
+              "Types": 3593115,
+              "Instantiations": 6169651,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+            "errors": 371,
+            "wall_s": 0.781864999999982,
+            "peak_rss_bytes": 2253602816,
+            "cpu_s": 10.645579000000001,
+            "log": "logs/vscode-default-tsrs-4.log.gz",
+            "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+          }
+        ]
+      },
+      "warmups": {
+        "stock": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 9893614,
+            "Types": 3335228,
+            "Instantiations": 4715035,
+            "Memory allocs": 36362292
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 5.427225333000024,
+          "peak_rss_bytes": 7383580672,
+          "cpu_s": 31.952745999999998,
+          "log": "logs/vscode-default-stock-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "fork": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5332342,
+            "Types": 3322039,
+            "Instantiations": 4713594,
+            "Memory allocs": 33729210
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 4.91655424999999,
+          "peak_rss_bytes": 6039617536,
+          "cpu_s": 29.382438,
+          "log": "logs/vscode-default-fork-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5745702,
+            "Types": 3577318,
+            "Instantiations": 5963879,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "87664ef1dc77e20061ef5eec41fdb64228346d7a673ab4c7b35ed785b7f07f0d",
+          "errors": 371,
+          "wall_s": 0.7829444160000207,
+          "peak_rss_bytes": 2237906944,
+          "cpu_s": 11.122829000000001,
+          "log": "logs/vscode-default-tsrs-warm.log.gz",
+          "original_diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2"
+        }
+      }
+    }
+  ],
+  "instructions": "not collected; Go counts vary with GC; use bench/count.py on Linux separately",
+  "go_gate_passed": true,
+  "tsrs_gate_passed": true,
+  "requested_gates_passed": true
+}
