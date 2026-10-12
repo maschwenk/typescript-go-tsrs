@@ -32,7 +32,7 @@ concurrency:
 
 jobs:
   compare:
-    runs-on: [self-hosted, Linux, ARM64, tsgo-backport-local]
+    runs-on: ubuntu-24.04-arm
     timeout-minutes: 120
     permissions:
       contents: read
@@ -50,6 +50,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 1
+          persist-credentials: false
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
           go-version-file: tsc/go.mod
@@ -66,6 +67,7 @@ jobs:
           repository: maschwenk/tsrs
           ref: ${{ steps.pins.outputs.tsrs }}
           path: .bench/tsrs
+          persist-credentials: false
       - name: Build plain pinned tsrs
         working-directory: .bench/tsrs
         run: |
@@ -88,6 +90,7 @@ jobs:
           repository: CodSpeedHQ/action
           ref: f842b9a3ffe213dbb81768fd7f7eeb4dfcf1c369
           path: .bench/codspeed-action
+          persist-credentials: false
       - name: Install the action's pinned CLI without changing system tools
         shell: bash
         run: |
