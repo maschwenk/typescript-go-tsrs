@@ -538,7 +538,19 @@ func newGlobMatcher(includeSpecs, excludeSpecs []string, basePath string, caseSe
 // matchesFileParts checks if prefix+suffix matches against the glob patterns.
 // Returns the index of the matching include pattern and true if matched, or (0, false) if not.
 func (m *globMatcher) matchesFileParts(prefix, suffix string) (int, bool) {
-	for i := range m.excludes {
+	return m.matchesFilePartsIn(nil, prefix, suffix)
+}
+
+func (m *globMatcher) matchesFilePartsIn(live []int, prefix, suffix string) (int, bool) {
+	count := len(m.excludes)
+	if live != nil {
+		count = len(live)
+	}
+	for position := 0; position < count; position++ {
+		i := position
+		if live != nil {
+			i = live[position]
+		}
 		if m.excludes[i].matchesParts(prefix, suffix) {
 			return 0, false
 		}
@@ -559,7 +571,19 @@ func (m *globMatcher) matchesFileParts(prefix, suffix string) (int, bool) {
 
 // matchesDirectoryParts checks if files under the directory prefix+suffix could match any pattern.
 func (m *globMatcher) matchesDirectoryParts(prefix, suffix string) bool {
-	for i := range m.excludes {
+	return m.matchesDirectoryPartsIn(nil, prefix, suffix)
+}
+
+func (m *globMatcher) matchesDirectoryPartsIn(live []int, prefix, suffix string) bool {
+	count := len(m.excludes)
+	if live != nil {
+		count = len(live)
+	}
+	for position := 0; position < count; position++ {
+		i := position
+		if live != nil {
+			i = live[position]
+		}
 		if m.excludes[i].matchesParts(prefix, suffix) {
 			return false
 		}
@@ -577,6 +601,7 @@ func (m *globMatcher) matchesDirectoryParts(prefix, suffix string) bool {
 
 // globVisitor traverses directories matching files against glob patterns.
 type globVisitor struct {
+	sameExcludes              bool
 	host                      vfs.FS
 	fileMatcher               *globMatcher
 	directoryMatcher          *globMatcher
@@ -591,6 +616,10 @@ type globVisitor struct {
 // directory (computed incrementally from the parent). When empty, Realpath is
 // called to resolve symlinks.
 func (v *globVisitor) visit(path, absolutePath string, depth int, resolvedRealPath string) {
+	v.visitWithExcludes(path, absolutePath, depth, resolvedRealPath, nil, nil)
+}
+
+func (v *globVisitor) visitWithExcludes(path, absolutePath string, depth int, resolvedRealPath string, parentFiles, parentDirectories []int) {
 	// Detect symlink cycles
 	var realPath string
 	if resolvedRealPath != "" {
@@ -608,12 +637,17 @@ func (v *globVisitor) visit(path, absolutePath string, depth int, resolvedRealPa
 
 	pathPrefix := ensureTrailingSlash(path)
 	absPrefix := ensureTrailingSlash(absolutePath)
+	liveFiles := v.fileMatcher.liveExcludes(parentFiles, absPrefix)
+	liveDirectories := liveFiles
+	if !v.sameExcludes {
+		liveDirectories = v.directoryMatcher.liveExcludes(parentDirectories, absPrefix)
+	}
 
 	for _, file := range entries.Files {
 		if len(v.extensions) > 0 && !tspath.FileExtensionIsOneOf(file, v.extensions) {
 			continue
 		}
-		if idx, ok := v.fileMatcher.matchesFileParts(absPrefix, file); ok {
+		if idx, ok := v.fileMatcher.matchesFilePartsIn(liveFiles, absPrefix, file); ok {
 			v.results[idx] = append(v.results[idx], pathPrefix+file)
 		}
 	}
@@ -626,7 +660,7 @@ func (v *globVisitor) visit(path, absolutePath string, depth int, resolvedRealPa
 	}
 
 	for _, dir := range entries.Directories {
-		if !v.directoryMatcher.matchesDirectoryParts(absPrefix, dir) {
+		if !v.directoryMatcher.matchesDirectoryPartsIn(liveDirectories, absPrefix, dir) {
 			continue
 		}
 		absDir := absPrefix + dir
@@ -640,7 +674,7 @@ func (v *globVisitor) visit(path, absolutePath string, depth int, resolvedRealPa
 		}
 		// If Symlinks is nil, the FS doesn't track symlinks;
 		// leave childRealPath empty to call Realpath (preserving old behavior).
-		v.visit(pathPrefix+dir, absDir, depth, childRealPath)
+		v.visitWithExcludes(pathPrefix+dir, absDir, depth, childRealPath, liveFiles, liveDirectories)
 	}
 }
 
@@ -650,9 +684,11 @@ func matchFiles(path string, extensions, excludes, includes []string, useCaseSen
 	absolutePath := tspath.CombinePaths(currentDirectory, path)
 
 	fileMatcher := newGlobMatcher(includes, excludes, absolutePath, useCaseSensitiveFileNames, UsageFiles)
-	directoryMatcher := newGlobMatcher(includes, excludes, absolutePath, useCaseSensitiveFileNames, UsageDirectories)
+	directoryMatcher := newGlobMatcher(includes, nil, absolutePath, useCaseSensitiveFileNames, UsageDirectories)
+	directoryMatcher.excludes = fileMatcher.excludes
 
 	v := globVisitor{
+		sameExcludes:              true,
 		host:                      host,
 		fileMatcher:               fileMatcher,
 		directoryMatcher:          directoryMatcher,
