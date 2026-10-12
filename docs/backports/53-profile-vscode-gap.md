@@ -25,10 +25,37 @@ The Rust sampler records 7.685 CPU seconds at four checkers. Its checker threads
 
 Go's sampled single-thread allocation profile totals 5737 MiB and about 29.15 million allocations. AST/symbol arena records dominate retained bytes; anonymous object types, object-literal checking, and inference/mapper temporaries dominate many individual allocations. The Go process peaks at roughly three times Rust's RSS. Compact representations and allocation ownership remain the major investigation; another small relation cache will not remove these costs.
 
+## Ordinary compilation on the same machine
+
+A clean collector run repeats the comparison without statistics reporting. Every run matches the separate validation pass's full diagnostics and exit status. CPU sampling is performed afterward, outside these timing medians.
+
+| mode | fork wall / CPU | tsrs wall / CPU | fork / tsrs peak RSS | wall ratio |
+| --- | ---: | ---: | ---: | ---: |
+| one thread | 16.084s / 15.813s | 6.220s / 6.200s | 5508.4 / 1619.2 MiB | 2.586x |
+| four runtime threads and checkers | 5.279s / 19.031s | 1.864s / 7.212s | 6123.8 / 1820.7 MiB | 2.832x |
+
+[Raw repetitions and binary provenance](results/profile-vscode-20261012/ordinary-comparison.json). These are native Mac measurements; they do not establish the Linux improvement from correcting the method.
+
+In the ordinary Go CPU samples, Darwin's `sysUsedOS` / `madvise` accounts for 51.68% at one thread and 51.94% at four. The gap remains dominated by heap-management costs on this platform even after excluding the reporting GCs. The Rust profile remains balanced, with approximately 79% semantic checking, 10% parsing and 4% binding. [Go four-thread self profile](results/profile-vscode-20261012/ordinary-go-checkers4-cpu-self.txt), [Rust four-thread CPU profile summary](results/profile-vscode-20261012/ordinary-tsrs-checkers4-cpu.json).
+
+The ordinary Go allocation snapshots are also saved. They can lag the latest GC cycles: `ProfileSession.Stop` writes the allocation profile without a final collection. Use the instrumented allocation profile above for the completed allocation census rather than treating these delayed snapshots as the complete byte total.
+
+The collector's finite GC probe changes four-thread ordinary compilation from 5.279s to 4.709s, with peak RSS growing from 6123.8 to 6486.9 MiB. This repeats the CPU reduction but wall gains vary between runs. It remains an experiment, not an adopted default.
+
 ## Bounded experiments
 
 - Increasing the managed arena chunk cap from 256 to 1024 did not help: four-thread medians 7.430s before and 7.466s after; CPU 26.530s and 26.988s. Live reported memory grew roughly 170 MiB. The code was reverted. [Repetitions](results/profile-vscode-20261012/rejected-arena-probe.json).
 - A finite `GOGC=400` / `GOMEMLIMIT=8GiB` ordinary-CLI probe saved 16.3% wall time with one thread, but only 6.6% with four, increasing four-thread peak RSS about 6.6%. It neither disables GC nor reproduces Rust's arena ownership. It is not adopted as a default on this evidence. [Repetitions](results/profile-vscode-20261012/finite-gc-probe.json).
+
+## Compact AST payload prototypes: rejected
+
+The pinned tsrs source uses a 24-byte node header and a payload tag instead of a stored interface. A Go prototype replaces the node's 16-byte `nodeData` interface with a tag in existing alignment padding, reducing its header from 48 to 32 bytes. Payloads remain in ordinary Go-managed typed memory: a checked cast uses the embedded header at offset zero, and generated compile-time assertions verify that invariant for every concrete payload. Parent pointers and 64-bit node IDs are preserved.
+
+The original interface-reconstruction version passes AST/parser package tests and VS Code's full diagnostic parity gate. Three interleaved ordinary four-thread repetitions reduce median RSS from 6139.3 to 5569.8 MiB but regress wall time from 4.939s to 5.128s and CPU from 18.133s to 18.944s. [Raw repetitions](results/profile-vscode-20261012/rejected-compact-ast-probe.json).
+
+A second version generates direct accessors and passes concrete header pointers into factories. It also preserves VS Code diagnostics, but does not reverse the regression: 5.057s / 18.570s CPU before, 5.150s / 18.755s after; median RSS 6086.3 -> 5644.1 MiB. [Raw repetitions](results/profile-vscode-20261012/rejected-compact-ast-static-probe.json).
+
+Neither prototype is included in compiler source. Saving 7-9% RSS at a runtime cost does not satisfy the request for major speed wins. The remaining representation work needs to remove substantially more allocated bytes or GC-visible state, rather than simply replacing one interface field with generated dispatch.
 
 ## Reproduce the investigation
 

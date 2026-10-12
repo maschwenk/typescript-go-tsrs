@@ -1,0 +1,454 @@
+{
+  "schema": "profile-v1",
+  "measurement": "ordinary-cli-v1",
+  "date": "2026-10-12T05:00:49.202561+00:00",
+  "head": "9cccedaa8cda548dc1f51a48dd15e7be0d95b62e",
+  "machine": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "cpus": 18
+  },
+  "project": {
+    "name": "vscode",
+    "case": "cases/scenarios/vscode",
+    "repo": "https://github.com/microsoft/vscode.git",
+    "commit": "9cf0128b9822dcd8a533f08ef7312956a4390301",
+    "project": "src",
+    "install": "npm ci --ignore-scripts --no-audit --no-fund"
+  },
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "reps": 3,
+  "tools": {
+    "tsgo": {
+      "sha256": "bbfa3f7f4f656e5c4a42eec3fb984a8aacacc9cce6acaac60c03c8e55dbef55c",
+      "version": "Version 7.1.0-dev",
+      "go_build": "<repo>/.bench/profiling-gap/bin/tsgo-before: go1.27.0\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=9cccedaa8cda548dc1f51a48dd15e7be0d95b62e\n\tbuild\tvcs.time=2026-10-12T04:35:22Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "tsrs": {
+      "sha256": "49678ca059609cbcadf75a199e7d2d043008e4242a014ec70d8d075dbf1bcad9",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    },
+    "tsrs-profile": {
+      "sha256": "c310371869b74fb901a82f4634e92e0cbb7fff6b73d5b770d8319486deb524d5",
+      "purpose": "profiling only; excluded from timing summaries"
+    }
+  },
+  "rows": [
+    {
+      "mode": "single",
+      "validations": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 4833856,
+            "Types": 2659408,
+            "Instantiations": 3502722,
+            "Memory allocs": 29190399
+          },
+          "completed": true,
+          "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+          "errors": 371,
+          "wall_s": 18.102970125000002,
+          "peak_rss_bytes": 5761581056,
+          "cpu_s": 18.052112,
+          "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-single-validation.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 4749939,
+            "Types": 2454919,
+            "Instantiations": 3422715,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+          "errors": 371,
+          "wall_s": 6.164709291000001,
+          "peak_rss_bytes": 1697890304,
+          "cpu_s": 6.147193,
+          "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-single-validation.log"
+        }
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 16.084084708,
+            "peak_rss_bytes": 5770461184,
+            "cpu_s": 16.045833000000002,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-single-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 16.142181584,
+            "peak_rss_bytes": 5775982592,
+            "cpu_s": 15.812716,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-single-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 15.422003708000005,
+            "peak_rss_bytes": 5791727616,
+            "cpu_s": 15.319968999999999,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-single-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 6.198607542000005,
+            "peak_rss_bytes": 1697890304,
+            "cpu_s": 6.1805069999999995,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-single-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 6.219720624999994,
+            "peak_rss_bytes": 1697890304,
+            "cpu_s": 6.199510999999999,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-single-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 6.329715957999994,
+            "peak_rss_bytes": 1697890304,
+            "cpu_s": 6.310575,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-single-2.log"
+          }
+        ],
+        "tsgo-gc-probe": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 15.352491917000002,
+            "peak_rss_bytes": 5582389248,
+            "cpu_s": 15.300123,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-single-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 12.772354374999999,
+            "peak_rss_bytes": 6142623744,
+            "cpu_s": 12.663502999999999,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-single-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 13.311885208999996,
+            "peak_rss_bytes": 6130794496,
+            "cpu_s": 13.261946,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-single-2.log"
+          }
+        ]
+      },
+      "summary": {
+        "tsgo": {
+          "wall_s": 16.084084708,
+          "cpu_s": 15.812716,
+          "peak_rss_bytes": 5775982592
+        },
+        "tsrs": {
+          "wall_s": 6.219720624999994,
+          "cpu_s": 6.199510999999999,
+          "peak_rss_bytes": 1697890304
+        },
+        "tsgo-gc-probe": {
+          "wall_s": 13.311885208999996,
+          "cpu_s": 13.261946,
+          "peak_rss_bytes": 6130794496
+        }
+      }
+    },
+    {
+      "mode": "checkers4",
+      "validations": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5332342,
+            "Types": 3322039,
+            "Instantiations": 4713594,
+            "Memory allocs": 33715560
+          },
+          "completed": true,
+          "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+          "errors": 371,
+          "wall_s": 6.7689872090000165,
+          "peak_rss_bytes": 6430031872,
+          "cpu_s": 23.898127,
+          "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-checkers4-validation.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10465,
+            "Lines": 3534318,
+            "Identifiers": 6073383,
+            "Symbols": 5135259,
+            "Types": 2866368,
+            "Instantiations": 4291719,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+          "errors": 371,
+          "wall_s": 1.9645511249999856,
+          "peak_rss_bytes": 1900838912,
+          "cpu_s": 7.589766,
+          "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-checkers4-validation.log"
+        }
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 5.433961916000015,
+            "peak_rss_bytes": 6518669312,
+            "cpu_s": 19.733363,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-checkers4-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 5.205602584000019,
+            "peak_rss_bytes": 6347784192,
+            "cpu_s": 18.999493,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-checkers4-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 5.2785204169999815,
+            "peak_rss_bytes": 6421250048,
+            "cpu_s": 19.031038000000002,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-checkers4-2.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 1.8988316670000245,
+            "peak_rss_bytes": 1901510656,
+            "cpu_s": 7.27427,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-checkers4-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 1.8576269579999973,
+            "peak_rss_bytes": 1909653504,
+            "cpu_s": 7.1241959999999995,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-checkers4-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 1.8642294580000112,
+            "peak_rss_bytes": 1909178368,
+            "cpu_s": 7.212424,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsrs-checkers4-2.log"
+          }
+        ],
+        "tsgo-gc-probe": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 4.753748166000008,
+            "peak_rss_bytes": 6801965056,
+            "cpu_s": 17.041474,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-checkers4-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 4.696798042000012,
+            "peak_rss_bytes": 6828212224,
+            "cpu_s": 16.817663,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-checkers4-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10465
+            },
+            "completed": true,
+            "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 4.708962750000012,
+            "peak_rss_bytes": 6785646592,
+            "cpu_s": 17.011156,
+            "log": "<repo>/.bench/profiling-gap/ordinary-verified/tsgo-gc-probe-checkers4-2.log"
+          }
+        ]
+      },
+      "summary": {
+        "tsgo": {
+          "wall_s": 5.2785204169999815,
+          "cpu_s": 19.031038000000002,
+          "peak_rss_bytes": 6421250048
+        },
+        "tsrs": {
+          "wall_s": 1.8642294580000112,
+          "cpu_s": 7.212424,
+          "peak_rss_bytes": 1909178368
+        },
+        "tsgo-gc-probe": {
+          "wall_s": 4.708962750000012,
+          "cpu_s": 17.011156,
+          "peak_rss_bytes": 6801965056
+        }
+      }
+    }
+  ],
+  "completed": true
+}

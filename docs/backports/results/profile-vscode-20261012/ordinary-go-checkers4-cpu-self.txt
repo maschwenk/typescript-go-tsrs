@@ -1,0 +1,26 @@
+File: tsgo-before
+Type: cpu
+Time: 2026-10-12 01:04:25 EDT
+Duration: 5.55s, Total samples = 19.33s (348.06%)
+Showing nodes accounting for 16.18s, 83.70% of 19.33s total
+Dropped 989 nodes (cum <= 0.10s)
+Showing top 18 nodes out of 345
+      flat  flat%   sum%        cum   cum%
+    10.04s 51.94% 51.94%     10.04s 51.94%  runtime.madvise
+     1.23s  6.36% 58.30%      1.30s  6.73%  runtime.tryDeferToSpanScan
+     1.09s  5.64% 63.94%      1.09s  5.64%  runtime.memclrNoHeapPointers
+     0.66s  3.41% 67.36%      0.67s  3.47%  runtime.(*mspan).typePointersOfUnchecked
+     0.62s  3.21% 70.56%      2.03s 10.50%  runtime.scanObject
+     0.52s  2.69% 73.25%      0.52s  2.69%  syscall.rawsyscalln
+     0.48s  2.48% 75.74%      0.55s  2.85%  runtime.mapaccess2_fast64
+     0.28s  1.45% 77.19%      0.28s  1.45%  internal/runtime/maps.(*ctrlGroup).setEmpty
+     0.27s  1.40% 78.58%      0.29s  1.50%  runtime.mapaccess2
+     0.14s  0.72% 79.31%      0.14s  0.72%  runtime.mmap
+     0.13s  0.67% 79.98%      0.13s  0.67%  runtime.heapSetTypeSmallHeader
+     0.12s  0.62% 80.60%      0.12s  0.62%  runtime.(*mspan).moveInlineMarks
+     0.11s  0.57% 81.17%      0.12s  0.62%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getFreshTypeOfLiteralType
+     0.11s  0.57% 81.74%      0.67s  3.47%  runtime.scanObjectsSmall
+     0.10s  0.52% 82.26%      0.21s  1.09%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newInstantiatedSymbol
+     0.10s  0.52% 82.77%      0.15s  0.78%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedLinkStore[go.shape.uint32]).Get
+     0.10s  0.52% 83.29%      0.10s  0.52%  runtime.(*gcBits).bytep (inline)
+     0.08s  0.41% 83.70%      0.23s  1.19%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSymbol

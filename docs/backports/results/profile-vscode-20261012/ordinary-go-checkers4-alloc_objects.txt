@@ -1,0 +1,32 @@
+File: tsgo-before
+Type: alloc_objects
+Time: 2026-10-12 01:04:31 EDT
+Showing nodes accounting for 4853920, 54.64% of 8882974 total
+Dropped 967 nodes (cum <= 44414)
+Showing top 25 nodes out of 536
+      flat  flat%   sum%        cum   cum%
+    658925  7.42%  7.42%     761877  8.58%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).declareSymbolEx
+    622611  7.01% 14.43%     622611  7.01%  github.com/microsoft/TypeScript/tsc/internal/ast.GetSymbolTable
+    364124  4.10% 18.53%     364124  4.10%  github.com/microsoft/TypeScript/tsc/internal/tspath.ToFileNameLowerCase
+    309220  3.48% 22.01%     309220  3.48%  github.com/microsoft/TypeScript/tsc/internal/tspath.GetNormalizedAbsolutePath
+    278594  3.14% 25.14%     338132  3.81%  github.com/microsoft/TypeScript/tsc/internal/tspath.pathComponents
+    247710  2.79% 27.93%     247710  2.79%  internal/bytealg.MakeNoZero
+    235944  2.66% 30.59%     235944  2.66%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewObjectLiteralExpression
+    198274  2.23% 32.82%    1560593 17.57%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*fileLoader).resolveImportsAndModuleAugmentations
+    196610  2.21% 35.03%     262146  2.95%  github.com/microsoft/TypeScript/tsc/internal/core.(*parallelWorkGroup).Queue
+    194336  2.19% 37.22%     194336  2.19%  slices.Grow[go.shape.[]go.shape.*uint8,go.shape.*uint8] (inline)
+    144188  1.62% 38.84%     144188  1.62%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewArrayLiteralExpression
+    139200  1.57% 40.41%     146937  1.65%  github.com/microsoft/TypeScript/tsc/internal/module.(*resolutionState).tryExtension
+    131080  1.48% 41.89%     131080  1.48%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewArrowFunction
+    114698  1.29% 43.18%     114698  1.29%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewImportClause
+    106502  1.20% 44.38%     106502  1.20%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewNamedImports
+     98312  1.11% 45.48%     576438  6.49%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*filesParser).start
+     98305  1.11% 46.59%      98305  1.11%  github.com/microsoft/TypeScript/tsc/internal/checker.newArrayTypeMapper
+     98305  1.11% 47.70%     123428  1.39%  github.com/microsoft/TypeScript/tsc/internal/collections.(*SyncMap[go.shape.string,go.shape.*uint8]).LoadOrStore
+     93983  1.06% 48.76%     186263  2.10%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*checkerPool).getImportAdjacency
+     93632  1.05% 49.81%      93632  1.05%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewImportDeclaration
+     87479  0.98% 50.79%      87479  0.98%  slices.Grow[go.shape.[]go.shape.struct { Loc github.com/microsoft/TypeScript/tsc/internal/core.TextRange; Nodes []*github.com/microsoft/TypeScript/tsc/internal/ast.Node },go.shape.struct { Loc github.com/microsoft/TypeScript/tsc/internal/core.TextRange; Nodes []*github.com/microsoft/TypeScript/tsc/internal/ast.Node }]
+     87385  0.98% 51.78%      87385  0.98%  github.com/microsoft/TypeScript/tsc/internal/module.GetConditions
+     86402  0.97% 52.75%      86402  0.97%  github.com/microsoft/TypeScript/tsc/internal/module.(*resolutionState).createResolvedModule (inline)
+     84681  0.95% 53.70%      84681  0.95%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*parseTask).addSubTask
+     83420  0.94% 54.64%      83420  0.94%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewMethodDeclaration
