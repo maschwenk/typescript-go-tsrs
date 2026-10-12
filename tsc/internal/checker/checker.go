@@ -589,6 +589,7 @@ type Checker struct {
 	files                                       []*ast.SourceFile
 	fileIndexMap                                map[*ast.SourceFile]int
 	sourceFilesComplete                         bool
+	resolvedModuleFiles                         map[string]*ast.SourceFile
 	compareSymbols                              func(*ast.Symbol, *ast.Symbol) int
 	compareSymbolChains                         func([]*ast.Symbol, []*ast.Symbol) int
 	TypeCount                                   uint32
@@ -15404,6 +15405,23 @@ func (c *Checker) getExternalModuleFileFromDeclaration(declaration *ast.Node) *a
 	return decl.AsSourceFile()
 }
 
+// Only completed programs have immutable file and redirect tables. The auto-import
+// resolver can load and bind files on demand and retains its original lookup.
+func (c *Checker) getSourceFileForResolvedModule(fileName string) *ast.SourceFile {
+	if !c.sourceFilesComplete {
+		return c.program.GetSourceFileForResolvedModule(fileName)
+	}
+	if file, ok := c.resolvedModuleFiles[fileName]; ok {
+		return file
+	}
+	file := c.program.GetSourceFileForResolvedModule(fileName)
+	if c.resolvedModuleFiles == nil {
+		c.resolvedModuleFiles = make(map[string]*ast.SourceFile)
+	}
+	c.resolvedModuleFiles[fileName] = file
+	return file
+}
+
 func (c *Checker) resolveExternalModule(
 	location *ast.Node,
 	moduleReference string,
@@ -15482,7 +15500,7 @@ func (c *Checker) resolveExternalModule(
 
 	var sourceFile *ast.SourceFile
 	if resolvedModule.IsResolved() && (resolutionDiagnostic == nil || resolutionDiagnostic == diagnostics.Module_0_was_resolved_to_1_but_jsx_is_not_set) {
-		sourceFile = c.program.GetSourceFileForResolvedModule(resolvedModule.ResolvedFileName)
+		sourceFile = c.getSourceFileForResolvedModule(resolvedModule.ResolvedFileName)
 	}
 
 	if sourceFile != nil {
