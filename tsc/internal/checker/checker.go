@@ -583,6 +583,8 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	lastEmitModuleFile        *ast.SourceFile
+	lastEmitModuleKind        core.ModuleKind
 	propertyLookupScratch     []sourcePropertyLookup
 	discriminantPropertyCache map[contextualUnionKey]*discriminantPropertyEntry
 	discriminantPropertyBytes int
@@ -5320,7 +5322,7 @@ func (c *Checker) checkModuleDeclaration(node *ast.Node) {
 				}
 			}
 		}
-		if c.compilerOptions.VerbatimModuleSyntax.IsTrue() && ast.IsSourceFile(node.Parent) && node.ModifierFlags()&ast.ModifierFlagsExport != 0 && c.program.GetEmitModuleFormatOfFile(node.Parent.AsSourceFile()) == core.ModuleKindCommonJS {
+		if c.compilerOptions.VerbatimModuleSyntax.IsTrue() && ast.IsSourceFile(node.Parent) && node.ModifierFlags()&ast.ModifierFlagsExport != 0 && c.emitModuleFormatOfFile(node.Parent.AsSourceFile()) == core.ModuleKindCommonJS {
 			exportModifier := core.Find(node.ModifierNodes(), func(m *ast.Node) bool { return m.Kind == ast.KindExportKeyword })
 			c.error(exportModifier, diagnostics.A_top_level_export_modifier_cannot_be_used_on_value_declarations_in_a_CommonJS_module_when_verbatimModuleSyntax_is_enabled)
 		}
@@ -5467,7 +5469,7 @@ func (c *Checker) checkImportDeclaration(node *ast.ImportDeclarationNode) {
 			if namedBindings != nil {
 				if ast.IsNamespaceImport(namedBindings) {
 					c.checkImportBinding(namedBindings)
-					if c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+					if c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 						// import * as ns from "foo";
 						needsImportStar = true
 						c.checkExternalEmitHelpers(node, ExternalEmitHelpersImportStar)
@@ -5483,7 +5485,7 @@ func (c *Checker) checkImportDeclaration(node *ast.ImportDeclarationNode) {
 			}
 			if importClause.Name() != nil &&
 				!needsImportStar &&
-				c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+				c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 				// import d from "foo";
 				c.checkExternalEmitHelpers(node, ExternalEmitHelpersImportDefault)
 			}
@@ -5550,7 +5552,7 @@ func (c *Checker) checkImportBinding(node *ast.Node) {
 	if ast.IsImportSpecifier(node) {
 		c.checkModuleExportName(node.PropertyName(), true /*allowStringLiteral*/)
 		if ast.ModuleExportNameIsDefault(node.PropertyNameOrName()) &&
-			c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+			c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 			c.checkExternalEmitHelpers(node, ExternalEmitHelpersImportDefault)
 		}
 	}
@@ -5727,7 +5729,7 @@ func (c *Checker) checkExportDeclaration(node *ast.ExportDeclarationNode) {
 				c.checkAliasSymbol(exportDecl.ExportClause)
 				c.checkModuleExportName(exportDecl.ExportClause.Name(), true /*allowStringLiteral*/)
 			}
-			if c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+			if c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 				if node.AsExportDeclaration().ExportClause != nil {
 					// export * as ns from "foo";
 					c.checkExternalEmitHelpers(node, ExternalEmitHelpersImportStar)
@@ -5773,7 +5775,7 @@ func (c *Checker) checkExportSpecifier(node *ast.ExportSpecifierNode) {
 		} else {
 			c.markLinkedReferences(node, ReferenceHintExportSpecifier, nil /*propSymbol*/, nil /*parentType*/)
 		}
-	} else if c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS &&
+	} else if c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS &&
 		ast.ModuleExportNameIsDefault(node.PropertyNameOrName()) {
 		c.checkExternalEmitHelpers(node, ExternalEmitHelpersImportDefault)
 	}
@@ -5814,7 +5816,7 @@ func (c *Checker) checkExportAssignment(node *ast.Node) {
 	if !c.checkGrammarModifiers(node) && ast.IsExportAssignment(node) && node.AsExportAssignment().Modifiers() != nil {
 		c.grammarErrorOnFirstToken(node, diagnostics.An_export_assignment_cannot_have_modifiers)
 	}
-	isIllegalExportDefaultInCJS := !isExportEquals && node.Flags&ast.NodeFlagsAmbient == 0 && c.compilerOptions.VerbatimModuleSyntax.IsTrue() && c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS
+	isIllegalExportDefaultInCJS := !isExportEquals && node.Flags&ast.NodeFlagsAmbient == 0 && c.compilerOptions.VerbatimModuleSyntax.IsTrue() && c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS
 	if ast.IsIdentifier(node.Expression()) {
 		id := node.Expression()
 		sym := c.getExportSymbolOfValueSymbolIfExported(c.resolveEntityName(id, ast.SymbolFlagsAll, true /*ignoreErrors*/, true /*dontResolveAlias*/, node))
@@ -7048,9 +7050,9 @@ func (c *Checker) checkAliasSymbol(node *ast.Node) {
 				}
 			}
 		}
-		if c.compilerOptions.VerbatimModuleSyntax.IsTrue() && !ast.IsImportEqualsDeclaration(node) && !ast.IsInJSFile(node) && c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+		if c.compilerOptions.VerbatimModuleSyntax.IsTrue() && !ast.IsImportEqualsDeclaration(node) && !ast.IsInJSFile(node) && c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 			c.error(node, getVerbatimModuleSyntaxErrorMessage(node))
-		} else if c.moduleKind == core.ModuleKindPreserve && !ast.IsImportEqualsDeclaration(node) && !ast.IsVariableDeclaration(node) && !ast.IsBindingElement(node) && c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
+		} else if c.moduleKind == core.ModuleKindPreserve && !ast.IsImportEqualsDeclaration(node) && !ast.IsVariableDeclaration(node) && !ast.IsBindingElement(node) && c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) == core.ModuleKindCommonJS {
 			// In `--module preserve`, ESM input syntax emits ESM output syntax, but there will be times
 			// when we look at the `impliedNodeFormat` of this file and decide it's CommonJS (i.e., currently,
 			// only if the file extension is .cjs/.cts). To avoid that inconsistency, we disallow ESM syntax
@@ -10706,7 +10708,7 @@ func (c *Checker) checkCollisionsForDeclarationName(node *ast.Node, name *ast.No
 
 func (c *Checker) checkCollisionWithRequireExportsInGeneratedCode(node *ast.Node, name *ast.Node) {
 	// No need to check for require or exports for ES6 modules and later
-	if c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) >= core.ModuleKindES2015 {
+	if c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(node)) >= core.ModuleKindES2015 {
 		return
 	}
 	if name == nil || !c.needCollisionCheckForIdentifier(node, name, "require") && !c.needCollisionCheckForIdentifier(node, name, "exports") {
@@ -10734,7 +10736,7 @@ func (c *Checker) checkCollisionWithGlobalObjectInGeneratedCode(node *ast.Node, 
 	}
 	// In case of variable declaration, node.parent is variable statement so look at the variable statement's parent
 	parent := ast.GetDeclarationContainer(node)
-	if ast.IsSourceFile(parent) && ast.IsExternalOrCommonJSModule(parent.AsSourceFile()) && c.program.GetEmitModuleFormatOfFile(parent.AsSourceFile()) == core.ModuleKindCommonJS {
+	if ast.IsSourceFile(parent) && ast.IsExternalOrCommonJSModule(parent.AsSourceFile()) && c.emitModuleFormatOfFile(parent.AsSourceFile()) == core.ModuleKindCommonJS {
 		// If the declaration happens to be in external module, report error that Object is a reserved identifier.
 		c.errorSkippedOnNoEmit(name, diagnostics.Duplicate_identifier_0_Compiler_reserves_name_1_in_top_level_scope_of_a_module, scanner.DeclarationNameToString(name), scanner.DeclarationNameToString(name))
 	}
@@ -10853,7 +10855,7 @@ func (c *Checker) checkReflectCollision(node *ast.Node) {
 }
 
 func (c *Checker) checkClassNameCollisionWithObject(name *ast.Node) {
-	if name.Text() == "Object" && c.program.GetEmitModuleFormatOfFile(ast.GetSourceFileOfNode(name)) < core.ModuleKindES2015 {
+	if name.Text() == "Object" && c.emitModuleFormatOfFile(ast.GetSourceFileOfNode(name)) < core.ModuleKindES2015 {
 		c.error(name, diagnostics.Class_name_cannot_be_Object_when_targeting_ES5_and_above_with_module_0, c.moduleKind.String())
 	}
 }
@@ -15145,7 +15147,7 @@ func (c *Checker) canHaveSyntheticDefault(file *ast.Node, moduleSymbol *ast.Symb
 			if c.program.GetRedirectForResolution(file.AsSourceFile()) != nil || c.program.GetProjectReferenceFromOutputDts(file.AsSourceFile().Path()) != nil {
 				// This is a declaration file from a project reference, so we can determine
 				// its module format from the referenced project's options
-				targetModuleKind := c.program.GetEmitModuleFormatOfFile(file.AsSourceFile())
+				targetModuleKind := c.emitModuleFormatOfFile(file.AsSourceFile())
 				if usageMode == core.ModuleKindESNext && core.ModuleKindES2015 <= targetModuleKind && targetModuleKind <= core.ModuleKindESNext {
 					return false
 				}

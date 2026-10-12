@@ -669,7 +669,7 @@ func (b *NodeBuilderImpl) symbolToTypeNode(symbol *ast.Symbol, mask ast.SymbolFl
 		var importModeOverride core.ResolutionMode
 		if b.ch.compilerOptions.GetModuleResolutionKind() == core.ModuleResolutionKindNode16 || b.ch.compilerOptions.GetModuleResolutionKind() == core.ModuleResolutionKindNodeNext {
 			// An `import` type directed at an esm format file is only going to resolve in esm mode - set the esm mode assertion
-			if targetFile != nil && contextFile != nil && b.ch.program.GetEmitModuleFormatOfFile(targetFile) == core.ModuleKindESNext && b.ch.program.GetEmitModuleFormatOfFile(targetFile) != b.ch.program.GetEmitModuleFormatOfFile(contextFile) {
+			if targetFile != nil && contextFile != nil && b.ch.emitModuleFormatOfFile(targetFile) == core.ModuleKindESNext && b.ch.emitModuleFormatOfFile(targetFile) != b.ch.emitModuleFormatOfFile(contextFile) {
 				specifierResult = b.getSpecifierForModuleSymbol(chain[0], core.ModuleKindESNext)
 				importModeOverride = core.ModuleKindESNext
 			}
@@ -683,7 +683,7 @@ func (b *NodeBuilderImpl) symbolToTypeNode(symbol *ast.Symbol, mask ast.SymbolFl
 			if b.ch.compilerOptions.GetModuleResolutionKind() == core.ModuleResolutionKindNode16 || b.ch.compilerOptions.GetModuleResolutionKind() == core.ModuleResolutionKindNodeNext {
 				// We might be able to write a portable import type using a mode override; try specifier generation again, but with a different mode set
 				swappedMode := core.ModuleKindESNext
-				if b.ch.program.GetEmitModuleFormatOfFile(contextFile) == core.ModuleKindESNext {
+				if b.ch.emitModuleFormatOfFile(contextFile) == core.ModuleKindESNext {
 					swappedMode = core.ModuleKindCommonJS
 				}
 				specifierResult = b.getSpecifierForModuleSymbol(chain[0], swappedMode)
