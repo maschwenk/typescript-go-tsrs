@@ -49,6 +49,17 @@ jobs:
         env:
           TSGO_UNION_CACHE: shadow
           TSGO_LAZY_UNAFFECTED: shadow
+          TSGO_IA_MEMO: shadow
+          TSGO_CONTEXTUAL_REUSE: shadow
+          TSGO_DEEP_NESTED: shadow
+          TSGO_INFER_MEMO: shadow
+          TSGO_FLOW_MEMO: shadow
+          TSGO_CONTEXTUAL_POSITIONS: shadow
+          TSGO_NODE_FILE_CACHE: shadow
+          TSGO_DISCRIMINANT_PROPERTIES: shadow
+          TSGO_PROPERTY_LOOKUPS: shadow
+          TSGO_SUBTYPE_PROPERTIES: shadow
+          TSGO_CONSTITUENT_FLAGS: shadow
           TS_TEST_PROGRAM_SINGLE_THREADED: ${{ matrix.concurrent }}
           TSGO_UNION_CACHE: shadow
         run: go test -count=1 ./...

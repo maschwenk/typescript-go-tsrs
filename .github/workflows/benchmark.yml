@@ -1,6 +1,5 @@
 name: Benchmark
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       source_sha:
@@ -15,13 +14,11 @@ on:
         default: ubuntu-24.04
         options: [ubuntu-24.04, tsgo-backport-local]
       projects:
-        description: 'Comma-separated tsrs projects (synthetic is always available)'
-        default: 'synthetic,Compiler,Compiler-Unions,xstate-main,webpack'
+        description: 'Pinned workload (VS Code only)'
+        default: 'vscode'
       repetitions:
         description: 'Interleaved repetitions'
-        default: '7'
-  schedule:
-    - cron: '0 6 * * 1'
+        default: '5'
 permissions:
   contents: read
   checks: write
@@ -92,15 +89,16 @@ jobs:
           fi
       - name: Compare compilers
         env:
-          PROJECTS: ${{ inputs.projects || 'synthetic,Compiler,Compiler-Unions' }}
-          REPS: ${{ inputs.repetitions || '3' }}
+          PROJECTS: ${{ inputs.projects || 'vscode' }}
+          REPS: ${{ inputs.repetitions || '5' }}
           PARENT: ${{ inputs.parent_sha || github.event.pull_request.base.sha }}
         run: |
+          if [ "$PROJECTS" != vscode ]; then echo "Use VS Code only" >&2; exit 1; fi
           extra=()
           if [ -n "$PARENT" ]; then extra+=(--parent .bench/bin/parent); fi
           python3 bench/run.py --stock .bench/bin/stock --fork .bench/bin/fork \
             --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
-            --projects "$PROJECTS" --reps "$REPS" --label "$RUNNER_OS-$RUNNER_ARCH" \
+            --projects "$PROJECTS" --modes single,checkers4,checkers8,default --reps "$REPS" --label "$RUNNER_OS-$RUNNER_ARCH" \
             --out .bench/results/compare.json "${extra[@]}"
       - name: Verify union cache hits against the original computation
         env:

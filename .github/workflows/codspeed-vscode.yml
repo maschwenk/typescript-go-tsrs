@@ -1,0 +1,139 @@
+name: Optional CodSpeed VS Code
+on:
+  workflow_dispatch:
+    inputs:
+      repetitions:
+        description: Measured repetitions per compiler and mode
+        default: '7'
+        type: string
+      modes:
+        description: Compiler modes (VS Code src only)
+        default: single,checkers4,default
+        type: choice
+        options:
+          - single,checkers4,default
+          - single
+          - checkers4
+          - default
+      gate_tsrs:
+        description: Also require tsrs diagnostic, exit, and file-count equality
+        default: false
+        type: boolean
+      upload:
+        description: Upload after the gate passes (requires existing CodSpeed repo connection)
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+concurrency:
+  group: final-vscode-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    runs-on: [self-hosted, Linux, ARM64, tsgo-backport-local]
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GOFLAGS: ''
+      RUSTFLAGS: ''
+      CARGO_ENCODED_RUSTFLAGS: ''
+      CODSPEED_PROFILER_ENABLED: 'false'
+      CODSPEED_ISOLATION: 'false'
+      CODSPEED_VSCODE_STATE: ${{ github.workspace }}/.bench/results/codspeed-vscode-${{ github.run_id }}-${{ github.run_attempt }}
+      TSGO_CODSPEED_STATE: ${{ github.workspace }}/.bench/results/codspeed-vscode-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version-file: tsc/go.mod
+          cache: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Read the existing tsrs source pin
+        id: pins
+        run: |
+          echo "tsrs=$(python3 -c 'import json; print(json.load(open("bench/pins.json"))["tsrs"]["commit"])')" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: maschwenk/tsrs
+          ref: ${{ steps.pins.outputs.tsrs }}
+          path: .bench/tsrs
+      - name: Build plain pinned tsrs
+        working-directory: .bench/tsrs
+        run: |
+          unset CARGO_PROFILE_RELEASE_LTO CARGO_PROFILE_RELEASE_OPT_LEVEL
+          rustup toolchain install 1.99.0 --profile minimal
+          cargo +1.99.0 build --locked --release -p tsrs_cli
+      - name: Build plain stock and fork
+        run: python3 bench/build.py
+      - name: Prepare only the pinned VS Code src workload
+        env:
+          REPS: ${{ inputs.repetitions }}
+          MODES: ${{ inputs.modes }}
+        run: |
+          python3 bench/codspeed_vscode.py prepare --state "$CODSPEED_VSCODE_STATE" \
+            --repetitions "$REPS" --modes "$MODES"
+
+      # Pin the official action's release metadata; its composite wrapper has no --skip-setup input.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: CodSpeedHQ/action
+          ref: f842b9a3ffe213dbb81768fd7f7eeb4dfcf1c369
+          path: .bench/codspeed-action
+      - name: Install the action's pinned CLI without changing system tools
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          action = Path('.bench/codspeed-action')
+          assert (action / '.codspeed-runner-version').read_text().strip() == '5.4.2'
+          hashes = json.loads((action / '.codspeed-runner-installer-hashes.json').read_text())
+          assert hashes['5.4.2'] == '508a76940acb83b36a96051208023bac811583c771324f7b3af0c518e552d203'
+          PY
+          mkdir -p "$RUNNER_TEMP/codspeed-bin"
+          curl -fsSL https://github.com/CodSpeedHQ/codspeed/releases/download/v5.4.2/codspeed-runner-aarch64-unknown-linux-musl.tar.gz -o "$RUNNER_TEMP/codspeed-runner.tar.gz"
+          echo "42f59f231bd1b19ed9e84135450a78a8a263d5442bba69299d755e026c964033  $RUNNER_TEMP/codspeed-runner.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/codspeed-runner.tar.gz" --strip-components=1 -C "$RUNNER_TEMP/codspeed-bin" codspeed-runner-aarch64-unknown-linux-musl/codspeed
+          curl -fsSL https://github.com/CodSpeedHQ/codspeed/releases/download/exec-harness-v1.4.1/exec-harness-aarch64-unknown-linux-gnu.tar.gz -o "$RUNNER_TEMP/exec-harness.tar.gz"
+          echo "c7eab4618d7089ec80c88275649af304168d5294116f2fa0f082715c4c973a75  $RUNNER_TEMP/exec-harness.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/exec-harness.tar.gz" --strip-components=1 -C "$RUNNER_TEMP/codspeed-bin" exec-harness-aarch64-unknown-linux-gnu/exec-harness
+          echo "$RUNNER_TEMP/codspeed-bin" >> "$GITHUB_PATH"
+      - name: Measure once through CodSpeed, saving results locally
+        id: measure
+        run: |
+          codspeed run --config "$CODSPEED_VSCODE_STATE/run.yml" --mode walltime \
+            --skip-setup --skip-upload --profile-folder "$CODSPEED_VSCODE_STATE/profile"
+      - name: Check actual diagnostics, exits and file counts outside CodSpeed
+        if: ${{ !cancelled() && steps.measure.outcome != 'skipped' }}
+        env:
+          STRICT_TSRS: ${{ inputs.gate_tsrs }}
+        run: |
+          extra=()
+          if [ "$STRICT_TSRS" = true ]; then extra+=(--gate-tsrs); fi
+          python3 bench/codspeed_vscode.py gate --state "$CODSPEED_VSCODE_STATE" "${extra[@]}"
+      - name: Upload the existing gated results with OIDC
+        if: ${{ success() && inputs.upload }}
+        run: |
+          codspeed run --config "$CODSPEED_VSCODE_STATE/run.yml" --mode walltime \
+            --skip-setup --skip-run --profile-folder "$CODSPEED_VSCODE_STATE/profile"
+      - name: Publish the final comparison
+        if: always()
+        run: |
+          if [ -f "$CODSPEED_VSCODE_STATE/compare.md" ]; then
+            cat "$CODSPEED_VSCODE_STATE/compare.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: vscode-comparison-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.CODSPEED_VSCODE_STATE }}
+          retention-days: 7
