@@ -1265,9 +1265,11 @@ func (c *Checker) discriminateTypeByDiscriminableItems(target *Type, discriminat
 		// have non-matching discriminants. This ensures that we ignore erroneous discriminators and gradually
 		// refine the target set without eliminating every constituent (which would lead to `never`).
 		matched := false
+		name := discriminator.name(n)
+		known := c.discriminantProperties(target, types, name)
 		for i := range types {
 			if include[i] != TernaryFalse {
-				targetType := c.getTypeOfPropertyOrIndexSignatureOfType(types[i], discriminator.name(n))
+				targetType := c.typeOfDiscriminantProperty(known, i, types[i], name)
 				if targetType != nil {
 					if discriminator.matches(n, targetType) {
 						matched = true
