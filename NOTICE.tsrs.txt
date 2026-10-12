@@ -1,0 +1,14 @@
+tsrs-derived strategies in typescript-go-tsrs
+Copyright 2026 Max Schwenk and the tsrs contributors
+
+This fork translates strategies from tsrs, a Rust port of the TypeScript Go
+compiler, into Go. The translated implementations are modified for Go's
+collector, type layouts, caches, and concurrency rules. Source references and
+translation decisions are recorded in docs/backports.
+
+Source: https://github.com/maschwenk/tsrs
+Revision: e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751
+License: Apache License, Version 2.0 (see LICENSE.txt).
+
+TypeScript is Copyright (c) Microsoft Corporation. Its upstream license and
+third-party notices remain in LICENSE.txt and NOTICE.txt.

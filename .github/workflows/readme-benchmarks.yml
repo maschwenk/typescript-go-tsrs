@@ -1,0 +1,124 @@
+name: README benchmarks
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+# Distinct commits never cancel each other or replace one another in a shared queue.
+concurrency:
+  group: readme-benchmarks-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  measure:
+    if: github.repository == 'maschwenk/typescript-go-tsrs' && !contains(github.event.head_commit.message, '[skip ci]')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version-file: tsc/go.mod
+          cache-dependency-path: '**/go.sum'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Read the pinned tsrs source and corpus
+        id: pins
+        run: |
+          echo "tsrs=$(python3 -c 'import json; print(json.load(open("bench/pins.json"))["tsrs"]["commit"])')" >> "$GITHUB_OUTPUT"
+          echo "vscode=9cf0128b9822dcd8a533f08ef7312956a4390301" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: maschwenk/tsrs
+          ref: ${{ steps.pins.outputs.tsrs }}
+          path: .bench/tsrs
+          persist-credentials: false
+      - name: Restore the plain tsrs release binary
+        id: rust-cache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/tsrs/target/release/tsrs
+          key: tsrs-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99
+      - name: Build tsrs
+        if: steps.rust-cache.outputs.cache-hit != 'true'
+        working-directory: .bench/tsrs
+        run: |
+          rustup toolchain install 1.99.0 --profile minimal
+          cargo +1.99.0 build --locked --release -p tsrs_cli
+      - name: Save the completed tsrs binary
+        if: steps.rust-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/tsrs/target/release/tsrs
+          key: tsrs-native-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99
+      - name: Restore VS Code and its locked dependencies
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/work/solutions/vscode
+          key: readme-vscode-${{ runner.os }}-${{ runner.arch }}-node24-${{ steps.pins.outputs.vscode }}-${{ steps.pins.outputs.tsrs }}
+      - name: Build the fork and resolve the official nightly
+        run: |
+          mkdir -p .bench/bin
+          go -C tsc build -pgo=off -o ../.bench/bin/tsgo ./cmd/tsc
+          python3 bench/nightly.py --out .bench/nightly > .bench/nightly-install.log
+      - name: Measure VS Code only
+        env:
+          BENCH_RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          nightly=$(python3 -c 'import json; print(json.load(open(".bench/nightly/provenance.json"))["package"])')
+          python3 bench/main_benchmark.py --fork .bench/bin/tsgo \
+            --nightly ".bench/nightly/node_modules/$nightly/lib/tsc" --nightly-provenance .bench/nightly/provenance.json \
+            --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs --reps 5
+      - name: Show the tables in the run summary
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json,sys
+          sys.path.insert(0, 'bench')
+          from publish_readme import validate,table
+          result=json.load(open('.bench/readme/result.json'))
+          validate(result)
+          print(table(result))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: readme-vscode-${{ github.sha }}
+          path: .bench/readme/
+          retention-days: 7
+  publish:
+    needs: measure
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: readme-vscode-${{ github.sha }}
+          path: ${{ runner.temp }}/readme-result
+      - name: Publish results on the latest main
+        env:
+          RESULT: ${{ runner.temp }}/readme-result/result.json
+        run: |
+          # Preserve this run's reviewed publisher across retries as main advances.
+          cp -R bench "$RUNNER_TEMP/readme-publisher"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git checkout -f -B main origin/main
+            python3 "$RUNNER_TEMP/readme-publisher/publish_readme.py" "$RESULT" --repo "$GITHUB_WORKSPACE"
+            git add README.md bench/results
+            if git diff --cached --quiet; then exit 0; fi
+            git commit -m "bench: VS Code results for ${GITHUB_SHA::12} [skip ci]"
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$((attempt * 3))"
+          done
+          exit 1
