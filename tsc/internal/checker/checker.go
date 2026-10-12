@@ -26920,6 +26920,14 @@ func (c *Checker) removeStringLiteralsMatchedByTemplateLiterals(types []*Type) [
 			i--
 			t := types[i]
 			if t.flags&TypeFlagsStringLiteral != 0 && core.Some(templates, func(template *Type) bool {
+				if template.flags&TypeFlagsTemplateLiteral != 0 {
+					texts := template.AsTemplateLiteralType().texts
+					start, end := texts[0], texts[len(texts)-1]
+					value := getStringLiteralValue(t)
+					if len(value) < len(start)+len(end) || !strings.HasPrefix(value, start) || !strings.HasSuffix(value, end) {
+						return false
+					}
+				}
 				return c.isTypeMatchedByTemplateLiteralOrStringMapping(t, template)
 			}) {
 				types = slices.Delete(types, i, i+1)
