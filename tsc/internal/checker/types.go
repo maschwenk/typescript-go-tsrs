@@ -657,9 +657,11 @@ const (
 	ObjectFlagsIsUniformEnumComputed      = 1 << 28 // IsUniformEnum flag has been computed
 	ObjectFlagsIsUniformEnum              = 1 << 29 // Union contains uniform literal types
 	// Flags that require TypeFlags.Intersection
-	ObjectFlagsIsNeverIntersectionComputed = 1 << 25 // IsNeverLike flag has been computed
-	ObjectFlagsIsNeverIntersection         = 1 << 26 // Intersection reduces to never
-	ObjectFlagsIsConstrainedTypeVariable   = 1 << 27 // T & C, where T's constraint and C are primitives, object, or {}
+	ObjectFlagsIsNeverIntersectionComputed             = 1 << 25 // IsNeverLike flag has been computed
+	ObjectFlagsIsNeverIntersection                     = 1 << 26 // Intersection reduces to never
+	ObjectFlagsShouldNormalizeComputed     ObjectFlags = 1 << 30
+	ObjectFlagsShouldNormalize             ObjectFlags = 1 << 31
+	ObjectFlagsIsConstrainedTypeVariable               = 1 << 27 // T & C, where T's constraint and C are primitives, object, or {}
 )
 
 // TypeAlias
