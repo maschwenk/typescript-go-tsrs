@@ -54,7 +54,8 @@ def main():
     head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip()
     result = {'schema': 'readme-v1', 'head': head, 'date': datetime.datetime.now(datetime.timezone.utc).isoformat(),
               'machine': machine, 'reps': args.reps, 'project': project, 'tools': {}, 'rows': [],
-              'run_url': os.environ.get('BENCH_RUN_URL', ''), 'build': 'fork: Go -pgo=off; tsrs: plain Rust release; nightly: official npm binary'}
+              'run_url': os.environ.get('BENCH_RUN_URL', ''), 'build': 'fork: Go -pgo=off; tsrs: plain Rust release; nightly: official npm binary',
+              'measurement': 'ordinary-cli-v1'}
     for name, exe in executables.items():
         metadata = {'version': subprocess.check_output([str(exe), '--version'], text=True).strip(), 'sha256': digest(exe)}
         if name != 'tsrs':
@@ -76,7 +77,7 @@ def main():
             if rep % 2:
                 order.reverse()
             for name in order:
-                runs[name].append(run(executables[name], config, mode, logs / f'{mode}-{name.replace(" ", "-")}-{rep}.log', 600))
+                runs[name].append(run(executables[name], config, mode, logs / f'{mode}-{name.replace(" ", "-")}-{rep}.log', 600, validation=warmups[name]))
         stability = {name: stable(warmups[name], runs[name]) for name in TOOLS}
         failed |= not all(stability.values())
         if result['rows']:

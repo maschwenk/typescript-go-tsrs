@@ -1,0 +1,375 @@
+{
+  "profile": "tsrs-single.json.gz",
+  "cpu_s": 6.547545,
+  "threads": [
+    {
+      "name": "tsrs",
+      "cpu_s": 0.020784,
+      "samples": 3
+    },
+    {
+      "name": "Thread <195135184>",
+      "cpu_s": 0.063261,
+      "samples": 133
+    },
+    {
+      "name": "tsrs",
+      "cpu_s": 6.4635,
+      "samples": 13463
+    }
+  ],
+  "flat": [
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_at_flow_node",
+      "cpu_s": 0.165314,
+      "pct": 2.524824189829929
+    },
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::search",
+      "cpu_s": 0.151981,
+      "pct": 2.321190614192037
+    },
+    {
+      "symbol": "__open",
+      "cpu_s": 0.137844,
+      "pct": 2.10527762695789
+    },
+    {
+      "symbol": "<tsrs_binder::nameresolver::NameResolver<tsrs_checker::checker::Checker>>::resolve",
+      "cpu_s": 0.106997,
+      "pct": 1.6341544808015827
+    },
+    {
+      "symbol": "_platform_memmove",
+      "cpu_s": 0.098933,
+      "pct": 1.5109938152391469
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_worker",
+      "cpu_s": 0.088032,
+      "pct": 1.3445039323899262
+    },
+    {
+      "symbol": "_platform_memcmp",
+      "cpu_s": 0.080024,
+      "pct": 1.2221985492272296
+    },
+    {
+      "symbol": "<tsrs_scanner::scanner::Scanner>::scan_ascii_identifier_parts",
+      "cpu_s": 0.076417,
+      "pct": 1.1671091989440319
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_property_of_type_worker",
+      "cpu_s": 0.065749,
+      "pct": 1.0041779017937258
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_property_access_expression_or_qualified_name",
+      "cpu_s": 0.062401,
+      "pct": 0.9530442326093215
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_deprecated_symbol",
+      "cpu_s": 0.060418,
+      "pct": 0.9227580719185589
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_control_flow_container",
+      "cpu_s": 0.059916,
+      "pct": 0.9150910761208972
+    },
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::position",
+      "cpu_s": 0.058558,
+      "pct": 0.8943504779272231
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::instantiate_type_with_alias_worker",
+      "cpu_s": 0.056058,
+      "pct": 0.8561682279388687
+    },
+    {
+      "symbol": "<tsrs_binder::binder::Binder>::bind::<tsrs_core::ptr::P<tsrs_ast::ast::Node>>",
+      "cpu_s": 0.055684,
+      "pct": 0.8504561633406108
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_of_symbol",
+      "cpu_s": 0.05555,
+      "pct": 0.848409594741235
+    },
+    {
+      "symbol": "<tsrs_checker::relater_types::Relation>::lookup",
+      "cpu_s": 0.05531,
+      "pct": 0.844744098742353
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_symbol_of_declaration",
+      "cpu_s": 0.054819,
+      "pct": 0.8372451048446403
+    },
+    {
+      "symbol": "mi_malloc",
+      "cpu_s": 0.047873,
+      "pct": 0.7311595414769964
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_matching_reference",
+      "cpu_s": 0.047359,
+      "pct": 0.7233092708793907
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::expression",
+      "cpu_s": 0.045802,
+      "pct": 0.6995293655866436
+    },
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::insert",
+      "cpu_s": 0.045192,
+      "pct": 0.690212896589485
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_block_scoped_name_declared_before_use",
+      "cpu_s": 0.044476,
+      "pct": 0.6792775001928203
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_unmatched_properties_worker_ex",
+      "cpu_s": 0.043865,
+      "pct": 0.6699457582956665
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::text.1551",
+      "cpu_s": 0.043304,
+      "pct": 0.6613776613982798
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_simple_type_related_to",
+      "cpu_s": 0.043279,
+      "pct": 0.6609958388983963
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::mark_property_alias_referenced",
+      "cpu_s": 0.041373,
+      "pct": 0.6318856915072749
+    },
+    {
+      "symbol": "<tsrs_parser::parser_1::Parser>::create_identifier_with_diagnostic",
+      "cpu_s": 0.040526,
+      "pct": 0.6189495452112204
+    },
+    {
+      "symbol": "tsrs_core::tspath::path::normalize_slashes",
+      "cpu_s": 0.040219,
+      "pct": 0.6142607649126505
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_resolved_signature",
+      "cpu_s": 0.039955,
+      "pct": 0.6102287193138802
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_contextual_type",
+      "cpu_s": 0.038641,
+      "pct": 0.5901601287200011
+    },
+    {
+      "symbol": "<tsrs_checker::links::SymbolReferenceLinkStore>::add_reference_kinds",
+      "cpu_s": 0.038322,
+      "pct": 0.5852880736214872
+    },
+    {
+      "symbol": "__open_nocancel",
+      "cpu_s": 0.036594,
+      "pct": 0.5588965024295366
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::declaration_data",
+      "cpu_s": 0.036567,
+      "pct": 0.5584841341296622
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::name",
+      "cpu_s": 0.036426,
+      "pct": 0.5563306552303191
+    }
+  ],
+  "inclusive": [
+    {
+      "symbol": "_pthread_start",
+      "cpu_s": 6.526761,
+      "pct": 99.68256804649683
+    },
+    {
+      "symbol": "<std::sys::thread::unix::Thread>::new::thread_start",
+      "cpu_s": 6.518498,
+      "pct": 99.55636807383532
+    },
+    {
+      "symbol": "std::sys::backtrace::__rust_begin_short_backtrace::<tsrs::main::{closure#1}, tsrs_execute::tsc::compile::ExitStatus>",
+      "cpu_s": 6.455237,
+      "pct": 98.59018914722999
+    },
+    {
+      "symbol": "<std::thread::lifecycle::spawn_unchecked<tsrs::main::{closure#1}, tsrs_execute::tsc::compile::ExitStatus>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}",
+      "cpu_s": 6.455237,
+      "pct": 98.59018914722999
+    },
+    {
+      "symbol": "tsrs_execute::execute::perform_compilation",
+      "cpu_s": 6.454249,
+      "pct": 98.57509952203459
+    },
+    {
+      "symbol": "tsrs_execute::tsc::emit::emit_and_report_statistics",
+      "cpu_s": 5.501245,
+      "pct": 84.01996473487391
+    },
+    {
+      "symbol": "tsrs_compiler::program::get_diagnostics_of_any_program",
+      "cpu_s": 5.490849,
+      "pct": 83.86118766652234
+    },
+    {
+      "symbol": "tsrs_compiler::programlike::get_diagnostics_of_any_program_like::{closure#0}",
+      "cpu_s": 5.486033,
+      "pct": 83.78763338014478
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_semantic_diagnostics",
+      "cpu_s": 5.138639,
+      "pct": 78.48191955916302
+    },
+    {
+      "symbol": "tsrs_execute::tsc::emit::emit_files_and_report_errors::{closure#1}",
+      "cpu_s": 5.138639,
+      "pct": 78.48191955916302
+    },
+    {
+      "symbol": "<tsrs_compiler::checkerpool::checkerPool>::for_each_checker_group_do_ex::<<tsrs_compiler::program::Program>::collect_checker_diagnostics_from_files_ex<<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}>::{closure#1}>::{closure#18}",
+      "cpu_s": 5.127524,
+      "pct": 78.31216127571479
+    },
+    {
+      "symbol": "<tsrs_compiler::checkerpool::checkerPool>::for_each_checker_group_do_ex::<<tsrs_compiler::program::Program>::collect_checker_diagnostics_from_files_ex<<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}>::{closure#1}>",
+      "cpu_s": 5.127524,
+      "pct": 78.31216127571479
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}",
+      "cpu_s": 5.127048,
+      "pct": 78.30489137531701
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_semantic_diagnostics_with_checker",
+      "cpu_s": 5.116699,
+      "pct": 78.14683213326522
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_bind_and_check_diagnostics_with_checker",
+      "cpu_s": 5.116253,
+      "pct": 78.1400204198673
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_diagnostics",
+      "cpu_s": 5.115718,
+      "pct": 78.13184941836978
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_block",
+      "cpu_s": 4.102442,
+      "pct": 62.65618640268986
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_call_expression",
+      "cpu_s": 3.181131,
+      "pct": 48.585095635081544
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_resolved_signature",
+      "cpu_s": 3.158697,
+      "pct": 48.24246339658605
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_worker",
+      "cpu_s": 2.709569,
+      "pct": 41.38297636747819
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::resolve_call_worker",
+      "cpu_s": 2.694363,
+      "pct": 41.15073665014903
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::choose_overload",
+      "cpu_s": 2.639113,
+      "pct": 40.30690892540639
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_statement",
+      "cpu_s": 2.245357,
+      "pct": 34.2931129148406
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_deferred_nodes",
+      "cpu_s": 2.18379,
+      "pct": 33.352806280827394
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_with_contextual_type_worker",
+      "cpu_s": 2.141791,
+      "pct": 32.711359753923034
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_function_or_method_declaration",
+      "cpu_s": 2.054817,
+      "pct": 31.383014549728184
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_class_declaration",
+      "cpu_s": 1.973223,
+      "pct": 30.136837547508264
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_signature_applicable",
+      "cpu_s": 1.951492,
+      "pct": 29.80494215770949
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_source_element_worker",
+      "cpu_s": 1.735551,
+      "pct": 26.5068968598154
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_cached_ex",
+      "cpu_s": 1.610507,
+      "pct": 24.597112352797883
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_variable_like_declaration",
+      "cpu_s": 1.390277,
+      "pct": 21.23356158682376
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_variable_statement",
+      "cpu_s": 1.164028,
+      "pct": 17.778083235777682
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_non_null_expression",
+      "cpu_s": 1.017483,
+      "pct": 15.539916105960325
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_function_expression_or_object_literal_method",
+      "cpu_s": 0.99733,
+      "pct": 15.232121352354202
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_for_variable_like_declaration",
+      "cpu_s": 0.983326,
+      "pct": 15.018239660819438
+    }
+  ]
+}

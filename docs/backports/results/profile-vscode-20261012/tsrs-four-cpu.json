@@ -1,0 +1,440 @@
+{
+  "profile": "tsrs-checkers4.json.gz",
+  "cpu_s": 7.685129,
+  "threads": [
+    {
+      "name": "tsrs",
+      "cpu_s": 0.007257,
+      "samples": 3
+    },
+    {
+      "name": "Thread <195138985>",
+      "cpu_s": 0.400451,
+      "samples": 857
+    },
+    {
+      "name": "Thread <195138986>",
+      "cpu_s": 0.39363,
+      "samples": 845
+    },
+    {
+      "name": "Thread <195138987>",
+      "cpu_s": 0.395086,
+      "samples": 846
+    },
+    {
+      "name": "Thread <195138988>",
+      "cpu_s": 0.39493,
+      "samples": 843
+    },
+    {
+      "name": "tsrs",
+      "cpu_s": 0.038994,
+      "samples": 97
+    },
+    {
+      "name": "Thread <195138999>",
+      "cpu_s": 0.004939,
+      "samples": 8
+    },
+    {
+      "name": "checker-0",
+      "cpu_s": 0.002135,
+      "samples": 5
+    },
+    {
+      "name": "checker-1",
+      "cpu_s": 0.002106,
+      "samples": 5
+    },
+    {
+      "name": "checker-2",
+      "cpu_s": 0.00213,
+      "samples": 5
+    },
+    {
+      "name": "checker-3",
+      "cpu_s": 0.002085,
+      "samples": 5
+    },
+    {
+      "name": "Thread <195139004>",
+      "cpu_s": 5.7e-05,
+      "samples": 2
+    },
+    {
+      "name": "checker-0",
+      "cpu_s": 1.509623,
+      "samples": 3157
+    },
+    {
+      "name": "checker-1",
+      "cpu_s": 1.50802,
+      "samples": 3154
+    },
+    {
+      "name": "checker-2",
+      "cpu_s": 1.51307,
+      "samples": 3158
+    },
+    {
+      "name": "checker-3",
+      "cpu_s": 1.510616,
+      "samples": 3154
+    }
+  ],
+  "flat": [
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::search",
+      "cpu_s": 0.183128,
+      "pct": 2.382887782365137
+    },
+    {
+      "symbol": "__open",
+      "cpu_s": 0.182471,
+      "pct": 2.3743388042022455
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_at_flow_node",
+      "cpu_s": 0.18041,
+      "pct": 2.3475207768145467
+    },
+    {
+      "symbol": "_platform_memmove",
+      "cpu_s": 0.115187,
+      "pct": 1.4988297528902899
+    },
+    {
+      "symbol": "<tsrs_binder::nameresolver::NameResolver<tsrs_checker::checker::Checker>>::resolve",
+      "cpu_s": 0.112085,
+      "pct": 1.458466084303855
+    },
+    {
+      "symbol": "__open_nocancel",
+      "cpu_s": 0.109965,
+      "pct": 1.4308803404601276
+    },
+    {
+      "symbol": "_platform_memcmp",
+      "cpu_s": 0.095282,
+      "pct": 1.2398230400556711
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_worker",
+      "cpu_s": 0.092236,
+      "pct": 1.200188051495297
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_of_symbol",
+      "cpu_s": 0.084961,
+      "pct": 1.1055247088240159
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::instantiate_type_with_alias_worker",
+      "cpu_s": 0.078327,
+      "pct": 1.0192021500224655
+    },
+    {
+      "symbol": "<tsrs_scanner::scanner::Scanner>::scan_ascii_identifier_parts",
+      "cpu_s": 0.077543,
+      "pct": 1.0090006296576155
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_symbol_of_declaration",
+      "cpu_s": 0.076442,
+      "pct": 0.9946742598595287
+    },
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::position",
+      "cpu_s": 0.072521,
+      "pct": 0.9436536458919558
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_deprecated_symbol",
+      "cpu_s": 0.070052,
+      "pct": 0.9115266640286714
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_property_access_expression_or_qualified_name",
+      "cpu_s": 0.06548,
+      "pct": 0.8520351447581426
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_property_of_type_worker",
+      "cpu_s": 0.064671,
+      "pct": 0.8415083208102297
+    },
+    {
+      "symbol": "mi_malloc",
+      "cpu_s": 0.05965,
+      "pct": 0.7761743491878926
+    },
+    {
+      "symbol": "<tsrs_ast::symbol::SymbolMap>::insert",
+      "cpu_s": 0.059596,
+      "pct": 0.7754716934484769
+    },
+    {
+      "symbol": "<tsrs_checker::relater_types::Relation>::lookup",
+      "cpu_s": 0.058506,
+      "pct": 0.7612884572269379
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_control_flow_container",
+      "cpu_s": 0.057406,
+      "pct": 0.7469750995721738
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_unmatched_properties_worker_ex",
+      "cpu_s": 0.057121,
+      "pct": 0.7432666387252576
+    },
+    {
+      "symbol": "<tsrs_binder::binder::Binder>::bind::<tsrs_core::ptr::P<tsrs_ast::ast::Node>>",
+      "cpu_s": 0.055758,
+      "pct": 0.7255310873766726
+    },
+    {
+      "symbol": "tsrs_core::tspath::path::normalize_slashes",
+      "cpu_s": 0.054341,
+      "pct": 0.7070928802886718
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_matching_reference",
+      "cpu_s": 0.052727,
+      "pct": 0.686091280966136
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_simple_type_related_to",
+      "cpu_s": 0.047264,
+      "pct": 0.6150059419952482
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::declaration_data",
+      "cpu_s": 0.044457,
+      "pct": 0.5784808556889547
+    },
+    {
+      "symbol": "<tsrs_checker::links::SymbolReferenceLinkStore>::add_reference_kinds",
+      "cpu_s": 0.043898,
+      "pct": 0.57120706757167
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_symbol",
+      "cpu_s": 0.043497,
+      "pct": 0.5659891980993422
+    },
+    {
+      "symbol": "<tsrs_scanner::scanner::Scanner>::scan_byte_identifier",
+      "cpu_s": 0.042297,
+      "pct": 0.5503746261123268
+    },
+    {
+      "symbol": "<tsrs_checker::relater_types::Relater>::is_related_to_ex",
+      "cpu_s": 0.042271,
+      "pct": 0.5500363103859415
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::mark_property_alias_referenced",
+      "cpu_s": 0.041983,
+      "pct": 0.5462888131090577
+    },
+    {
+      "symbol": "<tsrs_ast::ast::Node>::expression",
+      "cpu_s": 0.041732,
+      "pct": 0.543022765135107
+    },
+    {
+      "symbol": "<tsrs_parser::parser_1::Parser>::create_identifier_with_diagnostic",
+      "cpu_s": 0.041053,
+      "pct": 0.5341875198191207
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_contextual_type",
+      "cpu_s": 0.040997,
+      "pct": 0.5334588397930601
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_block_scoped_name_declared_before_use",
+      "cpu_s": 0.040927,
+      "pct": 0.5325479897604842
+    }
+  ],
+  "inclusive": [
+    {
+      "symbol": "_pthread_start",
+      "cpu_s": 7.677872,
+      "pct": 99.90557087590852
+    },
+    {
+      "symbol": "<std::sys::thread::unix::Thread>::new::thread_start",
+      "cpu_s": 7.676956,
+      "pct": 99.8936517526251
+    },
+    {
+      "symbol": "<tsrs_compiler::checkerpool::checkerPool>::for_each_checker_group_do_ex::<<tsrs_compiler::program::Program>::collect_checker_diagnostics_from_files_ex<<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}>::{closure#1}>::{closure#18}",
+      "cpu_s": 6.041329,
+      "pct": 78.61063880645335
+    },
+    {
+      "symbol": "<std::thread::lifecycle::spawn_unchecked<tsrs_compiler::checkerpool::run_work_group<<tsrs_compiler::checkerpool::checkerPool>::for_each_checker_group_do_ex<<tsrs_compiler::program::Program>::collect_checker_diagnostics_from_files_ex<<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}>::{closure#1}>::{closure#18}>::{closure#0}::{closure#0}::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}",
+      "cpu_s": 6.041329,
+      "pct": 78.61063880645335
+    },
+    {
+      "symbol": "std::sys::backtrace::__rust_begin_short_backtrace::<tsrs_compiler::checkerpool::run_work_group<<tsrs_compiler::checkerpool::checkerPool>::for_each_checker_group_do_ex<<tsrs_compiler::program::Program>::collect_checker_diagnostics_from_files_ex<<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}>::{closure#1}>::{closure#18}>::{closure#0}::{closure#0}::{closure#0}, ()>",
+      "cpu_s": 6.041329,
+      "pct": 78.61063880645335
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_semantic_diagnostics::{closure#2}",
+      "cpu_s": 6.040832,
+      "pct": 78.60417177122206
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_semantic_diagnostics_with_checker",
+      "cpu_s": 6.040832,
+      "pct": 78.60417177122206
+    },
+    {
+      "symbol": "<tsrs_compiler::program::Program>::get_bind_and_check_diagnostics_with_checker",
+      "cpu_s": 6.03968,
+      "pct": 78.58918178211452
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_diagnostics",
+      "cpu_s": 6.039663,
+      "pct": 78.58896057567803
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_block",
+      "cpu_s": 4.891119,
+      "pct": 63.64394143546582
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_call_expression",
+      "cpu_s": 3.863859,
+      "pct": 50.27708708598125
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_resolved_signature",
+      "cpu_s": 3.819998,
+      "pct": 49.70636146771251
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::resolve_call_worker",
+      "cpu_s": 3.30592,
+      "pct": 43.01710485276175
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::choose_overload",
+      "cpu_s": 3.232409,
+      "pct": 42.0605691849805
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_worker",
+      "cpu_s": 3.132462,
+      "pct": 40.76004449632531
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_statement",
+      "cpu_s": 2.705328,
+      "pct": 35.20211567040709
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_with_contextual_type_worker",
+      "cpu_s": 2.525274,
+      "pct": 32.85922721661536
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_function_or_method_declaration",
+      "cpu_s": 2.513048,
+      "pct": 32.700140752354315
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_deferred_nodes",
+      "cpu_s": 2.49191,
+      "pct": 32.425090066803044
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_class_declaration",
+      "cpu_s": 2.414243,
+      "pct": 31.41447593137344
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::is_signature_applicable",
+      "cpu_s": 2.3424,
+      "pct": 30.47964451865414
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_source_element_worker",
+      "cpu_s": 2.048465,
+      "pct": 26.654920171151325
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_expression_cached_ex",
+      "cpu_s": 1.926695,
+      "pct": 25.070431478768935
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_variable_like_declaration",
+      "cpu_s": 1.622828,
+      "pct": 21.116470523786916
+    },
+    {
+      "symbol": "std::sys::backtrace::__rust_begin_short_backtrace::<<rayon_core::registry::DefaultSpawn as rayon_core::registry::ThreadSpawn>::spawn::{closure#0}, ()>",
+      "cpu_s": 1.584097,
+      "pct": 20.612497200762668
+    },
+    {
+      "symbol": "<std::thread::lifecycle::spawn_unchecked<<rayon_core::registry::DefaultSpawn as rayon_core::registry::ThreadSpawn>::spawn::{closure#0}, ()>::{closure#1} as core::ops::function::FnOnce<()>>::call_once::{shim:vtable#0}",
+      "cpu_s": 1.584097,
+      "pct": 20.612497200762668
+    },
+    {
+      "symbol": "<rayon_core::registry::WorkerThread>::wait_until_cold",
+      "cpu_s": 1.584097,
+      "pct": 20.612497200762668
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_variable_statement",
+      "cpu_s": 1.394283,
+      "pct": 18.142610228143212
+    },
+    {
+      "symbol": "rayon::iter::plumbing::bridge_producer_consumer::helper::<rayon::vec::DrainProducer<(usize, alloc::sync::Arc<str>, tsrs_core::tspath::path::Path, bool, bool)>, rayon::iter::map::MapConsumer<rayon::iter::collect::consumer::CollectConsumer<(usize, tsrs_ast::ast::SourceFileMetaData, core::option::Option<tsrs_core::ptr::P<tsrs_ast::ast::SourceFile>>, core::option::Option<alloc::boxed::Box<tsrs_compiler::fileloader::prefetchedResolutions>>)>, <tsrs_compiler::filesparser::filesParser>::prefetch::{closure#4}::{closure#0}::{closure#0}>>",
+      "cpu_s": 1.344978,
+      "pct": 17.501046501626714
+    },
+    {
+      "symbol": "rayon_core::join::join_context::<rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<(usize, alloc::sync::Arc<str>, tsrs_core::tspath::path::Path, bool, bool)>, rayon::iter::map::MapConsumer<rayon::iter::collect::consumer::CollectConsumer<(usize, tsrs_ast::ast::SourceFileMetaData, core::option::Option<tsrs_core::ptr::P<tsrs_ast::ast::SourceFile>>, core::option::Option<alloc::boxed::Box<tsrs_compiler::fileloader::prefetchedResolutions>>)>, <tsrs_compiler::filesparser::filesParser>::prefetch::{closure#4}::{closure#0}::{closure#0}>>::{closure#0}, rayon::iter::plumbing::bridge_producer_consumer::helper<rayon::vec::DrainProducer<(usize, alloc::sync::Arc<str>, tsrs_core::tspath::path::Path, bool, bool)>, rayon::iter::map::MapConsumer<rayon::iter::collect::consumer::CollectConsumer<(usize, tsrs_ast::ast::SourceFileMetaData, core::option::Option<tsrs_core::ptr::P<tsrs_ast::ast::SourceFile>>, core::option::Option<alloc::boxed::Box<tsrs_compiler::fileloader::prefetchedResolutions>>)>, <tsrs_compiler::filesparser::filesParser>::prefetch::{closure#4}::{closure#0}::{closure#0}>>::{closure#1}, rayon::iter::collect::consumer::CollectResult<(usize, tsrs_ast::ast::SourceFileMetaData, core::option::Option<tsrs_core::ptr::P<tsrs_ast::ast::SourceFile>>, core::option::Option<alloc::boxed::Box<tsrs_compiler::fileloader::prefetchedResolutions>>)>, rayon::iter::collect::consumer::CollectResult<(usize, tsrs_ast::ast::SourceFileMetaData, core::option::Option<tsrs_core::ptr::P<tsrs_ast::ast::SourceFile>>, core::option::Option<alloc::boxed::Box<tsrs_compiler::fileloader::prefetchedResolutions>>)>>::{closure#0}",
+      "cpu_s": 1.344452,
+      "pct": 17.494202114239073
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_for_variable_like_declaration",
+      "cpu_s": 1.272527,
+      "pct": 16.558303705767333
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_type_of_variable_or_parameter_or_property",
+      "cpu_s": 1.266268,
+      "pct": 16.476860700711725
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::get_widened_type_for_variable_like_declaration",
+      "cpu_s": 1.24003,
+      "pct": 16.135448084215636
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::infer_type_arguments_worker",
+      "cpu_s": 1.221971,
+      "pct": 15.900461787954374
+    },
+    {
+      "symbol": "<tsrs_checker::checker::Checker>::check_non_null_expression",
+      "cpu_s": 1.168,
+      "pct": 15.198183400695031
+    }
+  ]
+}

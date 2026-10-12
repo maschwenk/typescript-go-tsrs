@@ -1,0 +1,349 @@
+{
+  "rows": [
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33709362
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "before",
+      "mode": "checkers4",
+      "label": "arena-before-warmup",
+      "wall_s": 7.889289291000001,
+      "cpu_s": 28.567008,
+      "rss_bytes": 6512279552,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5035168K",
+        "Memory allocs": "33709362",
+        "Config time": "0.073s",
+        "Parse time": "0.897s",
+        "Bind time": "0.293s",
+        "Check time": "4.993s",
+        "Total time": "6.336s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33663352
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "arena1024",
+      "mode": "checkers4",
+      "label": "arena-arena1024-warmup",
+      "wall_s": 8.307806333999999,
+      "cpu_s": 28.68531,
+      "rss_bytes": 6822019072,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-arena1024",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5207324K",
+        "Memory allocs": "33663352",
+        "Config time": "0.080s",
+        "Parse time": "0.904s",
+        "Bind time": "0.269s",
+        "Check time": "4.942s",
+        "Total time": "6.285s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33714796
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "before",
+      "mode": "checkers4",
+      "label": "arena-before-0",
+      "wall_s": 7.764266084000003,
+      "cpu_s": 28.959535000000002,
+      "rss_bytes": 6766755840,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5040341K",
+        "Memory allocs": "33714796",
+        "Config time": "0.074s",
+        "Parse time": "0.919s",
+        "Bind time": "0.194s",
+        "Check time": "4.958s",
+        "Total time": "6.201s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33667442
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "arena1024",
+      "mode": "checkers4",
+      "label": "arena-arena1024-0",
+      "wall_s": 7.670977915999998,
+      "cpu_s": 27.791663,
+      "rss_bytes": 6493143040,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-arena1024",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5213994K",
+        "Memory allocs": "33667442",
+        "Config time": "0.072s",
+        "Parse time": "0.922s",
+        "Bind time": "0.292s",
+        "Check time": "4.754s",
+        "Total time": "6.104s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33665409
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "arena1024",
+      "mode": "checkers4",
+      "label": "arena-arena1024-1",
+      "wall_s": 7.425897083999999,
+      "cpu_s": 26.660454,
+      "rss_bytes": 6635569152,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-arena1024",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5213267K",
+        "Memory allocs": "33665409",
+        "Config time": "0.074s",
+        "Parse time": "0.935s",
+        "Bind time": "0.210s",
+        "Check time": "4.563s",
+        "Total time": "5.847s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33719385
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "before",
+      "mode": "checkers4",
+      "label": "arena-before-1",
+      "wall_s": 7.429932334,
+      "cpu_s": 26.530413,
+      "rss_bytes": 6470402048,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5043897K",
+        "Memory allocs": "33719385",
+        "Config time": "0.072s",
+        "Parse time": "0.927s",
+        "Bind time": "0.215s",
+        "Check time": "4.599s",
+        "Total time": "5.878s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33887480
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "before",
+      "mode": "checkers4",
+      "label": "arena-before-2",
+      "wall_s": 7.282998291999995,
+      "cpu_s": 26.055087999999998,
+      "rss_bytes": 6529794048,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-before",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5051579K",
+        "Memory allocs": "33887480",
+        "Config time": "0.073s",
+        "Parse time": "0.963s",
+        "Bind time": "0.189s",
+        "Check time": "4.432s",
+        "Total time": "5.713s"
+      }
+    },
+    {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33657748
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "tool": "arena1024",
+      "mode": "checkers4",
+      "label": "arena-arena1024-2",
+      "wall_s": 7.466465959000004,
+      "cpu_s": 26.987878,
+      "rss_bytes": 6468304896,
+      "command": [
+        "<repo>/.bench/profiling-gap/bin/tsgo-arena1024",
+        "-p",
+        "<repo>/.bench/work/solutions/vscode/src",
+        "--noEmit",
+        "--incremental",
+        "false",
+        "--pretty",
+        "false",
+        "--extendedDiagnostics",
+        "--checkers",
+        "4"
+      ],
+      "metrics": {
+        "Memory used": "5210181K",
+        "Memory allocs": "33657748",
+        "Config time": "0.075s",
+        "Parse time": "0.927s",
+        "Bind time": "0.302s",
+        "Check time": "4.528s",
+        "Total time": "5.898s"
+      }
+    }
+  ],
+  "diagnostics_equal": true
+}

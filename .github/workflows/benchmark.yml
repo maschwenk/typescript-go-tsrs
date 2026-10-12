@@ -14,6 +14,10 @@ on:
       repetitions:
         description: 'Interleaved repetitions'
         default: '5'
+      profile:
+        description: 'Profile ordinary VS Code compilation instead of the historical statistics-enabled comparison'
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -21,6 +25,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   compare:
+    if: inputs.profile != true
     runs-on: ubuntu-24.04
     timeout-minutes: 75
     steps:
@@ -106,3 +111,88 @@ jobs:
           name: compiler-comparison
           path: .bench/results/
           retention-days: 7
+  profile:
+    if: inputs.profile == true
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+        with:
+          go-version-file: tsc/go.mod
+          cache-dependency-path: '**/go.sum'
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '24'
+      - name: Read compiler and corpus pins
+        id: pins
+        run: |
+          echo "tsrs=$(python3 -c 'import json; print(json.load(open("bench/pins.json"))["tsrs"]["commit"])')" >> "$GITHUB_OUTPUT"
+          echo 'vscode=9cf0128b9822dcd8a533f08ef7312956a4390301' >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: maschwenk/tsrs
+          ref: ${{ steps.pins.outputs.tsrs }}
+          path: .bench/tsrs
+          persist-credentials: false
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        id: rust-cache
+        with:
+          path: .bench/tsrs/target/prof/release/tsrs
+          key: tsrs-profile-${{ runner.os }}-${{ runner.arch }}-${{ steps.pins.outputs.tsrs }}-release-1.99-debug1
+      - name: Build pinned tsrs with symbols
+        if: steps.rust-cache.outputs.cache-hit != 'true'
+        working-directory: .bench/tsrs
+        env:
+          CARGO_TARGET_DIR: target/prof
+          CARGO_PROFILE_RELEASE_STRIP: none
+          CARGO_PROFILE_RELEASE_DEBUG: '1'
+        run: |
+          rustup toolchain install 1.99.0 --profile minimal
+          cargo +1.99.0 build --locked --release -p tsrs_cli
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: .bench/work/solutions/vscode
+          key: readme-vscode-${{ runner.os }}-${{ runner.arch }}-node24-${{ steps.pins.outputs.vscode }}-${{ steps.pins.outputs.tsrs }}
+      - name: Build the plain Go compiler
+        run: |
+          mkdir -p .bench/bin
+          go -C tsc build -trimpath -pgo=off -o ../.bench/bin/fork ./cmd/tsc
+      - name: Enable process CPU sampling on this runner
+        id: perf
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y linux-tools-generic
+          sudo sysctl -w kernel.perf_event_paranoid=-1
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          from pathlib import Path
+          paths=sorted(p for p in Path('/usr/lib/linux-tools').glob('*/perf') if p.is_file())
+          if not paths: raise SystemExit('No native perf executable found')
+          print('binary='+str(paths[-1]))
+          PY
+      - name: Compare ordinary compilation and record both CPU profiles
+        env:
+          PERF: ${{ steps.perf.outputs.binary }}
+          REPS: ${{ inputs.repetitions }}
+        run: |
+          python3 bench/profile_vscode.py --fork .bench/bin/fork \
+            --tsrs .bench/tsrs/target/prof/release/tsrs --tsrs-source .bench/tsrs \
+            --perf "$PERF" --reps "$REPS" --gc-probe
+      - name: Export Go CPU and allocation summaries
+        run: |
+          for mode in single checkers4; do
+            for tool in tsgo tsgo-gc-probe; do
+              directory="$GITHUB_WORKSPACE/.bench/profile/$mode/$tool"
+              go -C tsc tool pprof -top -nodecount=40 "$directory"/*-cpuprofile.pb.gz > "$directory/cpu-top.txt"
+              go -C tsc tool pprof -top -cum -nodecount=40 "$directory"/*-cpuprofile.pb.gz > "$directory/cpu-inclusive.txt"
+              go -C tsc tool pprof -top -alloc_space -nodecount=40 "$directory"/*-memprofile.pb.gz > "$directory/allocations.txt"
+            done
+          done
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: vscode-profiles-${{ github.sha }}
+          path: .bench/profile/
+          retention-days: 14

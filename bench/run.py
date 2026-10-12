@@ -32,14 +32,20 @@ def digest(path):
     return h.hexdigest()
 
 
-def run(exe, project, mode, log, timeout):
-    argv = [str(exe), '-p', str(project), '--noEmit', '--incremental', 'false', '--pretty', 'false', '--extendedDiagnostics', *MODES[mode]]
+def run(exe, project, mode, log, timeout, *, validation=None, extra_args=(), extra_env=None, command_prefix=()):
+    argv = [str(exe), '-p', str(project), '--noEmit', '--incremental', 'false', '--pretty', 'false', *MODES[mode]]
+    if validation is None:
+        argv.append('--extendedDiagnostics')
+    argv.extend(extra_args)
+    argv = [*map(str, command_prefix), *argv]
     env = dict(os.environ)
     env.pop('GOMAXPROCS', None)
     env.pop('RAYON_NUM_THREADS', None)
     if mode == 'single':
         env['GOMAXPROCS'] = '1'
         env['RAYON_NUM_THREADS'] = '1'
+    if extra_env:
+        env.update(extra_env)
     with log.open('wb') as out:
         t = time.perf_counter()
         p = subprocess.Popen(argv, stdout=out, stderr=subprocess.STDOUT, cwd=project.parent, env=env)
@@ -51,12 +57,12 @@ def run(exe, project, mode, log, timeout):
             timer.cancel()
         p.returncode = os.waitstatus_to_exitcode(status)
         wall = time.perf_counter() - t
-    parsed = parse_output(log.read_text(errors='replace').splitlines(), p.returncode)
+    parsed = parse_output(log.read_text(errors='replace').splitlines(), p.returncode, validation=validation)
     return {**parsed, 'wall_s':wall, 'peak_rss_bytes':ru.ru_maxrss * (1 if sys.platform=='darwin' else 1024),
             'cpu_s':ru.ru_utime+ru.ru_stime, 'log':str(log)}
 
 
-def parse_output(lines, exit_code):
+def parse_output(lines, exit_code, *, validation=None):
     counters = {m[1]: int(m[2]) for line in lines if (m := COUNTER.match(line))}
     # Preserve the entire diagnostic including continuation lines. Strip only explicit metrics.
     diagnostic_lines = []
@@ -74,9 +80,21 @@ def parse_output(lines, exit_code):
     diagnostics = '\n'.join(diagnostic_lines).strip()
     crashed = any(re.match(r'^(panic:|fatal error:|runtime:|thread .*panicked)', line) for line in lines)
     completed = not crashed and any(line.startswith('Check time:') for line in lines) and exit_code in (0, 1, 2) and 'Files' in counters
-    return {'exit': exit_code, 'counters': counters, 'completed': completed,
+    parsed = {'exit': exit_code, 'counters': counters, 'completed': completed,
             'diagnostics_sha256': hashlib.sha256(diagnostics.encode()).hexdigest(),
             'errors': sum(bool(re.search(r'error TS\d+:', line)) for line in lines)}
+    if validation is not None:
+        # A separate instrumented pass verifies coverage. Timed CLI runs omit statistics,
+        # which otherwise force two full Go GCs after the compiler has finished.
+        parsed['completed'] = (not crashed and exit_code in (0, 1, 2)
+                               and validation['completed']
+                               and validation['counters'].get('Files', 0) > 0
+                               and (parsed['exit'], parsed['diagnostics_sha256'])
+                               == (validation['exit'], validation['diagnostics_sha256']))
+        parsed['counters'] = {'Files': validation['counters'].get('Files')}
+        parsed['counters_source'] = 'validation'
+        parsed['statistics'] = 'disabled'
+    return parsed
 
 
 def signature(r):
