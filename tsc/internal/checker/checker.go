@@ -17193,7 +17193,7 @@ func (c *Checker) padObjectLiteralType(t *Type, pattern *ast.Node) *Type {
 		members[symbol.Name] = symbol
 	}
 	result := c.newAnonymousType(t.symbol, members, nil, nil, c.getIndexInfosOfType(t))
-	result.objectFlags = t.objectFlags
+	result.objectFlags = t.objectFlags &^ ObjectFlagsWeakTypeMemo
 	return result
 }
 
@@ -19834,7 +19834,7 @@ func (c *Checker) getBaseTypes(t *Type) []*Type {
 		// for resolution of type parameter defaults to cause circularity errors, possibly leaving
 		// members partially resolved. Here we ensure any such partial resolution is reset.
 		// See https://github.com/microsoft/TypeScript/issues/16861 for an example.
-		t.objectFlags &^= ObjectFlagsMembersResolved
+		t.objectFlags &^= ObjectFlagsMembersResolved | ObjectFlagsWeakTypeMemo
 		data.baseTypesResolved = true
 	}
 	return data.resolvedBaseTypes
@@ -25938,7 +25938,7 @@ func (c *Checker) newType(flags TypeFlags, objectFlags ObjectFlags, data TypeDat
 	c.TypeCount++
 	t := data.AsType()
 	t.flags = flags
-	t.objectFlags = objectFlags &^ (ObjectFlagsCouldContainTypeVariablesComputed | ObjectFlagsCouldContainTypeVariables | ObjectFlagsMembersResolved)
+	t.objectFlags = objectFlags &^ (ObjectFlagsCouldContainTypeVariablesComputed | ObjectFlagsCouldContainTypeVariables | ObjectFlagsMembersResolved | ObjectFlagsWeakTypeMemo)
 	t.id = TypeId(c.TypeCount)
 	t.checker = c
 	t.data = data
@@ -26070,14 +26070,14 @@ func (c *Checker) createDeferredTypeReference(target *Type, node *ast.Node, mapp
 
 func (c *Checker) cloneTypeReference(source *Type) *Type {
 	t := c.newObjectType(ObjectFlagsReference, source.symbol)
-	t.objectFlags = source.objectFlags &^ ObjectFlagsMembersResolved
+	t.objectFlags = source.objectFlags &^ (ObjectFlagsMembersResolved | ObjectFlagsWeakTypeMemo)
 	t.AsTypeReference().target = source.AsTypeReference().target
 	t.AsTypeReference().resolvedTypeArguments = source.AsTypeReference().resolvedTypeArguments
 	return t
 }
 
 func (c *Checker) setStructuredTypeMembers(t *Type, members ast.SymbolTable, callSignatures []*Signature, constructSignatures []*Signature, indexInfos []*IndexInfo) {
-	t.objectFlags |= ObjectFlagsMembersResolved
+	t.objectFlags = t.objectFlags&^ObjectFlagsWeakTypeMemo | ObjectFlagsMembersResolved
 	data := t.AsStructuredType()
 	data.members = members
 	data.properties = c.getNamedMembers(members, t.symbol)
