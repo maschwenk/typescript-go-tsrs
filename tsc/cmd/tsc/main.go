@@ -26,6 +26,7 @@ func runMain() int {
 			return runAPI(args[1:])
 		}
 	}
+	applyBatchGCPolicy(args)
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer stop()
 	result := execute.CommandLine(ctx, newSystem(), args, nil)
