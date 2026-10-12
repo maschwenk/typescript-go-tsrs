@@ -194,6 +194,12 @@ func (c *Checker) isTypeRelatedTo(source *Type, target *Type, relation *Relation
 	if source == target {
 		return true
 	}
+	if source.flags == target.flags {
+		switch source.flags {
+		case TypeFlagsStringLiteral, TypeFlagsNumberLiteral, TypeFlagsBigIntLiteral:
+			return false
+		}
+	}
 	if relation != c.identityRelation {
 		if relation == c.comparableRelation && target.flags&TypeFlagsNever == 0 && c.isSimpleTypeRelatedTo(target, source, relation, nil) || c.isSimpleTypeRelatedTo(source, target, relation, nil) {
 			return true
