@@ -1976,6 +1976,8 @@ func moveToNextDirectorySeparatorIfAvailable(path string, prevSeparatorIndex int
 type ParsedPatterns struct {
 	matchableStringSet collections.Set[string]
 	patterns           []core.Pattern
+	byPrefix           map[string][]int
+	prefixLengths      []int
 }
 
 func (r *DefaultResolver) getParsedPatternsForPaths(compilerOptions *core.CompilerOptions) *ParsedPatterns {
@@ -2015,10 +2017,24 @@ func TryParsePatterns(pathMappings *collections.OrderedMap[string, []string]) *P
 			}
 		}
 	}
-	return &ParsedPatterns{
+	parsed := &ParsedPatterns{
 		matchableStringSet: matchableStringSet,
 		patterns:           patterns,
 	}
+	if len(patterns) >= 8 {
+		parsed.byPrefix = make(map[string][]int)
+		for i, pattern := range patterns {
+			prefix := pattern.Text[:pattern.StarIndex]
+			if _, ok := parsed.byPrefix[prefix]; !ok {
+				parsed.prefixLengths = append(parsed.prefixLengths, len(prefix))
+			}
+			parsed.byPrefix[prefix] = append(parsed.byPrefix[prefix], i)
+		}
+		slices.Sort(parsed.prefixLengths)
+		parsed.prefixLengths = slices.Compact(parsed.prefixLengths)
+		slices.Reverse(parsed.prefixLengths)
+	}
+	return parsed
 }
 
 func MatchPatternOrExact(patterns *ParsedPatterns, candidate string) core.Pattern {
@@ -2031,7 +2047,20 @@ func MatchPatternOrExact(patterns *ParsedPatterns, candidate string) core.Patter
 	if len(patterns.patterns) == 0 {
 		return core.Pattern{}
 	}
-	return core.FindBestPatternMatch(patterns.patterns, core.Identity, candidate)
+	if patterns.byPrefix == nil {
+		return core.FindBestPatternMatch(patterns.patterns, core.Identity, candidate)
+	}
+	for _, length := range patterns.prefixLengths {
+		if length > len(candidate) {
+			continue
+		}
+		for _, i := range patterns.byPrefix[candidate[:length]] {
+			if patterns.patterns[i].Matches(candidate) {
+				return patterns.patterns[i]
+			}
+		}
+	}
+	return core.Pattern{}
 }
 
 // If you import from "." inside a containing directory "/foo", the result of `tspath.NormalizePath`
