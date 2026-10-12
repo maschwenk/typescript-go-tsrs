@@ -4,6 +4,8 @@ Source: `maschwenk/tsrs@e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751`, sharing the c
 
 The implementation series contains 52 separate steps, including 50 source ports, optional Go PGO tooling and an adaptive checker default. Each note identifies the Rust source, the Go invariant and correctness evidence. PR links below show current merge state. [Performance was measured after implementation](results/native-vscode/README.md), using pinned VS Code on the native Mac. Earlier per-port experiments remain historical evidence; later ports have no claimed individual application speedup. No compiler baseline is rewritten.
 
+Further investigations cover [the VS Code performance gap](53-profile-vscode-gap.md), the shipped [finite CLI GC budget](54-batch-gc-budget.md), and [allocation ownership and pointer representation](55-allocation-ownership.md). The ownership investigation archives two rejected prototypes and scopes a larger representation change; it adds no compiler optimization.
+
 ## Translation decisions
 
 | Family | Go translation |

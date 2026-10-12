@@ -1,0 +1,106 @@
+{
+  "measurement": "sampled live heap after statistics-triggered final collections; separate from timing",
+  "inuse_space_bytes": 5147933456,
+  "inuse_objects": 15453570,
+  "classification": "first semantic compiler function from allocation leaf, skipping runtime/core/collections; package names within generic type arguments do not classify functions; frontend includes ast/parser/scanner/binder and is split when a checker function is present; file contents matched first; disjoint allocation attribution, not a retaining-reference/dominator analysis",
+  "categories": {
+    "other": {
+      "bytes": 19171210,
+      "MiB": 18.28,
+      "pct": 0.37,
+      "objects": 46116
+    },
+    "frontend allocations": {
+      "bytes": 2580812716,
+      "MiB": 2461.25,
+      "pct": 50.13,
+      "objects": 4509790
+    },
+    "checker allocations": {
+      "bytes": 2340849921,
+      "MiB": 2232.41,
+      "pct": 45.47,
+      "objects": 10377806
+    },
+    "AST created during checking": {
+      "bytes": 21194522,
+      "MiB": 20.21,
+      "pct": 0.41,
+      "objects": 145356
+    },
+    "compiler/module allocations": {
+      "bytes": 43763772,
+      "MiB": 41.74,
+      "pct": 0.85,
+      "objects": 363383
+    },
+    "source/file contents": {
+      "bytes": 142141315,
+      "MiB": 135.56,
+      "pct": 2.76,
+      "objects": 11119
+    }
+  },
+  "top_allocation_owners": [
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewIdentifier",
+      "MiB": 501.14
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newObjectType",
+      "MiB": 332.08
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).newSymbol",
+      "MiB": 272.91
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSymbol",
+      "MiB": 270.41
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*symbolArenaLinkStore[go.shape.c8834662d792dc235b825e1d0a383ca0e88d37a7942c2ee1678aaae508164d3e]).Get",
+      "MiB": 224.79
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewPropertyAccessExpression",
+      "MiB": 182.35
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*nodeLinkStore[go.shape.struct { github.com/microsoft/TypeScript/tsc/internal/checker.resolvedSymbol *github.com/microsoft/TypeScript/tsc/internal/ast.Symbol }]).Get",
+      "MiB": 142.38
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/compiler.(*compilerHost).GetSourceFile",
+      "MiB": 135.56
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).declareSymbolEx",
+      "MiB": 129.55
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewCallExpression",
+      "MiB": 125.63
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewNodeList",
+      "MiB": 104.6
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).newFlowNode",
+      "MiB": 99.57
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSignature",
+      "MiB": 93.87
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newUnionType",
+      "MiB": 80.02
+    },
+    {
+      "frame": "github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewPropertyAssignment",
+      "MiB": 73.55
+    }
+  ]
+}
