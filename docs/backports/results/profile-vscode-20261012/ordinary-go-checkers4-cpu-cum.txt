@@ -1,0 +1,26 @@
+File: tsgo-before
+Type: cpu
+Time: 2026-10-12 01:04:25 EDT
+Duration: 5.55s, Total samples = 19.33s (348.06%)
+Showing nodes accounting for 10.06s, 52.04% of 19.33s total
+Dropped 989 nodes (cum <= 0.10s)
+Showing top 18 nodes out of 345
+      flat  flat%   sum%        cum   cum%
+         0     0%     0%     13.13s 67.93%  runtime.systemstack
+         0     0%     0%     10.20s 52.77%  runtime.(*mheap).alloc.func1
+         0     0%     0%     10.20s 52.77%  runtime.(*mheap).allocSpan
+    10.04s 51.94% 51.94%     10.04s 51.94%  runtime.madvise
+         0     0% 51.94%     10.04s 51.94%  runtime.sysUsed (inline)
+         0     0% 51.94%     10.04s 51.94%  runtime.sysUsedOS (inline)
+     0.01s 0.052% 51.99%      4.19s 21.68%  github.com/microsoft/TypeScript/tsc/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0% 51.99%      4.16s 21.52%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElementWorker
+         0     0% 51.99%      4.13s 21.37%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElement
+         0     0% 51.99%      4.13s 21.37%  sync.(*WaitGroup).Go.func1
+         0     0% 51.99%      4.09s 21.16%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElements
+         0     0% 51.99%      3.83s 19.81%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceFile
+         0     0% 51.99%      3.77s 19.50%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getDiagnostics
+     0.01s 0.052% 52.04%      3.76s 19.45%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionEx
+         0     0% 52.04%      3.74s 19.35%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionWorker
+         0     0% 52.04%      3.71s 19.19%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).GetDiagnostics (inline)
+         0     0% 52.04%      3.71s 19.19%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*Program).getBindAndCheckDiagnosticsWithChecker
+         0     0% 52.04%      3.65s 18.88%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*Program).getSemanticDiagnosticsWithChecker

@@ -1,0 +1,49 @@
+File: fork
+Build ID: a014c984b4b6235b12295d6e6c18c4f952d3f10d
+Type: cpu
+Time: 2026-10-12 05:42:17 UTC
+Duration: 17.35s, Total samples = 64.83s (373.69%)
+Showing nodes accounting for 1.67s, 2.58% of 64.83s total
+Dropped 2309 nodes (cum <= 0.32s)
+Showing top 40 nodes out of 556
+      flat  flat%   sum%        cum   cum%
+     0.08s  0.12%  0.12%     43.42s 66.98%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElementWorker
+     0.02s 0.031%  0.15%     43.23s 66.68%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElement
+     0.04s 0.062%  0.22%     42.98s 66.30%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceElements
+     0.18s  0.28%  0.49%        41s 63.24%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionEx
+     0.19s  0.29%  0.79%        41s 63.24%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionWorker
+         0     0%  0.79%     40.95s 63.17%  github.com/microsoft/TypeScript/tsc/internal/core.(*parallelWorkGroup).Queue.func1
+         0     0%  0.79%     40.15s 61.93%  sync.(*WaitGroup).Go.func1
+     0.01s 0.015%   0.8%     39.08s 60.28%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkSourceFile
+         0     0%   0.8%     38.53s 59.43%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getDiagnostics
+         0     0%   0.8%     37.91s 58.48%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).GetDiagnostics (inline)
+         0     0%   0.8%     37.91s 58.48%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*Program).getBindAndCheckDiagnosticsWithChecker
+         0     0%   0.8%     36.59s 56.44%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*Program).getSemanticDiagnosticsWithChecker
+         0     0%   0.8%     35.83s 55.27%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*Program).collectCheckerDiagnosticsFromFiles.func1
+         0     0%   0.8%     35.42s 54.64%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkBlock
+         0     0%   0.8%     35.07s 54.10%  github.com/microsoft/TypeScript/tsc/internal/compiler.(*checkerPool).forEachCheckerGroupDo.func1
+     0.08s  0.12%  0.93%     32.29s 49.81%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getResolvedSignature
+     0.04s 0.062%  0.99%     32.09s 49.50%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkCallExpression
+     0.02s 0.031%  1.02%     32.06s 49.45%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).resolveSignature
+     0.02s 0.031%  1.05%     30.73s 47.40%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).resolveCallExpression
+     0.01s 0.015%  1.06%     30.45s 46.97%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpression (inline)
+     0.10s  0.15%  1.22%     27.75s 42.80%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).resolveCall
+     0.02s 0.031%  1.25%     27.19s 41.94%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).chooseOverload
+     0.03s 0.046%  1.30%     21.01s 32.41%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionWithContextualType
+     0.07s  0.11%  1.40%     19.29s 29.75%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).isSignatureApplicable
+     0.02s 0.031%  1.43%     18.38s 28.35%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionStatement
+     0.05s 0.077%  1.51%     17.36s 26.78%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkFunctionOrMethodDeclaration
+     0.01s 0.015%  1.53%     17.10s 26.38%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkDeferredNode
+         0     0%  1.53%     16.88s 26.04%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkDeferredNodes
+     0.01s 0.015%  1.54%     16.88s 26.04%  github.com/microsoft/TypeScript/tsc/internal/collections.(*OrderedMap[go.shape.*github.com/microsoft/TypeScript/tsc/internal/ast.Node,go.shape.struct {}]).Keys.func1 (inline)
+     0.01s 0.015%  1.56%     16.87s 26.02%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkDeferredNodes-range1 (inline)
+     0.01s 0.015%  1.57%     16.60s 25.61%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionCachedEx
+         0     0%  1.57%     16.28s 25.11%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkClassDeclaration
+     0.01s 0.015%  1.59%     15.94s 24.59%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkFunctionExpressionOrObjectLiteralMethodDeferred
+     0.05s 0.077%  1.67%     13.43s 20.72%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkVariableLikeDeclaration
+     0.14s  0.22%  1.88%     13.17s 20.31%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeOfSymbol
+     0.37s  0.57%  2.45%     12.83s 19.79%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkIdentifier
+     0.02s 0.031%  2.48%     12.74s 19.65%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkPropertyAccessExpression
+         0     0%  2.48%     12.20s 18.82%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkMethodDeclaration
+     0.04s 0.062%  2.55%     12.07s 18.62%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).inferTypeArguments
+     0.02s 0.031%  2.58%     11.90s 18.36%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkVariableDeclaration

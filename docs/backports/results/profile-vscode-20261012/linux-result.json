@@ -1,0 +1,274 @@
+{
+  "schema": "profile-v1",
+  "measurement": "ordinary-cli-v1",
+  "date": "2026-10-12T05:35:55.560152+00:00",
+  "head": "4fcf3be1c0c29bd8b661365d9bdeaf7c0b57c90d",
+  "machine": {
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "cpus": 4
+  },
+  "project": {
+    "name": "vscode",
+    "case": "cases/scenarios/vscode",
+    "repo": "https://github.com/microsoft/vscode.git",
+    "commit": "9cf0128b9822dcd8a533f08ef7312956a4390301",
+    "project": "src",
+    "install": "npm ci --ignore-scripts --no-audit --no-fund"
+  },
+  "pins": {
+    "upstream": {
+      "repo": "https://github.com/microsoft/TypeScript.git",
+      "commit": "b85298b6a81f772d080b0455de0ca9d744cd6fd6"
+    },
+    "tsrs": {
+      "repo": "https://github.com/maschwenk/tsrs.git",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751",
+      "build": "cargo build --locked --release -p tsrs_cli"
+    }
+  },
+  "reps": 1,
+  "tools": {
+    "tsgo": {
+      "sha256": "ac339498656491cc2c77bb4404f58e0db0876344e2e1e5e3a0f49062d6aadee2",
+      "version": "Version 7.1.0-dev",
+      "go_build": "<repo>/.bench/bin/fork: go1.27.2\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=1\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=4fcf3be1c0c29bd8b661365d9bdeaf7c0b57c90d\n\tbuild\tvcs.time=2026-10-12T05:26:52Z\n\tbuild\tvcs.modified=false\n"
+    },
+    "tsrs": {
+      "sha256": "e4d183f1ec6ac2461f3f7a6c8503fd44753ac0170c2a59c0e64eacd342decb2a",
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)"
+    },
+    "tsrs-profile": {
+      "sha256": "3cfe3a5faf587fc4c27ec6a1dfc8118e359ca1e8b688bc63f0505e628724fc42",
+      "purpose": "profiling only; excluded from timing summaries"
+    }
+  },
+  "rows": [
+    {
+      "mode": "single",
+      "validations": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 4822277,
+            "Types": 2658870,
+            "Instantiations": 3501192,
+            "Memory allocs": 28810725
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 54.67953409100005,
+          "peak_rss_bytes": 5404573696,
+          "cpu_s": 54.856902,
+          "log": "<repo>/.bench/profile/tsgo-single-validation.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 4740342,
+            "Types": 2454401,
+            "Instantiations": 3421185,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 20.269376558999966,
+          "peak_rss_bytes": 1735966720,
+          "cpu_s": 20.266086,
+          "log": "<repo>/.bench/profile/tsrs-single-validation.log"
+        }
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 45.399140171,
+            "peak_rss_bytes": 5971259392,
+            "cpu_s": 45.553895,
+            "log": "<repo>/.bench/profile/tsgo-single-0.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 20.090914184999974,
+            "peak_rss_bytes": 1738821632,
+            "cpu_s": 20.087636,
+            "log": "<repo>/.bench/profile/tsrs-single-0.log"
+          }
+        ],
+        "tsgo-gc-probe": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 38.15388311899994,
+            "peak_rss_bytes": 6084960256,
+            "cpu_s": 38.281365,
+            "log": "<repo>/.bench/profile/tsgo-gc-probe-single-0.log"
+          }
+        ]
+      },
+      "summary": {
+        "tsgo": {
+          "wall_s": 45.399140171,
+          "cpu_s": 45.553895,
+          "peak_rss_bytes": 5971259392
+        },
+        "tsrs": {
+          "wall_s": 20.090914184999974,
+          "cpu_s": 20.087636,
+          "peak_rss_bytes": 1738821632
+        },
+        "tsgo-gc-probe": {
+          "wall_s": 38.15388311899994,
+          "cpu_s": 38.281365,
+          "peak_rss_bytes": 6084960256
+        }
+      }
+    },
+    {
+      "mode": "checkers4",
+      "validations": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5314554,
+            "Types": 3322359,
+            "Instantiations": 4710661,
+            "Memory allocs": 33180452
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 24.539389932000063,
+          "peak_rss_bytes": 6198149120,
+          "cpu_s": 92.909762,
+          "log": "<repo>/.bench/profile/tsgo-checkers4-validation.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5123638,
+            "Types": 2868955,
+            "Instantiations": 4294854,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 8.65525890999993,
+          "peak_rss_bytes": 2061086720,
+          "cpu_s": 34.230081,
+          "log": "<repo>/.bench/profile/tsrs-checkers4-validation.log"
+        }
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 20.541717202000086,
+            "peak_rss_bytes": 6665293824,
+            "cpu_s": 80.74829299999999,
+            "log": "<repo>/.bench/profile/tsgo-checkers4-0.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 8.743662694000022,
+            "peak_rss_bytes": 2065981440,
+            "cpu_s": 34.282924,
+            "log": "<repo>/.bench/profile/tsrs-checkers4-0.log"
+          }
+        ],
+        "tsgo-gc-probe": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "counters_source": "validation",
+            "statistics": "disabled",
+            "wall_s": 16.791842287999998,
+            "peak_rss_bytes": 6975766528,
+            "cpu_s": 62.696154,
+            "log": "<repo>/.bench/profile/tsgo-gc-probe-checkers4-0.log"
+          }
+        ]
+      },
+      "summary": {
+        "tsgo": {
+          "wall_s": 20.541717202000086,
+          "cpu_s": 80.74829299999999,
+          "peak_rss_bytes": 6665293824
+        },
+        "tsrs": {
+          "wall_s": 8.743662694000022,
+          "cpu_s": 34.282924,
+          "peak_rss_bytes": 2065981440
+        },
+        "tsgo-gc-probe": {
+          "wall_s": 16.791842287999998,
+          "cpu_s": 62.696154,
+          "peak_rss_bytes": 6975766528
+        }
+      }
+    }
+  ],
+  "completed": true
+}

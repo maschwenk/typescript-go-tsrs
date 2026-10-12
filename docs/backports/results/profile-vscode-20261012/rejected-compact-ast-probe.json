@@ -1,0 +1,157 @@
+{
+  "mode": "checkers4",
+  "measurement": "ordinary-cli-v1",
+  "reps": 3,
+  "tools": {
+    "before": "bbfa3f7f4f656e5c4a42eec3fb984a8aacacc9cce6acaac60c03c8e55dbef55c",
+    "compact": "ecf8e3dd147f7c01d69ff93b8289d175a6e1421b65cdcdb5400b473b17e99eeb"
+  },
+  "validations": {
+    "before": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33729340
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 7.075069624999999,
+      "peak_rss_bytes": 6628540416,
+      "cpu_s": 24.572405999999997,
+      "log": "<repo>/.bench/profiling-gap/compact-ast-probe/before-validation.log"
+    },
+    "compact": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33721602
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 6.8081985,
+      "peak_rss_bytes": 5864439808,
+      "cpu_s": 23.167132,
+      "log": "<repo>/.bench/profiling-gap/compact-ast-probe/compact-validation.log"
+    }
+  },
+  "runs": {
+    "before": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.242628375000001,
+        "peak_rss_bytes": 6260064256,
+        "cpu_s": 19.319929,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/before-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.8665795,
+        "peak_rss_bytes": 6559006720,
+        "cpu_s": 17.748306000000003,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/before-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.938956916000002,
+        "peak_rss_bytes": 6437502976,
+        "cpu_s": 18.133157,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/before-2.log"
+      }
+    ],
+    "compact": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.128489332999997,
+        "peak_rss_bytes": 5824774144,
+        "cpu_s": 18.944146,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/compact-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.1543087079999985,
+        "peak_rss_bytes": 5843517440,
+        "cpu_s": 19.025911999999998,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/compact-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.098372333,
+        "peak_rss_bytes": 5840338944,
+        "cpu_s": 18.754197,
+        "log": "<repo>/.bench/profiling-gap/compact-ast-probe/compact-2.log"
+      }
+    ]
+  },
+  "summary": {
+    "before": {
+      "wall_s": 4.938956916000002,
+      "cpu_s": 18.133157,
+      "peak_rss_bytes": 6437502976
+    },
+    "compact": {
+      "wall_s": 5.128489332999997,
+      "cpu_s": 18.944146,
+      "peak_rss_bytes": 5840338944
+    }
+  }
+}

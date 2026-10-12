@@ -1,0 +1,157 @@
+{
+  "mode": "checkers4",
+  "measurement": "ordinary-cli-v1",
+  "reps": 3,
+  "tools": {
+    "before": "bbfa3f7f4f656e5c4a42eec3fb984a8aacacc9cce6acaac60c03c8e55dbef55c",
+    "compact": "121deb7bab484580bc02cdd0587c0991b3ca7508f2e586bb5bd377170b9cd6bd"
+  },
+  "validations": {
+    "before": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 34201724
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 6.831426792,
+      "peak_rss_bytes": 6428672000,
+      "cpu_s": 23.340837,
+      "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/before-validation.log"
+    },
+    "compact": {
+      "exit": 2,
+      "counters": {
+        "Files": 10465,
+        "Lines": 3534318,
+        "Identifiers": 6073383,
+        "Symbols": 5332342,
+        "Types": 3322039,
+        "Instantiations": 4713594,
+        "Memory allocs": 33494812
+      },
+      "completed": true,
+      "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+      "errors": 371,
+      "wall_s": 6.932076749999999,
+      "peak_rss_bytes": 6722764800,
+      "cpu_s": 24.056407,
+      "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/compact-validation.log"
+    }
+  },
+  "runs": {
+    "before": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.412980124999999,
+        "peak_rss_bytes": 6621331456,
+        "cpu_s": 20.090809,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/before-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.897098375000002,
+        "peak_rss_bytes": 6503759872,
+        "cpu_s": 18.012693000000002,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/before-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 5.262704790999997,
+        "peak_rss_bytes": 6745276416,
+        "cpu_s": 20.128747,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/before-2.log"
+      }
+    ],
+    "compact": [
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.870260667,
+        "peak_rss_bytes": 6398918656,
+        "cpu_s": 17.855245999999998,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/compact-0.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.872815499999998,
+        "peak_rss_bytes": 6299811840,
+        "cpu_s": 18.007059,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/compact-1.log"
+      },
+      {
+        "exit": 2,
+        "counters": {
+          "Files": 10465
+        },
+        "completed": true,
+        "diagnostics_sha256": "9b2bd086790607c95bc7bade8596d8e1bdffe31951a20e1396ceccc701e278a2",
+        "errors": 371,
+        "counters_source": "validation",
+        "statistics": "disabled",
+        "wall_s": 4.884977040999999,
+        "peak_rss_bytes": 6630801408,
+        "cpu_s": 17.976821,
+        "log": "<repo>/.bench/profiling-gap/pgo-linux-probe/compact-2.log"
+      }
+    ]
+  },
+  "summary": {
+    "before": {
+      "wall_s": 5.262704790999997,
+      "cpu_s": 20.090809,
+      "peak_rss_bytes": 6621331456
+    },
+    "compact": {
+      "wall_s": 4.872815499999998,
+      "cpu_s": 17.976821,
+      "peak_rss_bytes": 6398918656
+    }
+  }
+}

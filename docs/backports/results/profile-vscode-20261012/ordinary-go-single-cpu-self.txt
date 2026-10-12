@@ -1,0 +1,26 @@
+File: tsgo-before
+Type: cpu
+Time: 2026-10-12 01:03:01 EDT
+Duration: 17.62s, Total samples = 15.81s (89.70%)
+Showing nodes accounting for 13.03s, 82.42% of 15.81s total
+Dropped 865 nodes (cum <= 0.08s)
+Showing top 18 nodes out of 395
+      flat  flat%   sum%        cum   cum%
+     8.17s 51.68% 51.68%      8.17s 51.68%  runtime.madvise
+     0.57s  3.61% 55.28%      0.62s  3.92%  runtime.tryDeferToSpanScan
+     0.56s  3.54% 58.82%      1.44s  9.11%  runtime.scanObject
+     0.48s  3.04% 61.86%      0.50s  3.16%  runtime.(*mspan).typePointersOfUnchecked
+     0.45s  2.85% 64.71%      0.48s  3.04%  runtime.mapaccess2_fast64
+     0.36s  2.28% 66.98%      0.36s  2.28%  internal/runtime/maps.(*ctrlGroup).setEmpty
+     0.33s  2.09% 69.07%      0.33s  2.09%  syscall.rawsyscalln
+     0.31s  1.96% 71.03%      0.31s  1.96%  runtime.memclrNoHeapPointers
+     0.25s  1.58% 72.61%      0.30s  1.90%  github.com/microsoft/TypeScript/tsc/internal/ast.(*NodeFactory).NewIdentifier
+     0.22s  1.39% 74.00%      0.22s  1.39%  runtime.heapSetTypeSmallHeader (inline)
+     0.21s  1.33% 75.33%      0.21s  1.33%  sync/atomic.(*Uint64).Load
+     0.20s  1.27% 76.60%      0.20s  1.27%  runtime.(*mspan).moveInlineMarks
+     0.18s  1.14% 77.74%      0.22s  1.39%  runtime.mapaccess2
+     0.17s  1.08% 78.81%      0.19s  1.20%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).createTypeReferenceEx
+     0.17s  1.08% 79.89%      0.25s  1.58%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newInstantiatedSymbol
+     0.17s  1.08% 80.96%      0.29s  1.83%  runtime.mapaccess2_faststr
+     0.13s  0.82% 81.78%      0.16s  1.01%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSymbol
+     0.10s  0.63% 82.42%      0.13s  0.82%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).newSignature

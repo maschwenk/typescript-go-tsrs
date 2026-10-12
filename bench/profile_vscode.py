@@ -84,6 +84,9 @@ def main():
             raise RuntimeError('timed ordinary CLI output differs from the validated compile')
         summary = {name: {k: statistics.median(r[k] for r in rs) for k in ('wall_s', 'cpu_s', 'peak_rss_bytes')}
                    for name, rs in measurements.items()}
+        result['rows'].append({'mode': mode, 'validations': validations, 'runs': measurements, 'summary': summary})
+        (args.out / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
+        print(mode, summary, flush=True)
         profiles = args.out / mode
         profiles.mkdir(exist_ok=True)
         for name in ('tsgo', 'tsgo-gc-probe') if args.gc_probe else ('tsgo',):
@@ -108,10 +111,7 @@ def main():
                 raise RuntimeError('tsrs profile did not cover the validated compilation')
             if args.perf:
                 with (profiles / 'tsrs-perf-report.txt').open('w') as report:
-                    subprocess.run([str(args.perf.resolve()), 'report', '--stdio', '--no-children', '-i', str(profiles / 'tsrs.perf.data')], stdout=report, check=True)
-        result['rows'].append({'mode': mode, 'validations': validations, 'runs': measurements, 'summary': summary})
-        (args.out / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
-        print(mode, summary, flush=True)
+                    subprocess.run([str(args.perf.resolve()), 'report', '--stdio', '--no-children', '--no-inline', '--call-graph', 'none', '-i', str(profiles / 'tsrs.perf.data')], stdout=report, check=True, timeout=120, env={**os.environ, 'DEBUGINFOD_URLS': ''})
     result['completed'] = True
     (args.out / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
 

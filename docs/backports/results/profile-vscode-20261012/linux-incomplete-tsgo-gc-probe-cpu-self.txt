@@ -1,0 +1,33 @@
+File: fork
+Build ID: aac89b0be445217060f29588f63239af029c9498
+Type: cpu
+Time: 2026-10-12 01:18:10 EDT
+Duration: 39.17s, Total samples = 39.18s (  100%)
+Showing nodes accounting for 11.77s, 30.04% of 39.18s total
+Dropped 1925 nodes (cum <= 0.20s)
+Showing top 24 nodes out of 556
+      flat  flat%   sum%        cum   cum%
+     2.54s  6.48%  6.48%      2.54s  6.48%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+        1s  2.55%  9.04%         4s 10.21%  runtime.mapaccess2_fast64
+     0.84s  2.14% 11.18%      0.92s  2.35%  runtime.findObject
+     0.79s  2.02% 13.20%      0.79s  2.02%  internal/runtime/maps.h1 (inline)
+     0.76s  1.94% 15.14%      1.04s  2.65%  runtime.tryDeferToSpanScan
+     0.69s  1.76% 16.90%      1.87s  4.77%  runtime.mapaccess2_faststr
+     0.61s  1.56% 18.45%      0.61s  1.56%  internal/runtime/maps.memHashAES
+     0.49s  1.25% 19.70%      0.49s  1.25%  internal/runtime/maps.memHash64AES
+     0.38s  0.97% 20.67%      0.73s  1.86%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedArenaLinkStore[go.shape.c8834662d792dc235b825e1d0a383ca0e88d37a7942c2ee1678aaae508164d3e]).Get
+     0.36s  0.92% 21.59%      2.32s  5.92%  github.com/microsoft/TypeScript/tsc/internal/binder.(*NameResolver).Resolve
+     0.29s  0.74% 22.33%      1.19s  3.04%  runtime.mapaccess2
+     0.28s  0.71% 23.05%      1.38s  3.52%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).bind
+     0.27s  0.69% 23.74%      1.41s  3.60%  runtime.scanObject
+     0.26s  0.66% 24.40%      4.42s 11.28%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNodeUncached
+     0.26s  0.66% 25.06%      0.27s  0.69%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedLinkStore[go.shape.uint32]).Get
+     0.25s  0.64% 25.70%      0.25s  0.64%  memeqbody
+     0.24s  0.61% 26.31%      0.24s  0.61%  internal/runtime/syscall/linux.Syscall6
+     0.23s  0.59% 26.90%      0.47s  1.20%  internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+     0.22s  0.56% 27.46%      0.28s  0.71%  github.com/microsoft/TypeScript/tsc/internal/ast.(*Node).Text
+     0.21s  0.54% 28.00%      1.03s  2.63%  gcWriteBarrier
+     0.20s  0.51% 28.51%      0.21s  0.54%  github.com/microsoft/TypeScript/tsc/internal/ast.GetSourceFileOfNode
+     0.20s  0.51% 29.02%      0.78s  1.99%  github.com/microsoft/TypeScript/tsc/internal/scanner.(*Scanner).Scan
+     0.20s  0.51% 29.53%      0.32s  0.82%  internal/runtime/maps.(*Iter).Next
+     0.20s  0.51% 30.04%      0.96s  2.45%  runtime.growslice

@@ -1,0 +1,49 @@
+File: fork
+Build ID: a014c984b4b6235b12295d6e6c18c4f952d3f10d
+Type: cpu
+Time: 2026-10-12 05:38:54 UTC
+Duration: 44.06s, Total samples = 44.06s (  100%)
+Showing nodes accounting for 17.79s, 40.38% of 44.06s total
+Dropped 2016 nodes (cum <= 0.22s)
+Showing top 40 nodes out of 533
+      flat  flat%   sum%        cum   cum%
+     2.50s  5.67%  5.67%      2.50s  5.67%  internal/runtime/maps.ctrlGroup.matchH2 (inline)
+     2.03s  4.61% 10.28%      2.24s  5.08%  runtime.findObject
+     1.72s  3.90% 14.19%      2.42s  5.49%  runtime.tryDeferToSpanScan
+     1.38s  3.13% 17.32%      4.12s  9.35%  runtime.mapaccess2_fast64
+     0.71s  1.61% 18.93%      0.71s  1.61%  internal/runtime/maps.memHashAES
+     0.69s  1.57% 20.49%      3.58s  8.13%  runtime.scanObject
+     0.63s  1.43% 21.92%      0.63s  1.43%  internal/runtime/maps.h1 (inline)
+     0.57s  1.29% 23.22%      1.80s  4.09%  runtime.mapaccess2_faststr
+     0.43s  0.98% 24.19%      0.43s  0.98%  runtime.typePointers.nextFast (inline)
+     0.39s  0.89% 25.08%      0.40s  0.91%  runtime.(*mspan).markBitsForIndex (inline)
+     0.34s  0.77% 25.85%      0.95s  2.16%  runtime.scanObjectsSmall
+     0.32s  0.73% 26.58%      2.31s  5.24%  github.com/microsoft/TypeScript/tsc/internal/binder.(*NameResolver).Resolve
+     0.31s   0.7% 27.28%      2.22s  5.04%  gcWriteBarrier
+     0.31s   0.7% 27.98%      0.31s   0.7%  internal/runtime/maps.memHash64AES
+     0.31s   0.7% 28.69%      2.86s  6.49%  runtime.wbBufFlush1
+     0.30s  0.68% 29.37%      4.65s 10.55%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNodeUncached
+     0.29s  0.66% 30.03%      0.29s  0.66%  memeqbody
+     0.29s  0.66% 30.69%      1.35s  3.06%  runtime.mapaccess2
+     0.28s  0.64% 31.32%      0.28s  0.64%  internal/runtime/syscall/linux.Syscall6
+     0.28s  0.64% 31.96%      0.41s  0.93%  runtime.typePointers.next
+     0.27s  0.61% 32.57%      0.27s  0.61%  runtime.spanClass.sizeclass (inline)
+     0.26s  0.59% 33.16%      0.26s  0.59%  github.com/microsoft/TypeScript/tsc/internal/ast.GetSourceFileOfNode (inline)
+     0.26s  0.59% 33.75%      0.47s  1.07%  internal/runtime/maps.(*Map).getWithoutKeySmallFastStr
+     0.24s  0.54% 34.29%      0.89s  2.02%  github.com/microsoft/TypeScript/tsc/internal/scanner.(*Scanner).Scan
+     0.23s  0.52% 34.82%      5.06s 11.48%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getTypeAtFlowNode
+     0.23s  0.52% 35.34%      0.41s  0.93%  runtime.greyobject
+     0.23s  0.52% 35.86%      0.23s  0.52%  runtime.memclrNoHeapPointers
+     0.22s   0.5% 36.36%      0.33s  0.75%  github.com/microsoft/TypeScript/tsc/internal/ast.(*Node).Text
+     0.22s   0.5% 36.86%      1.40s  3.18%  github.com/microsoft/TypeScript/tsc/internal/binder.(*Binder).bind
+     0.17s  0.39% 37.24%      0.42s  0.95%  github.com/microsoft/TypeScript/tsc/internal/core.(*PagedArenaLinkStore[go.shape.c8834662d792dc235b825e1d0a383ca0e88d37a7942c2ee1678aaae508164d3e]).Get
+     0.15s  0.34% 37.59%      2.69s  6.11%  github.com/microsoft/TypeScript/tsc/internal/ast.(*Node).ForEachChild
+     0.14s  0.32% 37.90%     26.03s 59.08%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionEx
+     0.14s  0.32% 38.22%        26s 59.01%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkExpressionWorker
+     0.14s  0.32% 38.54%      8.50s 19.29%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).checkIdentifier
+     0.14s  0.32% 38.86%      1.92s  4.36%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).invokeOnce
+     0.14s  0.32% 39.17%      4.89s 11.10%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Relater).isRelatedToEx
+     0.14s  0.32% 39.49%      2.21s  5.02%  runtime.mallocgc
+     0.13s   0.3% 39.79%      0.92s  2.09%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).getSignaturesOfStructuredType
+     0.13s   0.3% 40.08%      0.62s  1.41%  github.com/microsoft/TypeScript/tsc/internal/checker.(*Checker).isMatchingReference
+     0.13s   0.3% 40.38%      0.29s  0.66%  runtime.mapassign_fast64
