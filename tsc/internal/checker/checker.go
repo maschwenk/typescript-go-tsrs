@@ -583,6 +583,8 @@ type Host interface {
 var nextCheckerID atomic.Uint32
 
 type Checker struct {
+	typeReferenceArena                          core.Arena[TypeReference]
+	literalTypeArena                            core.Arena[LiteralType]
 	id                                          uint32
 	program                                     Program
 	compilerOptions                             *core.CompilerOptions
@@ -25975,7 +25977,7 @@ func (c *Checker) createUnknownUnionType() *Type {
 }
 
 func (c *Checker) newLiteralType(flags TypeFlags, value any, regularType *Type) *Type {
-	data := &LiteralType{}
+	data := c.literalTypeArena.New()
 	data.value = value
 	t := c.newType(flags, ObjectFlagsNone, data)
 	if regularType != nil {
@@ -26002,7 +26004,7 @@ func (c *Checker) newObjectType(objectFlags ObjectFlags, symbol *ast.Symbol) *Ty
 	case objectFlags&ObjectFlagsTuple != 0:
 		data = &TupleType{}
 	case objectFlags&ObjectFlagsReference != 0:
-		data = &TypeReference{}
+		data = c.typeReferenceArena.New()
 	case objectFlags&ObjectFlagsMapped != 0:
 		data = &MappedType{}
 	case objectFlags&ObjectFlagsReverseMapped != 0:
