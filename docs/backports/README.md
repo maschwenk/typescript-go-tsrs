@@ -1,8 +1,8 @@
 # tsrs strategy audit
 
-Source: `maschwenk/tsrs@e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751`, sharing the compiler revision `microsoft/TypeScript@b85298b6a81f772d080b0455de0ca9d744cd6fd6`. This private repository preserves upstream history and an `upstream` remote. GitHub public forks cannot be private, so it is an independent history-preserving copy.
+Source: `maschwenk/tsrs@e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751`, sharing the compiler revision `microsoft/TypeScript@b85298b6a81f772d080b0455de0ca9d744cd6fd6`. This independent fork preserves upstream history. It began as a private history-preserving copy because GitHub public forks cannot be private.
 
-The source series contains 50 separate ports. Each note identifies the Rust source, the Go invariant and correctness evidence. PR links below show current merge state. Performance is measured after implementation, using pinned VS Code on the native Mac. Earlier per-port experiments remain historical evidence; later ports have no claimed individual application speedup. No compiler baseline is rewritten.
+The implementation series contains 52 separate steps, including 50 source ports, optional Go PGO tooling and an adaptive checker default. Each note identifies the Rust source, the Go invariant and correctness evidence. PR links below show current merge state. [Performance was measured after implementation](results/native-vscode/README.md), using pinned VS Code on the native Mac. Earlier per-port experiments remain historical evidence; later ports have no claimed individual application speedup. No compiler baseline is rewritten.
 
 ## Translation decisions
 
@@ -16,10 +16,11 @@ The source series contains 50 separate ports. Each note identifies the Rust sour
 | Layouts, dense links, hot/cold splits and scratch reset | Ports 16–18, 21–22 use GC-managed records and typed accessors. Temporary objects stay collectible. |
 | Fast paths, relation keys and stack assumptions | Ports 23–25, 36–39 and 50 preserve nil, alias, enum, freshness and identity distinctions. |
 | Unaffected members, contextual queries, recursion, inference and flow | Ports 26, 29–32, 35 and 40–43 include off/shadow modes and conservative fallback guards. Cached property symbols still read their current types. Flow hits replay shared writes and preserve depth limits; inference hits preserve candidate order and budgets. |
-| Go-native PGO | Separate optional build using actual Go CPU profiles. VS Code training and evaluation are the same pinned workload; no held-out generalization claim. |
+| Go-native PGO | Step 51 provides a separate optional build using actual Go CPU profiles. VS Code training and evaluation are the same pinned workload; no held-out generalization claim. |
 | Borrowing versus cloning, explicit Rust inline annotations, Fx/PackedMap hashes and allocator entry points | Go already borrows slices and uses its own compiler inliner and Swiss maps. Do not copy Rust-specific register-frame and custom-map machinery without Go evidence. Packed argument keys use Go's normal map hash. |
 | Rust leak arenas, pointer compression, leaf retirement, mimalloc, madvise/THP, LLVM LTO/BOLT | Depend on Rust's allocator/compiler and arena ownership. They do not transfer as safe substitutions for the Go collector, pointer rules and linker. Go-managed arenas and native PGO are the corresponding experiments here. |
 | Lazy declaration-file member parsing/binding | Not shipped in this series. Go exposes `NodeList.Nodes` and `Symbol.Members` directly. The Rust implementation requires forcing accessors, parser checkpoints, reentrant binding, shared-list publication and an audit of external references. Discarding these Go lists under today's API would lose observable AST/symbol data. This needs a separate frontend/API design; tsrs reports zero VS Code benefit in `notes/mem-lazy-dts-members.md`. |
+| Checker defaults | Step 52 selects a bounded worker count from the available CPUs and checked-file workload for ordinary CLI compilation; explicit counts and existing API/build/watch behavior are retained. |
 | Dynamic stealing/module affinity and shared checker graphs | Keep upstream Go assignment. Assignment order can change history-dependent diagnostics; extra stealing needs the order-independence fixes and dedicated concurrency validation, not only a copied scheduler. See tsrs `notes/open-history-dependence.md` and `notes/perf-order-independence.md`. |
 | Type-print memo, persisted frontend, derived variance shortcuts and speculative budget skipping | Rejected or parked tsrs experiments are not presumed wins. Type-print memo is absent from the pinned implementation. Existing instantiation limits stay unchanged. |
 
@@ -79,3 +80,5 @@ These decisions distinguish shipped ports from architecture work and techniques 
 | 48 | [Carry relevant exclude patterns through directory walks](48-live-directory-excludes.md) | [#62](https://github.com/maschwenk/typescript-go-tsrs/pull/62) |
 | 49 | [Reuse stable constituent flags for large union kind queries](49-constituent-kind-flags.md) | [#63](https://github.com/maschwenk/typescript-go-tsrs/pull/63) |
 | 50 | [Pack short type argument keys without the byte builder](50-packed-type-arguments.md) | [#64](https://github.com/maschwenk/typescript-go-tsrs/pull/64) |
+| 51 | [Train an optional native Go PGO build](51-native-go-pgo.md) | [#66](https://github.com/maschwenk/typescript-go-tsrs/pull/66) |
+| 52 | [Choose a bounded checker default from the workload](52-adaptive-default-checkers.md) | [#67](https://github.com/maschwenk/typescript-go-tsrs/pull/67) |

@@ -2,9 +2,11 @@
 
 The default workload is VS Code `src`, pinned to `9cf0128b9822dcd8a533f08ef7312956a4390301` in the pinned tsrs project definitions. Compiler revisions are in `pins.json`. Implementation PRs run correctness checks; performance is measured once after the series.
 
+Published results identify the exact fork source commit. Check out that commit before building to reproduce a published row; `main` can be an earlier step while the source series merges.
+
 ## Native Mac comparison
 
-Build and run the three native executables on the same Mac. Stop other builds and pause idle CI containers before timing. Keep ordinary GC settings. Go stock and fork use the same toolchain and `-pgo=off`; tsrs uses plain Rust release.
+Build and run the three native executables on the same Mac. Stop other builds and pause other CPU-heavy tasks before timing. Keep ordinary GC settings. Go stock and fork use the same toolchain and `-pgo=off`; tsrs uses plain Rust release.
 
 ```sh
 python3 bench/build.py
@@ -41,8 +43,8 @@ CPU profiles and a separate native Go PGO build are described in `pgo.md`. No `d
 
 CodSpeed supports Go `testing.B` walltime benchmarks and executable walltime comparisons. See [Go support](https://codspeed.io/docs/benchmarks/go) and [executable support](https://codspeed.io/docs/benchmarks/cli-commands). Go does not have CodSpeed CPU simulation support.
 
-The local walltime engine supports macOS, but the pinned executable harness distributes Linux binaries only. Therefore the native Mac result uses `run.py`; `codspeed-vscode.yml` is a separate, manual Linux ARM64 workflow. See [CLI release](https://github.com/CodSpeedHQ/codspeed/releases/tag/v5.4.2) and [harness platform list](https://github.com/CodSpeedHQ/codspeed/blob/v5.4.2/crates/exec-harness/Cargo.toml#L31-L32).
+The local walltime engine supports macOS, but the pinned executable harness distributes Linux binaries only. Therefore the native Mac result uses `run.py`; `codspeed-vscode.yml` is a separate, manual GitHub-hosted Ubuntu ARM64 workflow. See [CLI release](https://github.com/CodSpeedHQ/codspeed/releases/tag/v5.4.2) and [harness platform list](https://github.com/CodSpeedHQ/codspeed/blob/v5.4.2/crates/exec-harness/Cargo.toml#L31-L32).
 
-The workflow pins CLI 5.4.2 and harness 1.4.1 with asset hashes, disables profiling and process isolation for container compatibility, saves raw logs and actual exits, and gates the collected results without rerunning compilers. Its grouped repetitions differ from the native interleaved comparison. Harmless executable smoke commands validated the restricted Linux container path; a CodSpeed compiler benchmark was not run for the native comparison.
+The workflow pins CLI 5.4.2 and harness 1.4.1 with asset hashes, disables profiling and process isolation for reproducibility with the validated configuration, saves raw logs and actual exits, and gates the collected results without rerunning compilers. Its grouped repetitions differ from the native interleaved comparison. Harmless executable smoke commands validated the restricted Linux container path; a CodSpeed compiler benchmark was not run for the native comparison.
 
-Upload defaults off. Upload requires an existing CodSpeed repository connection; this task does not install the app or configure a subscription. CodSpeed does not remove the need for compute or GitHub-hosted runner minutes. The optional workflow accepts a self-hosted Linux ARM64 runner labeled `tsgo-backport-local`. See [CodSpeed setup](https://codspeed.io/docs/integrations/ci/github-actions/configuration).
+Upload defaults off. Upload requires an existing CodSpeed repository connection; this task does not install the app or configure a subscription. CodSpeed does not remove the need for compute or GitHub-hosted runner minutes. The optional workflow uses the standard GitHub-hosted `ubuntu-24.04-arm` runner. See [CodSpeed setup](https://codspeed.io/docs/integrations/ci/github-actions/configuration).
