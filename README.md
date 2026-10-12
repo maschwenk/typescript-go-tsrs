@@ -20,10 +20,10 @@ CI runs upstream compiler baselines, both test-program concurrency settings, cac
 <!-- vscode-benchmarks:start -->
 ## VS Code benchmarks
 
-<!-- measured-commit: 19210090b303355609f876018c8fffce1f1d54cd -->
-Measured [19210090b303](https://github.com/maschwenk/typescript-go-tsrs/commit/19210090b303355609f876018c8fffce1f1d54cd) on 2026-10-12T06:17:09.134145+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38211507780) · [raw measurements](bench/results/19210090b303355609f876018c8fffce1f1d54cd.json)
+<!-- measured-commit: 3e75fadc11f0a2aca1718486b97898e2da5ebb86 -->
+Measured [3e75fadc11f0](https://github.com/maschwenk/typescript-go-tsrs/commit/3e75fadc11f0a2aca1718486b97898e2da5ebb86) on 2026-10-12T06:24:03.246183+00:00. [Actions run](https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38212028119) · [raw measurements](bench/results/3e75fadc11f0a2aca1718486b97898e2da5ebb86.json)
 
-Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · INTEL(R) XEON(R) PLATINUM 8573C · MemTotal:       16372436 kB
+Linux-6.17.0-1022-azure-x86_64-with-glibc2.39 · x86_64 · 4 logical CPUs · AMD EPYC 7763 64-Core Processor · MemTotal:       16373448 kB
 
 VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repetitions per compiler and mode. Tables show medians. Hosted runner hardware can vary between commits.
 
@@ -31,10 +31,10 @@ VS Code `9cf0128b9822` (`src`), warm caches, one warmup and 5 interleaved repeti
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 14.647 | 17.157 | 6.117 |
-| single thread | 31.003 | 34.173 | 14.299 |
-| 4 checkers | 13.956 | 16.079 | 5.879 |
-| 8 checkers | 15.474 | 16.949 | 6.241 |
+| default settings | 17.030 | 22.124 | 8.753 |
+| single thread | 39.053 | 47.104 | 20.148 |
+| 4 checkers | 17.069 | 22.321 | 8.844 |
+| 8 checkers | 17.731 | 22.687 | 9.291 |
 
 Timed runs omit `--extendedDiagnostics`: Go otherwise performs two full garbage collections after compilation. File counts come from each compiler’s separate instrumented validation pass; every timed run must match its complete diagnostic text and exit status. These timings use a different method from earlier archived tables.
 
@@ -42,10 +42,10 @@ Timed runs omit `--extendedDiagnostics`: Go otherwise performs two full garbage 
 
 | mode | tsgo | tsgo nightly | tsrs |
 | --- | ---: | ---: | ---: |
-| default settings | 6287.8 | 6839.6 | 1971.8 |
-| single thread | 5533.4 | 6214.6 | 1658.2 |
-| 4 checkers | 6175.5 | 6614.5 | 1976.4 |
-| 8 checkers | 6817.6 | 7179.3 | 2179.3 |
+| default settings | 6665.7 | 6876.1 | 1962.1 |
+| single thread | 5799.3 | 5905.5 | 1658.1 |
+| 4 checkers | 6663.0 | 6927.4 | 1958.4 |
+| 8 checkers | 7171.8 | 7085.3 | 2168.9 |
 
 ### Compiler versions and diagnostics
 
