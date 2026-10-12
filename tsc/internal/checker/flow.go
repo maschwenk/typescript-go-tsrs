@@ -38,6 +38,11 @@ type SharedFlow struct {
 }
 
 type FlowState struct {
+	memoKey      flowMemoKey
+	memoEnabled  bool
+	memoDisabled bool
+	memoDepths   []int
+
 	reference       *ast.Node
 	declaredType    *Type
 	initialType     *Type
@@ -61,6 +66,7 @@ func (c *Checker) getFlowState() *FlowState {
 func (c *Checker) putFlowState(f *FlowState) {
 	*f = FlowState{
 		reduceLabels: f.reduceLabels[:0],
+		memoDepths:   f.memoDepths[:0],
 		next:         c.freeFlowState,
 	}
 	c.freeFlowState = f
@@ -95,6 +101,7 @@ func (c *Checker) getFlowTypeOfReferenceEx(reference *ast.Node, declaredType *Ty
 	f.flowContainer = flowContainer
 	f.sharedFlowStart = len(c.sharedFlows)
 	c.flowInvocationCount++
+	c.initializeFlowMemoKey(f)
 	evolvedType := c.getTypeAtFlowNode(f, flowNode).t
 	c.sharedFlows = c.sharedFlows[:f.sharedFlowStart]
 	c.putFlowState(f)
@@ -114,8 +121,9 @@ func (c *Checker) getFlowTypeOfReferenceEx(reference *ast.Node, declaredType *Ty
 	return resultType
 }
 
-func (c *Checker) getTypeAtFlowNode(f *FlowState, flow *ast.FlowNode) FlowType {
+func (c *Checker) getTypeAtFlowNodeUncached(f *FlowState, flow *ast.FlowNode) FlowType {
 	if f.depth == 2000 {
+		c.memoTransient++
 		// We have made 2000 recursive invocations. To avoid overflowing the call stack we report an error
 		// and disable further control flow analysis in the containing function or module body.
 		if tr := c.tracer; tr != nil {
@@ -128,6 +136,9 @@ func (c *Checker) getTypeAtFlowNode(f *FlowState, flow *ast.FlowNode) FlowType {
 	f.depth++
 	var sharedFlow *ast.FlowNode
 	for {
+		if f.memoEnabled && !f.memoDisabled {
+			c.flowMemoSteps++
+		}
 		flags := flow.Flags
 		if flags&ast.FlowFlagsShared != 0 {
 			// We cache results of flow type resolution for shared nodes that were previously visited in
@@ -135,6 +146,7 @@ func (c *Checker) getTypeAtFlowNode(f *FlowState, flow *ast.FlowNode) FlowType {
 			// antecedent of more than one node.
 			for i := f.sharedFlowStart; i < len(c.sharedFlows); i++ {
 				if c.sharedFlows[i].flow == flow {
+					c.memoTransient++
 					f.depth--
 					return c.sharedFlows[i].flowType
 				}
@@ -179,6 +191,7 @@ func (c *Checker) getTypeAtFlowNode(f *FlowState, flow *ast.FlowNode) FlowType {
 				continue
 			}
 		case flags&ast.FlowFlagsReduceLabel != 0:
+			c.memoTransient++
 			f.reduceLabels = append(f.reduceLabels, flow.Node.AsFlowReduceLabelData())
 			t = c.getTypeAtFlowNode(f, flow.Antecedent)
 			f.reduceLabels = f.reduceLabels[:len(f.reduceLabels)-1]
@@ -375,6 +388,9 @@ func (c *Checker) getTypeAtFlowCondition(f *FlowState, flow *ast.FlowNode) FlowT
 // Narrow the given type based on the given expression having the assumed boolean value. The returned type
 // will be a subtype or the same type as the argument.
 func (c *Checker) narrowType(f *FlowState, t *Type, expr *ast.Node, assumeTrue bool) *Type {
+	if c.inlineLevel >= 5 {
+		c.memoTransient++
+	}
 	// for `a?.b`, we emulate a synthetic `a !== null && a !== undefined` condition for `a`
 	if ast.IsExpressionOfOptionalChainRoot(expr) || ast.IsBinaryExpression(expr.Parent) && (expr.Parent.AsBinaryExpression().OperatorToken.Kind == ast.KindQuestionQuestionToken || expr.Parent.AsBinaryExpression().OperatorToken.Kind == ast.KindQuestionQuestionEqualsToken) && expr.Parent.AsBinaryExpression().Left == expr {
 		return c.narrowTypeByOptionality(f, t, expr, assumeTrue)
@@ -1323,6 +1339,7 @@ func (c *Checker) getUnionOrEvolvingArrayType(f *FlowState, types []*Type, subty
 }
 
 func (c *Checker) getTypeAtFlowLoopLabel(f *FlowState, flow *ast.FlowNode) FlowType {
+	c.memoTransient++
 	if f.refKey.IsZero() {
 		f.refKey = c.getFlowReferenceKey(f)
 	}
