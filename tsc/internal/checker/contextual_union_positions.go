@@ -17,7 +17,7 @@ type contextualUnionEntry struct {
 }
 
 func (c *Checker) canSkipContextualConstituent(t *Type, name string) bool {
-	if t.flags != TypeFlagsObject || t.objectFlags&(ObjectFlagsMapped|ObjectFlagsMembersResolved) != ObjectFlagsMembersResolved || isTupleType(t) {
+	if t == c.anyFunctionType || t.flags != TypeFlagsObject || t.objectFlags&(ObjectFlagsMapped|ObjectFlagsMembersResolved) != ObjectFlagsMembersResolved || isTupleType(t) {
 		return false
 	}
 	data := t.AsStructuredType()
