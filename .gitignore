@@ -145,3 +145,11 @@ tools/gotestsum.exe.hash
 .backport-bin/
 .backport-*.log
 bench/__pycache__/
+
+# Private configuration, credentials and raw profiles
+.env.*
+!.env.example
+*.pprof
+
+# Sanitized public benchmark evidence
+!docs/backports/results/native-vscode/*/logs/
