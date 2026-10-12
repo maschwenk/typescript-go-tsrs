@@ -1,0 +1,25 @@
+options:
+  working-directory: ..
+  warmup-time: 1ms
+  min-rounds: 7
+  max-rounds: 7
+
+benchmarks:
+  - name: vscode/src/single/stock
+    exec: bash bench/codspeed-command.sh stock single
+  - name: vscode/src/single/fork
+    exec: bash bench/codspeed-command.sh fork single
+  - name: vscode/src/single/tsrs
+    exec: bash bench/codspeed-command.sh tsrs single
+  - name: vscode/src/checkers4/stock
+    exec: bash bench/codspeed-command.sh stock checkers4
+  - name: vscode/src/checkers4/fork
+    exec: bash bench/codspeed-command.sh fork checkers4
+  - name: vscode/src/checkers4/tsrs
+    exec: bash bench/codspeed-command.sh tsrs checkers4
+  - name: vscode/src/default/stock
+    exec: bash bench/codspeed-command.sh stock default
+  - name: vscode/src/default/fork
+    exec: bash bench/codspeed-command.sh fork default
+  - name: vscode/src/default/tsrs
+    exec: bash bench/codspeed-command.sh tsrs default
