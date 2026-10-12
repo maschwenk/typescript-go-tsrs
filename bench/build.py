@@ -17,6 +17,7 @@ args=ap.parse_args()
 args.out=args.out.resolve()
 args.out.mkdir(parents=True,exist_ok=True)
 pins=json.loads((ROOT/'bench/pins.json').read_text())
+sh(['git','worktree','prune','--expire','now'])
 for name, ref in [('stock',pins['upstream']['commit']),('parent',args.reference)]:
     if not ref:
         continue
