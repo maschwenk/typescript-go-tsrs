@@ -1,0 +1,1592 @@
+{
+  "schema": "readme-v1",
+  "head": "957ce0992473728c3307f4228175ef99ec7b7d9c",
+  "date": "2026-10-12T04:17:19.580144+00:00",
+  "machine": {
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "cpus": 4,
+    "runner": "GitHub Actions 1000005412",
+    "arch": "x86_64",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "mem_total": "MemTotal:       16373452 kB"
+  },
+  "reps": 5,
+  "project": {
+    "name": "vscode",
+    "case": "cases/scenarios/vscode",
+    "repo": "https://github.com/microsoft/vscode.git",
+    "commit": "9cf0128b9822dcd8a533f08ef7312956a4390301",
+    "project": "src",
+    "install": "npm ci --ignore-scripts --no-audit --no-fund"
+  },
+  "tools": {
+    "tsgo": {
+      "version": "Version 7.1.0-dev",
+      "sha256": "9d8b96b51cfb8c204972b5b386eab5f4424f32d54a1fe54098a5ddf37ef19847",
+      "go_build": "/home/runner/work/typescript-go-tsrs/typescript-go-tsrs/.bench/bin/tsgo: go1.27.2\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\tCGO_ENABLED=1\n\tbuild\tCGO_CFLAGS=\n\tbuild\tCGO_CPPFLAGS=\n\tbuild\tCGO_CXXFLAGS=\n\tbuild\tCGO_LDFLAGS=\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=957ce0992473728c3307f4228175ef99ec7b7d9c\n\tbuild\tvcs.time=2026-10-12T04:13:49Z\n\tbuild\tvcs.modified=false\n",
+      "commit": "957ce0992473728c3307f4228175ef99ec7b7d9c"
+    },
+    "tsgo nightly": {
+      "version": "Version 7.1.0-dev.20261011.1",
+      "sha256": "f8e9f9e0bc42d18c2ca820b6a5ce7f5dc6c50bd17fb2338be3376cdc31b4d51d",
+      "go_build": "/home/runner/work/typescript-go-tsrs/typescript-go-tsrs/.bench/nightly/node_modules/@typescript/typescript-linux-x64/lib/tsc: go1.27.2\n\tpath\tgithub.com/microsoft/TypeScript/tsc/cmd/tsc\n\tmod\tgithub.com/microsoft/TypeScript/tsc\t(devel)\t\n\tdep\tgithub.com/klauspost/cpuid/v2\tv2.2.10\th1:tBs3QSyvjDyFTq3uoc/9xFpCuOsJQFNPiAhYdw2skhE=\n\tdep\tgithub.com/mackerelio/go-osstat\tv0.2.8\th1:I2duicTaCGWoM53XwAwA9OIe1inu0xnVs8/pqOWWVr4=\n\tdep\tgithub.com/zeebo/xxh3\tv1.1.0\th1:s7DLGDK45Dyfg7++yxI0khrfwq9661w9EN78eP/UZVs=\n\tdep\tgolang.org/x/sync\tv0.23.0\th1:KameEIfc1IkluZyXWLn39Wd4tURc6GbCiISGiZm2bQk=\n\tdep\tgolang.org/x/sys\tv0.48.0\th1:bbX/i/6MgT9BVLM9RT1thmxL04yeTAhbEz4SyadbXoo=\n\tdep\tgolang.org/x/term\tv0.46.0\th1:3+OXuTbaKDgwk8jTi3aSLHRlmWqHEUDUtxnbFigO4YE=\n\tdep\tgolang.org/x/text\tv0.42.0\th1:JbOZXgfeCPU9gacVtYliJqOhD+zhrEqK4LfdpmlUZqI=\n\tbuild\tmicrosoft_systemcrypto=1\n\tbuild\tmicrosoft_toolset_version=go1.27.2-1-microsoft\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-tags=noembed\n\tbuild\t-trimpath=true\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=amd64\n\tbuild\tGOOS=linux\n\tbuild\tGOAMD64=v1\n\tbuild\tvcs=git\n\tbuild\tvcs.revision=aa8149273b23401f0a79a5f0384c42de51888693\n\tbuild\tvcs.time=2026-10-09T23:42:02Z\n\tbuild\tvcs.modified=true\n",
+      "npm": {
+        "package": "@typescript/typescript-linux-x64",
+        "version": "7.1.0-dev.20261011.1",
+        "gitHead": "aa8149273b23401f0a79a5f0384c42de51888693",
+        "integrity": "sha512-0pt6E6fRcffVEUaHYIYGVYBghfeJL2E+JNz91dJf/UidoIU8kmj6qBd27xhsDzKe2aoxolt0t48ipRc+a2NjBA==",
+        "resolved_from": "typescript@next"
+      }
+    },
+    "tsrs": {
+      "version": "Version 7.1.0-dev (tsrs 0.14.0-ts7.1.0-dev.20260929, microsoft/TypeScript@b85298b6a81f)",
+      "sha256": "e4d183f1ec6ac2461f3f7a6c8503fd44753ac0170c2a59c0e64eacd342decb2a",
+      "commit": "e4c7d83a5907d1b8b2dc2f444cef40e5dc2a3751"
+    }
+  },
+  "rows": [
+    {
+      "mode": "default",
+      "summary": {
+        "tsgo": {
+          "wall_s": 18.367449023000006,
+          "peak_rss_bytes": 6664646656,
+          "cpu_s": 71.014303,
+          "errors": 371
+        },
+        "tsgo nightly": {
+          "wall_s": 20.143342345999997,
+          "peak_rss_bytes": 7131148288,
+          "cpu_s": 75.613126,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 6.323223232000032,
+          "peak_rss_bytes": 2070269952,
+          "cpu_s": 24.768153,
+          "errors": 371
+        }
+      },
+      "stable": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "equality": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33144024
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 17.179124252999998,
+            "peak_rss_bytes": 6467047424,
+            "cpu_s": 64.245727,
+            "log": "logs/default-tsgo-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33153741
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.651900178999995,
+            "peak_rss_bytes": 6664646656,
+            "cpu_s": 71.770738,
+            "log": "logs/default-tsgo-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33120868
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.367449023000006,
+            "peak_rss_bytes": 6685790208,
+            "cpu_s": 71.151267,
+            "log": "logs/default-tsgo-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33119144
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.39107689599996,
+            "peak_rss_bytes": 6675927040,
+            "cpu_s": 71.014303,
+            "log": "logs/default-tsgo-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33125984
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 17.46058712200005,
+            "peak_rss_bytes": 6254804992,
+            "cpu_s": 65.592051,
+            "log": "logs/default-tsgo-4.log"
+          }
+        ],
+        "tsgo nightly": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 35206514
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.143342345999997,
+            "peak_rss_bytes": 7331221504,
+            "cpu_s": 77.39577600000001,
+            "log": "logs/default-tsgo-nightly-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34994279
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.58476612300001,
+            "peak_rss_bytes": 6956953600,
+            "cpu_s": 72.704445,
+            "log": "logs/default-tsgo-nightly-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34982428
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.16118958499999,
+            "peak_rss_bytes": 7301083136,
+            "cpu_s": 75.613126,
+            "log": "logs/default-tsgo-nightly-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34976365
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.44744275200003,
+            "peak_rss_bytes": 7018405888,
+            "cpu_s": 72.017857,
+            "log": "logs/default-tsgo-nightly-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34974900
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.67977023399999,
+            "peak_rss_bytes": 7131148288,
+            "cpu_s": 77.188097,
+            "log": "logs/default-tsgo-nightly-4.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5123570,
+              "Types": 2866270,
+              "Instantiations": 4292412,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.496304875000021,
+            "peak_rss_bytes": 2067562496,
+            "cpu_s": 25.220195,
+            "log": "logs/default-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5121972,
+              "Types": 2866465,
+              "Instantiations": 4291372,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.263586447000023,
+            "peak_rss_bytes": 2081980416,
+            "cpu_s": 24.668841,
+            "log": "logs/default-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5122341,
+              "Types": 2866894,
+              "Instantiations": 4291408,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.4050315420000175,
+            "peak_rss_bytes": 2089504768,
+            "cpu_s": 25.206884,
+            "log": "logs/default-tsrs-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5120581,
+              "Types": 2865213,
+              "Instantiations": 4290286,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.323223232000032,
+            "peak_rss_bytes": 2061623296,
+            "cpu_s": 24.748488,
+            "log": "logs/default-tsrs-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5123748,
+              "Types": 2868174,
+              "Instantiations": 4293447,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.276984298000002,
+            "peak_rss_bytes": 2070269952,
+            "cpu_s": 24.768153,
+            "log": "logs/default-tsrs-4.log"
+          }
+        ]
+      },
+      "warmups": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5314554,
+            "Types": 3322359,
+            "Instantiations": 4710661,
+            "Memory allocs": 33121352
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 20.419127873000008,
+          "peak_rss_bytes": 6572883968,
+          "cpu_s": 76.38853999999999,
+          "log": "logs/default-tsgo-warm.log"
+        },
+        "tsgo nightly": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3511860,
+            "Identifiers": 6060404,
+            "Symbols": 9880648,
+            "Types": 3335735,
+            "Instantiations": 4712189,
+            "Memory allocs": 34980158
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 20.225237807999974,
+          "peak_rss_bytes": 7060217856,
+          "cpu_s": 74.276482,
+          "log": "logs/default-tsgo-nightly-warm.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5123013,
+            "Types": 2867872,
+            "Instantiations": 4292630,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 6.257161891999999,
+          "peak_rss_bytes": 2061537280,
+          "cpu_s": 24.67011,
+          "log": "logs/default-tsrs-warm.log"
+        }
+      }
+    },
+    {
+      "mode": "single",
+      "summary": {
+        "tsgo": {
+          "wall_s": 41.651950591999935,
+          "peak_rss_bytes": 5920043008,
+          "cpu_s": 41.74597,
+          "errors": 371
+        },
+        "tsgo nightly": {
+          "wall_s": 44.26266651599997,
+          "peak_rss_bytes": 6646030336,
+          "cpu_s": 44.350029000000006,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 14.854250237999963,
+          "peak_rss_bytes": 1738719232,
+          "cpu_s": 14.852402,
+          "errors": 371
+        }
+      },
+      "stable": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "equality": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4822277,
+              "Types": 2658870,
+              "Instantiations": 3501192,
+              "Memory allocs": 28784915
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 42.41484772700005,
+            "peak_rss_bytes": 5959294976,
+            "cpu_s": 42.517062,
+            "log": "logs/single-tsgo-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4822277,
+              "Types": 2658870,
+              "Instantiations": 3501192,
+              "Memory allocs": 28785098
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 40.510255645999905,
+            "peak_rss_bytes": 5872730112,
+            "cpu_s": 40.597586,
+            "log": "logs/single-tsgo-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4822277,
+              "Types": 2658870,
+              "Instantiations": 3501192,
+              "Memory allocs": 28785417
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 36.37858424199999,
+            "peak_rss_bytes": 5776052224,
+            "cpu_s": 36.438381,
+            "log": "logs/single-tsgo-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4822277,
+              "Types": 2658870,
+              "Instantiations": 3501192,
+              "Memory allocs": 28785141
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 41.651950591999935,
+            "peak_rss_bytes": 5991804928,
+            "cpu_s": 41.74597,
+            "log": "logs/single-tsgo-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4822277,
+              "Types": 2658870,
+              "Instantiations": 3501192,
+              "Memory allocs": 28785053
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 42.516409447000115,
+            "peak_rss_bytes": 5920043008,
+            "cpu_s": 42.630531,
+            "log": "logs/single-tsgo-4.log"
+          }
+        ],
+        "tsgo nightly": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 8541592,
+              "Types": 2667635,
+              "Instantiations": 3502294,
+              "Memory allocs": 30455871
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 44.27585516099998,
+            "peak_rss_bytes": 6688985088,
+            "cpu_s": 44.361821,
+            "log": "logs/single-tsgo-nightly-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 8541592,
+              "Types": 2667635,
+              "Instantiations": 3502294,
+              "Memory allocs": 30455545
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 39.597327206000045,
+            "peak_rss_bytes": 6507950080,
+            "cpu_s": 39.678273999999995,
+            "log": "logs/single-tsgo-nightly-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 8541592,
+              "Types": 2667635,
+              "Instantiations": 3502294,
+              "Memory allocs": 30455620
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 44.053529131999994,
+            "peak_rss_bytes": 6646030336,
+            "cpu_s": 44.141481000000006,
+            "log": "logs/single-tsgo-nightly-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 8541592,
+              "Types": 2667635,
+              "Instantiations": 3502294,
+              "Memory allocs": 30455661
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 44.26266651599997,
+            "peak_rss_bytes": 6561959936,
+            "cpu_s": 44.350029000000006,
+            "log": "logs/single-tsgo-nightly-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 8541592,
+              "Types": 2667635,
+              "Instantiations": 3502294,
+              "Memory allocs": 30455575
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 46.39179479400002,
+            "peak_rss_bytes": 6693421056,
+            "cpu_s": 46.508888,
+            "log": "logs/single-tsgo-nightly-4.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4740342,
+              "Types": 2454401,
+              "Instantiations": 3421185,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 14.854250237999963,
+            "peak_rss_bytes": 1738993664,
+            "cpu_s": 14.852402,
+            "log": "logs/single-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4740342,
+              "Types": 2454401,
+              "Instantiations": 3421185,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 15.534036614999991,
+            "peak_rss_bytes": 1738420224,
+            "cpu_s": 15.531802,
+            "log": "logs/single-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4740342,
+              "Types": 2454401,
+              "Instantiations": 3421185,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 14.554683296000007,
+            "peak_rss_bytes": 1736830976,
+            "cpu_s": 14.552361,
+            "log": "logs/single-tsrs-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4740342,
+              "Types": 2454401,
+              "Instantiations": 3421185,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 14.667646747000049,
+            "peak_rss_bytes": 1738719232,
+            "cpu_s": 14.665325000000001,
+            "log": "logs/single-tsrs-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 4740342,
+              "Types": 2454401,
+              "Instantiations": 3421185,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 15.419988242000045,
+            "peak_rss_bytes": 1740001280,
+            "cpu_s": 15.418009,
+            "log": "logs/single-tsrs-4.log"
+          }
+        ]
+      },
+      "warmups": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 4822277,
+            "Types": 2658870,
+            "Instantiations": 3501192,
+            "Memory allocs": 28785271
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 42.57030078400004,
+          "peak_rss_bytes": 5902983168,
+          "cpu_s": 42.680481,
+          "log": "logs/single-tsgo-warm.log"
+        },
+        "tsgo nightly": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3511860,
+            "Identifiers": 6060404,
+            "Symbols": 8541592,
+            "Types": 2667635,
+            "Instantiations": 3502294,
+            "Memory allocs": 30455566
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 47.03064708699992,
+          "peak_rss_bytes": 6688972800,
+          "cpu_s": 47.146058,
+          "log": "logs/single-tsgo-nightly-warm.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 4740342,
+            "Types": 2454401,
+            "Instantiations": 3421185,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 15.713796322999997,
+          "peak_rss_bytes": 1738145792,
+          "cpu_s": 15.711944,
+          "log": "logs/single-tsrs-warm.log"
+        }
+      }
+    },
+    {
+      "mode": "checkers4",
+      "summary": {
+        "tsgo": {
+          "wall_s": 18.233923603999983,
+          "peak_rss_bytes": 6342635520,
+          "cpu_s": 69.32808800000001,
+          "errors": 371
+        },
+        "tsgo nightly": {
+          "wall_s": 20.372014116999935,
+          "peak_rss_bytes": 7097835520,
+          "cpu_s": 75.501035,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 6.435804757999904,
+          "peak_rss_bytes": 2067058688,
+          "cpu_s": 25.350514,
+          "errors": 371
+        }
+      },
+      "stable": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "equality": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33118030
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.418493188999946,
+            "peak_rss_bytes": 6536937472,
+            "cpu_s": 70.09165999999999,
+            "log": "logs/checkers4-tsgo-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33118616
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 17.414689642999974,
+            "peak_rss_bytes": 6471270400,
+            "cpu_s": 65.515139,
+            "log": "logs/checkers4-tsgo-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33122938
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 17.52663474300016,
+            "peak_rss_bytes": 6257221632,
+            "cpu_s": 66.33206,
+            "log": "logs/checkers4-tsgo-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33123981
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.233923603999983,
+            "peak_rss_bytes": 6342635520,
+            "cpu_s": 69.32808800000001,
+            "log": "logs/checkers4-tsgo-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5314554,
+              "Types": 3322359,
+              "Instantiations": 4710661,
+              "Memory allocs": 33122526
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.5011522530001,
+            "peak_rss_bytes": 6242242560,
+            "cpu_s": 70.004019,
+            "log": "logs/checkers4-tsgo-4.log"
+          }
+        ],
+        "tsgo nightly": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34983478
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.876071063999916,
+            "peak_rss_bytes": 7278358528,
+            "cpu_s": 69.640481,
+            "log": "logs/checkers4-tsgo-nightly-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34986158
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.766758371999913,
+            "peak_rss_bytes": 6999474176,
+            "cpu_s": 77.214575,
+            "log": "logs/checkers4-tsgo-nightly-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34974847
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.372014116999935,
+            "peak_rss_bytes": 7319752704,
+            "cpu_s": 77.949199,
+            "log": "logs/checkers4-tsgo-nightly-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34979429
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.397655403000044,
+            "peak_rss_bytes": 6936023040,
+            "cpu_s": 75.501035,
+            "log": "logs/checkers4-tsgo-nightly-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 9880648,
+              "Types": 3335735,
+              "Instantiations": 4712189,
+              "Memory allocs": 34985754
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.27739560100008,
+            "peak_rss_bytes": 7097835520,
+            "cpu_s": 71.146665,
+            "log": "logs/checkers4-tsgo-nightly-4.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5121671,
+              "Types": 2865493,
+              "Instantiations": 4290162,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.439638100000138,
+            "peak_rss_bytes": 2056048640,
+            "cpu_s": 25.405006,
+            "log": "logs/checkers4-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5121242,
+              "Types": 2865171,
+              "Instantiations": 4288937,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.435804757999904,
+            "peak_rss_bytes": 2054225920,
+            "cpu_s": 25.350514,
+            "log": "logs/checkers4-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5122807,
+              "Types": 2866818,
+              "Instantiations": 4292050,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.57053449,
+            "peak_rss_bytes": 2067058688,
+            "cpu_s": 25.915630999999998,
+            "log": "logs/checkers4-tsrs-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5121055,
+              "Types": 2865130,
+              "Instantiations": 4290527,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.294085012999858,
+            "peak_rss_bytes": 2084642816,
+            "cpu_s": 24.830822,
+            "log": "logs/checkers4-tsrs-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5122010,
+              "Types": 2866720,
+              "Instantiations": 4290609,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.357187083000099,
+            "peak_rss_bytes": 2070028288,
+            "cpu_s": 24.86707,
+            "log": "logs/checkers4-tsrs-4.log"
+          }
+        ]
+      },
+      "warmups": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5314554,
+            "Types": 3322359,
+            "Instantiations": 4710661,
+            "Memory allocs": 33120457
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 18.217065491000085,
+          "peak_rss_bytes": 6470868992,
+          "cpu_s": 69.175642,
+          "log": "logs/checkers4-tsgo-warm.log"
+        },
+        "tsgo nightly": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3511860,
+            "Identifiers": 6060404,
+            "Symbols": 9880648,
+            "Types": 3335735,
+            "Instantiations": 4712189,
+            "Memory allocs": 34991425
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 19.54741874199999,
+          "peak_rss_bytes": 6944735232,
+          "cpu_s": 72.376578,
+          "log": "logs/checkers4-tsgo-nightly-warm.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5123980,
+            "Types": 2868757,
+            "Instantiations": 4295320,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 6.438781744999915,
+          "peak_rss_bytes": 2084753408,
+          "cpu_s": 25.432718,
+          "log": "logs/checkers4-tsrs-warm.log"
+        }
+      }
+    },
+    {
+      "mode": "checkers8",
+      "summary": {
+        "tsgo": {
+          "wall_s": 19.23421988899986,
+          "peak_rss_bytes": 6981726208,
+          "cpu_s": 74.686296,
+          "errors": 371
+        },
+        "tsgo nightly": {
+          "wall_s": 21.19313156899989,
+          "peak_rss_bytes": 7535026176,
+          "cpu_s": 80.050165,
+          "errors": 371
+        },
+        "tsrs": {
+          "wall_s": 6.954900756999905,
+          "peak_rss_bytes": 2297823232,
+          "cpu_s": 27.462122,
+          "errors": 371
+        }
+      },
+      "stable": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "equality": {
+        "tsgo": true,
+        "tsgo nightly": true,
+        "tsrs": true
+      },
+      "runs": {
+        "tsgo": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5665613,
+              "Types": 3753686,
+              "Instantiations": 5656259,
+              "Memory allocs": 36002943
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.999370509000073,
+            "peak_rss_bytes": 6824128512,
+            "cpu_s": 77.14390900000001,
+            "log": "logs/checkers8-tsgo-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5665613,
+              "Types": 3753686,
+              "Instantiations": 5656259,
+              "Memory allocs": 36005739
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 17.798947517999977,
+            "peak_rss_bytes": 6981726208,
+            "cpu_s": 68.79689300000001,
+            "log": "logs/checkers8-tsgo-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5665613,
+              "Types": 3753686,
+              "Instantiations": 5656259,
+              "Memory allocs": 35998093
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.698495331999993,
+            "peak_rss_bytes": 7196745728,
+            "cpu_s": 75.826589,
+            "log": "logs/checkers8-tsgo-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5665613,
+              "Types": 3753686,
+              "Instantiations": 5656259,
+              "Memory allocs": 36007893
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 18.91314612200017,
+            "peak_rss_bytes": 6648664064,
+            "cpu_s": 72.846294,
+            "log": "logs/checkers8-tsgo-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5665613,
+              "Types": 3753686,
+              "Instantiations": 5656259,
+              "Memory allocs": 36000829
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 19.23421988899986,
+            "peak_rss_bytes": 7210045440,
+            "cpu_s": 74.686296,
+            "log": "logs/checkers8-tsgo-4.log"
+          }
+        ],
+        "tsgo nightly": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 10650210,
+              "Types": 3770972,
+              "Instantiations": 5658018,
+              "Memory allocs": 38025812
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 21.19313156899989,
+            "peak_rss_bytes": 7434735616,
+            "cpu_s": 80.050165,
+            "log": "logs/checkers8-tsgo-nightly-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 10650210,
+              "Types": 3770972,
+              "Instantiations": 5658018,
+              "Memory allocs": 38029429
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 21.43554089500003,
+            "peak_rss_bytes": 7821066240,
+            "cpu_s": 83.224227,
+            "log": "logs/checkers8-tsgo-nightly-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 10650210,
+              "Types": 3770972,
+              "Instantiations": 5658018,
+              "Memory allocs": 38018470
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.22557470400011,
+            "peak_rss_bytes": 7430344704,
+            "cpu_s": 76.793768,
+            "log": "logs/checkers8-tsgo-nightly-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 10650210,
+              "Types": 3770972,
+              "Instantiations": 5658018,
+              "Memory allocs": 38015977
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 20.01987552999981,
+            "peak_rss_bytes": 7535026176,
+            "cpu_s": 75.535678,
+            "log": "logs/checkers8-tsgo-nightly-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3511860,
+              "Identifiers": 6060404,
+              "Symbols": 10650210,
+              "Types": 3770972,
+              "Instantiations": 5658018,
+              "Memory allocs": 38018183
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 21.583057558000064,
+            "peak_rss_bytes": 7845318656,
+            "cpu_s": 82.418819,
+            "log": "logs/checkers8-tsgo-nightly-4.log"
+          }
+        ],
+        "tsrs": [
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5441595,
+              "Types": 3242058,
+              "Instantiations": 5116710,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 7.0433186610000575,
+            "peak_rss_bytes": 2297823232,
+            "cpu_s": 27.815427999999997,
+            "log": "logs/checkers8-tsrs-0.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5444121,
+              "Types": 3257779,
+              "Instantiations": 5132054,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.954900756999905,
+            "peak_rss_bytes": 2308022272,
+            "cpu_s": 27.462122,
+            "log": "logs/checkers8-tsrs-1.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5445896,
+              "Types": 3258085,
+              "Instantiations": 5131522,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 7.016335460999926,
+            "peak_rss_bytes": 2290606080,
+            "cpu_s": 27.513719,
+            "log": "logs/checkers8-tsrs-2.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5452287,
+              "Types": 3266278,
+              "Instantiations": 5142482,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.874549205999983,
+            "peak_rss_bytes": 2306686976,
+            "cpu_s": 27.16511,
+            "log": "logs/checkers8-tsrs-3.log"
+          },
+          {
+            "exit": 2,
+            "counters": {
+              "Files": 10427,
+              "Lines": 3510944,
+              "Identifiers": 6059859,
+              "Symbols": 5430398,
+              "Types": 3243177,
+              "Instantiations": 5109487,
+              "Memory allocs": 0
+            },
+            "completed": true,
+            "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+            "errors": 371,
+            "wall_s": 6.841151483999965,
+            "peak_rss_bytes": 2285899776,
+            "cpu_s": 27.017541,
+            "log": "logs/checkers8-tsrs-4.log"
+          }
+        ]
+      },
+      "warmups": {
+        "tsgo": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5665613,
+            "Types": 3753686,
+            "Instantiations": 5656259,
+            "Memory allocs": 36002963
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 20.144761084000038,
+          "peak_rss_bytes": 7175471104,
+          "cpu_s": 78.123644,
+          "log": "logs/checkers8-tsgo-warm.log"
+        },
+        "tsgo nightly": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3511860,
+            "Identifiers": 6060404,
+            "Symbols": 10650210,
+            "Types": 3770972,
+            "Instantiations": 5658018,
+            "Memory allocs": 38104070
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 21.61838938599999,
+          "peak_rss_bytes": 7812780032,
+          "cpu_s": 83.871931,
+          "log": "logs/checkers8-tsgo-nightly-warm.log"
+        },
+        "tsrs": {
+          "exit": 2,
+          "counters": {
+            "Files": 10427,
+            "Lines": 3510944,
+            "Identifiers": 6059859,
+            "Symbols": 5425094,
+            "Types": 3237227,
+            "Instantiations": 5100032,
+            "Memory allocs": 0
+          },
+          "completed": true,
+          "diagnostics_sha256": "1532d122506448ea0df9408940fd54ea4006e610ad7fdfcbb894d57f6cdfe96a",
+          "errors": 371,
+          "wall_s": 7.00492465100001,
+          "peak_rss_bytes": 2296229888,
+          "cpu_s": 27.657563,
+          "log": "logs/checkers8-tsrs-warm.log"
+        }
+      }
+    }
+  ],
+  "run_url": "https://github.com/maschwenk/typescript-go-tsrs/actions/runs/38202935308",
+  "build": "fork: Go -pgo=off; tsrs: plain Rust release; nightly: official npm binary",
+  "completed": true
+}
