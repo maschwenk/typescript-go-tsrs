@@ -96,6 +96,14 @@ jobs:
             --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
             --projects "$PROJECTS" --modes single,checkers4,checkers8,default --reps "$REPS" --label "$RUNNER_OS-$RUNNER_ARCH" \
             --out .bench/results/compare.json "${extra[@]}"
+      - name: Verify union cache hits against the original computation
+        env:
+          TSGO_UNION_CACHE: shadow
+        run: |
+          python3 bench/run.py --stock .bench/bin/stock --fork .bench/bin/fork \
+            --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
+            --projects synthetic,Compiler,Compiler-Unions --reps 1 --modes single,checkers4 \
+            --out .bench/results/shadow.json
       - name: Publish comparison summary
         if: always()
         run: |
