@@ -17991,6 +17991,9 @@ func getTypeAliasInstantiationKey(typeArguments []*Type, alias *TypeAlias) Cache
 }
 
 func getTypeInstantiationKey(typeArguments []*Type, alias *TypeAlias, singleSignature bool) CacheHashKey {
+	if alias == nil && len(typeArguments) <= 3 {
+		return packedTypeArgumentKey(0x1a5e, typeArguments, singleSignature)
+	}
 	var b keyBuilder
 	b.writeTypes(typeArguments)
 	b.writeAlias(alias)
@@ -18024,6 +18027,9 @@ func getTemplateTypeKey(texts []string, types []*Type) CacheHashKey {
 }
 
 func getConditionalTypeKey(typeArguments []*Type, alias *TypeAlias, forConstraint bool) CacheHashKey {
+	if alias == nil && len(typeArguments) <= 3 {
+		return packedTypeArgumentKey(0xc0d7, typeArguments, forConstraint)
+	}
 	var b keyBuilder
 	b.writeTypes(typeArguments)
 	b.writeAlias(alias)
