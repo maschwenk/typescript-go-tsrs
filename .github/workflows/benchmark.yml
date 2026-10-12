@@ -1,6 +1,5 @@
 name: Benchmark
 on:
-  pull_request:
   workflow_dispatch:
     inputs:
       source_sha:
@@ -9,28 +8,20 @@ on:
       parent_sha:
         description: 'Optional exact parent commit for an isolated step comparison'
         type: string
-      runner:
-        description: 'Linux runner label'
-        type: choice
-        default: ubuntu-24.04
-        options: [ubuntu-24.04, tsgo-backport-local]
       projects:
-        description: 'Comma-separated tsrs projects (synthetic is always available)'
-        default: 'synthetic,Compiler,Compiler-Unions,xstate-main,webpack'
+        description: 'Pinned workload (VS Code only)'
+        default: 'vscode'
       repetitions:
         description: 'Interleaved repetitions'
-        default: '7'
-  schedule:
-    - cron: '0 6 * * 1'
+        default: '5'
 permissions:
   contents: read
-  checks: write
 concurrency:
   group: benchmark-${{ github.ref }}-${{ inputs.source_sha }}
   cancel-in-progress: true
 jobs:
   compare:
-    runs-on: ${{ inputs.runner || 'ubuntu-24.04' }}
+    runs-on: ubuntu-24.04
     timeout-minutes: 75
     steps:
       - name: Validate an optional source commit
@@ -44,6 +35,7 @@ jobs:
         with:
           fetch-depth: 1
           ref: ${{ inputs.source_sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
         with:
           go-version-file: tsc/go.mod
@@ -61,6 +53,7 @@ jobs:
           repository: maschwenk/tsrs
           ref: ${{ steps.pins.outputs.tsrs }}
           path: .bench/tsrs
+          persist-credentials: false
       - name: Restore tsrs native binary
         id: cache
         uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
@@ -92,15 +85,16 @@ jobs:
           fi
       - name: Compare compilers
         env:
-          PROJECTS: ${{ inputs.projects || 'synthetic,Compiler,Compiler-Unions' }}
-          REPS: ${{ inputs.repetitions || '3' }}
+          PROJECTS: ${{ inputs.projects || 'vscode' }}
+          REPS: ${{ inputs.repetitions || '5' }}
           PARENT: ${{ inputs.parent_sha || github.event.pull_request.base.sha }}
         run: |
+          if [ "$PROJECTS" != vscode ]; then echo "Use VS Code only" >&2; exit 1; fi
           extra=()
           if [ -n "$PARENT" ]; then extra+=(--parent .bench/bin/parent); fi
           python3 bench/run.py --stock .bench/bin/stock --fork .bench/bin/fork \
             --tsrs .bench/tsrs/target/release/tsrs --tsrs-source .bench/tsrs \
-            --projects "$PROJECTS" --reps "$REPS" --label "$RUNNER_OS-$RUNNER_ARCH" \
+            --projects "$PROJECTS" --modes single,checkers4,checkers8,default --reps "$REPS" --label "$RUNNER_OS-$RUNNER_ARCH" \
             --out .bench/results/compare.json "${extra[@]}"
       - name: Publish comparison summary
         if: always()
@@ -111,28 +105,4 @@ jobs:
         with:
           name: compiler-comparison
           path: .bench/results/
-          retention-days: 30
-      - name: Record the tested source commit
-        if: always() && inputs.source_sha != ''
-        env:
-          CHECK_TOKEN: ${{ github.token }}
-          SOURCE_SHA: ${{ inputs.source_sha }}
-          CHECK_NAME: compare
-          JOB_RESULT: ${{ job.status }}
-        run: |
-          python3 - <<'CHECK'
-          import datetime,json,os,re,urllib.request
-          sha=os.environ['SOURCE_SHA']
-          if not re.fullmatch('[0-9a-f]{40}',sha): raise SystemExit('A full source commit is required')
-          result={'success':'success','failure':'failure','cancelled':'cancelled'}[os.environ['JOB_RESULT']]
-          repo=os.environ['GITHUB_REPOSITORY']
-          url=f"https://github.com/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}"
-          payload={'name':os.environ['CHECK_NAME'],'head_sha':sha,'status':'completed','conclusion':result,
-                   'completed_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
-                   'details_url':url,'output':{'title':'Linux validation of the exact source commit',
-                   'summary':f"Source: {sha}. Result: {result}. Runner: {os.environ['RUNNER_OS']}/{os.environ['RUNNER_ARCH']}. Full logs and artifacts: {url}."}}
-          request=urllib.request.Request(f'https://api.github.com/repos/{repo}/check-runs',data=json.dumps(payload).encode(),
-                   headers={'Authorization':'Bearer '+os.environ['CHECK_TOKEN'],'Accept':'application/vnd.github+json','Content-Type':'application/json'},method='POST')
-          with urllib.request.urlopen(request) as response: recorded=json.load(response)
-          print(recorded['html_url'])
-          CHECK
+          retention-days: 7
